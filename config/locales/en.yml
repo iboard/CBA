@@ -1,0 +1,40 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  userlist:
+    title: "Listing Users"
+    roles: "Roles"
+    edit_user: "Edit user %{user}"
+    user_profile: "Profile of %{name}"
+    detail: 'Detail'
+  menu:
+    home: "Home"
+  role_label_confirmed_user: "Registered user"
+  role_label_moderator: "Can manage all entries"
+  role_label_author: "Can create entires and mange owned entries"
+  role_label_maintainer: "Can do everything but system-configuration"
+  role_label_admin: "Can do everything"
+  edit_resource_named: "Edit %{resource} '%{name}'"
+  save_changes: "Save changes"
+  crop_avatar: "Crop avatar image"
+  user_successfully_updated: 'User successfully updated'
+  crop_help: 'Define the rectangle to crop in the upper picture and see live preview below.'
+  edit_profile: 'Edit profile'
+  you: 'You'
+  last_login_at: 'Last signed in at %{time} ago'
+  roles: 'Roles'
+  edit_roles: 'Edit roles'
+  edit_roles_for_user: 'Edit roles of user "%{user}"'
+  roles_of_user_updated: 'Roles for "%{user}" successfully updated'
+  edit: 'Edit'
+  clear_avatar: 'Delete avatar-file on server'
+  upload_avatar: 'Upload avatar'
+  or_clear_avatar: 'Or clear'
+  welcome: 'Welcome'
+  list_registrations: 'List all registrations'
+  or_user_omni_auth: 'Or use an authenticaton provider'
+  sign_in: 'Sign in'
+  authentications: 'Authentications'
+  back_to: 'Back to'
+  registration_settings: 'Registration settings'

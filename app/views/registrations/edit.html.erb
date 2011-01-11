@@ -1,0 +1,69 @@
+<% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
+<% if @user.avatar %>
+  <%= image_tag @user.avatar_url(:thumb), :style=>'float: right;' %>
+<% end %>
+
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), 
+  :html => { :method => :put, :multipart => true }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class='field'><%= f.label :name %>
+  <%= f.text_field :name %></div>
+
+  <div class='field'><%= f.label :email %>
+  <%= f.text_field :email %></div>
+  
+  
+  <div class='field'><%= f.label :avatar,t(:upload_avatar) %>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :clear_avatar, t(:or_clear_avatar) %>
+    <%= f.check_box :clear_avatar %> <%= t(:clear_avatar)%>
+  </div>
+  
+  <div class='field'><%= f.label :use_gravatar %>
+    <%= f.check_box :use_gravatar %> 
+    <%= link_to 'Gravatar?', "http://gravatar.com", :target => :blank %>
+    <small><%= @user.email.downcase%></small>
+  </div>
+  
+  <h2>Password</h2>
+
+  <div class='field'><%= f.label :password %>
+  <%= f.password_field :password %>
+  <address><i>(leave blank if you don't want to change it)</i></address>
+  </div>
+
+  <div class='field'><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div>
+
+
+  <h2><%= t(:or_user_omni_auth) -%></h2>
+  <%= render '/authentications/authentications' %>
+
+
+  
+  <%= render :partial => 'roles', 
+      :locals => { :user => @user, 
+                   :f => f,
+                   :partial_title => "<h2>#{t('userlist.roles')}</h2>".html_safe} 
+  %>
+
+  
+  <h2><%= t(:save_changes) -%></h2>
+  
+  <div class='field'><%= f.label :current_password %>
+  <%= f.password_field :current_password %>
+  <address><i>(we need your current password to confirm your changes)</i></address></div>
+  
+  <div class='field'><%= f.submit "Update" %></div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<div class='field'>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</div>
+
+<%= link_to "Back", :back %>

@@ -1,0 +1,34 @@
+<%= image_tag user.avatar_url(:thumb) %> <%=link_to user.name, user %>
+<%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %><br />
+<small>
+<% unless user.roles.empty? %>
+  <%= user.roles.map(&:humanize).join(", ")%><br />
+<% end %>
+<%= t(:last_login_at,:time => distance_of_time_in_words(Time.now(),user.last_sign_in_at)) %>
+<% if user.authentications.any? %>
+   <br/>
+     <%= user.authentications.map {|a| 
+           image_tag("/images/#{a.provider}_32.png",:class => 'omniauth_mini_icons')
+         }.join().html_safe %>
+   <br/>
+<% end %>
+<% if user_signed_in? && current_user.role?([:admin,:maintainer]) %>
+ 
+  
+  <br /><%= link_to_function t("userlist.detail"), "toggle_div('user_information_#{user.id.to_s}')",
+    :class => 'admin' %>  
+  <ul class='user_detail admin' id='user_information_<%= user.id.to_s -%>', style='display: none;'>
+    <li>
+      <strong><%= t(:roles) %></strong>: <%= user.roles.map(&:humanize) -%>
+      <%= link_to t(:edit_roles), edit_roles_user_path(user)  %>
+    </li>
+    <% for attribute in user.attributes %>
+      <li>
+        <strong><%= attribute[0] == "_id" ? "ID" : attribute[0].humanize %></strong>: 
+        <%= user.try(attribute[0].to_s.underscore)%>
+      </li>
+    <% end %>
+    <li></li>
+  </ul>
+<% end %>
+</small>

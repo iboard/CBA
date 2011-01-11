@@ -1,0 +1,63 @@
+development:
+  application:
+    name:              Your Application Name
+    rss_title:         Application Name for RSS-Feeds
+    title_prefix:      'HTML-Title-Prefix:'
+    stylesheet_screen: application
+    stylesheet_print:  application
+    copyright:         Your copyright
+    copyright_url:     http://www.your.site
+    meta_description:  'CBA Template Application'
+    registration_from: 'noreply@your.site'
+  constants:
+    max_time_to_edit_new_comments: 2
+    rss_feed_cache_time:           1.minute
+    paginate_postings_per_page:    2
+    paginate_episodes_per_page:    2
+    num_postings_on_welcome_page:  2
+    rating_range:                  (1..5)
+    paginate_ratings_per_page:     2
+    paginate_blog_entries_per_page: 2
+    delay_new_posting_notifications: 9
+    
+test:
+  application:
+    name:              iBoard.cc (TEST WITH RSS FEED)
+    rss_title:         iBoard.cc (TEST WITH RSS FEED)
+    title_prefix:      'iBoard.cc (test): '    
+    stylesheet_screen: application
+    stylesheet_print:  application
+    copyright:         Andreas Altendorfer
+    copyright_url:     http://altendorfer.at
+    meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
+  constants:
+    max_time_to_edit_new_comments: 15    
+    rss_feed_cache_time:           0
+    paginate_postings_per_page:    6
+    paginate_episodes_per_page:    6
+    num_postings_on_welcome_page:  6
+    rating_range:                  (1..5)
+    paginate_ratings_per_page:     20
+    paginate_blog_entries_per_page: 20
+    delay_new_posting_notifications: 9
+        
+production:
+  application:
+    name:              iBoard.cc
+    rss_title:         'iBoard.cc - Musik, Benzin und Kuchen'
+    title_prefix:      'iBoard.cc: '
+    stylesheet_screen: application
+    stylesheet_print:  application
+    copyright:         Andreas Altendorfer
+    copyright_url:     http://altendorfer.at
+    meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
+  constants:
+    max_time_to_edit_new_comments: 15    
+    rss_feed_cache_time:           10.minutes
+    paginate_postings_per_page:    6
+    paginate_episodes_per_page:    6
+    num_postings_on_welcome_page:  6
+    rating_range:                  (1..5)
+    paginate_ratings_per_page:     20
+    paginate_blog_entries_per_page: 20
+    delay_new_posting_notifications: 900

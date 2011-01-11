@@ -1,0 +1,10 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+.DS_Store
+config/mongoid.yml
+config/application.yml
+config/mailserver_setting.rb
+config/omniauth_settings.rb
+public/system/**/*

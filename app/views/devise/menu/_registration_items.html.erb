@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <li>
+  <em><%= menu_link_to(current_user.name, edit_user_registration_path) %></em>
+  </li>
+<% else %>
+  <li>
+  <%= menu_link_to('Sign up', new_user_registration_path)  %>
+  </li>
+<% end %>

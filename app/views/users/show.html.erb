@@ -1,0 +1,14 @@
+<% title t("userlist.user_profile", :name => @user.name ) %>
+
+<% if @user.avatar %>
+  <%= image_tag @user.avatar_url(:medium), :style=>'float: right;' %>
+<% end %>
+
+<p>User: <%= @user.name %></p>
+
+
+<p style='clear: both;'>
+    <% if user_signed_in? && current_user == @user %>
+      <%= link_to t(:edit_profile), edit_registration_path(@user)%>
+    <% end %>
+</p>

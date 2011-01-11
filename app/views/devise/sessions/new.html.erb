@@ -1,0 +1,24 @@
+<% title t(:sign_in) %>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <% if devise_mapping.rememberable? -%>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+  <% end -%>
+
+  <p><%= f.submit "Sign in" %></p>
+<% end %>
+
+<h2><%= t(:or_user_omni_auth) -%></h2>
+
+<%= render '/authentications/authentications' %>
+
+
+
+
+<%= render :partial => "devise/shared/links" %>

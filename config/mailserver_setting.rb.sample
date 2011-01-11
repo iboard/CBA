@@ -1,0 +1,9 @@
+MAILSERVER_ADDRESS   = 'smtp.your.site'
+MAILSERVER_PORT      = '25'
+MAILSERVER_USERNAME  = 'your_smtp_username'
+MAILSERVER_PASSWORD  = 'your_smtp_password'
+MAILSERVER_DOMAIN    = 'your.site'
+ADMIN_EMAIL_ADDRESS  = 'admin@your.site'
+DEFAULT_URL          = 'http://your.site'
+DEFAULT_MAIL_FROM    = "noreply@your.site"
+DEVELOPMENT_MAIL_RECIPIENT = 'developers@personal.email.address'

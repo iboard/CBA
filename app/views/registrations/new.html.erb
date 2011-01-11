@@ -1,21 +1,31 @@
 <% title "Sign up" %>
-    
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<blockquote>    
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+  
+    <div class='field'><%= f.label :name %>
+    <%= f.text_field :name %></div>
+  
+    <div class='field'><%= f.label :email %>
+    <%= f.text_field :email %></div>
+  
+    <div class='field'><%= f.label :password %>
+    <%= f.password_field :password %></div>
+  
+    <div class='field'><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></div>
+  
+    <div class='field'><%= f.submit "Sign up" %></div>
+  <% end %>
+</blockquote>
 
-  <div class='field'><%= f.label :name %>
-  <%= f.text_field :name %></div>
+<h2><%= t(:or_user_omni_auth) -%></h2>
+<blockquote>
+  <%= render '/authentications/authentications' %>
+</blockquote>
 
-  <div class='field'><%= f.label :email %>
-  <%= f.text_field :email %></div>
 
-  <div class='field'><%= f.label :password %>
-  <%= f.password_field :password %></div>
-
-  <div class='field'><%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %></div>
-
-  <div class='field'><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<h2><%= t(:links) %></h2>
+<blockquote>
+  <%= render :partial => "devise/shared/links" %>
+</blockquote>

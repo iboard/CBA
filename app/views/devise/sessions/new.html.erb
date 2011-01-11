@@ -1,17 +1,18 @@
 <% title t(:sign_in) %>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+  <div class='field'><%= f.label :email %>
+  <%= f.text_field :email %></div>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+  <div class='field'><%= f.label :password %>
+  <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <div class='field'><%= f.label :remember_me %>
+     <%= f.check_box :remember_me %> <%= t(:stay_logged_in)%></div>
   <% end -%>
 
-  <p><%= f.submit "Sign in" %></p>
+  <div class='field'><%= f.submit "Sign in" %></div>
 <% end %>
 
 <h2><%= t(:or_user_omni_auth) -%></h2>

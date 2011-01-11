@@ -41,3 +41,5 @@ en:
   your_associated_accounts: 'Your current authentication providers'
   you_have_no_authentications_yet: 'You have no associated authentication providers yet'
   authentications_for_user: 'Authentications for %{user}'
+  links: 'Links'
+  stay_logged_in: 'Stay logged in even if you close your browser.'

@@ -1,7 +1,26 @@
-Rails3-Mongoid-Devise
-========================
+CBA is based on Rails3-Mongoid-Devise
+=====================================
 
-You can use this project as a starting point for a Rails web application. It requires Rails 3 and uses Mongoid http://mongoid.org/ for data storage and Devise http://github.com/plataformatec/devise for user management and authentication.
+Rails3-Mongoid-Devise
+---------------------
+
+Original by "fortuity" at http://github.com/fortuity/rails3-mongoid-devise
+
+You can use this project as a starting point for a Rails web application. 
+It requires Rails 3 and uses Mongoid http://mongoid.org/ for data storage 
+and Devise http://github.com/plataformatec/devise for user management and 
+authentication.
+
+CBA
+---
+Extensions by Andi Altendorfer:
+I've added some features I need for nearly any of my applications. 
+So, you may too.
+
+* OmniAuth
+* Paperclip
+* CanCan
+
 ________________________
 
 Tutorial

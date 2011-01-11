@@ -1,3 +1,11 @@
+h1. CBA - Community Base Application
+
+is "Rails3-Mongoid-Devise by fortuity":http://github.com/fortuity/rails3-mongoid-devise extended by Andi Altendorfer with
+
+* OmniAuth
+* Paperclip
+* CanCan
+
 h1. Rails3-Mongoid-Devise
 
 This example app combines "Mongoid":http://mongoid.org/ with "Devise":http://github.com/plataformatec/devise to give you quick development without schemas or migrations plus ready-made authentication and user management. It gives you a skeleton or starter app you can deploy in minutes. Best of all, it's got a detailed tutorial (walk-through) to show how it's built.

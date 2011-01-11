@@ -10,13 +10,13 @@ class Ability
     else
       # Not Admin
       unless user.new_record?
+        # Any signed in user
+        can :read, User
+        can [:manage, :update_avatar, :crop_avatar], User do |usr|
+          user == usr
+        end
+        
         for role in user.roles
-          # Any signed in user
-          can [:manage, :update_avatar], User do |usr|
-            user == usr
-          end
-          can :show, User
-          
           # Users with roles 
           case role
           when 'confirmed_user'

@@ -160,6 +160,8 @@ input {
 #container .omniauth_mini_icons {
   margin: 0px;
   padding: 0px;
+  width: 32px;
+  height: 32px;
   border: none;
 }
 
@@ -187,6 +189,8 @@ input {
   -moz-border-radius: 5px; 
   -webkit-border-radius: 5px; 
   border: 1px solid #ddd;
+  width: 64px;
+  height: 64px;
 }
 
 .user_detail {

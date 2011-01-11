@@ -30,17 +30,20 @@
     <small><%= @user.email.downcase%></small>
   </div>
   
-  <h2>Password</h2>
+  <% if @user.authentications.empty? %>
+    
+    <h2>Password</h2>
+    
+    <div class='field'><%= f.label :password %>
+    <%= f.password_field :password %>
+    <address><i>(leave blank if you don't want to change it)</i></address>
+    </div>
+    
+    <div class='field'><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></div>
 
-  <div class='field'><%= f.label :password %>
-  <%= f.password_field :password %>
-  <address><i>(leave blank if you don't want to change it)</i></address>
-  </div>
-
-  <div class='field'><%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %></div>
-
-
+  <% end %>
+  
   <h2><%= t(:or_user_omni_auth) -%></h2>
   <%= render '/authentications/authentications' %>
   <h3><%= t(:your_associated_accounts) %></h3>

@@ -38,3 +38,6 @@ en:
   authentications: 'Authentications'
   back_to: 'Back to'
   registration_settings: 'Registration settings'
+  your_associated_accounts: 'Your current authentication providers'
+  you_have_no_authentications_yet: 'You have no associated authentication providers yet'
+  authentications_for_user: 'Authentications for %{user}'

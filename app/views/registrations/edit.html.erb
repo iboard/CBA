@@ -43,6 +43,15 @@
 
   <h2><%= t(:or_user_omni_auth) -%></h2>
   <%= render '/authentications/authentications' %>
+  <h3><%= t(:your_associated_accounts) %></h3>
+  <% if @user.authentications.empty? %>
+    <%= t(:you_have_no_authentications_yet) %>
+  <% else %>
+    <% for a in @user.authentications %>
+      <%= render(:partial => '/authentications/authentication', :locals => {:authentication => a}) %>
+    <% end %>
+    <%= link_to t(:edit), authentications_path(@user) %>
+  <% end %>
 
 
   
@@ -54,11 +63,11 @@
 
   
   <h2><%= t(:save_changes) -%></h2>
-  
-  <div class='field'><%= f.label :current_password %>
-  <%= f.password_field :current_password %>
-  <address><i>(we need your current password to confirm your changes)</i></address></div>
-  
+  <% if @user.authentications.empty? %>
+    <div class='field'><%= f.label :current_password %>
+    <%= f.password_field :current_password %>
+    <address><i>(we need your current password to confirm your changes)</i></address></div>
+  <% end %>
   <div class='field'><%= f.submit "Update" %></div>
 <% end %>
 

@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     with_password = resource.authentications.empty? ? resource.update_with_password(params[resource_name])\
      : resource.update_attributes(params[resource_name])
+     
     if with_password
       set_flash_message :notice, :updated
       sign_in resource_name, resource #, :bypass => true

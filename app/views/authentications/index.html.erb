@@ -1,4 +1,4 @@
-<% title t(:authentications) %>
+<% title t(:authentications_for_user, :user => current_user.name ) %>
 
 <% if @authentications %>
   <% unless @authentications.empty? %>

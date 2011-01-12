@@ -15,6 +15,7 @@ development:
     paginate_postings_per_page:    2
     paginate_episodes_per_page:    2
     num_postings_on_welcome_page:  2
+    paginate_users_per_page:       2    
     rating_range:                  (1..5)
     paginate_ratings_per_page:     2
     paginate_blog_entries_per_page: 2
@@ -35,6 +36,7 @@ test:
     rss_feed_cache_time:           0
     paginate_postings_per_page:    6
     paginate_episodes_per_page:    6
+    paginate_users_per_page:       6    
     num_postings_on_welcome_page:  6
     rating_range:                  (1..5)
     paginate_ratings_per_page:     20
@@ -56,6 +58,7 @@ production:
     rss_feed_cache_time:           10.minutes
     paginate_postings_per_page:    6
     paginate_episodes_per_page:    6
+    paginate_users_per_page:       6    
     num_postings_on_welcome_page:  6
     rating_range:                  (1..5)
     paginate_ratings_per_page:     20

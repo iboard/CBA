@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   #before_filter :authenticate_user!
   
   def index
-    @users = User.all
+    @users = User.all.reject {|u|
+      !can? :read, u
+    }.paginate( :page => params[:page], :per_page => CONSTANTS['paginate_users_per_page'])
   end
 
   def show

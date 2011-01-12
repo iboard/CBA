@@ -15,6 +15,13 @@ gem "omniauth"
 # Bundle gem needed for paperclip and attachments
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
+# Bundle gems for views
+gem "will_paginate"
+gem "RedCloth"
+
+# Bundle background job gems
+gem 'delayed_job'
+
 
 # Bundle gems for development 
 group :development do

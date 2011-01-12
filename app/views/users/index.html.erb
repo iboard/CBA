@@ -1,12 +1,17 @@
 <% title t('userlist.title') %>
 
+<div style='text-align: center;'>
+    <%= will_paginate @users %>
+</div>
+
 <ul id='userlist'>
-<% @users.each do |user| %>
-  <% if can? :read, user %>
-  <li>
-     <%= render :partial => 'userlist_user', :locals => {:user => user} %>
-  </li>
+  <% @users.each do |user| %>
+    <li>
+       <%= render :partial => 'userlist_user', :locals => {:user => user} %>
+    </li>
   <% end %>
-<% end %>
 </ul>
   
+<div style='text-align: center;'>
+    <%= will_paginate @users %>
+</div>

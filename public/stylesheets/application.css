@@ -42,7 +42,6 @@
     font-size: 0.9em;
     font-weight: 300;
     font-style: normal;
-    line-height: 160%;
     color: #4A4A4A;
     height: 100%;
   }
@@ -255,9 +254,9 @@
   
   .admin {
     background: #E1B6B9;
-    padding: 3px;
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px; 
+    padding: 1px;
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
     border: 1px solid #ddd;
   }
   

@@ -1,47 +1,31 @@
-<% if can? :read, User %>
-  <% title t('userlist.title') %>
-  <ul id='userlist'>
-  <% @users.each do |user| %>
-    <% if can? :read, user %>
-    <li>
-       <%= render :partial => 'userlist_user', :locals => {:user => user} %>
-    </li>
-    <% end %>
-  <% end %>
-  </ul>
-<% else %>
-  
-  <% title t(:welcome) %>
-  
-  <p>
-    <strong><%= link_to "CBA", "http://github.com/iboard/cba" %></strong> is a Rails3 template base application built on:
-  </p>
-  
-  <ul>
-      <li><strong><%= link_to 'MongoID'  ,"http://mongoid.org" %></strong></li>
-      <li><strong><%= link_to 'Devise'   ,"http://github.com/plataformatec/devise" %></strong></li>
-      <li><strong><%= link_to 'OmniAuth' ,"http://github.com/intridea/omniauth" %></strong></li>
-      <li><strong><%= link_to 'CanCan'   ,"http://github.com/ryanb/cancan" %></strong></li>
-      <li><strong><%= link_to 'Paperclip',"https://github.com/thoughtbot/paperclip" %></strong></li>
-      <li><strong><%= link_to 'jQuery', "http://jquery.com/" %></strong></li>
-  </ul>
-  
-  <p>Many, many thanks to the authors of this gems!</p>
-  
-  <p>Special credits to <b><%= link_to("fortuity", "http://github.com/fortuity/rails3-mongoid-devise")%></b>
-     for the basic work on sticking together rails3, mongoid, and devise.
-  </p>
-  
-  <p>And, as always, to Ryan Bates for his famous 
-     <%= link_to "Railscasts", "http://railscasts.com"%>!
-  </p>
-  
-  <p>January 2011,</p>
-  <blockquote>
-      - <em>Andi Altendorfer</em>
-  </blockquote>
-  
-  
-<% end %>
+<% title t(:welcome) %>
 
-<div class='clear'></p>
+<p>
+  <strong><%= link_to "CBA", "http://github.com/iboard/cba" %></strong> 
+  is a Rails3 template base application built on:
+</p>
+
+<ul>
+    <li><strong><%= link_to 'MongoID'  ,"http://mongoid.org" %></strong></li>
+    <li><strong><%= link_to 'Devise'   ,"http://github.com/plataformatec/devise" %></strong></li>
+    <li><strong><%= link_to 'OmniAuth' ,"http://github.com/intridea/omniauth" %></strong></li>
+    <li><strong><%= link_to 'CanCan'   ,"http://github.com/ryanb/cancan" %></strong></li>
+    <li><strong><%= link_to 'Paperclip',"https://github.com/thoughtbot/paperclip" %></strong></li>
+    <li><strong><%= link_to 'jQuery', "http://jquery.com/" %></strong></li>
+</ul>
+
+<p>Many, many thanks to the authors of this gems!</p>
+
+<p>Special credits to <b><%= link_to("fortuity", "http://github.com/fortuity/rails3-mongoid-devise")%></b>
+   for the basic work on sticking together rails3, mongoid, and devise.
+</p>
+
+<p>And, as always, to Ryan Bates for his famous 
+   <%= link_to "Railscasts", "http://railscasts.com"%>!
+</p>
+
+<p>January 2011,</p>
+<blockquote>
+    - <em>Andi Altendorfer</em>
+</blockquote>
+

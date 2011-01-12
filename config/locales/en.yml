@@ -10,6 +10,7 @@ en:
     detail: 'Detail'
   menu:
     home: "Home"
+    userlist: "Userlist"
   role_label_confirmed_user: "Registered user"
   role_label_moderator: "Can manage all entries"
   role_label_author: "Can create entires and mange owned entries"

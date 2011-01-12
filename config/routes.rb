@@ -1,6 +1,6 @@
 Cba::Application.routes.draw do
 
-  match '/registrations' => 'home#index'
+  match '/registrations' => 'users#index', :as => 'registrations'
   
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :users, :only => :show do

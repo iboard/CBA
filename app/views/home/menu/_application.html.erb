@@ -1,1 +1,4 @@
 <li><%= menu_link_to t("menu.home"), root_path %></li>
+<% if can? :read, User %>
+  <li><%= menu_link_to t("menu.userlist"), registrations_path %></li>
+<% end %>

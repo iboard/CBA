@@ -4,7 +4,7 @@
 <% unless user.roles.empty? %>
   <%= user.roles.map(&:humanize).join(", ")%><br />
 <% end %>
-<%= t(:last_login_at,:time => distance_of_time_in_words(Time.now(),user.last_sign_in_at)) %>
+<%= t(:last_login_at,:time => distance_of_time_in_words(Time.now(),user.last_sign_in_at||Time.at(0))) %>
 <% if user.authentications.any? %>
    <br/>
      <%= user.authentications.map {|a| 

@@ -28,7 +28,10 @@
       <% end %>
         
       <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>      
+      <%= yield %>
+    </div>
+    <div id='copyright'>
+        © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
     </div>
   </body>
 </html>

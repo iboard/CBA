@@ -11,8 +11,7 @@ class Ability
       # Not Admin
       unless user.new_record?
         # Any signed in user
-        can :read, User
-        can [:manage, :update_avatar, :crop_avatar], User do |usr|
+        can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
         
@@ -20,7 +19,6 @@ class Ability
           # Users with roles 
           case role
           when 'confirmed_user'
-            can :read, User
           when 'moderator'
           when 'author'
           when 'maintainer'

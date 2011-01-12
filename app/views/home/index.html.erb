@@ -2,9 +2,11 @@
   <% title t('userlist.title') %>
   <ul id='userlist'>
   <% @users.each do |user| %>
+    <% if can? :read, user %>
     <li>
        <%= render :partial => 'userlist_user', :locals => {:user => user} %>
     </li>
+    <% end %>
   <% end %>
   </ul>
 <% else %>

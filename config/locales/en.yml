@@ -43,3 +43,5 @@ en:
   authentications_for_user: 'Authentications for %{user}'
   links: 'Links'
   stay_logged_in: 'Stay logged in even if you close your browser.'
+  login: 'Sign in'
+  logout: 'Sign out'

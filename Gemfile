@@ -15,6 +15,30 @@ gem "omniauth"
 # Bundle gem needed for paperclip and attachments
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
-# Bundle development helpers
-gem "nifty-generators", :group => :development
-gem "mocha", :group => :test
+
+# Bundle gems for development 
+group :development do
+  gem "nifty-generators"
+  gem "rails-erd"
+  gem 'rdoc'
+end
+
+# Bundle gems for testing
+group :test do
+  gem 'json_pure'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'rspec', '>=2.0.0.beta.13'
+  gem 'rspec-rails', '>=2.0.0.beta.5'
+  gem 'spork'
+  gem 'launchy'
+  gem 'factory_girl'
+  gem 'escape_utils'
+  gem 'ZenTest'
+  gem 'autotest'
+#  gem 'autotest-rails'
+  gem "mocha"
+  gem "gherkin"
+end

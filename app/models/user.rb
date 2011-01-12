@@ -45,7 +45,7 @@ class User
   end
   
   def new_avatar?
-    avatar.updated_at && ((Time::now() - Time::at(self.avatar.updated_at)) < 10.seconds)
+    avatar.updated_at && ((Time::now() - Time::at(self.avatar.updated_at)) < 1.minute)
   end
   
   def admin?

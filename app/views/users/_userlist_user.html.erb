@@ -18,7 +18,7 @@
   </ul>
 <% end %>
 <br />
-<small>
+<small id="user_roles_<%= user.name -%>">
   <% unless user.roles.empty? %>
     <%= user.roles.map(&:humanize).join(", ")%><br />
   <% end %>

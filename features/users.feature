@@ -16,92 +16,75 @@ Feature: User Roles
   
   Background:
     Given the following user records
-      | id | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | 4d2c96042d194751eb000001  | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | 4d2c96042d194751eb000002  | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | 4d2c96042d194751eb000003  | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | 4d2c96042d194751eb000004  | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
+      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: Non-admins and non-staff users should not see the list of users
     Given I sign out
     And I am logged in as user "guest@iboard.cc" with password "thisisnotsecret"
     And I am on users page
-    And I should be on the home page
     And I should see "guest"
     And I should not see "testmax"
     And I should not see "admin"
     And I should not see "staff"
 
-  Scenario: Non-admins should not see the edit user page
+  Scenario: Display a list of users when I'm logged in as an admin
+    Given I am on registrations page
+    Then I should see "admin"
+    And I should see "staff"
+    And I should see "testmax"
+    And I should see "guest"
+
+  Scenario: Non-admins should not see the edit user page of foreign users
     Given I sign out
     And I am logged in as user "guest@iboard.cc" with password "thisisnotsecret"
-    And I am on edit user page for "user"
-    And I should be on the home page
-    And I should see "You are not authorized to access this page"
-
-  Scenario: Even staff should not edit user roles
-    Given I sign out
-    And I am logged in as user "staff@iboard.cc" with password "thisisnotsecret"
-    And I am on edit user page for "user"
-    And I should be on the home page
-    And I should see "You are not authorized to access this page"
-
-  Scenario: Display a list of users when I'm logged in as an admin
-    And I am on users page
-    Then I should see "admin"
-    And I should see "user"
-
-  Scenario: Display a list of users when I'm logged in as a staff member
-    Given I sign out
-    And I am logged in as user "staff@iboard.cc" with password "thisisnotsecret"
-    And I am on users page
-    Then I should see "admin"
-    And I should see "user"
-    And I should see "guest"
-    And I should see "staff"
+    And I am on edit roles page for "testmax"
+    Then I should not see "testmax"
 
   Scenario: Display the user roles mask when I click 'edit user roles'
-    Given I am on users page
-    And I click on link "edit_roles"
-    Then I should see "Edit User"
+    Given I am on registrations page
+    And I click on link "Detail"
+    And I click on link "Edit roles"
+    Then I should see "Edit roles of user "
+    And I should see "testmax"
     And I should see "Roles"
-    And I should see "admin"
   
   Scenario: Remove moderator role from testmax user
-    Given I am on edit user page for "user"
+    Given I am on edit roles page for "testmax"
     And I uncheck "user_roles_" whithin "role_moderator"
-    And I click on "Update"
-    Then I should be on the users page
-    And I should not see "Moderator" within "td#user_roles_2"
-    And I should not see "Admin" within "td#user_roles_2"
+    And I click on "Update User"
+    Then I should be on the registrations page
+    And I should see "Roles for "
+    And I should see "testmax"
+    And I should see "successfully updated"
+    And I should not see "Moderator" within "small#user_roles_testmax"
 
   Scenario: Remove all roles from testmax user
-      Given I am on edit user page for "user@iboard.cc"
-      And I uncheck "user_roles_" whithin "role_guest"
-      And I uncheck "user_roles_" whithin "role_staff"
+      Given I am on edit roles page for "testmax"
+      And I uncheck "user_roles_" whithin "role_confirmed_user"
       And I uncheck "user_roles_" whithin "role_admin"
       And I uncheck "user_roles_" whithin "role_moderator"
       And I uncheck "user_roles_" whithin "role_author"
-      And I click on "Update"
-      Then I should be on the users page
-      And I should not see "Guest" within "td#user_roles_2"
-      And I should not see "Staff" within "td#user_roles_2"
-      And I should not see "Admin" within "td#user_roles_2"
-      And I should not see "Moderator" within "td#user_roles_2"
-      And I should not see "Author" within "td#user_roles_2"
+      And I click on "Update User"
+      Then I should be on the registrations page
+      And I should not see "Confirmed user" within "small#user_roles_testmax"
+      And I should not see "Admin" within "small#user_roles_testmax"
+      And I should not see "Moderator" within "small#user_roles_testmax"
+      And I should not see "Author" within "small#user_roles_testmax"
     
   Scenario: Add all roles to testmax user
-      Given I am on edit user page for "user@iboard.cc"
-      And I check "user_roles_" whithin "role_guest"
-      And I check "user_roles_" whithin "role_staff"
+      Given I am on edit roles page for "testmax"
+      And I check "user_roles_" whithin "role_confirmed_user"
       And I check "user_roles_" whithin "role_admin"
       And I check "user_roles_" whithin "role_moderator"
       And I check "user_roles_" whithin "role_author"
       And I click on "Update"
       Then I should be on the users page
-      And I should see "Guest" within "td#user_roles_2"
-      And I should see "Staff" within "td#user_roles_2"
-      And I should see "Admin" within "td#user_roles_2"
-      And I should see "Moderator" within "td#user_roles_2"
-      And I should see "Author" within "td#user_roles_2"
+      And I should see "Confirmed user" within "small#user_roles_testmax"
+      And I should see "Admin" within "small#user_roles_testmax"
+      And I should see "Moderator" within "small#user_roles_testmax"
+      And I should see "Author" within "small#user_roles_testmax"

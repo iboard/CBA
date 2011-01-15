@@ -8,13 +8,15 @@ module NavigationHelpers
     when /the home page/
       '/'
     when /users page/
-      '/'
+      '/registrations'
+    when /registrations page/
+      '/registrations'
     when /sign_in/
       '/users/sign_in'
-    when /edit user page for "([^"]*)"/
+    when /edit roles page for "([^"]*)"/
       begin
         user = User.where(:name => $1).first
-        "/users/#{user.id}/edit"
+        "/users/#{user.id}/edit_roles"
       rescue Object => e
         raise "Can't find user #{user.name} / #{e.inspect}"
       end

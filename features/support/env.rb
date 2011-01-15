@@ -64,3 +64,9 @@ if defined?(ActiveRecord::Base)
   end
 end
 
+require 'factory_girl'
+require 'factory_girl/step_definitions'
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'..','..',
+  'spec','factories','*.rb'))].each { |f| require f }
+  
+

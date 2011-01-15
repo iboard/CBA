@@ -255,7 +255,7 @@ Given /^I visit the edit posting page for user "([^"]*)" and posting "([^"]*)"$/
 end
 
 Given /^I click on link "([^"]*)"$/ do |link|
-  click_link(link) # express the regexp above with the code you wish you had
+  click_link(link)
 end
 
 Given /^I visit the edit episode page for user "([^"]*)" and episode "([^"]*)"$/ do |user_id, episode_id|

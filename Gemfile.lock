@@ -73,7 +73,10 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape_utils (0.1.9)
-    factory_girl (1.3.2)
+    factory_girl (1.3.3)
+    factory_girl_rails (1.0.1)
+      factory_girl (~> 1.3)
+      railties (>= 3.0.0)
     faraday (0.5.3)
       addressable (~> 2.2.2)
       multipart-post (~> 1.0.1)
@@ -233,7 +236,7 @@ DEPENDENCIES
   delayed_job
   devise (>= 1.1.5)
   escape_utils
-  factory_girl
+  factory_girl_rails
   gherkin
   jquery-rails
   json_pure

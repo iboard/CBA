@@ -50,7 +50,18 @@
   }
   
   a {
-    color: #0000FF;
+    color: #46506F;
+    text-decoration: none;
+    border-bottom: 1px dotted #46506F;
+  }
+  
+  #session a {
+    border: none;
+  }
+  
+  a:hover {
+    background: #556285;
+    color: white;
   }
   
   .clear {
@@ -117,14 +128,14 @@
   
   #session {
     padding: 5px;
-    background: #7D8BA4 -webkit-gradient(
+    background: #343B4B -webkit-gradient(
       linear,
       left top,
       left bottom,
-      color-stop(1.0,  #000),
-      color-stop(0.80, #444)
+      color-stop(1.0,  #343B4B),
+      color-stop(0.80, #697795)
     ) repeat-x;
-    background: #7D8BA4 -moz-linear-gradient(100% 8% 90deg, #000, #222);    margin: 0px;
+    background: #343B4B -moz-linear-gradient(100% 8% 90deg, #343B4B, #697795);    margin: 0px;
     color: #ddd;
     border-bottom: 1px solid black;
   }
@@ -143,11 +154,12 @@
   }
   
   .hmenu_current {
-    background: #D87A00;
+    background: #2E3442;
     color: black;
   }
+  
   .hmenu a:hover {
-    background: #D87A00;
+    background: #A2ADC5;
     color: black;
   }
   

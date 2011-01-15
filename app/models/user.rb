@@ -29,8 +29,13 @@ class User
                       :icon   => "64x64"
                     },
                     :processors => [:cropper]
-   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-   after_update  :reprocess_avatar, :if => :cropping?
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update  :reprocess_avatar, :if => :cropping?
+  
+  # Notifications
+  after_create :async_notify_on_creation
+  before_destroy :async_notify_on_cancelation
+   
   
   # Roles
   ROLES = %w(confirmed_user moderator author maintainer admin)
@@ -127,8 +132,12 @@ class User
     self.confirmed_at, self.confirmation_sent_at = Time.now
   end
 
+  # Inform admin about sign ups and cancelations of accounts
   def async_notify_on_creation
-     Delayed::Job.enqueue NewUserNotifier.new(self.id,"NEW USER REGISTERED", ADMIN_EMAIL_ADDRESS)
+     DelayedJob.enqueue('NewSignUpNotifier', self.id)
+  end  
+  def async_notify_on_cancelation
+     DelayedJob.enqueue('CancelAccountNotifier', self.inspect)
   end  
   
   

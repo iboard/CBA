@@ -19,10 +19,6 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem "will_paginate"
 gem "RedCloth"
 
-# Bundle background job gems
-gem 'delayed_job'
-
-
 # Bundle gems for development 
 group :development do
   gem "nifty-generators"

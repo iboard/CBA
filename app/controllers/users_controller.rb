@@ -10,11 +10,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def crop_avatar
-    @user = User.find(params[:id])
     unless @user.new_avatar?
       redirect_to @user 
       return
@@ -31,11 +29,9 @@ class UsersController < ApplicationController
   end
   
   def edit_roles
-    @user = User.find(params[:id])
   end
   
   def update_roles
-    @user = User.find(params[:id])
     @user.update_attributes!(params[:user])
     redirect_to registrations_path, :notice => t(:roles_of_user_updated,:user => @user.name)
   end

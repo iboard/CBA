@@ -8,7 +8,7 @@ is "Rails3-Mongoid-Devise by fortuity":http://github.com/fortuity/rails3-mongoid
 
 h2. Installation
 
-At the moment installation is a matter of change. The documentation will follow as soon as the installation process is worked out cleanly. 
+At the moment installation is a matter of change. The documentation will follow as soon as the installation process will be worked out cleanly. 
 
 
 h2. Delayed Jobs
@@ -17,7 +17,7 @@ There is a rake-task to start the background jobs
 
 <code>rake delayed_jobs:work</code>
 
-Unfortunatley "DelayedJobs by 'tobi'":http://github.com/tobi/delayed_job doen't work with MongoId.
+Unfortunatley "DelayedJobs by 'tobi'":http://github.com/tobi/delayed_job doesn't work with MongoId.
 So I did this my own way. To define new background-workers follow this steps:
 
 # Define a worker in <code>app/workers</code> (See new_sign_up_notifier.rb for example)

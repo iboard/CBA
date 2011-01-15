@@ -33,7 +33,7 @@ class DelayedJob
           puts "-- ERROR #{e} WHILE EXECUTING JOB #{self.first.inspect}"
         end
       else
-        puts "#{Time.now().to_s} - No pending jobs"
+        puts "#{Time.now().to_s} - No pending jobs" unless Rails.env == 'production'
       end
       sleep( 10 )
     end

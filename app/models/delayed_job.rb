@@ -16,7 +16,7 @@ class DelayedJob
       if worker.respond_to? "perform"
         worker.perform
       else
-        puts "CLASS #{job.class_name} DOES NOT RESPOND TO 'perform' JOB CANCELED"
+        puts "CLASS #{job.class_name} DOES NOT RESPOND TO 'perform'. JOB CANCELED"
       end
       job.delete
     end
@@ -35,7 +35,7 @@ class DelayedJob
       else
         puts "#{Time.now().to_s} - No pending jobs" unless Rails.env == 'production'
       end
-      sleep( 10 )
+      sleep(  )
     end
   end
 

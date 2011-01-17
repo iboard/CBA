@@ -4,6 +4,7 @@ require 'rails/test_help'
 
 include Devise::TestHelpers
 
+
 class ActiveSupport::TestCase
   
   def create_valid_user_with_id(id)

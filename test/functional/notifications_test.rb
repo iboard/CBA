@@ -1,20 +1,23 @@
 require 'test_helper'
 
+
 class NotificationsTest < ActionMailer::TestCase
+
   test "sign_up" do
-    mail = Notifications.sign_up
-    assert_equal "Sign up", mail.subject
-    assert_equal ["to@example.org"], mail.to
-    assert_equal ["from@example.com"], mail.from
-    assert_match "Hi", mail.body.encoded
+    user = User.first
+    mail = Notifications.sign_up(user)
+    assert_equal "NEW SIGN UP AT TESTAPPLICATION", mail.subject
+    assert_equal ['test@application.tt'], mail.to
+    assert_equal ['test@application.tt'], mail.from
+    assert_equal mail.body.encoded.include?(user.name), true
   end
 
   test "cancel_account" do
-    mail = Notifications.cancel_account
-    assert_equal "Cancel account", mail.subject
-    assert_equal ["to@example.org"], mail.to
-    assert_equal ["from@example.com"], mail.from
-    assert_match "Hi", mail.body.encoded
+    mail = Notifications.cancel_account("SOME INFORMATION ABOUT THE USER")
+    assert_equal "USER CANCELED ACCOUNT AT TESTAPPLICATION", mail.subject
+    assert_equal ['test@application.tt'], mail.to
+    assert_equal ['test@application.tt'], mail.from
+    assert_equal mail.body.encoded.include?("SOME INFORMATION ABOUT THE USER"), true
   end
 
 end

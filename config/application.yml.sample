@@ -21,11 +21,12 @@ development:
     paginate_ratings_per_page:     2
     paginate_blog_entries_per_page: 2
     delay_new_posting_notifications: 9
-    
+    sleep_in_delayed_jobs_worke:   5
+        
 test:
   application:
-    name:              iBoard.cc (TEST WITH RSS FEED)
-    rss_title:         iBoard.cc (TEST WITH RSS FEED)
+    name:              TESTAPPLICATION
+    rss_title:         TESTFEED
     title_prefix:      'iBoard.cc (test): '    
     stylesheet_screen: application
     stylesheet_print:  application
@@ -33,6 +34,8 @@ test:
     copyright_url:     http://altendorfer.at
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
     admin_notification_address: 'admin@your.domain'
+    registration_from: 'test@application.tt'
+    admin_notification_address: 'test@application.tt'
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           0
@@ -44,7 +47,8 @@ test:
     paginate_ratings_per_page:     20
     paginate_blog_entries_per_page: 20
     delay_new_posting_notifications: 9
-        
+    sleep_in_delayed_jobs_worke:   1
+            
 production:
   application:
     name:              iBoard.cc
@@ -55,6 +59,7 @@ production:
     copyright:         Andreas Altendorfer
     copyright_url:     http://altendorfer.at
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
+    registration_from: 'noreply@your.site'
     admin_notification_address: 'admin@your.domain'
   constants:
     max_time_to_edit_new_comments: 15    
@@ -67,3 +72,4 @@ production:
     paginate_ratings_per_page:     20
     paginate_blog_entries_per_page: 20
     delay_new_posting_notifications: 900
+    sleep_in_delayed_jobs_worke:   59

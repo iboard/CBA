@@ -1,5 +1,8 @@
 Cba::Application.routes.draw do
 
+  match '/p/:permalink' => 'pages#permalinked', :as => 'permalink_path'
+  resources :pages
+
   match '/registrations' => 'users#index', :as => 'registrations'
   
   devise_for :users, :controllers => { :registrations => 'registrations' }

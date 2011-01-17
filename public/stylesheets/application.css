@@ -197,7 +197,6 @@
   
   input {
     display: inline;
-    margin-left: 10px;
   }
   
   #error_explanation {
@@ -349,4 +348,47 @@
     color: white;
     text-decoration: none;
   }
+  
+  #action_buttons {
+    float: right;
+    padding: 5px;
+    text-align: center;
+    background-color: #206024;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+  }
+  
+  #action_buttons a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .pagination {
+  	text-align: center;
+  	margin: 10px;
+  }
+  
+  .pagination em {
+    font-style: normal;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    background: #818DA9;
+    padding: 3px;
+    color: white;
+  }
+  
+  .pagination a {
+    text-decoration: none;
+   }
+  
+  .pagination .current {
+  	background: #818DA9;
+  	color: white;
+  	padding: 3px;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+  }
+  
 } /* END SCREEN */
+

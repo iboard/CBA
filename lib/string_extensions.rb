@@ -22,6 +22,19 @@ module StringExtensions
   end
   
   module InstanceMethods
+    
+    def txt_to_url
+      self.gsub( / /, '_').gsub(/"/,"**").gsub(/'/,'*').downcase
+    end
+    
+    def url_to_txt
+      self.gsub(/\*\*/,'"').gsub(/\*/,"'").gsub(/_/,' ').humanize
+    end
+    
+    def escape_regex
+      self.gsub(/\$/,"\\$")
+    end
+    
     def paragraphs(range=nil)
       unless range
         self.split("\n")

@@ -1,0 +1,6 @@
+<% style = '' unless defined? style %>
+<% if page.cover_picture %>
+  <div class='cover_picture' id='cover_picture_<%= page.id -%>' style='<%= style -%>'>
+      <%= image_tag page.cover_picture.url(format||:medium) %>
+  </div>
+<% end %>

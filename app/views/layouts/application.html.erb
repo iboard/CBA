@@ -23,6 +23,12 @@
         </ul>
     </div>
     <div id="container">
+      <% if content_for? :action_buttons %>
+        <div id='action_buttons'>
+            <%= yield(:action_buttons) %>
+        </div>
+      <% end %>
+        
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

@@ -13,6 +13,10 @@ module NavigationHelpers
       '/registrations'
     when /sign_in/
       '/users/sign_in'
+    when /page path of "([^"]*)"/
+      title = $1
+      page = Page.where(:title => title).first
+      "/pages/#{page._id}"
     when /edit roles page for "([^"]*)"/
       begin
         user = User.where(:name => $1).first

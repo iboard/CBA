@@ -1,0 +1,52 @@
+<%= form_for(@page, :html => { :multipart => true } ) do |f| %>
+
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :size => 80 %>
+  </div>
+  
+  <div class="field">
+      <%= f.label :show_in_menu %>
+      <%= f.check_box :show_in_menu %> <%= t(:show_in_menu) %>
+      <%= t(:at_position) -%>: 
+      <%= f.text_field :menu_order, :size => 5, :placeholder => t(:last_position) %>
+  </div>
+  
+  
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body, :rows => 20, :cols => 80 %>
+  </div>
+  
+  
+  
+  <div class="field">
+    <%= f.label :cover_picture %>
+    <%= render( 
+          :partial => 'cover_picture', 
+          :locals => { :page => @page, :format => :thumb, :style => 'display: inline; ' } 
+        )  
+    -%>
+    <%= f.file_field :cover_picture %>
+  </div>
+  
+  <div class='clear'></div>
+
+  
+  <div class="actions">
+    <%= f.label :submit, t(:save_changes) %>  
+    <%= f.submit %>
+  </div>
+<% end %>

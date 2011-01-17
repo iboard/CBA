@@ -27,4 +27,11 @@ module LayoutHelper
     link_to name, path, :class => style
   end
   
+  def set_browser_address(page,title)
+    address = "/p/"+title.txt_to_url
+    "<script>
+       history.replaceState( {page: '#{page}'},'#{title}', '#{address}');
+     </script>".html_safe
+  end
+  
 end

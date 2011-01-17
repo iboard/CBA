@@ -23,6 +23,14 @@ So I did this my own way. To define new background-workers follow this steps:
 # Define a worker in <code>app/workers</code> (See new_sign_up_notifier.rb for example)
 # Enqueue new Jobs like shown in <code>app/model/user.rb</code>, method <code>async_notify_on_creation</code>
 
+h2. Resource 'Page'
+
+Since nearly any website needs some kind of 'semi-static pages' and we need some kind of object to test the application, there is a resource Page with the following features
+
+# Consists of a title and a body
+# The body is rendered with _RedCloth_
+# The MongoId of <code>/page/MONGO_ID</code> in the browser-address will be replaced by <code>/p/title_of_the_page</code> with JS.
+
 h2. License
 
 h3. Public Domain Dedication

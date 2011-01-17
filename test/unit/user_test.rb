@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  
+  def setup
+    User.delete_all
+  end
+  
+  def cleanup
+    User.delete_all
+  end
+  
   # Replace this with your real tests.
   test "A just built new user sould not save" do
     user = User.new
@@ -31,4 +40,10 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(:email => 'tester-at-test.te', :password => 'secret', :password_confirmation => 'secret', :name => 'nockenfell')
     assert !user.save, "User saved with invalid email"
   end
+  
+  test "A username should not be used twice" do
+    assert create_valid_user_with_id(1), "User should save once."
+    assert !create_valid_user_with_id(1), "User should not be saved with a name already taken"
+  end
+  
 end

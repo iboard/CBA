@@ -8,12 +8,16 @@ include Devise::TestHelpers
 class ActiveSupport::TestCase
   
   def create_valid_user_with_id(id)
-    user = User.new(
-                    :id => id, :email => 'tester@test.te', :name => 'nockenfell',
-                    :password => 'secret', :password_confirmation => 'secret'
-                   )
-    user.save!
-    user
+    begin
+      user = User.new(
+                      :id => id, :email => 'tester@test.te', :name => 'nockenfell',
+                      :password => 'secret', :password_confirmation => 'secret'
+                     )
+      user.save!
+      user
+    rescue
+      nil
+    end
   end
   
 end

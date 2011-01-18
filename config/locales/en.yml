@@ -57,3 +57,15 @@ en:
   page_not_found: 'Page not found'
   delete_picture: 'Delete picture'
   deleted: 'DELETED!'
+  number_of_comments:
+    zero: "No comment yet."
+    one: "One comment"
+    other: "%{count} comments"
+  post_a_comment: 'Post a comment'
+  anonymous: 'Anonymous'
+  will_not_be_shown_public: 'Will not be shown public'
+  user_wrote_a_comment_at: "%{user} wrote, %{at} ago"
+  post_comment: 'Post comment'
+  comment_could_not_be_saved: '<b>Comment could not be saved!</b><br/>%{errors}'
+  body_could_not_be_empty: 'Comment could not be empty!'
+  is_not_an_email: 'Is not an email address'

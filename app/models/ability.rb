@@ -36,6 +36,7 @@ class Ability
       else
         # Guest
         can :read, Page
+        can [:read, :create], Comment
       end
     end
   end

@@ -1,16 +1,1 @@
-<%= set_browser_address(@page.id,@page.title) %>
-<% title @page.title %>
-
-<%= render( :partial => 'cover_picture', 
-    :locals => { :page => @page, :format => :medium, :style => "float:right; margin-left: 10px;" }
-    ) if @page.cover_picture_exists?
-%>
-
-<div id='page_<%= @page.id -%>' class='page_body'>
-  <%= sanitize(@page.render_body).html_safe %>
-</div>
-
-<% if can? :manage, @page %>
-  <%= link_to 'Edit', edit_page_path(@page) %> |
-<% end %>
-<%= link_to 'Back', pages_path %>
+<%= render :partial => 'page' %>

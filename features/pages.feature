@@ -1,8 +1,7 @@
-@focus
 Feature: Pages
   In order to maintain and read pages
   As an user
-  I want list browse, read, and edit pages
+  I want list, browse, read, and edit pages
   
   Background:
     Given the following user records

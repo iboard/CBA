@@ -20,6 +20,11 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.xml
   def show
+    params[:comment] ||= { 
+      :name => user_signed_in? ? current_user.name : t(:anonymous),
+      :email=> user_signed_in? ? current_user.email : '',
+      :comment => ""
+    }
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @page }

@@ -40,8 +40,8 @@
         )
     -%>
     <%= f.file_field :cover_picture %>
-    <%= link_to t(:delete_picture), delete_cover_picture_page_path(@page), :remote => true,
-        :confirm => t(:are_you_sure) %>
+    <%= link_to( t(:delete_picture), delete_cover_picture_page_path(@page), :remote => true,
+        :confirm => t(:are_you_sure)) unless @page.new_record? %>
   </div>
   
   <div class='clear'></div>

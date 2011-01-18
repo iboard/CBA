@@ -390,5 +390,15 @@
     -webkit-border-radius: 5px; 
   }
   
+  #comments p  {
+    margin: 0px;
+    margin-bottom: 5px;
+  }
+  #comments address {
+    margin: 0px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+  
 } /* END SCREEN */
 

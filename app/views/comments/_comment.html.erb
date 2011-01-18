@@ -1,0 +1,9 @@
+<%= content_tag :div, :id => "comment_#{comment.id.to_s}" do %>
+  <address>
+    <strong>
+      <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
+          :at => distance_of_time_in_words_to_now(comment.created_at)   )%>
+    </strong>
+  </address>
+  <%= sanitize(RedCloth.new(comment.comment).to_html) %>
+<% end %>

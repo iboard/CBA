@@ -20,6 +20,8 @@ class Page
                       :icon   => "64x90"
                     }
                     
+  embeds_many :comments                  
+  
   def cover_picture_exists?
     cover_picture && !cover_picture.original_filename.blank?
   end

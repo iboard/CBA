@@ -1,0 +1,49 @@
+<%= set_browser_address(@page.id,@page.title) %>
+<% title @page.title %>
+
+<%= render( :partial => 'cover_picture', 
+    :locals => { :page => @page, :format => :medium, :style => "float:right; margin-left: 10px;" }
+    ) if @page.cover_picture_exists?
+%>
+
+<div id='page_<%= @page.id -%>' class='page_body'>
+  <%= sanitize(@page.render_body).html_safe %>
+</div>
+
+<% if can? :manage, @page %>
+  <%= link_to 'Edit', edit_page_path(@page) %> |
+<% end %>
+<%= link_to 'Back', pages_path %>
+
+<%= content_tag :div, :id => 'comments' do %>
+
+  <h5><%= t(:number_of_comments, :count => @page.comments.count)%></h5>
+      
+  <%= render @page.comments %>
+      
+<% end %>
+
+<%= content_tag :div, :id => 'new_comment_form' do %>
+  <h5><%= t(:post_a_comment) -%></h5>
+  <%= form_for [@page,@page.comments.build] do |f| %>
+    <%= f.fields_for :comment do |builder| %>  
+      <div class="field"> 
+          <%= builder.label :name %>
+          <%= builder.text_field :name, :size => 40, :value => params[:comment][:name] %>
+      </div>
+      <div class="field"> 
+          <%= builder.label :email %>
+          <%= builder.text_field :email, :size => 40, :placeholder => t(:will_not_be_shown_public),
+              :value => params[:comment][:email] %>
+      </div>
+      <div class="field"> 
+          <%= builder.label :comment %>
+          <%= builder.text_area :comment, :rows => 5, :cols => 80, :value => params[:comment][:comment] %>
+      </div>
+    <% end %>
+    <div class="field"> 
+      <%= f.label :submit %>
+      <%= f.submit t(:post_comment) %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,7 +1,11 @@
 Cba::Application.routes.draw do
 
   match '/p/:permalink' => 'pages#permalinked', :as => 'permalink_path'
-  resources :pages
+  resources :pages do
+    member do
+      get :delete_cover_picture
+    end
+  end
 
   match '/registrations' => 'users#index', :as => 'registrations'
   

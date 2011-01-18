@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+
+  respond_to :html, :xml, :js
   
   load_and_authorize_resource :except => :permalinked
   
@@ -92,5 +94,10 @@ class PagesController < ApplicationController
       format.html { redirect_to(pages_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def delete_cover_picture
+    @page.cover_picture.destroy
+    @page.save
   end
 end

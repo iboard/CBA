@@ -55,3 +55,5 @@ en:
   at_position: 'At position'
   last_position: 'last'
   page_not_found: 'Page not found'
+  delete_picture: 'Delete picture'
+  deleted: 'DELETED!'

@@ -19,7 +19,11 @@ class Page
                       :thumb  => "100x150>",
                       :icon   => "64x90"
                     }
-
+                    
+  def cover_picture_exists?
+    cover_picture && !cover_picture.original_filename.blank?
+  end
+  
   def render_body
     RedCloth.new(body).to_html
   end

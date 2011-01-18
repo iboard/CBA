@@ -7,7 +7,7 @@
 <%= will_paginate @pages %>
 
 <% @pages.each do |page| %>
- <% if page.cover_picture %>
+ <% if page.cover_picture_exists? %>
    <%= render :partial => 'cover_picture', 
       :locals => {:page => page, :format => :thumb, :style => 'float:right;margin-left: 10px'} %>
  <% end %>

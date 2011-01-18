@@ -1,8 +1,9 @@
 <%= set_browser_address(@page.id,@page.title) %>
 <% title @page.title %>
 
-<%= render :partial => 'cover_picture', 
+<%= render( :partial => 'cover_picture', 
     :locals => { :page => @page, :format => :medium, :style => "float:right; margin-left: 10px;" }
+    ) if @page.cover_picture_exists?
 %>
 
 <div id='page_<%= @page.id -%>' class='page_body'>

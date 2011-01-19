@@ -258,6 +258,12 @@ Given /^I click on link "([^"]*)"$/ do |link|
   click_link(link)
 end
 
+Given /^I click on link "([^"]*)" within "([^"]*)"$/ do |arg1, arg2|
+  within( :css, "#{arg2}" ) do
+    click_link(arg1)
+  end
+end
+
 Given /^I visit the edit episode page for user "([^"]*)" and episode "([^"]*)"$/ do |user_id, episode_id|
   visit edit_user_episode_path(user_id,episode_id)
 end

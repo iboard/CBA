@@ -10,6 +10,6 @@ class Comment
   validates_presence_of :name
   validates_presence_of :comment
   
-  embedded_in :page, :inverse_of => :comments
+  embedded_in :commentable, :inverse_of => :comments
 
 end

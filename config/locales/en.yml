@@ -71,3 +71,6 @@ en:
   body_could_not_be_empty: 'Comment could not be empty!'
   is_not_an_email: 'Is not an email address'
   cancel: 'Cancel'
+  comment_deleted: 'Comment successfully deleted'
+  comment_successfully_updated: 'Comment successfully updated'
+  edit_comment: 'Edit comment'

@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   
+  respond_to :html, :xml, :js
+  
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment][:comment])
@@ -18,7 +20,12 @@ class CommentsController < ApplicationController
   def edit
     @commentable = params[:type].classify.constantize.find(params[:commentable_id])
     @comment = @commentable.comments.find(params[:comment_id])
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
+  
   
   def update
     @commentable = find_commentable
@@ -27,6 +34,10 @@ class CommentsController < ApplicationController
     @comment.save
     @commentable.save    
     @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @commentable, :notice => t(:comment_successfully_updated) }
+    end
   end
   
   def destroy
@@ -34,6 +45,10 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.find(params[:comment_id])
     @comment.destroy
     @commentable.save
+    respond_to do |format|
+      format.js
+      format.html { redirect_to @commentable, :notice => t(:comment_deleted) }
+    end
   end
   
   

@@ -27,7 +27,7 @@ Feature: Comments on pages
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
     Then I should see "One comment"
-    And I should see "Frank Zappa wrote, less than a minute ago"
+    And I should see "Frank Zappa, less than a minute ago"
     And I should see "Lorem Commentum gscheit daherred"
     
   Scenario: Comments without a name should not be saved
@@ -57,13 +57,24 @@ Feature: Comments on pages
     Then I should see "No comment yet"
     And I should see "Comment could not be saved!"
 
-@focus
+  Scenario: As an admin I should be able to edit a comment
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
+    And I fill in "Email" with "some@address.at"
+    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
+    And I click on "Post comment"
+    And I click on link "Edit" within "address"
+    And I fill in "comment[comment]" with "Modified music is modified best"
+    And I click on "submit"
+    Then I should see "Modified music is modified best" within "#comments"
+
   Scenario: As an admin I should be able to destroy a comment
     Given I am on the page path of "Page 1"
     And I fill in "Name" with "Frank Zappa"
     And I fill in "Email" with "some@address.at"
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    And I click on "Edit"
-    Then show me the page
+    And I click on link "Delete" 
+    Then I should not see "Lorem Commentum gscheit daherred" within "#comments"
+    And I should see "Comment successfully deleted"
   

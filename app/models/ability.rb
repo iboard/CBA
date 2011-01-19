@@ -14,7 +14,6 @@ class Ability
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
-        
         for role in user.roles
           # Users with roles 
           case role

@@ -23,4 +23,9 @@ class PageTest < ActiveSupport::TestCase
     assert !p2.save, "Should not save with the same title again."
   end
   
+  test "A comment should have a body" do
+    p1 = Page.new(:title => "My Title", :body => 'Lorem')
+    p1.comments.build( :email => 'test@server.to', :comment => '')
+    assert !p1.save
+  end
 end

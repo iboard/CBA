@@ -1,0 +1,1 @@
+$('#comment_comment_<%= @comment.id -%>').html('<%= escape_javascript(sanitize("#{@new_comment}")) -%>');

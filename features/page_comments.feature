@@ -57,3 +57,13 @@ Feature: Comments on pages
     Then I should see "No comment yet"
     And I should see "Comment could not be saved!"
 
+@focus
+  Scenario: As an admin I should be able to destroy a comment
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
+    And I fill in "Email" with "some@address.at"
+    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
+    And I click on "Post comment"
+    And I click on "Edit"
+    Then show me the page
+  

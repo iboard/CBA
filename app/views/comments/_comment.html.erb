@@ -1,9 +1,13 @@
 <%= content_tag :div, :id => "comment_#{comment.id.to_s}" do %>
   <address>
-    <strong>
       <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
-          :at => distance_of_time_in_words_to_now(comment.created_at)   )%>
-    </strong>
+          :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>
+      <%= link_to( t(:edit), edit_comment_path(commentable.class.to_s,commentable,comment),
+            :remote => true ) if can? :edit, comment %>
+      <%= link_to( t(:destroy), delete_comment_path(commentable.class.to_s,commentable,comment),
+          :confirm => t(:are_you_sure), :remote => true, :method => :delete) if can? :manage, comment %>
   </address>
-  <%= sanitize(RedCloth.new(comment.comment).to_html) %>
+  <div id='comment_comment_<%= comment.id.to_s -%>'>
+    <%= sanitize(RedCloth.new(comment.comment).to_html) %>
+  </div>
 <% end %>

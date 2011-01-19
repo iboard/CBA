@@ -19,7 +19,7 @@
 
   <h5><%= t(:number_of_comments, :count => @page.comments.count)%></h5>
       
-  <%= render @page.comments %>
+  <%= render :partial => @page.comments, :locals => { :commentable => @page } %>
       
 <% end %>
 

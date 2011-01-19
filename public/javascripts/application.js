@@ -266,3 +266,8 @@ function toggle_div(what) {
   var content = $("#"+what);
   content.toggle();
 }
+
+
+function restore_comment(where,content) {
+  where.html(content);
+}

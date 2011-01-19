@@ -1,4 +1,3 @@
-@focus
 Feature: Comments on pages
   In order comment pages
   As an user
@@ -23,8 +22,38 @@ Feature: Comments on pages
     
   Scenario: When I fill in a comment and press commit I should see my comment
     Given I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
     And I fill in "Email" with "some@address.at"
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
     Then I should see "One comment"
+    And I should see "Frank Zappa wrote, less than a minute ago"
     And I should see "Lorem Commentum gscheit daherred"
+    
+  Scenario: Comments without a name should not be saved
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with ""
+    And I fill in "Email" with "some@address.at"
+    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
+    And I click on "Post comment"
+    Then I should see "No comment yet"
+    And I should see "Comment could not be saved!"
+    
+  Scenario: Comments without an email should not be saved
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
+    And I fill in "Email" with ""
+    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
+    And I click on "Post comment"
+    Then I should see "No comment yet"
+    And I should see "Comment could not be saved!"
+
+  Scenario: Comments without a comment should not be saved
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
+    And I fill in "Email" with "frank@zappa.com"
+    And I fill in "Comment" with ""
+    And I click on "Post comment"
+    Then I should see "No comment yet"
+    And I should see "Comment could not be saved!"
+

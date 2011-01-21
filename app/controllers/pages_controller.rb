@@ -105,4 +105,5 @@ class PagesController < ApplicationController
     @page.cover_picture.destroy
     @page.save
   end
+  
 end

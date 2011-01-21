@@ -13,6 +13,9 @@
     <%= auto_discovery_link_tag(:atom, "/feed.atom?#{Time.now.to_i}") %>
   </head>
   <body>
+    <div id="banner">
+      <%= render :partial => '/layouts/banner' %>
+    </div>
     <div id="session">
         <ul class="hmenu">
           <%= render 'home/menu/application' %>

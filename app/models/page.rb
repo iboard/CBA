@@ -12,7 +12,12 @@ class Page
   
   field :show_in_menu, :type => Boolean, :default => true
   field :menu_order, :type => Integer, :default => 99999
-  
+  class << self
+    def top_pages
+      criteria.where(:show_in_menu => true).asc
+    end
+  end
+      
   has_attached_file :cover_picture,
                     :styles => { 
                       :medium => "300x500>",
@@ -20,7 +25,7 @@ class Page
                       :icon   => "64x90"
                     }
                     
-  embeds_many :comments                  
+  embeds_many :comments
   
   def cover_picture_exists?
     cover_picture && !cover_picture.original_filename.blank?

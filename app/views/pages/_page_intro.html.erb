@@ -1,0 +1,16 @@
+<div class='page_intro'>
+  <% if page.cover_picture_exists? %>
+    <%= render :partial => '/pages/cover_picture', 
+       :locals => {:page => page, :format => :thumb, :style => 'float:right;margin-left: 10px'} %>
+  <% end %>
+  <h1><%= page.title %></h1>
+  <%= sanitize(page.render_intro).html_safe %>
+  
+  <p>
+    <%= link_to t(:read), page %>
+    <% if can? :manage, page %>
+      | <%= link_to t(:edit), edit_page_path(page) %> |
+      <%= link_to t(:destroy), page, :confirm => t(:are_you_sure), :method => :delete %>
+    <% end %>
+  </p>
+</div>

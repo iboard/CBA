@@ -10,6 +10,8 @@ development:
     meta_description:  'CBA Template Application'
     registration_from: 'noreply@your.site'
     admin_notification_address: 'admin@your.domain'
+    registration_from: 'test@application.tt'
+    slogan:            'unfuzzy development (env=dev)'
   constants:
     max_time_to_edit_new_comments: 2
     rss_feed_cache_time:           1.minute
@@ -36,6 +38,8 @@ test:
     admin_notification_address: 'admin@your.domain'
     registration_from: 'test@application.tt'
     admin_notification_address: 'test@application.tt'
+    registration_from: 'test@application.tt'
+    slogan:            'unfuzzy development (env=test)'
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           0
@@ -61,6 +65,8 @@ production:
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
     registration_from: 'noreply@your.site'
     admin_notification_address: 'admin@your.domain'
+    registration_from: 'test@application.tt'
+    slogan:            'unfuzzy development that makes fun'
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           10.minutes

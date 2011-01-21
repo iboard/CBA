@@ -31,9 +31,13 @@ class PagesController < ApplicationController
     end
   end
   
-  def permalinked
+  def permalinked      
     permalink = params[:permalink].url_to_txt.escape_regex
-    @page = Page.where(:title => /^#{permalink}$/i).first
+    unless params[:permalink][-1] == '$'
+      @page = Page.where(:title => /^#{permalink}$/i).first
+    else
+      @page = Page.where(:title => /^#{permalink.chomp('\$')}(.*)$/i).first
+    end
     redirect_to @page if @page
     unless @page
       flash[:error] = t(:page_not_found) + " (#{permalink})"

@@ -1,3 +1,9 @@
+#
+# Handle delayed jobs
+#
+# TODO: Add fields and functions for :do_not_run_before/_after
+#       and Priority
+#
 class DelayedJob
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -35,7 +41,7 @@ class DelayedJob
       else
         puts "#{Time.now().to_s} - No pending jobs" unless Rails.env == 'production'
       end
-      sleep(  )
+      sleep( CONSTANTS['sleep_in_delayed_jobs_worker'] || 60 )
     end
   end
 

@@ -17,7 +17,7 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'active_resource/railtie'
 require 'rails/test_unit/railtie'
-
+require File.expand_path('../../lib/configuration', __FILE__)
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,7 +30,7 @@ module Cba
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{Rails.root}/app/workers #{Rails.root}/lib/validators)
+    config.autoload_paths += %W(#{Rails.root}/app/workers #{Rails.root}/lib/validators #{Rails.root}/lib/blogables)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

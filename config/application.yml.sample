@@ -24,7 +24,7 @@ development:
     paginate_blog_entries_per_page: 2
     delay_new_posting_notifications: 9
     sleep_in_delayed_jobs_worke:   5
-        
+    title_max_length: 30        
 test:
   application:
     name:              TESTAPPLICATION
@@ -52,7 +52,7 @@ test:
     paginate_blog_entries_per_page: 20
     delay_new_posting_notifications: 9
     sleep_in_delayed_jobs_worke:   1
-            
+    title_max_length: 30            
 production:
   application:
     name:              iBoard.cc
@@ -79,3 +79,5 @@ production:
     paginate_blog_entries_per_page: 20
     delay_new_posting_notifications: 900
     sleep_in_delayed_jobs_worke:   59
+    title_max_length: 30
+    

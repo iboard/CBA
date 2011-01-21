@@ -22,7 +22,6 @@ module StringExtensions
   end
   
   module InstanceMethods
-    
     def txt_to_url
       self.gsub( / /, '_').gsub(/"/,"**").gsub(/'/,'*').downcase
     end

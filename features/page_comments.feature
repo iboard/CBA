@@ -63,7 +63,7 @@ Feature: Comments on pages
     And I fill in "Email" with "some@address.at"
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    And I click on link "Edit" within "address"
+    And I click on link "Edit" within "#comments"
     And I fill in "comment[comment]" with "Modified music is modified best"
     And I click on "submit"
     Then I should see "Modified music is modified best" within "#comments"
@@ -74,7 +74,7 @@ Feature: Comments on pages
     And I fill in "Email" with "some@address.at"
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    And I click on link "Delete" 
+    And I click on link "Delete" within "#comments"
     Then I should not see "Lorem Commentum gscheit daherred" within "#comments"
     And I should see "Comment successfully deleted"
   

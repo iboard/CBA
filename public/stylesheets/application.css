@@ -493,7 +493,8 @@
   }  
   
   .page_intro {
-    height: 160px;
+    min-height: 160px;
   }
+  
 } /* END SCREEN */
 

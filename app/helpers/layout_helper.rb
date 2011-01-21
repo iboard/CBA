@@ -28,10 +28,12 @@ module LayoutHelper
   end
   
   def set_browser_address(page,title)
-    address = "/p/"+title.txt_to_url
-    "<script>
-       history.replaceState( {page: '#{page}'},'#{title}', '#{address}');
-     </script>".html_safe
+    unless title.length > CONSTANTS['title_max_length'].to_i
+      address = "/p/"+title.txt_to_url
+      "<script>
+         history.replaceState( {page: '#{page}'},'#{title}', '#{address}');
+       </script>".html_safe
+     end
   end
   
 end

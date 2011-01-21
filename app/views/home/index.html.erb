@@ -1,9 +1,11 @@
 <% title t(:welcome) %>
 <% setup_action_buttons %>
 <% if (p=Page.top_pages).any? %>
-  <% for page in p %>
-    <%= render :partial => '/pages/page_intro', :locals => { :page => page } %>  
-    <p class='content_seperator'></p>
-  <% end %>
+  <div>
+    <% for page in p %>
+      <%= render :partial => '/pages/page_intro', :locals => { :page => page } %>  
+      <p class='content_seperator'></p>
+    <% end %>
+  </div>
 <% end %>
 

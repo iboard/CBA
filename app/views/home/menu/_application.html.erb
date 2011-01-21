@@ -2,7 +2,7 @@
 
 <% if can? :read, Page %>
   <% for page in @top_pages %>
-    <li><%= menu_link_to page.title, page %></li>
+    <li><%= menu_link_to page.short_title, page %></li>
   <% end %>
 <% end %>
 

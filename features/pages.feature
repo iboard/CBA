@@ -36,7 +36,7 @@ Feature: Pages
     
   Scenario: Admin should be able to create a new page and this page should be rendered with textile
     Given I am on the pages page
-    And I click on link "New Page"
+    And I click on link "Create a new Page"
     And I fill in "Title" with "Page 3"
     And I fill in "Body" with "h1. Page three body"
     And I click on "Create Page"
@@ -48,16 +48,16 @@ Feature: Pages
     
   Scenario: It should not be able to save a page with no title
     Given I am on the pages page
-    And I click on link "New Page"
+    And I click on link "Create a new Page"
     And I fill in "Body" with "h1. Page three body"
     And I click on "Create Page"
-    Then I should see "New page" within "#container"
+    Then I should see "Create a new Page" within "#container"
     And I should see "Title can't be blank"
     
   Scenario: It should not be able to save a page without a body
     Given I am on the pages page
-    And I click on link "New Page"
+    And I click on link "Create a new Page"
     And I fill in "Title" with "Page three body"
     And I click on "Create Page"
-    Then I should see "New page" within "#container"
+    Then I should see "Create a new Page" within "#container"
     And I should see "Body can't be blank"

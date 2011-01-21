@@ -9,5 +9,6 @@ else
   USER_DATABASE={ 'use_remote_database' => false }
 end
 
-APPLICATION_CONFIG=YAML.load_file("#{Rails.root}/config/application.yml")[Rails.env]['application']
-CONSTANTS=YAML.load_file("#{Rails.root}/config/application.yml")[Rails.env]['constants']
+config_file =  File.expand_path('../../config/application.yml', __FILE__)
+APPLICATION_CONFIG=YAML.load_file(config_file)[Rails.env]['application']
+CONSTANTS=YAML.load_file(config_file)[Rails.env]['constants']

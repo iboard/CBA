@@ -1,15 +1,5 @@
-class Page
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::Paperclip
+class Page < Blogables::Blogable
 
-  field :title
-  validates_presence_of :title
-  validates_uniqueness_of :title
-  
-  field :body, :type => String, :required => true
-  validates_presence_of :body
-  
   field :show_in_menu, :type => Boolean, :default => true
   field :menu_order, :type => Integer, :default => 99999
   class << self
@@ -26,6 +16,7 @@ class Page
                     }
                     
   embeds_many :comments
+  validates_associated :comments
   
   def cover_picture_exists?
     cover_picture && !cover_picture.original_filename.blank?
@@ -38,4 +29,5 @@ class Page
   def render_intro
     RedCloth.new(body.paragraphs[0]).to_html
   end
+
 end

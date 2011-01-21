@@ -1,14 +1,13 @@
 <% title t(:listing_pages) %>
 <% setup_action_buttons %>
 
-<%= will_paginate @pages %>
-
-<% @pages.each do |page| %>
- <%= render :partial => 'page_intro', :locals => { :page => page } %>
- <p class='content_seperator'></p>
-<% end %>
-
-<div class='clear'></div>
-
-<%= will_paginate @pages %>
-
+<div>
+  <%= will_paginate @pages %>
+  
+  <% @pages.each do |page| %>
+   <%= render :partial => 'page_intro', :locals => { :page => page } %>
+   <p class='content_seperator'></p>
+  <% end %>
+  
+  <%= will_paginate @pages %>
+</div>

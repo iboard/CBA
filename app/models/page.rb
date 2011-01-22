@@ -1,13 +1,14 @@
 class Page < Blogables::Blogable
-
+  
+  store_in :pages # By deriving from Blogables::Blogable, MongoId would
+                  # store in blogables_blogables without this line but
+                  # we want the collection named pages.
+  
   field :show_in_menu, :type => Boolean, :default => true
   field :menu_order, :type => Integer, :default => 99999
-  class << self
-    def top_pages
-      criteria.where(:show_in_menu => true).asc
-    end
-  end
-      
+  
+  scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
+        
   has_attached_file :cover_picture,
                     :styles => { 
                       :medium => "300x500>",

@@ -349,11 +349,13 @@
     float: left;
   }
   
-  #container .auth_provider img {
+  #container .auth_provider img,
+  #container .auth_provider {
     -moz-box-shadow:     none;
     -webkit-box-shadow:  none;
     box-shadow: none; 
   }
+  
   
   #container .authentication .provider, #container .authentication .uid {
     margin-left: 38px;

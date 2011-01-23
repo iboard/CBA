@@ -1,4 +1,5 @@
 <%= set_browser_address(@page.id,@page.title) %>
+
 <% title @page.title %>
 
 <%= render( :partial => 'cover_picture', 
@@ -11,9 +12,9 @@
 </div>
 
 <% if can? :manage, @page %>
-  <%= link_to 'Edit', edit_page_path(@page) %> |
+  <%= link_to t(:edit), edit_page_path(@page) %> |
 <% end %>
-<%= link_to 'Back', pages_path %>
+<%= link_to t(:pages_index), pages_path %>
 
 <%= content_tag :div, :id => 'comments' do %>
 

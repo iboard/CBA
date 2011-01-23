@@ -74,3 +74,10 @@ en:
   comment_deleted: 'Comment successfully deleted'
   comment_successfully_updated: 'Comment successfully updated'
   edit_comment: 'Edit comment'
+  signed_in_successfully: "Signed in successfully."
+  authentication_successful: "Authentication successful."
+  signed_in_successfully: "Signed in successfully."
+  successfully_destroyed_authentication: "Successfully destroyed authentication."
+  page_successfully_created: 'Page was successfully created.'
+  page_successfully_updated: 'Page was successfully updated.'
+  pages_index: 'All pages'

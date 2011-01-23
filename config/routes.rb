@@ -1,6 +1,6 @@
 Cba::Application.routes.draw do
 
-  match '/p/:permalink' => 'pages#permalinked', :as => 'permalink_path'
+  match '/p/:permalink' => 'pages#permalinked', :as => 'permalinked'
   match '/edit_comment/:type/:commentable_id/:comment_id' => 'comments#edit', :as => 'edit_comment'
   match '/delete_comment/:type/:commentable_id/:comment_id' => 'comments#destroy', :as => 'delete_comment'
   resources :pages do

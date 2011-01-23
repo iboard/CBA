@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
      
     if with_password
       set_flash_message :notice, :updated
-      sign_in resource_name, resource #, :bypass => true
+      sign_in resource_name, resource
       redirect_to after_update_path_for(resource)
     else
       clean_up_passwords(resource)

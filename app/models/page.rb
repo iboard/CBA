@@ -30,5 +30,9 @@ class Page < Blogables::Blogable
   def render_intro
     RedCloth.new(body.paragraphs[0]).to_html
   end
+  
+  def link_to_title 
+    short_title_for_url.txt_to_url
+  end
 
 end

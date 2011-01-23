@@ -8,7 +8,8 @@ class PagesController < ApplicationController
   # GET /pages.xml
   def index
     @pages = Page.paginate(
-      :page => params[:page], :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
+      :page => params[:page], 
+      :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
     )
 
     respond_to do |format|
@@ -31,6 +32,7 @@ class PagesController < ApplicationController
     end
   end
   
+  # GET /p/titel_of_the_page
   def permalinked      
     permalink = params[:permalink].url_to_txt.escape_regex
     unless params[:permalink][-1] == '$'
@@ -38,10 +40,9 @@ class PagesController < ApplicationController
     else
       @page = Page.where(:title => /^#{permalink.chomp('\$')}(.*)$/i).first
     end
-    redirect_to @page if @page
+    render :show if @page
     unless @page
-      flash[:error] = t(:page_not_found) + " (#{permalink})"
-      redirect_to pages_path
+      redirect_to pages_path, :alert =>  t(:page_not_found) + " (#{permalink})"
     end
   end
 
@@ -58,7 +59,6 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
-    @page = Page.find(params[:id])
   end
 
   # POST /pages
@@ -68,7 +68,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to(@page, :notice => 'Page was successfully created.') }
+        format.html { redirect_to(@page, :notice => t(:page_successfully_created)) }
         format.xml  { render :xml => @page, :status => :created, :location => @page }
       else
         format.html { render :action => "new" }
@@ -80,11 +80,11 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.xml
   def update
-    @page = Page.find(params[:id])
-
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to(@page, :notice => 'Page was successfully updated.') }
+        format.html { 
+           redirect_to(@page, :notice => t(:page_successfully_updated))
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -96,9 +96,7 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.xml
   def destroy
-    @page = Page.find(params[:id])
     @page.destroy
-
     respond_to do |format|
       format.html { redirect_to(pages_url) }
       format.xml  { head :ok }

@@ -256,6 +256,9 @@
     width: 32px;
     height: 32px;
     border: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
   
   #userlist {

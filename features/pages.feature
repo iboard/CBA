@@ -20,11 +20,12 @@ Feature: Pages
     Given I am on the pages page
     Then I should see "Page 1" within ".hmenu"
     And I should not see "Page 2" within ".hmenu"
-
+    
+@focus
   Scenario: A page should be shown when clicking read from the index
     Given I am on the pages page
     And I click on link "Read"
-    Then I should be on the page path of "Page 1"
+    Then I should be on the permalink_path of "Page 1"
     And I should see "Page 1"
     And I should see "Lorem ipsum"
 

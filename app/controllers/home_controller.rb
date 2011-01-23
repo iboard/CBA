@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-  def index
-    @users = User.all
 
+  # Display the top pages on the home-page
+  def index
   end
 
 end

@@ -13,6 +13,11 @@
     <%= auto_discovery_link_tag(:atom, "/feed.atom?#{Time.now.to_i}") %>
   </head>
   <body>
+    <% if content_for? :action_buttons %>
+      <div id='action_buttons'>
+          <%= yield(:action_buttons) %>
+      </div>
+    <% end %>
     <div id="banner">
       <%= render :partial => '/layouts/banner' %>
     </div>
@@ -25,13 +30,7 @@
           <%= render 'devise/menu/login_items' %>
         </ul>
     </div>
-    <div id="container">
-      <% if content_for? :action_buttons %>
-        <div id='action_buttons'>
-            <%= yield(:action_buttons) %>
-        </div>
-      <% end %>
-        
+    <div id="container">   
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

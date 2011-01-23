@@ -398,18 +398,27 @@
   }
   
   #action_buttons {
-    float: right;
-    padding: 5px;
-    text-align: center;
-    background-color: #206024;
-    color: white;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    height: 150px;
+    background: #FdFeFF -webkit-gradient(
+         linear,
+         left top,
+         left bottom,
+         color-stop(1.0,  #FdFeFF),
+         color-stop(0.80, #E6E6E6)
+     ) repeat-x;
+     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
+     float: right;
   }
   
   #action_buttons a {
+    display: block;
     text-decoration: none;
     color: white;
+    margin: 5px;
+    padding: 5px;    
+    background: #1B5412;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;    
   }
 
   .pagination {
@@ -499,6 +508,7 @@
   
   .page_intro {
     min-height: 160px;
+    clear: both;
   }
   
 } /* END SCREEN */

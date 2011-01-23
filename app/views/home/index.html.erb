@@ -1,5 +1,7 @@
-<% title t(:welcome) %>
+<% title APPLICATION_CONFIG['name'] + " " + t(:welcome), false %>
 <% setup_action_buttons %>
+
+
 <% if (p=Page.top_pages).any? %>
   <div>
     <% for page in p %>

@@ -1,3 +1,4 @@
+# The CommentController can handle comments on polymorphic 'commentables'
 class CommentsController < ApplicationController
   
   respond_to :html, :xml, :js
@@ -53,7 +54,6 @@ class CommentsController < ApplicationController
   
   
   private
-  
   def redirect_path
     eval("#{@commentable.class.to_s.underscore}_path(@commentable, "+
          ":comment => params[:comment][:comment])")

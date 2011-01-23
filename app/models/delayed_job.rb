@@ -2,7 +2,7 @@
 # Handle delayed jobs
 #
 # TODO: Add fields and functions for :do_not_run_before/_after
-#       and Priority
+# and Priority
 #
 class DelayedJob
   include Mongoid::Document
@@ -11,10 +11,16 @@ class DelayedJob
   field   :class_name, :required => true
   field   :args
 
+  # Store a request in the delayed_jobs-collection
   def self.enqueue(class_name,*args)
     job = self.create( :class_name => class_name, :args => args )
   end
   
+  # Fetch the oldest job in the queue and run the <code>perform</code>-method
+  # of the queued object.
+  # When done remove the job from the queue.
+  # ATTENTION: The job will be removed even if calling <code>perform</code>
+  # raises an error.
   def self.run_next_job
     job = self.first
     if job
@@ -28,6 +34,10 @@ class DelayedJob
     end
   end
   
+  # run the queue until the processed will be killed.
+  # Sleep <code>CONSTANTS['sleep_in_delayed_jobs_worker']</code> seconds
+  # between executing the next job. The delay-value can be configured in
+  # the <code>application.yml</code> file.
   def self.run
     puts "RUNNING DELAYED JOBS LOOP - PRESS ^C OR SEND SIG_KILL TO TERMINATE"
     while true

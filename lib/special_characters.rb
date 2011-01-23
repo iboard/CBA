@@ -1,3 +1,4 @@
+# Use <code>sc(:symbol[,:symbol,...])</code> to display special html-characters
 module SpecialCharacters
   
   BR="\n<br/>".html_safe
@@ -46,6 +47,8 @@ module SpecialCharacters
       :apostrophy_close        => APOSTROPHY_CLOSE
   }
   
+  # <code>sc([:br,:pr,:close])</code> will return one html-string of special
+  # characters and html-tags. <b><br />->X</b>
   def sc(*names)
     n = [] 
     while x = names.shift

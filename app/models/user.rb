@@ -1,3 +1,4 @@
+# This is a Device-User-Class extended with ROLES, Avatar-handling, and more
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -37,7 +38,9 @@ class User
   before_destroy :async_notify_on_cancelation
    
   
-  # Roles
+  # Roles - Do not change the order and do not remove roles if you
+  # already have productive data! Thou it's safe to append new roles
+  # at the end of the string. And it's safe to rename roles in place
   ROLES = %w(confirmed_user moderator author maintainer admin)
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
   
@@ -57,15 +60,22 @@ class User
     User.all.any? ? (self == User.first || role?(:admin)) : true
   end
 
+  # Set the roles for the user
+  # Example: <code>@user.roles=['confirmed_user','author']
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
     Rails.logger.info("SET ROLES TO #{self.roles.inspect}")
   end
   
+  # return all roles set to the user.
   def roles
     ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
   end
   
+  # Ask if the user has a specific role or any of the given roles.
+  # Examples:
+  #   @user.role?('admin')
+  #   @user.role?(['admin','maintainer']) # any of ...
   def role?(role)
     return roles.include? role.to_s unless role.is_a?(Array)
     my_roles = self.roles
@@ -75,21 +85,24 @@ class User
     return false
   end
   
+  # virtual attribute needed for the view but is false always.
   def clear_avatar
     false
   end
   
+  # clear a previous uploaded avatar-image.
   def clear_avatar=(new_value)
     self.avatar = nil if new_value == '1'
   end
   
-  # omniAuth
+  # fetch attributes from the omniauth-record.
   def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
     apply_trusted_services(omniauth) if self.new_record?
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
   end
 
+  # remove the password and password-confirmation attribute if not needed.
   def update_with_password(params={}) 
     if params[:password].blank? 
       params.delete(:password) 
@@ -98,6 +111,7 @@ class User
     super
   end
   
+  # Remove an URL of the local avatar or the gravatar
   def avatar_url(mode)
     if self.use_gravatar
       "http://gravatar.com/avatar/#{gravatar_id}.png?cache=#{self.updated_at.strftime('%Y%m%d%H%M%S')}"
@@ -106,6 +120,7 @@ class User
     end
   end
   
+  # Link to the gravatar profile
   def gravatar_profile
     if self.use_gravatar
       "http://gravatar.com/#{gravatar_id}"

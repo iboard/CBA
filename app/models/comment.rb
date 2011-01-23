@@ -1,3 +1,4 @@
+# Comment is a polymorphic class. Any 'commentable' can have comments.
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps

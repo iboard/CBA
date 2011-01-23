@@ -1,4 +1,7 @@
+# Extend the Paperclip Module with Cropper
 module Paperclip  
+  
+  # Crop an image
   class Cropper < Thumbnail  
     def transformation_command  
       if crop_command

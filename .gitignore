@@ -1,6 +1,7 @@
 .bundle
 db/*.sqlite3
 log/*.log
+doc/**/*
 tmp/**/*
 .DS_Store
 config/mongoid.yml

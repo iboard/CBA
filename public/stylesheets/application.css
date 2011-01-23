@@ -132,6 +132,8 @@
         color-stop(1.00, #333333)
     ) repeat-x;
     color: #444;
+    margin-top: 1px;
+    padding-top: 10px;
   }
   
   #session a {
@@ -148,10 +150,9 @@
     color: #444;
     padding: 5px;
     padding: 5px;
-    border: 1px dotted #AAA;    
     border-bottom :none;
-    -moz-border-radius: 3px; 
-    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px 3px 0px 0px; 
+    -webkit-border-radius: 3px 3px 0px 0px; 
     
   }
   
@@ -408,6 +409,7 @@
      ) repeat-x;
      background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
      float: right;
+     overflow: hidden;
   }
   
   #action_buttons a {

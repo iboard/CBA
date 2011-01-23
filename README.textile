@@ -10,6 +10,13 @@ h2. Installation
 
 At the moment installation is a matter of change. The documentation will follow as soon as the installation process will be worked out cleanly. 
 
+Thou there is one thing you should know: You have to set role 'admin' to your first user!
+Afer signing up your first user open your console and do this with
+
+  rails console
+  u=User.first
+  u.roles=['admin']
+  u.save
 
 h2. Delayed Jobs
 

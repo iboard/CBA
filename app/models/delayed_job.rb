@@ -17,10 +17,7 @@ class DelayedJob
   end
   
   # Fetch the oldest job in the queue and run the <code>perform</code>-method
-  # of the queued object.
-  # When done remove the job from the queue.
-  # ATTENTION: The job will be removed even if calling <code>perform</code>
-  # raises an error.
+  # of the queued object. When done remove the job from the queue.
   def self.run_next_job
     job = self.first
     if job
@@ -51,7 +48,7 @@ class DelayedJob
       else
         puts "#{Time.now().to_s} - No pending jobs" unless Rails.env == 'production'
       end
-      sleep( CONSTANTS['sleep_in_delayed_jobs_worker'] || 60 )
+      sleep( CONSTANTS['sleep_in_delayed_jobs_worker'].to_i || 60 )
     end
   end
 

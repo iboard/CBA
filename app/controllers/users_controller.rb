@@ -36,6 +36,12 @@ class UsersController < ApplicationController
     redirect_to registrations_path, 
       :notice => t(:roles_of_user_updated,:user => @user.name)
   end
+  
+  def destroy
+    @user.delete
+    redirect_to registrations_path,
+      :notice => t(:user_deleted)
+  end
 
   private
   def is_in_crop_mode?

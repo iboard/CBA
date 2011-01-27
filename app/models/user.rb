@@ -11,7 +11,7 @@ class User
   field :roles_mask, :type => Fixnum, :default => 0
   field :use_gravatar, :type => Boolean, :default => true
   
-  references_many :authentications, :dependent => :delete
+  references_many :authentications, :dependent => :destroy
   
   
   validates_presence_of :name
@@ -145,6 +145,11 @@ class User
     end
     self.password, self.password_confirmation = String::random_string(20)
     self.confirmed_at, self.confirmation_sent_at = Time.now
+    a = Authentication.where(:uid => omniauth['uid'], :provider => omniauth['provider']).first
+    unless a
+      a=Authentication.create(:user_id => self.id,:uid => omniauth['uid'], :provider => omniauth['provider'])
+      a.save!
+    end
   end
 
   # Inform admin about sign ups and cancellations of accounts

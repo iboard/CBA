@@ -24,6 +24,7 @@ Cba::Application.routes.draw do
   
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications, :only => [:index,:create,:destroy]
+  match '/auth/failure' => 'authentications#auth_failure'
   
   root :to => 'home#index'
 

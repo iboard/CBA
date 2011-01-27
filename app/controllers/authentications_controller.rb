@@ -40,4 +40,9 @@ class AuthenticationsController < ApplicationController
     flash[:notice] = t(:successfully_destroyed_authentication)
     redirect_to authentications_url
   end
+  
+  def auth_failure
+    redirect_to '/users/sign_in', :alert => params[:message]
+  end
+  
 end

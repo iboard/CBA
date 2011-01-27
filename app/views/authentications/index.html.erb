@@ -20,6 +20,7 @@
   <% content_for :service_title do %><p style='clear: left;'><strong>Sign in through one of these services:</strong></p><% end %>
 <% end %>
 
+<p class='clear'><br /></p>
 <% if yield(:service_title).blank? %>
   <h2 style='clear: both;'><%= t(:or_authenticate_through_service) %></h2>
 <% else %>

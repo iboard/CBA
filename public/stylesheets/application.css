@@ -459,6 +459,14 @@
     margin-top: 15px;
   }
   
+  #comments address.new_comment {
+    color: #1C5A98;
+  }
+
+  #comments address.old_comment {
+    color: #B3B3B3;
+  }
+  
   #banner {
     height: 150px;
     background: #FdFeFF -webkit-gradient(
@@ -512,6 +520,12 @@
     min-height: 160px;
     clear: both;
   }
+  
+  .new_comments {
+    color: #1C5A98;
+    display: inline;
+  }
+  
   
 } /* END SCREEN */
 

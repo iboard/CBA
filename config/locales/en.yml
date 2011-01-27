@@ -83,3 +83,12 @@ en:
   pages_index: 'All pages'
   please_enter_your_name: 'Please enter your name'
   be_polite: 'Please be polite ;-)'
+  num_of_comments:
+    zero: 'No comments yet'
+    one: 'One comment'
+    other: '%{count} comments'
+  new_since_last_visit:
+    zero: ''
+    one: 'One new since your last visit'
+    other: '%{count} new since your last visit'
+  back: 'back'

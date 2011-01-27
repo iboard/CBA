@@ -12,5 +12,7 @@ class Comment
   validates_presence_of :comment
   
   embedded_in :commentable, :inverse_of => :comments
+  
+  scope :since, lambda { |since| where(:created_at.gt => since) } 
 
 end

@@ -2,25 +2,27 @@
 
 <% title @page.title %>
 
+<!-- PICTURE -->
 <%= render( :partial => 'cover_picture', 
     :locals => { :page => @page, :format => :medium, :style => "float:right; margin-left: 10px;" }
     ) if @page.cover_picture_exists?
 %>
 
+<!-- BODY -->
 <div id='page_<%= @page.id -%>' class='page_body'>
   <%= sanitize(@page.render_body).html_safe %>
 </div>
 
+<!-- BUTTONS -->
 <% if can? :manage, @page %>
   <%= link_to t(:edit), edit_page_path(@page) %> |
 <% end %>
 <%= link_to t(:pages_index), pages_path %>
 
+<!-- COMMENTS -->
 <%= content_tag :div, :id => 'comments' do %>
-
   <h5><%= t(:number_of_comments, :count => @page.comments.count)%></h5>
   <%= render :partial => @page.comments, :locals => { :commentable => @page } %>
-      
 <% end %>
 
 

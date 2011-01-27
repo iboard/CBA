@@ -1,4 +1,5 @@
 <% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
+
 <% if @user.avatar %>
   <%= image_tag @user.avatar_url(:thumb), :style=>'float: right;' %>
 <% end %>
@@ -13,8 +14,7 @@
 
   <div class='field'><%= f.label :email %>
   <%= f.text_field :email %></div>
-  
-  
+    
   <div class='field'><%= f.label :avatar,t(:upload_avatar) %>
     <%= f.file_field :avatar %>
   </div>
@@ -30,8 +30,8 @@
     <small><%= @user.email.downcase%></small>
   </div>
   
-  <% if @user.authentications.empty? %>
-    
+  <!-- PASSWORD FIELDS IF NO AUTH-SERVICE IS USED -->
+  <% if @user.authentications.empty? %>  
     <h2>Password</h2>
     
     <div class='field'><%= f.label :password %>
@@ -41,7 +41,6 @@
     
     <div class='field'><%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %></div>
-
   <% end %>
   
   <h2><%= t(:or_user_omni_auth) -%></h2>
@@ -53,7 +52,8 @@
     <% for a in @user.authentications %>
       <%= render(:partial => '/authentications/authentication', :locals => {:authentication => a}) %>
     <% end %>
-    <%= link_to t(:edit), authentications_path(@user) %>
+    <div class='clear'></div>
+    <%= sc(:pr,:nbsp)+link_to( t(:edit), authentications_path(@user) )%>
   <% end %>
 
   <div class='clear'></div>
@@ -78,4 +78,4 @@
 
 <div class='field'>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</div>
 
-<%= link_to "Back", :back %>
+<p><%= sc(:pr,:nbsp) + link_to( t(:back), :back) %></p>

@@ -15,7 +15,11 @@
       | <%= link_to t(:destroy), page, 
                     :confirm => t(:are_you_sure), 
                     :method => :delete 
-         %>
+        %>
+    <% end %>
+    <%= t(:num_of_comments, :count => page.comments.count ) %>
+    <% if user_signed_in? && (count=page.comments.since(current_user_field(:last_sign_in_at,0)).count) > 0 %>
+      <span class='new_comments'>[<%= t(:new_since_last_visit, :count => count) %>]</span>
     <% end %>
   </p>
 </div>

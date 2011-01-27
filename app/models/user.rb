@@ -11,7 +11,7 @@ class User
   field :roles_mask, :type => Fixnum, :default => 0
   field :use_gravatar, :type => Boolean, :default => true
   
-  references_many :authentications, :dependent => :destroy
+  references_many :authentications, :dependent => :delete
   
   
   validates_presence_of :name
@@ -36,6 +36,9 @@ class User
   # Notifications
   after_create :async_notify_on_creation
   before_destroy :async_notify_on_cancellation
+  
+  # Authentications
+  after_create :save_new_authentication
    
   
   # Roles - Do not change the order and do not remove roles if you
@@ -145,11 +148,14 @@ class User
     end
     self.password, self.password_confirmation = String::random_string(20)
     self.confirmed_at, self.confirmation_sent_at = Time.now
-    a = Authentication.where(:uid => omniauth['uid'], :provider => omniauth['provider']).first
-    unless a
-      a=Authentication.create(:user_id => self.id,:uid => omniauth['uid'], :provider => omniauth['provider'])
-      a.save!
-    end
+    
+    # Build a new Authentication and remember until :after_create -> save_new_authentication
+    @new_auth = authentications.build( :uid => omniauth['uid'], :provider => omniauth['provider'])
+  end
+  
+  # Called :after_create
+  def save_new_authentication
+    @new_auth.save unless @new_auth.nil?
   end
 
   # Inform admin about sign ups and cancellations of accounts

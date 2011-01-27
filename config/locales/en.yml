@@ -92,3 +92,7 @@ en:
     one: 'One new since your last visit'
     other: '%{count} new since your last visit'
   back: 'back'
+  sure?: 'Are you sure?'
+  cancel_this_account: 'Cancel this account'
+  cancel_my_account: "Cancel my account"
+  user_deleted: 'User successfully deleted'

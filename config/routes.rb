@@ -13,7 +13,7 @@ Cba::Application.routes.draw do
   match '/registrations' => 'users#index', :as => 'registrations'
   
   devise_for :users, :controllers => { :registrations => 'registrations' }
-  resources :users, :only => :show do
+  resources :users, :only => [:show,:destroy] do
     member do
       get :crop_avatar
       put :crop_avatar

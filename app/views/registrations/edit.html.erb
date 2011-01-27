@@ -76,6 +76,6 @@
 
 <h3>Cancel my account</h3>
 
-<div class='field'>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</div>
+<div class='field'>Unhappy? <%= link_to t(:cancel_my_account), registration_path(resource_name), :confirm => t(:sure?), :method => :delete %>.</div>
 
 <p><%= sc(:pr,:nbsp) + link_to( t(:back), :back) %></p>

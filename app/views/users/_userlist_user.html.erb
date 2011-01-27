@@ -1,12 +1,16 @@
 <%= image_tag user.avatar_url(:thumb) %> <%=link_to user.name, user %>
+
 <%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %>
 <% if user_signed_in? && current_user.role?([:admin,:maintainer]) %>
-  <%= link_to_function t("userlist.detail"), "toggle_div('user_information_#{user.id.to_s}')",
-    :class => 'admin' %>  
+  <%= link_to_function t("userlist.detail"), 
+                       "toggle_div('user_information_#{user.id.to_s}')",
+                       :class => 'admin' 
+  %>  
   <ul class='user_detail admin' id='user_information_<%= user.id.to_s -%>', style='display: none;'>
     <li>
       <strong><%= t(:roles) %></strong>: <%= user.roles.map(&:humanize) -%>
-      <%= link_to t(:edit_roles), edit_roles_user_path(user)  %>
+      <%= link_to t(:edit_roles), edit_roles_user_path(user)  %> |
+      <%= link_to t(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete %>
     </li>
     <% for attribute in user.attributes %>
       <li>
@@ -17,7 +21,9 @@
     <li></li>
   </ul>
 <% end %>
+
 <br />
+
 <small id="user_roles_<%= user.name -%>">
   <% unless user.roles.empty? %>
     <%= user.roles.map(&:humanize).join(", ")%><br />

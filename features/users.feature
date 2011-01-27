@@ -17,10 +17,10 @@ Feature: User Roles
   Background:
     Given the following user records
       | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: Non-admins and non-staff users should not see the list of users
@@ -64,27 +64,35 @@ Feature: User Roles
     And I should not see "Moderator" within "small#user_roles_testmax"
 
   Scenario: Remove all roles from testmax user
-      Given I am on edit roles page for "testmax"
-      And I uncheck "user_roles_" whithin "role_confirmed_user"
-      And I uncheck "user_roles_" whithin "role_admin"
-      And I uncheck "user_roles_" whithin "role_moderator"
-      And I uncheck "user_roles_" whithin "role_author"
-      And I click on "Update User"
-      Then I should be on the registrations page
-      And I should not see "Confirmed user" within "small#user_roles_testmax"
-      And I should not see "Admin" within "small#user_roles_testmax"
-      And I should not see "Moderator" within "small#user_roles_testmax"
-      And I should not see "Author" within "small#user_roles_testmax"
+    Given I am on edit roles page for "testmax"
+    And I uncheck "user_roles_" whithin "role_confirmed_user"
+    And I uncheck "user_roles_" whithin "role_admin"
+    And I uncheck "user_roles_" whithin "role_moderator"
+    And I uncheck "user_roles_" whithin "role_author"
+    And I click on "Update User"
+    Then I should be on the registrations page
+    And I should not see "Confirmed user" within "small#user_roles_testmax"
+    And I should not see "Admin" within "small#user_roles_testmax"
+    And I should not see "Moderator" within "small#user_roles_testmax"
+    And I should not see "Author" within "small#user_roles_testmax"
     
   Scenario: Add all roles to testmax user
-      Given I am on edit roles page for "testmax"
-      And I check "user_roles_" whithin "role_confirmed_user"
-      And I check "user_roles_" whithin "role_admin"
-      And I check "user_roles_" whithin "role_moderator"
-      And I check "user_roles_" whithin "role_author"
-      And I click on "Update"
-      Then I should be on the users page
-      And I should see "Confirmed user" within "small#user_roles_testmax"
-      And I should see "Admin" within "small#user_roles_testmax"
-      And I should see "Moderator" within "small#user_roles_testmax"
-      And I should see "Author" within "small#user_roles_testmax"
+    Given I am on edit roles page for "testmax"
+    And I check "user_roles_" whithin "role_confirmed_user"
+    And I check "user_roles_" whithin "role_admin"
+    And I check "user_roles_" whithin "role_moderator"
+    And I check "user_roles_" whithin "role_author"
+    And I click on "Update"
+    Then I should be on the users page
+    And I should see "Confirmed user" within "small#user_roles_testmax"
+    And I should see "Admin" within "small#user_roles_testmax"
+    And I should see "Moderator" within "small#user_roles_testmax"
+    And I should see "Author" within "small#user_roles_testmax"
+
+  Scenario: Admin should be able to cancel any account
+    Given I am on registrations page
+    And I click on link "Cancel this account"
+    Then I should be on registrations page
+    And I should see "User successfully deleted"
+    And I should not see "testmax"
+  

@@ -40,11 +40,12 @@ class Ability
             raise Exception.new("Unknown role '#{role}' in #{__FILE__}:#{__LINE__}")
           end
         end
-      else
-        # Guest
-        can :read, Page
-        can [:read, :create], Comment
       end
+      
+      # Anybody
+      can :read, Page
+      can [:read, :create], Comment
+      
     end
   end
   

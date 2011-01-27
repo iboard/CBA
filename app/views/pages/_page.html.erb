@@ -19,18 +19,22 @@
 <%= content_tag :div, :id => 'comments' do %>
 
   <h5><%= t(:number_of_comments, :count => @page.comments.count)%></h5>
-      
   <%= render :partial => @page.comments, :locals => { :commentable => @page } %>
       
 <% end %>
 
+
+<!-- #REVIEW: Make comment-form a partial for reusing? -->
 <%= content_tag :div, :id => 'new_comment_form' do %>
   <h5><%= t(:post_a_comment) -%></h5>
-  <%= form_for [@page,@page.comments.build] do |f| %>
-    <%= f.fields_for :comment do |builder| %>  
+  <%= form_for [@page,comment = @page.comments.build(  
+                                             :name => current_user_field(:name,''), 
+                                             :email => current_user_field(:email, '') 
+                                          )] do |f| %>
+    <%= f.fields_for comment do |builder| %>  
       <div class="field"> 
           <%= builder.label :name %>
-          <%= builder.text_field :name, :size => 40 %>
+          <%= builder.text_field :name, :size => 40, :placeholder => t(:please_enter_your_name) %>
       </div>
       <div class="field"> 
           <%= builder.label :email %>
@@ -38,7 +42,7 @@
       </div>
       <div class="field"> 
           <%= builder.label :comment %>
-          <%= builder.text_area :comment, :rows => 5, :cols => 40 %>
+          <%= builder.text_area :comment, :rows => 5, :cols => 40, :placeholder => t(:be_polite) %>
       </div>
     <% end %>
     <div class="field"> 

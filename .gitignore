@@ -9,5 +9,6 @@ config/mongoid.yml
 config/application.yml
 config/mailserver_setting.rb
 config/omniauth_settings.rb
+config/google_analytics.head
 public/system/**/*
 public/cover_pictures

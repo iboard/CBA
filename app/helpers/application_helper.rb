@@ -20,4 +20,13 @@ module ApplicationHelper
       default
     end
   end
+  
+  # See the main-layout application.html.erb where this buttons
+  # will be displayed at runtime.
+  def setup_action_buttons
+    content_for :action_buttons do
+      render :partial => '/home/action_buttons'
+    end
+  end
+  
 end

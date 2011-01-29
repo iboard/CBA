@@ -28,6 +28,12 @@ module NavigationHelpers
       rescue Object => e
         raise "Can't find user #{user.name} / #{e.inspect}"
       end
+    when /blogs page/
+      '/blogs'
+    when /blog path of "([^"]*)"/
+      title = $1
+      blog = Blog.where(:title => title).first
+      "/blogs/#{blog._id}"
     else
       begin
         page_name =~ /the (.*) page/

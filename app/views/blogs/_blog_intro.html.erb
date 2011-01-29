@@ -1,0 +1,19 @@
+<div class='blog_intro' id='<%= blog.id.to_s -%>'>
+    
+  <% if blog.cover_picture_exists? %>
+    <%= render :partial => '/blogs/cover_picture', 
+       :locals => {:blog => blog, :format => :thumb, :style => 'float:right;margin-left: 10px'} %>
+  <% end %>
+  
+  <h1><%= blog.title %></h1>
+  <p>
+    <%= link_to t(:read), blog %>
+    <% if can? :manage, blog %>
+      | <%= link_to t(:edit), edit_blog_path(blog) %> 
+      | <%= link_to t(:destroy), blog, 
+                    :confirm => t(:are_you_sure), 
+                    :method => :delete 
+        %>
+    <% end %>
+  </p>
+</div>

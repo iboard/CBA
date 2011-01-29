@@ -96,3 +96,10 @@ en:
   cancel_this_account: 'Cancel this account'
   cancel_my_account: "Cancel my account"
   user_deleted: 'User successfully deleted'
+  blogs: 'Blogs'
+  new_blog: 'Create a new Blog'
+  blog_index: 'Index of Blogs'
+  editing_blog: 'Editing Blog'
+  blog_successfully_created: 'Blog successfully created'
+  blog_successfully_updated: 'Blog successfully updated'
+  read_blog: 'Read Blog'

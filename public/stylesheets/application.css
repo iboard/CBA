@@ -43,10 +43,11 @@
     font-weight: 300;
     font-style: normal;
     color: #4A4A4A;
-    min-width: 800px;
+    min-width: 1024px;
   }
   a img {
     border: none;
+    padding: 0px;
   }
   
   a {
@@ -275,9 +276,10 @@
   }
   
   #container img {
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px; 
-    border: 1px solid #ddd;
+    -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px; 
+    border: none;
+    padding: 0px;
     -moz-box-shadow: 5px 5px 3px #888;
     -webkit-box-shadow: 5px 5px 3px #888;
     box-shadow: 5px 5px 3px #888;
@@ -285,6 +287,7 @@
   
   #userlist img {
     float: left;
+    padding: 0px;
     margin-left: -100px;
     margin-right: 10px;
     -moz-border-radius: 5px; 
@@ -348,11 +351,13 @@
   
   #container .authentication img {
     border: none;
+    padding: 0px;
     float: left;
   }
   
   #container .auth_provider img,
   #container .auth_provider {
+    padding: 0px;
     -moz-box-shadow:     none;
     -webkit-box-shadow:  none;
     box-shadow: none; 
@@ -375,6 +380,7 @@
   
   #container .auth_provider img {
     border: none;
+    padding: 0px;
     display: block;
   }
   
@@ -394,6 +400,7 @@
     text-align: center;
     color: #444;
   }
+  
   #copyright a {
     color: #444;
     text-decoration: none;
@@ -498,12 +505,12 @@
     font-size: 0.8em;
     margin: 0;
     padding: 0;
-    margin-left: 40px;
+    margin-left: 45px;
     overflow: hidden;
   }
 
-  .content_seperator {
-    height: 3px;
+  #container .content_seperator {
+    height: 2px;
     clear: both;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -515,6 +522,8 @@
       color-stop(0.80, #E6E6E6)
     ) repeat-x;
     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
+    -webkit-box-shadow: 4px 4px 4px #ddd;
+    -moz-box-shadow: 4px 4px 4px #ddd;
   }  
   
   .page_intro {
@@ -535,6 +544,10 @@
   #container #postings h2 {
     margin: 0px;
     margin-top: 20px;
+    font-family: Times;
+    font-size: 3em;
+    text-shadow: 2px 1px 2px #888;
+    
   }
   
   #container #postings h2 a {
@@ -553,10 +566,12 @@
   #container #posting .cover_picture img,
   #container #postings .cover_picture img {
     float: right;
+    padding: 0px;
     margin: 0px;
     margin-top: 30px;
     margin-left: 10px;
     margin-bottom: 10px;
+    border: none;
   }
   
   #container #postings address.new_posting {
@@ -593,9 +608,10 @@
   }
   
   .right_column {
-    width: 35%;
+    width: 250px;
     float: right; 
     padding-left: 30px;
   }
+  
 } /* END SCREEN */
 

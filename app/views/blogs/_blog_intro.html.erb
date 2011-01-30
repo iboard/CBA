@@ -6,7 +6,7 @@
   <% end %>
   
   <h1><%= blog.title %></h1>
-  <p>
+  <address>
     <%= link_to t(:read), blog %>
     <% if can? :manage, blog %>
       | <%= link_to t(:edit), edit_blog_path(blog) %> 
@@ -15,5 +15,5 @@
                     :method => :delete 
         %>
     <% end %>
-  </p>
+  </address>
 </div>

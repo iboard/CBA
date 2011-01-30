@@ -1,0 +1,6 @@
+<% title @blog.title + ": " + t(:new_posting) %>
+<% setup_action_buttons %>
+
+<%= render :partial => 'form' %>
+
+<p style='clear:right;'><%= link_to t(:cancel), @blog %></p>

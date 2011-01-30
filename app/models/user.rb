@@ -12,6 +12,7 @@ class User
   field :use_gravatar, :type => Boolean, :default => true
   
   references_many :authentications, :dependent => :delete
+  references_many :postings, :dependent => :delete
   
   
   validates_presence_of :name

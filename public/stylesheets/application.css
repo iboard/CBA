@@ -527,5 +527,74 @@
   }
   
   
+  #container #posting {
+    margin-top: -20px;
+  }
+  
+  #container #postings h2 {
+    margin: 0px;
+    margin-top: 20px;
+  }
+  
+  #container #postings h2 a {
+    color: #95150B;
+    text-decoration: none;
+    border: none;
+  }
+  #container #postings h2 a:hover {
+    color: red;
+    background: none;
+    text-decoration: none;
+    border: none;
+  }
+  
+  
+  #container #posting .cover_picture img,
+  #container #postings .cover_picture img {
+    float: right;
+    margin: 0px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #container #postings address.new_posting {
+    color: #1C5A98;
+    margin: 0px;
+  }
+  
+  #container #postings address.old_posting {
+    color: #B3B3B3;
+    margin: 0px;
+  }
+  
+  #container #postings p {
+    margin: 0px;
+    margin-bottom: 5px;
+  }
+  
+  a.green_button {
+    display: inline;
+    text-decoration: none;
+    color: white;
+    margin: 0px;
+    padding: 5px;    
+    background: #1B5412;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;    
+  }
+  
+  .blog_intro h1 {
+    margin-bottom: 0px;
+  }
+  .blog_intro address {
+    font-style: normal;
+  }
+  
+  .right_column {
+    width: 35%;
+    float: right; 
+    padding-left: 30px;
+  }
 } /* END SCREEN */
 

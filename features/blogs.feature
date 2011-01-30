@@ -1,7 +1,6 @@
-@focus
 Feature: Blogs
   In order to maintain and read blogs
-  As an user
+  As an admin
   I want list, browse, read, and edit blogs
   
   Background:

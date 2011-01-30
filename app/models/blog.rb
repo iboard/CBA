@@ -7,6 +7,9 @@ class Blog
   include ContentItem
   acts_as_content_item
   has_cover_picture
+  
+  references_many :postings, :dependent => :delete
+  validates_associated :postings
 
   private
   # ContentItems need to override the abstract method but a Blog didn't

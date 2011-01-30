@@ -51,7 +51,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to(blogs_url) }
+      format.html { redirect_to(blogs_url, :notice => t(:blog_successfully_destroyed)) }
       format.xml  { head :ok }
     end
   end

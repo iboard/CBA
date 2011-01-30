@@ -1,0 +1,9 @@
+<% 
+   style  = '' unless defined? style 
+   format ||= :thumb 
+%>
+<% if posting.cover_picture_exists? %>
+  <div class='cover_picture' id='posting_cover_picture_<%= posting.id -%>' style='<%= style -%>'>
+      <%= image_tag( posting.cover_picture.url(format) ) %>
+  </div>
+<% end %>

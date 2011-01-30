@@ -5,6 +5,12 @@ Cba::Application.routes.draw do
     member do
       get :delete_cover_picture
     end
+    resources :postings do
+      member do
+        get :delete_cover_picture
+      end
+      resources :comments
+    end
   end
   
   # PAGES

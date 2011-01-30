@@ -1,2 +1,10 @@
 <% setup_action_buttons %>
-<%= render :partial => 'blog' %>
+<%= render :partial => '/blogs/blog' %>
+
+<p><%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting %></p>
+
+<div id='postings' style='clear: right;'>
+    <% @blog.postings.desc(:created_at).each do |posting| %>
+      <%= render :partial => '/blogs/posting_header', :locals => { :posting => posting } %>
+    <% end %>
+</div>

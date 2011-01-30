@@ -31,9 +31,9 @@ class Ability
             can :manage, [Page, Posting]
           when 'author'
             can :create, [Page, Blog, Posting]
-            can :manage, Page do |page|
-              page.user == user
-            end
+            #can :manage, Page do |page|
+            #  page && page.user == user
+            #end
           when 'maintainer'
             can :manage, [Page, Blog, Posting]
           else

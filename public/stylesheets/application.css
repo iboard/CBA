@@ -493,7 +493,7 @@
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
-    font-size: 2em;
+    font-size: 6em;
     color: #292929;
     text-shadow: 4px 4px 4px #888;
     overflow: hidden;
@@ -545,7 +545,7 @@
     margin: 0px;
     margin-top: 20px;
     font-family: Times;
-    font-size: 3em;
+    font-size: 2em;
     text-shadow: 2px 1px 2px #888;
     
   }

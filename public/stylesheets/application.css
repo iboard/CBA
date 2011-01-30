@@ -73,6 +73,10 @@
     background: #FFF;
     padding: 20px 40px;
     border: none;
+    border-left: 1px solid #ccc;
+    box-shadow: 4px 5px 5px 0px #bbb;
+    -webkit-box-shadow: 4px 5px 5px 0px #bbb;
+    -moz-box-shadow: 4px 5px 5px 0px #bbb;
   }
   
   #flash_notice, #flash_error, #flash_alert {
@@ -529,6 +533,10 @@
   .page_intro {
     min-height: 160px;
     clear: both;
+  }
+  
+  #container .right_column {
+    font-size: 0.75em;
   }
   
   .new_comments {

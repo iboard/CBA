@@ -1,5 +1,6 @@
 @media screen {
 
+
 	@font-face {
 		font-family: Delicious;
 		font-weight: 300;
@@ -25,6 +26,30 @@
 		font-style: italic;
 		src: url('/fonts/Delicious-Italic.otf');
 	}
+
+  /* YanoneKaffeesatz.ttf */
+	@font-face {
+		font-family: YanoneKaffeesatz;
+		font-weight: 300;
+		src: url('/fonts/YanoneKaffeesatz-regular.ttf');
+	}
+
+	@font-face {
+		font-weight: 500;
+		font-family: YanoneKaffeesatz;
+		src: url('/fonts/YanoneKaffeesatz-Bold.ttf');
+	}
+
+
+	@font-face {
+		font-family: YanoneKaffeesatz;
+		font-weight: 300;
+		font-style: italic;
+		src: url('/fonts/YanoneKaffeesatz-Italic.ttf');
+	}
+
+
+
 
   body {
     font-family: Delicious, Verdana, Arial, Helvetica, sans-serif;
@@ -492,8 +517,12 @@
      overflow: hidden;
   }
   
+  h1 {
+    font-family: YanoneKaffeesatz, Times new roman, sans;
+    font-weight: 100;
+  }
   #banner h1 {
-    font-family: Times new roman, sans;
+    font-family: YanoneKaffeesatz, Times new roman, sans;
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
@@ -552,7 +581,8 @@
   #container #postings h2 {
     margin: 0px;
     margin-top: 20px;
-    font-family: Times;
+    font-family: YanoneKaffeesatz;
+    font-weight: 100;
     font-size: 2em;
     text-shadow: 2px 1px 2px #888;
     
@@ -611,6 +641,7 @@
   .blog_intro h1 {
     margin-bottom: 0px;
   }
+  
   .blog_intro address {
     font-style: normal;
   }

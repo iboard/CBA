@@ -43,6 +43,7 @@
     font-weight: 300;
     font-style: normal;
     color: #4A4A4A;
+    min-width: 800px;
   }
   a img {
     border: none;

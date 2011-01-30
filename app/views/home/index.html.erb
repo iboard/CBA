@@ -2,28 +2,29 @@
 
 <% setup_action_buttons %>
 
-<% if (p=Page.top_pages).any? %>
-  <div class='right_column'>
-    <% for page in p %>
-      <%= render :partial => '/pages/page_intro', :locals => { :page => page } %>  
-      <p class='content_seperator'></p>
-    <% end %>
-  </div>
-<% end %>
-
-<% unless @blog.nil? %>
-  <p style='clear: left;'></p>
-  <div id='postings'>
-    <% for posting in @blog.postings.desc(:updated_at).limit(CONSTANTS[:postings_on_homepage].to_i).all %>
-      <%= render posting %>
-      <p style='clear: left;'></p>
-    <% end %>
-    <% if @blog.postings.count > CONSTANTS[:postings_on_homepage].to_i %>
-      <p><% link_to t(:read_all_news), @blog %></p>
-    <% end %>
-  </div>
-<% end %>
-
-<p style='clear: right;'></p>
-
-
+<div>
+  <% if (p=Page.top_pages).any? %>
+    <div class='right_column' style='border-left: 1px dotted #ddd;'>
+      <% for page in p %>
+        <%= render :partial => '/pages/page_intro', :locals => { :page => page } %>  
+        <p class='content_seperator'></p>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <% unless @blog.nil? %>
+    <p style='clear: left;'></p>
+    <div id='postings' style='width: 58%; float:left'>
+      <% for posting in @blog.postings.desc(:updated_at).limit(CONSTANTS[:postings_on_homepage].to_i).all %>
+        <div style='clear: right;'>
+           <%= render posting %>
+           <p style='clear: left;'></p>
+        </div>
+      <% end %>
+      <% if @blog.postings.count > CONSTANTS[:postings_on_homepage].to_i %>
+        <p><% link_to t(:read_all_news), @blog %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <p style='clear: right;'></p>
+</div>

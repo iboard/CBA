@@ -1,0 +1,2 @@
+<%= link_to( t(:new_page), new_page_path ) if can? :manage, Page -%>
+<%= link_to( t(:new_blog), new_blog_path ) if can? :manage, Blog -%>

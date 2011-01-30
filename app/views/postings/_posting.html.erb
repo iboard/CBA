@@ -1,0 +1,15 @@
+<%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
+<h2><%= link_to(posting.title, blog_posting_path(@blog,posting)) %></h2>
+<address class='<%= posting.created_at > current_user_field(\
+                        :last_sign_in_at,Time::now()-1.hour) ? "new_posting"\
+                        : "old_posting" -%>'>
+        <%= t(:user_wrote_a_comment_at, :user => posting.user.name, 
+            :at => distance_of_time_in_words_to_now(posting.created_at)   ).html_safe %>  
+</address>
+<%= sanitize(posting.render_intro) %>
+<p style=''>
+  <%= link_to t(:read), blog_posting_path(@blog,posting), :class => 'read_blog_posting' %>
+  <%= " | ".html_safe + link_to( t(:edit), edit_blog_posting_path(@blog,posting)) if can? :edit, posting %>
+  <%= " | ".html_safe + link_to( t(:destroy), blog_posting_path(@blog,posting),
+    :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
+</p>

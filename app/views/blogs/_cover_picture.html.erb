@@ -1,0 +1,6 @@
+<% style = '' unless defined? style %>
+<% if blog.cover_picture %>
+  <div class='cover_picture' id='cover_picture_<%= blog.id -%>' style='<%= style -%>'>
+      <%= image_tag blog.cover_picture.url(format||:medium) %>
+  </div>
+<% end %>

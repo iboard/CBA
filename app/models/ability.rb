@@ -26,16 +26,16 @@ class Ability
           # Users with roles 
           case role
           when 'confirmed_user'
-            can :read, Page
+            can :read, [Page, Blog, Posting]
           when 'moderator'
-            can :manage, Page
+            can :manage, [Page, Posting]
           when 'author'
-            can :create, Page
+            can :create, [Page, Blog, Posting]
             can :manage, Page do |page|
               page.user == user
             end
           when 'maintainer'
-            can :manage, Page
+            can :manage, [Page, Blog, Posting]
           else
             raise Exception.new("Unknown role '#{role}' in #{__FILE__}:#{__LINE__}")
           end
@@ -43,7 +43,7 @@ class Ability
       end
       
       # Anybody
-      can :read, Page
+      can :read, [Page, Blog, Posting]
       can [:read, :create], Comment
       
     end

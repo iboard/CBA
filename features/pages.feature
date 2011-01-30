@@ -21,7 +21,6 @@ Feature: Pages
     Then I should see "Page 1" within ".hmenu"
     And I should not see "Page 2" within ".hmenu"
     
-@focus
   Scenario: A page should be shown when clicking read from the index
     Given I am on the pages page
     And I click on link "Read"

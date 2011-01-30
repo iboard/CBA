@@ -6,6 +6,10 @@
   <% end %>
 <% end %>
 
+<% if can? :read, Blog %>
+  <li><%= menu_link_to t(:blogs), blogs_path %></li>
+<% end %>
+
 <% if can? :read, User %>
   <li><%= menu_link_to t("menu.userlist"), registrations_path %></li>
 <% end %>

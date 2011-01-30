@@ -1,0 +1,17 @@
+<% title @posting.title %>
+<div id='posting'>
+  <%= render :partial => '/postings/cover_picture', :locals => { 
+        :posting => @posting, :format => :medium
+      } %>
+  
+  <address class='<%= @posting.created_at > current_user_field(\
+                          :last_sign_in_at,Time::now()-1.hour) ? "new_comment"\
+                          : "old_comment" -%>'>
+          <%= t(:user_wrote_a_comment_at, :user => @posting.user.name, 
+              :at => distance_of_time_in_words_to_now(@posting.created_at)   ).html_safe+
+          t(:in_blog, :blog => link_to(@posting.blog.title,@posting.blog) ).html_safe -%>
+  </address>
+  <%= sanitize(@posting.render_body).html_safe %>
+  
+  <p style='clear: right;'><%= link_to(t(:back_to_blog, :blog => @posting.blog.short_title), @posting.blog) %></p>
+</div>

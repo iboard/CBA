@@ -3,33 +3,27 @@
 # application menu.
 # Pages can be addressed by <code>/pages/OBJECT_ID</code> or
 # <code>/p/TITLE_OF_THE_PAGE</code>. It can have comments and a 'cover-picture'
-class Page 
+class Posting 
   include ContentItem
   acts_as_content_item
   has_cover_picture
     
-  field :show_in_menu, :type => Boolean, :default => true
-  field :menu_order, :type => Integer, :default => 99999
   field :body, :type => String, :required => true
   validates_presence_of :body
-
-  scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
+  
+  referenced_in :blog, :inverse_of => :postings
+  referenced_in :user, :inverse_of => :postings
         
   embeds_many :comments
   validates_associated :comments
+  
+  validates_presence_of :user
     
   # Render the body with RedCloth
   def render_body
     RedCloth.new(body).to_html
   end
-  
-  # Same as short_title but will append a $-sign instead of '...'
-  # ... smells in URLs and one can not see the difference if ... is just
-  # part of the title or comes from truncation.
-  def short_title_for_url
-    title.truncate(CONSTANTS['title_max_length'].to_i, :omission => '$' )
-  end
-  
+    
   private
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro

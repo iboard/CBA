@@ -1,0 +1,39 @@
+<%= form_for(@blog, :html => { :multipart => true } ) do |f| %>
+
+  <% if @blog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+      <ul>
+      <% @blog.errors.full_messages.each do |msg| %>
+        <li><%= msg %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, :size => 80 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :cover_picture %>
+    <%= render( 
+          :partial => 'cover_picture', 
+          :locals => { :blog => @blog, :format => :thumb, :style => 'display: inline; ' } 
+        )
+    -%>
+    <%= f.file_field :cover_picture %>
+    <%= link_to( t(:delete_picture), delete_cover_picture_blog_path(@blog), :remote => true,
+        :confirm => t(:are_you_sure)) unless @blog.new_record? %>
+  </div>
+  
+  <div class='clear'></div>
+
+  
+  <div class="actions">
+    <%= f.label :submit, t(:save_changes) %>  
+    <%= f.submit %>
+  </div>
+<% end %>

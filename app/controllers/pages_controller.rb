@@ -65,7 +65,6 @@ class PagesController < ApplicationController
   # POST /pages.xml
   def create
     @page = Page.new(params[:page])
-
     respond_to do |format|
       if @page.save
         format.html { redirect_to(@page, :notice => t(:page_successfully_created)) }

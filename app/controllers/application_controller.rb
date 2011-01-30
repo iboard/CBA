@@ -23,5 +23,5 @@ class ApplicationController < ActionController::Base
   def load_top_pages
     @top_pages ||= Page.where(:show_in_menu => true).asc(:menu_order)
   end
-   
+
 end

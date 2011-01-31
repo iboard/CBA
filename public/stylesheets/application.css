@@ -436,17 +436,20 @@
   }
   
   #action_buttons {
-    height: 150px;
-    background: #FdFeFF -webkit-gradient(
+    /*height: 150px;*/
+    /*background: #FdFeFF -webkit-gradient(
          linear,
          left top,
          left bottom,
          color-stop(1.0,  #FdFeFF),
          color-stop(0.80, #E6E6E6)
      ) repeat-x;
-     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
-     float: right;
-     overflow: hidden;
+     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6); 
+     float: right;*/
+     position: absolute;
+     top: 0px; right: 10px;
+     z-index: 2;
+     /*overflow: hidden;*/
   }
   
   #action_buttons a {
@@ -454,10 +457,13 @@
     text-decoration: none;
     color: white;
     margin: 5px;
-    padding: 5px;    
+    margin-top: 0px;
+    padding: 5px;  
     background: #1B5412;
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px;    
+    float: right;
+    -moz-border-radius: 0px 0px 5px 5px; 
+    -webkit-border-radius: 0px 0px 5px 5px; 
+    -webkit-box-shadow: 0px 0px 2px 2px #444;
   }
 
   .pagination {

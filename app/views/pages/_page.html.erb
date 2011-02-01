@@ -25,7 +25,7 @@
   <%= render :partial => @page.comments, :locals => { :commentable => @page, :path_components => [@page]} %>
 <% end %>
 
-
+<!-- NEW COMMENT -->
 <%= content_tag :div, :id => 'new_comment_form' do %>
   <h5><%= t(:post_a_comment) -%></h5>
   <%= form_for [@page,comment = @page.comments.build(  
@@ -33,8 +33,10 @@
                                            :email => current_user_field(:email, '') 
                                         )] do |f| %>
     <%= render :partial => '/comments/comment_fields', 
-                :locals => { :f => f, :commentable => @page,
-                :comment => comment } 
+               :locals => { :f => f, 
+                            :commentable => @page,
+                            :comment => comment 
+                          } 
      %>
   <% end %>
 <% end %>

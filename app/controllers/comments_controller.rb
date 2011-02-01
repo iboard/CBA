@@ -3,25 +3,25 @@ class CommentsController < ApplicationController
   
   respond_to :html, :xml, :js
   
-  helper_method :calculate_commentable_path
+  #needed? helper_method :commentable_path
   
   def create
-    @commentable = find_commentables.last
+    @commentable = predecessors.last
     @comment = @commentable.comments.build(params[:comment])
     if @comment.valid?
       @comment.save
-      @commentables.first.save
+      @predecessors.first.save
       remember_comment
-      redirect_to calculate_commentable_path
+      redirect_to commentable_path
     else
       flash[:error] = t(:comment_could_not_be_saved, 
         :errors => @comment.errors.full_messages.join("<br/>")).html_safe
-      redirect_to calculate_commentable_path
+      redirect_to commentable_path
     end
   end
   
   def edit
-    @form_components  = find_commentables
+    @form_components  = predecessors
     @commentable = @form_components.last
     @comment = @commentable.comments.find(params[:id])
     @form_components << @comment
@@ -33,45 +33,45 @@ class CommentsController < ApplicationController
   
   
   def update
-    @root_object = find_commentables.first
-    @comment = @commentables.last.comments.find(params[:id])
+    @root_object = predecessors.first
+    @comment = @predecessors.last.comments.find(params[:id])
     @comment.comment = params[:comment][:comment]
     @comment.save    
     @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
     respond_to do |format|
       format.js
-      format.html { redirect_to calculate_commentable_path, :notice => t(:comment_successfully_updated) }
+      format.html { redirect_to commentable_path, :notice => t(:comment_successfully_updated) }
     end
   end
   
   def destroy
-    @root_object = find_commentables.first
-    @comment = @commentables.last.comments.find(params[:id])
+    @root_object = predecessors.first
+    @comment = @predecessors.last.comments.find(params[:id])
     @comment.destroy
     @root_object.save
     respond_to do |format|
       format.js
-      format.html { redirect_to calculate_commentable_path, :notice => t(:comment_deleted) }
+      format.html { redirect_to commentable_path, :notice => t(:comment_deleted) }
     end
   end
   
   
   private
   
-  def calculate_commentable_path
-    path = @commentables.map { |c| c.class.to_s.underscore }.join("_")+"_path"
-    parts = @commentables.map { |c| "'#{c.id.to_s}'" }.join(",")
+  def commentable_path
+    path = @predecessors.map { |c| c.class.to_s.underscore }.join("_")+"_path"
+    parts = @predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
     eval("#{path}(#{parts})")
   end
     
-  def find_commentables
-    @commentables = []
+  def predecessors
+    @predecessors = []
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        @commentables << $1.classify.constantize.find(value)
+        @predecessors << $1.classify.constantize.find(value)
       end
     end
-    @commentables
+    @predecessors
   end
   
   def remember_comment

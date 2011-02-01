@@ -5,8 +5,8 @@ Feature: Application
  
   Background:
     Given the following user records
-      | id | email            | name      | roles_mask | password   | password_confirmation | confirmation_token | confirmed_at |
-      | 4d2c96042d194751eb000009  | test@test.te     | tester    | -1         | verysecret | verysecret            | 1234               | 2001-01-01   |
+      | id | email               | name         | roles_mask | password   | password_confirmation | confirmation_token | confirmed_at |
+      | 4d2c96042d194751eb000009 | test@test.te | tester     | -1         | verysecret | verysecret            | 1234               | 2001-01-01   |
  
   Scenario: Display a copyright message on the startpage
     Given I am on the home page
@@ -14,7 +14,19 @@ Feature: Application
     And I should see "Sign in"
     And I should not see "Error"
     And I should be on the home page
-
+    
+  @focus
+  Scenario: Blog News should be displayed on startpage
+  Given the following blog records
+      | id                       | title    |
+      | 4d2c96042d194751eb000001 | News     |
+    And the following posting records
+      | blog_id                  | user_id                  | title         | body                 |
+      | 4d2c96042d194751eb000001 | 4d2c96042d194751eb000009 | Breaking News | Andi won the jackpot |
+    And I am on the home page
+    Then I should see "Create new posting"
+    And I should see "Breaking News"
+    And I should see "Andi won the jackpot"
 
   Scenario: Get latest content as RSS-Feed
   pending

@@ -4,10 +4,12 @@
                         :last_sign_in_at,Time::now()-1.hour) ? "new_posting"\
                         : "old_posting" -%>'>
         <%= t(:user_wrote_a_comment_at, :user => posting.user.name, 
-            :at => distance_of_time_in_words_to_now(posting.created_at)   ).html_safe %>  
+            :at => distance_of_time_in_words_to_now(posting.created_at)   ).html_safe %>
 </address>
 <%= sanitize(posting.render_intro) %>
 <p style=''>
+  { <span class='comments_counter'><%= t(:num_of_comments, :count => posting.comments.count) %></span> }
+  <br/>  
   <%= link_to t(:read), blog_posting_path(@blog,posting), :class => 'read_blog_posting' %>
   <%= " | ".html_safe + link_to( t(:edit), edit_blog_posting_path(@blog,posting)) if can? :edit, posting %>
   <%= " | ".html_safe + link_to( t(:destroy), blog_posting_path(@blog,posting),

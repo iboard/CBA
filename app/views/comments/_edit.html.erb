@@ -1,12 +1,4 @@
-<%= form_for([commentable,comment], :remote => true) do |f| %>
-  <div class='field'>
-     <%= f.label :comment %>
-     <%= f.text_area :comment, :rows => 5, :cols => 40 %>
-  </div>
-  <div class='field'>
-      <%= f.label :submit %>
-      <%= f.submit :submit %>
-      <%= link_to_function( t(:cancel), "restore_comment( $('#comment_comment_#{comment.id}'),
-           '#{sanitize(RedCloth.new(comment.comment).to_html)}')") %>
-  </div>
+<%= form_for @form_components do |f| %>
+  <%= render :partial => 'comment_fields', 
+  :locals => {:f => f, :comment => @comment, :commentable => @commentable } %>
 <% end %>

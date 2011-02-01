@@ -1,7 +1,3 @@
 <% title t(:edit_comment) %>
 
-<ul>
-  <li><%= link_to @commentable.try('title')||t(:back), @commentable %></li>
-</ul>
-
-<%= render :partial => 'edit', :locals => { :comment => @comment, :commentable => @commentable } %>
+<%= render :partial => 'edit' %>

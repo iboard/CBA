@@ -38,3 +38,4 @@ Feature: Blogs
     And I click on link "Delete"
     Then I should be on the blogs page
     And I should not see "Blog 1"
+    

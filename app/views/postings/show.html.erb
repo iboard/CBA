@@ -10,8 +10,38 @@
           <%= t(:user_wrote_a_comment_at, :user => @posting.user.name, 
               :at => distance_of_time_in_words_to_now(@posting.created_at)   ).html_safe+
           t(:in_blog, :blog => link_to(@posting.blog.title,@posting.blog) ).html_safe -%>
+          <% if can? :manage, @posting %>
+            <p>
+                <%= link_to(t(:edit), edit_blog_posting_path(@posting.blog,@posting)) %>  |
+                <%= link_to(t(:destroy), blog_posting_path(@posting.blog,@posting),
+                      :confirm => t(:are_you_sure), :method => :delete) %>
+            </p>
+          <% end %>
   </address>
   <%= sanitize(@posting.render_body).html_safe %>
   
   <p style='clear: right;'><%= link_to(t(:back_to_blog, :blog => @posting.blog.short_title), @posting.blog) %></p>
+  
+  
+  <!-- COMMENTS -->
+  <%= content_tag :div, :id => 'comments' do %>
+    <h5><%= t(:number_of_comments, :count => @posting.comments.count)%></h5>
+    <%= render :partial => @posting.comments, :locals => { :commentable => @posting, 
+          :path_components => [@posting.blog,@posting] } %>
+  <% end %>
+
+
+  <%= content_tag :div, :id => 'new_comment_form' do %>
+    <h5><%= t(:post_a_comment) -%></h5>
+    <%= form_for [@blog,@posting,comment = @posting.comments.build(  
+                                             :name => current_user_field(:name,''), 
+                                             :email => current_user_field(:email, '') 
+                                          )] do |f| %>
+
+      <%= render :partial => '/comments/comment_fields', 
+                 :locals => { :f => f, :commentable => @posting,:comment => comment } 
+      %>
+    <% end %>
+  <% end %>
+  
 </div>

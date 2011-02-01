@@ -3,11 +3,15 @@
                       :last_sign_in_at,Time::now()-1.hour) ? "new_comment"\
                       : "old_comment" -%>'>
       <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
-          :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>
-      <%= link_to( t(:edit), edit_comment_path(commentable.class.to_s,commentable,comment),
+          :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>          
+      <%= link_to( t(:edit), 
+            commentable_path(comment, path_components),
             :remote => true ) if can? :edit, comment %>
-      <%= link_to( t(:destroy), delete_comment_path(commentable.class.to_s,commentable,comment),
-          :confirm => t(:are_you_sure), :remote => true, :method => :delete) if can? :manage, comment %>
+      <%= link_to( t(:destroy), 
+            commentable_path(comment, path_components).gsub(/\/edit$/,''),
+            :confirm => t(:are_you_sure), 
+            :remote => true, 
+            :method => :delete) if can? :manage, comment %>
   </address>
   <div id='comment_comment_<%= comment.id.to_s -%>'>
     <%= sanitize(RedCloth.new(comment.comment).to_html) %>

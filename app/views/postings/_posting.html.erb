@@ -13,3 +13,4 @@
   <%= " | ".html_safe + link_to( t(:destroy), blog_posting_path(@blog,posting),
     :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
 </p>
+

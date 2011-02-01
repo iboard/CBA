@@ -48,6 +48,24 @@ class PostingTest < ActiveSupport::TestCase
     p2 = @blog.postings.build(:title => "My Title", :body => 'Lorem', :user => @user)
     assert !p2.save, "Should not save with the same title again."
   end
+  
+  test "A Posting should save with comments" do
+    @blog = Blog.first
+    @user = User.first
+    @blog.postings.create(:title => "My Title", :body => 'Lorem', :user => @user)
+    assert @blog.save, "Blog should save with Posting"
+    @blog.postings.first.comments.create( :name => 'Andi', :email => 'test@server.to', :comment => 'Cool Comment One')
+    assert @blog.save, "Blog sould save with posting and comment"
+  end
+  
+  test "A comment should have a body" do
+    @blog = Blog.first
+    @user = User.first
+    @blog.postings.create(:title => "My Title", :body => 'Lorem', :user => @user)
+    assert @blog.save, "Blog should save with Posting"
+    @blog.postings.first.comments.create( :name => 'Andi', :email => 'test@server.to', :comment => '')
+    assert !@blog.save, "Blog sould save with posting and comment"
+  end
 
   
 end

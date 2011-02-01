@@ -66,7 +66,7 @@ Feature: Postings
     And I click on "Create Posting"
     Then I should see "Title is already taken"
 
-  Scenario: "There should be a link back to the blog when I read a posting"
+  Scenario: "There should be a link to edit, delete, and back to the blog when I read a posting"
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
@@ -75,5 +75,12 @@ Feature: Postings
     And I click on link "My First Posting"
     And I click on link "Blog 1" within "#posting"
     Then I should be on the blog path of "Blog 1"
+    And I should see "Edit" within "#postings"
+    And I should see "Delete" within "#postings"
+    And I click on link "My First Posting"
+    And I should see "Edit" within "#posting"
+    And I should see "Delete" within "#posting"
+    
+    
 
   

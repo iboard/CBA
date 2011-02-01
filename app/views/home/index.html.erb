@@ -15,7 +15,7 @@
   <% unless @blog.nil? %>
     <p style='clear: left;'></p>
     <div id='postings' style='width: 58%; float:left'>
-      <%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => 'green_button') %>
+      <%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => 'green_button') if can? :create, Posting %>
       <% for posting in @blog.postings.desc(:updated_at).limit(CONSTANTS[:postings_on_homepage].to_i).all %>
         <div style='clear: right;'>
            <%= render posting %>

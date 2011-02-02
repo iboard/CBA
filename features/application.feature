@@ -15,8 +15,7 @@ Feature: Application
     And I should not see "Error"
     And I should be on the home page
     
-  @focus
-  Scenario: Blog News should be displayed on startpage
+  Scenario: Blog News should be displayed on startpage and admins should have a new-posting-button
   Given the following blog records
       | id                       | title    |
       | 4d2c96042d194751eb000001 | News     |
@@ -24,9 +23,11 @@ Feature: Application
       | blog_id                  | user_id                  | title         | body                 |
       | 4d2c96042d194751eb000001 | 4d2c96042d194751eb000009 | Breaking News | Andi won the jackpot |
     And I am on the home page
-    Then I should see "Create new posting"
-    And I should see "Breaking News"
+    Then I should see "Breaking News"
     And I should see "Andi won the jackpot"
+    And I should not see "Create new posting"
+    Then I am logged in as user "test@test.te" with password "verysecret"
+    And I should see "Create new posting"
 
   Scenario: Get latest content as RSS-Feed
   pending

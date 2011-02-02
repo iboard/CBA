@@ -35,8 +35,10 @@ class CommentsController < ApplicationController
   def update
     @root_object = predecessors.first
     @comment = @predecessors.last.comments.find(params[:id])
-    @comment.comment = params[:comment][:comment]
-    @comment.save    
+    unless params[:commit] == t(:cancel)
+      @comment.comment = params[:comment][:comment]
+      @comment.save
+    end
     @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
     respond_to do |format|
       format.js

@@ -12,6 +12,8 @@ development:
     admin_notification_address: 'admin@your.domain'
     registration_from: 'test@application.tt'
     slogan:            'unfuzzy development (env=dev)'
+    pivotal_tracker_project: 'http://www.pivotaltracker.com/projects/203457'
+    github_project: 'http://github.com/iboard/CBA'
   constants:
     max_time_to_edit_new_comments: 2
     rss_feed_cache_time:           1.minute
@@ -69,6 +71,8 @@ production:
     admin_notification_address: 'admin@your.domain'
     registration_from: 'test@application.tt'
     slogan:            'unfuzzy development that makes fun'
+    pivotal_tracker_project: 'http://www.pivotaltracker.com/projects/203457'
+    github_project: 'http://github.com/iboard/CBA'
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           10.minutes

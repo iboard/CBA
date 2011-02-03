@@ -50,7 +50,6 @@ class PagesController < ApplicationController
   # GET /pages/new.xml
   def new
     @page = Page.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @page }
@@ -58,7 +57,7 @@ class PagesController < ApplicationController
   end
 
   # GET /pages/1/edit
-  def edit
+  def edit    
   end
 
   # POST /pages

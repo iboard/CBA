@@ -113,3 +113,8 @@ en:
   blog_successfully_destroyed: 'Blog successfully destroyed'
   posting_successfully_destroyed: 'Posting successfully destroyed'
   news: 'News'
+  new_attachment: '<b>New attachment</b>'
+  add_more_attachments: 'Add more attachments'
+  attachment: 'Attachment'
+  attachments: 'Attachments'
+  destroy_asset: 'Delete file'

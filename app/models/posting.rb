@@ -17,7 +17,17 @@ class Posting
   embeds_many :comments
   validates_associated :comments
   
+  embeds_many :attachments
+  validates_associated :attachments
+  
   validates_presence_of :user
+  
+  # TODO: Move this definitions to a library-module
+  # TODO: and replace this lines with just 'has_attchments'
+  embeds_many :attachments
+  validates_associated :attachments
+  accepts_nested_attributes_for :attachments,
+                        :allow_destroy => true
     
   # Render the body with RedCloth
   def render_body

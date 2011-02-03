@@ -272,6 +272,10 @@
     margin-bottom: 20px;
   }
   
+  .actions {
+    margin-top: 5px;
+  }
+  
   .field {
     margin-bottom: 5px;
   }
@@ -660,6 +664,13 @@
   
   .comments_counter {
     color: #B3B3B3;
+  }
+  
+  .before_save_button {
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 5px; 
+    border-bottom: 1px solid #ddd;
   }
   
 } /* END SCREEN */

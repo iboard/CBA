@@ -20,6 +20,14 @@
   </address>
   <%= sanitize(@posting.render_body).html_safe %>
   
+  <!-- ATTACHMENTS -->
+  <% unless @posting.attachments.empty? %>
+    <h3><%= t(:attachments) -%></h3>
+    <ul>
+      <%= render @posting.attachments %>
+    </ul>
+  <% end %>
+  
   <p style='clear: right;'><%= link_to(t(:back_to_blog, :blog => @posting.blog.short_title), @posting.blog) %></p>
   
   

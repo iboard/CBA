@@ -8,16 +8,24 @@
     ) if @page.cover_picture_exists?
 %>
 
-<!-- BODY -->
-<div id='page_<%= @page.id -%>' class='page_body'>
-  <%= sanitize(@page.render_body).html_safe %>
-</div>
-
 <!-- BUTTONS -->
 <% if can? :manage, @page %>
   <%= link_to t(:edit), edit_page_path(@page) %> |
 <% end %>
 <%= link_to t(:pages_index), pages_path %>
+
+<!-- BODY -->
+<div id='page_<%= @page.id -%>' class='page_body'>
+  <%= sanitize(@page.render_body).html_safe %>
+</div>
+
+<!-- ATTACHMENTS -->
+<% unless @page.attachments.empty? %>
+  <h3><%= t(:attachments) -%></h3>
+  <ul>
+    <%= render @page.attachments %>
+  </ul>
+<% end %>
 
 <!-- COMMENTS -->
 <%= content_tag :div, :id => 'comments' do %>

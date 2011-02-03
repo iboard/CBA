@@ -19,7 +19,7 @@ function remove_fields(link) {
 /* *******************************************************
 /* jQUERY 
 ******************************************************* */
-function add_fields(link, association, content) {  
+function add_fields(link, association, content,new_id) {  
     var new_id = new Date().getTime();  
     var regexp = new RegExp("new_" + association, "g");  
     $(link).parent().before(content.replace(regexp, new_id));  
@@ -267,7 +267,8 @@ function toggle_div(what) {
   content.toggle();
 }
 
-
 function restore_comment(where,content) {
   where.html(content);
 }
+  
+

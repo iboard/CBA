@@ -33,6 +33,21 @@
     <%= link_to( t(:delete_picture), delete_cover_picture_blog_posting_path(@posting.blog,@posting), :remote => true,
         :confirm => t(:are_you_sure)) unless @posting.new_record? %>
   </div>
+  
+  <div id='attachments' style='clear: right;'>
+    <h3><%= t(:attachments) -%></h3>
+    <blockquote>
+      <%= f.fields_for :attachments do |builder| %>
+        <%= render '/attachments/attachment_fields', :f => builder %>
+      <% end %>
+      <div id='new_asset'></div>
+      <p>
+        <%= link_to_add_fields(t(:new_attachment).html_safe, f, :attachments)%>
+      </p>
+    </blockquote>
+  </div>
+  <div class='before_save_button'></div>
+  
 
   <div class='clear'></div>
 

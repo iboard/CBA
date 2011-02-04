@@ -13,6 +13,8 @@ module NavigationHelpers
       '/registrations'
     when /sign_in/
       '/users/sign_in'
+    when /sign_out/
+      '/users/sign_out'
     when /page path of "([^"]*)"/
       title = $1
       page = Page.where(:title => title).first

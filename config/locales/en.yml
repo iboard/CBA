@@ -118,3 +118,7 @@ en:
   attachment: 'Attachment'
   attachments: 'Attachments'
   destroy_asset: 'Delete file'
+  edit_for_another_count_minutes:
+    zero: "Edit (for the next minute)"
+    one:  "Edit (for the next tow minutes)"
+    other: "Edit (for another %{count} minutes)"

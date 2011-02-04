@@ -230,6 +230,10 @@ Given /^the following (.+) records?$/ do |factory, table|
   end  
 end
 
+Given /^I am logged out$/ do
+  visit path_to('sign_out')
+end
+
 Given /^I am logged in as user "([^"]*)" with password "([^"]*)"$/ do |email, password|
   visit path_to('sign_in')
   fill_in('user_email', :with => email)

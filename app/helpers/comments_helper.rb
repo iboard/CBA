@@ -23,5 +23,6 @@ module CommentsHelper
       ",'#{comment.id.to_s}')"
     )
   end
+
 end
 

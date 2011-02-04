@@ -43,6 +43,8 @@ test:
     admin_notification_address: 'test@application.tt'
     registration_from: 'test@application.tt'
     slogan:            'unfuzzy development (env=test)'
+    pivotal_tracker_project: 'http://www.pivotaltracker.com/projects/203457'
+    github_project: 'http://github.com/iboard/CBA'
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           0

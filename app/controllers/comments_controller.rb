@@ -37,6 +37,7 @@ class CommentsController < ApplicationController
     @comment = @predecessors.last.comments.find(params[:id])
     unless params[:commit] == t(:cancel)
       @comment.comment = params[:comment][:comment]
+      remember_comment
       @comment.save
     end
     @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
@@ -77,7 +78,17 @@ class CommentsController < ApplicationController
   end
   
   def remember_comment
-    session[:comments] ||= []
-    session[:comments] << @comment._id
+    begin
+      mycomments = session[:comments] || []
+      session[:comments] = mycomments.reject {|r| 
+          (r[1].to_i < (Time.now-CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes).to_i) ||
+          r[0].to_s.eql?(@comment.id.to_s)
+      } 
+      session[:comments] << [@comment.id.to_s,@comment.updated_at.to_i]
+    rescue => e
+      Rails.logger.warn("***WARNING*** #{e.inspect} *** RESET SESSION COMMENTS #{__FILE__}:#{__LINE__}")
+      session[:comments] = [@comment.id.to_s,@comment.updated_at.to_i]
+    end
   end
+  
 end

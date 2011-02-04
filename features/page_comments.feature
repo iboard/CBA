@@ -77,4 +77,21 @@ Feature: Comments on pages
     And I click on link "Delete" within "#comments"
     Then I should not see "Lorem Commentum gscheit daherred" within "#comments"
     And I should see "Comment successfully deleted"
+    
+  @focus  
+  Scenario: A new posting should be editable for n minutes after creating it
+    Given I am logged out
+    And I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
+    And I fill in "Email" with "some@address.at"
+    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
+    And I click on "Post comment"
+    Then I should see "Edit (for"
+    And I click on link "Edit" within "#comments"
+    And I fill in "comment[comment]" with "Modified music is modified best"
+    And I click on "Post comment"
+    Then I should see "Modified music is modified best" within "#comments"
+    And I should see "Edit (for"
+  
+  
   

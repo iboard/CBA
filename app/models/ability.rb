@@ -18,12 +18,14 @@ class Ability
     else
       # Not Admin
       unless user.new_record?
+       
         # Any signed in user
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
+        
+        # Users with roles 
         for role in user.roles
-          # Users with roles 
           case role
           when 'confirmed_user'
             can :read, [Page, Blog, Posting]
@@ -45,6 +47,18 @@ class Ability
       # Anybody
       can :read, [Page, Blog, Posting]
       can [:read, :create], Comment
+      can :manage, Comment do |comment,session_comments|
+        unless comment.new_record?
+          # give 15mins to edit new comments
+          Rails.logger.info(" COMMENTS #{session_comments.inspect}")
+          expire = comment.updated_at+CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes
+          begin
+            session_comments.detect { |c| c[0].eql?(comment.id.to_s) } &&  (Time.now < expire)
+          rescue
+            false
+          end
+        end          
+      end
       
     end
   end

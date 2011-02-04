@@ -14,6 +14,7 @@
     <%= insert_google_analytics_script if  (Rails.env == 'production') %>
   </head>
   <body>
+    <% setup_action_buttons %>
     <% if content_for? :action_buttons %>
       <div id='action_buttons'>
           <%= yield(:action_buttons) %>

@@ -1,0 +1,10 @@
+<p class='load_more' id='load_more'>
+    <% if resources.total_pages > resources.current_page %>
+      <%= link_to_function( t(:load_more),
+                    "insert_load_button( 'load_more','#{t(:loading)}',"+
+                    "'#{path}?page=#{resources.current_page+1}'"+
+                     ");return false;",
+                     :id => 'load_more_link'
+                  ) %>
+    <% end %>
+</p>

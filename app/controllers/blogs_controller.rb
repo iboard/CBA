@@ -15,6 +15,13 @@ class BlogsController < ApplicationController
   end
   
   def show
+    @postings = @blog.postings.desc(:created_at)\
+      .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
+    respond_to do |format|
+      format.js
+      format.html # index.html.erb
+      format.xml  { render :xml => @blogs }
+    end
   end
   
   def new

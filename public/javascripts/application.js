@@ -1,24 +1,8 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-
-/* PROTOTYPE 
-function add_fields(link,association,content) {
-    var new_id = new Date().getTime();
-    var regexp = new RegExp("new_"+association,"g")
-    $(link).up().insert({
-        before: content.replace(regexp, new_id)
-    });
-} */
-
-/* PROTOTYPE
-function remove_fields(link) {
-    $(link).previous("input[type=hidden]").value = "1";
-    $(link).up(".fields").hide();
-} */
-
 /* *******************************************************
-/* jQUERY 
-******************************************************* */
+ * jQUERY 
+ ******************************************************* */
 function add_fields(link, association, content,new_id) {  
     var new_id = new Date().getTime();  
     var regexp = new RegExp("new_" + association, "g");  

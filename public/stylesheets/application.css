@@ -496,6 +496,15 @@
     -webkit-border-radius: 5px; 
   }
   
+  .comment {
+    margin-top: 25px;
+    margin-bottom: 5px;
+  	background: #eee;
+  	-moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    padding: 10px;
+  }
+  
   #comments p  {
     margin: 0px;
     margin-bottom: 5px;
@@ -503,7 +512,7 @@
   #comments address {
     margin: 0px;
     margin-bottom: 5px;
-    margin-top: 15px;
+    margin-top: 5px;
   }
   
   #comments address.new_comment {
@@ -531,6 +540,7 @@
     font-family: YanoneKaffeesatz, Times new roman, sans;
     font-weight: 100;
   }
+  
   #banner h1 {
     font-family: YanoneKaffeesatz, Times new roman, sans;
     margin: 0px;
@@ -587,7 +597,12 @@
   #container #posting {
     margin-top: -20px;
   }
-  
+
+  #container  h1 {
+    font-size: 3.5em;
+    text-shadow: 2px 1px 2px #888;
+  }
+    
   #container #postings h2 {
     margin: 0px;
     margin-top: 20px;
@@ -636,6 +651,12 @@
     margin: 0px;
     margin-bottom: 5px;
   }
+  
+  #posting_body {
+    font-size: 1.2em;
+  }
+  
+  
   
   a.green_button {
     display: inline;

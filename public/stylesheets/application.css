@@ -694,5 +694,30 @@
     border-bottom: 1px solid #ddd;
   }
   
+  .load_more {
+    clear: both;
+    width: 100%;
+  }
+  
+  #load_more_link  {
+    display: block;
+    padding: 5px;
+    font-weight: bold;
+    background: #DADADA;
+    border: 1px solid #C8C8C8;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .page_seperator {
+    clear: both;
+    border-top: 1px solid #ddd;
+    font-size: 0.8em;
+    text-align: center;
+  }
+  
+  
 } /* END SCREEN */
 

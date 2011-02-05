@@ -32,7 +32,7 @@ class Deploy < Thor
         puts "DONE - Please check your application now!"
       else
         puts "Aborted. Before you deploy make sure that:"
-        puts "   1. thor:test_all is green"
+        puts "   1. thor application:test_all is green"
         puts "   2. you did a commit"
       end
     else

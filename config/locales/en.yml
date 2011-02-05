@@ -122,3 +122,6 @@ en:
     zero: "Edit (for the next minute)"
     one:  "Edit (for the next tow minutes)"
     other: "Edit (for another %{count} minutes)"
+  loading: 'Loading …'
+  load_more: 'Show more …'
+  end_of_list: ' -- END -- '

@@ -1,0 +1,17 @@
+$(".pagination").html('<%= escape_javascript(will_paginate(@postings)) %>');
+
+$('.load_more').before( '<div id="page<%= @postings.current_page -%>" style="clear: both; display: none;">'+
+                          '<p class="page_seperator"><%= @postings.current_page -%>'+
+                          '/<%= @postings.total_pages -%></p>'+
+                          '<%= escape_javascript(render(:partial => @postings)) -%>'+
+                          '</div>');
+  
+<% if @postings.total_pages && (@postings.current_page < @postings.total_pages) %>
+   $('#load_more').html( '<%=  escape_javascript(link_to_function(t(:load_more),"insert_load_button( 'load_more','#{t(:loading)}',"+
+        "'#{root_path(:page => (params[:page] ? (params[:page].to_i+1) : 2))}')", :id => "load_more_link" )) -%>');
+   $('#page<%= @postings.current_page -%>').slideDown();
+<% else %>
+  $('#page<%= @postings.current_page -%>').slideDown();
+  $('#load_more').html('<p style="text-align:center; margin-top: 20px;"><%= escape_javascript(t(:end_of_list)) -%></p>');
+<% end %>
+

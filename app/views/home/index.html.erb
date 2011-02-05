@@ -12,17 +12,30 @@
   
   <% unless @blog.nil? %>
     <p style='clear: left;'></p>
+    
     <div id='postings' style='width: 58%; float:left'>
       <%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => 'green_button') if can? :create, Posting %>
-      <% for posting in @blog.postings.desc(:updated_at).limit(CONSTANTS[:postings_on_homepage].to_i).all %>
+    
+      <p><%= will_paginate @postings %></p>
+    
+      <% for posting in @postings %>
         <div style='clear: right;'>
            <%= render posting %>
            <p style='clear: left;'></p>
         </div>
       <% end %>
-      <% if @blog.postings.count > CONSTANTS[:postings_on_homepage].to_i %>
-        <p><% link_to t(:read_all_news), @blog %></p>
-      <% end %>
+
+      <p class='load_more' id='load_more'>
+          <% if @postings.total_pages > @postings.current_page %>
+            <%= link_to_function( t(:load_more),
+                          "insert_load_button( 'load_more','#{t(:loading)}',"+
+                          "'#{root_path}?page=#{@postings.current_page+1}'"+
+                           ");return false;",
+                           :id => 'load_more_link'
+                        ) %>
+          <% end %>
+      </p>
+      
     </div>
   <% end %>
   <p style='clear: right;'></p>

@@ -505,6 +505,9 @@
     padding: 10px;
   }
   
+  #comments {
+    clear: both;
+  }
   #comments p  {
     margin: 0px;
     margin-bottom: 5px;
@@ -625,12 +628,13 @@
     border: none;
   }
   
-  
+  #container .blog_intro img,
+  #container .cover_picture img,
   #container #posting .cover_picture img,
   #container #postings .cover_picture img {
     float: right;
     padding: 0px;
-    margin: 0px;
+    margin-right: 10px;
     margin-top: 30px;
     margin-left: 10px;
     margin-bottom: 10px;

@@ -90,3 +90,7 @@ production:
     sleep_in_delayed_jobs_worke:   59
     title_max_length: 30
     
+deploy:
+  production_server: 'your.server.cc'
+  production_user:   'user_at_server'
+  production_path:   'path/to/Rails.root'

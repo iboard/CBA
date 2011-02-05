@@ -18,7 +18,10 @@
             </p>
           <% end %>
   </address>
+  
+  <div id='posting_body'>
   <%= sanitize(@posting.render_body).html_safe %>
+  </div>
   
   <!-- ATTACHMENTS -->
   <% unless @posting.attachments.empty? %>

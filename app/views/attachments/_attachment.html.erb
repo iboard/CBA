@@ -1,1 +1,8 @@
-<li><%= link_to attachment.file.original_filename, attachment.file.url() -%></li>
+<li>
+  <% if attachment.file.content_type =~ /image/ %>
+      <%= link_to_function( image_tag( w3c_url(attachment.file.url(:icon)) ), 
+             "image_popup('#{attachment.file.url(:popup)}')") %>
+  <% else %>
+    <%= link_to attachment.file.original_filename, attachment.file.url() -%>
+  <% end %>
+</li>

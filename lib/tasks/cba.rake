@@ -26,4 +26,38 @@ namespace :cba do
       break if all
     end
   end
+  
+  
+  desc "Reprocess attachments"
+  task :reprocess_attachments => :environment do
+    
+    def reprocess_attachments(of_what)
+      if of_what.respond_to?(:cover_picture_exists?) && of_what.cover_picture_exists?
+        puts "  - Reprocessing Cover of #{of_what.cover_picture_file_name}"
+        of_what.cover_picture.reprocess! 
+      end
+      if of_what.respond_to?(:attachments)
+        of_what.attachments.each do |attachment|
+          if attachment.file.content_type =~ /image/ 
+            puts "  - Reprocessing #{attachment.file.content_type} #{attachment.file_file_name}"
+            attachment.file.reprocess!
+          end
+        end
+      end
+    end
+    
+    Page.all.each do |page|
+      puts "Processing #{page.title}"
+      reprocess_attachments(page)
+    end
+    
+    Blog.all.each do |blog|
+      puts "Processing #{blog.title}"
+      reprocess_attachments(blog)
+      blog.postings.all.each do |posting|
+        reprocess_attachments(posting)
+      end
+    end
+  end
+   
 end

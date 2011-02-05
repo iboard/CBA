@@ -1,6 +1,8 @@
 <% style = '' unless defined? style %>
 <% if !page.new_record && page.cover_picture %>
   <div class='cover_picture' id='cover_picture_<%= page.id -%>' style='<%= style -%>'>
-      <%= image_tag page.cover_picture.url(format||:medium) %>
+      <%= link_to_function( image_tag( w3c_url(page.cover_picture.url(format||:medium) )), 
+                 "image_popup('#{w3c_url(page.cover_picture.url(:popup))}')") 
+      %>
   </div>
 <% end %>

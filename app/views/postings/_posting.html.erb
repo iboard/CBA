@@ -1,3 +1,4 @@
+<div style='clear: right;'>
 <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
 <h2><%= link_to(posting.title, blog_posting_path(@blog,posting)) %></h2>
 <address class='<%= posting.created_at > current_user_field(\
@@ -20,4 +21,4 @@
   <%= " | ".html_safe + link_to( t(:destroy), blog_posting_path(@blog,posting),
     :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
 </p>
-
+</div>

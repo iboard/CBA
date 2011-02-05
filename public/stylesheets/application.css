@@ -298,15 +298,8 @@
   }
   
   #userlist {
-    list-style-type: none;
   }
   
-  #userlist li {
-    clear: left;
-    padding-top: 5px;
-    padding-bottom: 15px;
-    margin-left: 100px;
-  }
   
   #container img {
     -moz-border-radius: 10px; 
@@ -321,8 +314,8 @@
   #userlist img {
     float: left;
     padding: 0px;
-    margin-left: -100px;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 20px;
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px; 
     border: 1px solid #ddd;
@@ -332,13 +325,15 @@
   
   .user_detail {
     list-style-type: none;
-    margin-left: -110px;
+    margin-left: 100px;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
   }
   
   .user_detail li {
-    margin: -5px;
-    padding: 0px;
-    font-size: 0.8em;
+    margin: 5px;
+    padding: 5px;
+    font-size: 1em;
   }
   
   .admin {
@@ -508,6 +503,7 @@
   #comments {
     clear: both;
   }
+  
   #comments p  {
     margin: 0px;
     margin-bottom: 5px;
@@ -701,6 +697,10 @@
   .load_more {
     clear: both;
     width: 100%;
+  }
+  
+  li.load_more {
+    width: auto;
   }
   
   #load_more_link  {

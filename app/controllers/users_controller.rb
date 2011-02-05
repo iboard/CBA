@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
   
   load_and_authorize_resource
-  #before_filter :authenticate_user!
-  
+  respond_to :html, :js
+
   def index
     @users = User.all.reject {|u|
       !can? :read, u
     }.paginate( :page => params[:page], 
                 :per_page => CONSTANTS['paginate_users_per_page'])
+
+    respond_to do |format|
+       format.js { render :index }
+       format.html { render :index }
+    end
   end
 
   def show

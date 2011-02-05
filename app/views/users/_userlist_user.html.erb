@@ -1,4 +1,8 @@
-<%= image_tag user.avatar_url(:thumb) %> <%=link_to user.name, user %>
+<%= link_to_function( image_tag( w3c_url(user.avatar_url(:thumb) )), 
+           "image_popup('#{w3c_url(user.avatar_url(:popup))}')")
+%> 
+
+<%=link_to user.name, user %>
 
 <%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %>
 <% if user_signed_in? && current_user.role?([:admin,:maintainer]) %>

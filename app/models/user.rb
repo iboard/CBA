@@ -26,6 +26,7 @@ class User
   
   has_attached_file :avatar,
                     :styles => { 
+                      :popup  => "800x600=",
                       :medium => "300x300>",
                       :thumb  => "100x100>",
                       :icon   => "64x64"

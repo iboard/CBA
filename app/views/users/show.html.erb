@@ -1,7 +1,9 @@
 <% title t("userlist.user_profile", :name => @user.name ) %>
 
 <% if @user.avatar %>
-  <%= image_tag @user.avatar_url(:medium), :style=>'float: right;' %>
+    <%= link_to_function( image_tag( w3c_url(@user.avatar_url(:thumb)), :style=>'float: right' ), 
+               "image_popup('#{w3c_url(@user.avatar_url(:popup))}')")
+    %> 
 <% end %>
 
 <p>User: <%= @user.name %></p>

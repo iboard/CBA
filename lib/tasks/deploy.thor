@@ -28,7 +28,7 @@ class Deploy < Thor
         system( 'git push origin master')
         puts "Pull and restart on the server"
         system( "ssh #{deploy_config['production_user']}@#{deploy_config['production_server']} "+
-                " 'cd #{deploy_config['production_path']}; git pull; touch tmp/restart'")
+                " 'cd #{deploy_config['production_path']}; git pull; touch tmp/restart.txt'")
         puts "DONE - Please check your application now!"
       else
         puts "Aborted. Before you deploy make sure that:"

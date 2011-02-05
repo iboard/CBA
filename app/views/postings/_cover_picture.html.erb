@@ -4,6 +4,8 @@
 %>
 <% if posting.cover_picture_exists? %>
   <div class='cover_picture' id='posting_cover_picture_<%= posting.id -%>' style='<%= style -%>'>
-      <%= image_tag( posting.cover_picture.url(format) ) %>
+      <%= link_to_function( image_tag( w3c_url(posting.cover_picture.url(format) )), 
+               "image_popup('#{w3c_url(posting.cover_picture.url(:popup))}')") 
+      %>
   </div>
 <% end %>

@@ -50,4 +50,9 @@ module LayoutHelper
      end
   end
   
+  # Replace blanks by %20 to satisfy w3c-validators
+  def w3c_url(url)
+    url.gsub(' ', '%20')
+  end
+  
 end

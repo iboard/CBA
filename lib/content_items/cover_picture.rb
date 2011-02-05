@@ -10,6 +10,7 @@ module CoverPicture
         include Mongoid::Paperclip
         has_attached_file :cover_picture,
                           :styles => { 
+                            :popup  => "800x600=",
                             :medium => "300x500>",
                             :thumb  => "100x150>",
                             :icon   => "64x90"

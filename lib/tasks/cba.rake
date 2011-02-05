@@ -58,6 +58,14 @@ namespace :cba do
         reprocess_attachments(posting)
       end
     end
+    
+    User.all.each do |user|
+      puts "Processing #{user.name}'s Avatar"
+      unless user.avatar.nil? || user.avatar_file_name.nil?
+        puts "  - " + user.avatar_file_name
+        user.avatar.reprocess! 
+      end
+    end
   end
    
 end

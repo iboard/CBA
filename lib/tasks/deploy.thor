@@ -28,7 +28,7 @@ class Deploy < Thor
         system( 'git push origin master')
         puts "Pull and restart on the server"
         system( "ssh #{deploy_config['production_user']}@#{deploy_config['production_server']} "+
-                " 'cd #{deploy_config['production_path']}; git pull; touch tmp/restart.txt'")
+                " 'cd #{deploy_config['production_path']}; git pull; thor deploy:restart'")
         puts "DONE - Please check your application now!"
       else
         puts "Aborted. Before you deploy make sure that:"
@@ -40,4 +40,34 @@ class Deploy < Thor
     end
   end
   
+  
+  desc "restart [--worker_only]", "kill 'rake jobs:work' and 'touch tmp/restart.txt'"
+  method_options :worker_only => :boolean
+  def restart
+    kill_pid("ps x|grep delayed_jobs|grep -v grep")
+    unless options[:worker_only]
+      print "Touching tmp/restart.txt ... => "
+      puts "OK" if system( "touch tmp/restart.txt" )
+    end
+  end
+  
+  
+  private
+  def kill_pid(cmd)
+    p=File::popen(cmd, "r")
+    if p
+      tasks = p.read.strip
+      if tasks.empty?
+        puts "No worker found"
+      else
+        pid = tasks.split(" ").first
+        print "worker is running with PID #{pid} - going to kill it ... => "
+        killcmd = "kill #{pid}"
+        puts "OK" if system(killcmd)
+      end
+      p.close
+    else
+      puts "CAN'T EXECUTE #{cmd}!"
+    end
+  end  
 end

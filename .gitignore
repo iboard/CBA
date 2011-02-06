@@ -4,6 +4,7 @@ log/*.log
 doc/*
 doc/**/*
 tmp/**/*
+tmp/*
 .DS_Store
 config/mongoid.yml
 config/application.yml

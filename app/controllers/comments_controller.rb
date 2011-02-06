@@ -1,4 +1,5 @@
 # The CommentController can handle comments on polymorphic 'commentables'
+# REVIEW: The code to handle comments with different levels of commentable SMELLS!
 class CommentsController < ApplicationController
   
   respond_to :html, :xml, :js
@@ -10,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(params[:comment])
     if @comment.valid?
       @comment.save
-      @predecessors.first.save
+      predecessors.first.save
       remember_comment
       redirect_to commentable_path
     else
@@ -34,7 +35,7 @@ class CommentsController < ApplicationController
   
   def update
     @root_object = predecessors.first
-    @comment = @predecessors.last.comments.find(params[:id])
+    @comment = predecessors.last.comments.find(params[:id])
     unless params[:commit] == t(:cancel)
       @comment.comment = params[:comment][:comment]
       remember_comment
@@ -49,7 +50,7 @@ class CommentsController < ApplicationController
   
   def destroy
     @root_object = predecessors.first
-    @comment = @predecessors.last.comments.find(params[:id])
+    @comment = predecessors.last.comments.find(params[:id])
     @comment.destroy
     @root_object.save
     respond_to do |format|
@@ -62,12 +63,13 @@ class CommentsController < ApplicationController
   private
   
   def commentable_path
-    path = @predecessors.map { |c| c.class.to_s.underscore }.join("_")+"_path"
-    parts = @predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
+    path = predecessors.map { |c| c.class.to_s.underscore }.join("_")+"_path"
+    parts = predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
     eval("#{path}(#{parts})")
   end
     
   def predecessors
+    return @predecessors if defined?(@predecessors)
     @predecessors = []
     params.each do |name, value|
       if name =~ /(.+)_id$/

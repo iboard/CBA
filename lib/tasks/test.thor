@@ -13,19 +13,19 @@ class Application < Thor
   desc "review", "Find REVIEW-Remarks"
   def review
     puts "\nSearching for REVIEW-Remarks in all files"
-    system "find . -type f -exec grep -nl \"REVIEW\" {} \\;"
+    system "find . -type f -exec grep -H \" REVIEW\" {} \\; | grep -v \..git | grep -v log\/"
   end
 
   desc "todo", "Find TODO-Remarks"
   def todo
     puts "\nSearching for TODO-Remarks in all files"
-    system "find . -type f -exec grep -nl \"TODO\" {} \\;"
+    system "find . -type f -exec grep -H \"TODO\" {} \\; | grep -v \..git | grep -v log\/"
   end
 
   desc "style", "Find STYLE-Remarks"
   def style
     puts "\nSearching for STYLE-Remarks in all files"
-    system "find . -type f -exec grep -nl \"STYLE\" {} \\;"
+    system "find . -type f -exec grep -H \"STYLE\" {} \\; | grep -v \..git | grep -v log\/"
   end
     
 end

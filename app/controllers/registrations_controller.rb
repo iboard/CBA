@@ -1,16 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
   
-  
   def create
     super
     session[:omniauth] = nil unless resource.new_record?
   end
     
   def update
-    with_password = resource.authentications.empty? ? resource.update_with_password(params[resource_name])\
-     : resource.update_attributes(params[resource_name])
-     
-    if with_password
+    if password_needed?
       set_flash_message :notice, :updated
       sign_in resource_name, resource
       redirect_to after_update_path_for(resource)
@@ -32,5 +28,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_update_path_for(resource)
     crop_avatar_user_path(:id => resource.id.to_s)
+  end
+  
+  # Users, signed up with 'standard user/password' must repeat their
+  # password, when changing their account, but users,
+  # authenticated through an omniAuth-provider, doesn't.
+  def password_needed?
+    resource.authentications.empty? \
+     ? resource.update_with_password(params[resource_name])\
+     : resource.update_attributes(params[resource_name])
   end
 end

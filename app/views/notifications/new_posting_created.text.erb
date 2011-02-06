@@ -1,0 +1,16 @@
+<%= @notify_subject %>
+<%= "="*@notify_subject.length %>
+
+In Blog <%= @blogtitle %>, a new posting was created by <%= @username %>
+
+<%= @title %>
+<%= "="*@title.length %>
+
+<%= "-"*80 %>
+
+<%= strip_tags(strip_links(@content)) %>
+
+Link to this posting: <%= @url %>
+
+
+

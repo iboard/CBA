@@ -1,0 +1,14 @@
+<%= @notify_subject %>
+<%= "="*@notify_subject.length %>
+
+From: <%= @from_name %> &lt;<%= @from_mail -%>&gt;
+
+COMMENT:
+
+<%= strip_tags(strip_links(RedCloth.new(@comment).to_html.html_safe)) %>
+
+
+
+
+
+

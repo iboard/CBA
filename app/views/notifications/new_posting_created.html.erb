@@ -1,0 +1,14 @@
+<h1><%= @notify_subject %></h1>
+
+<p>
+    In Blog <b><%= @blogtitle -%></b>, a new posting was 
+    created by <em><%= @username -%></em>
+</p>
+
+<hr>
+
+<h2><%= @title %></h2>
+
+<%= sanitize( @content ) %>
+
+<p>Read this posting at: <%= link_to @title, @url %></p>

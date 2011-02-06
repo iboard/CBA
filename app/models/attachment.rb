@@ -1,4 +1,7 @@
 class Attachment
+  
+  ASSET_PATH = File::join(Rails.root,'system')
+  
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip

@@ -27,7 +27,10 @@ class Posting
   embeds_many :attachments
   validates_associated :attachments
   accepts_nested_attributes_for :attachments,
-                        :allow_destroy => true
+                                :allow_destroy => true
+                        
+  # Send notifications
+  after_create  :send_admin_notification
     
   # Render the body with RedCloth
   def render_body
@@ -39,6 +42,10 @@ class Posting
   def content_for_intro
     RedCloth.new(body.paragraphs[0]).to_html
   end
-  
+
+  # Send a notification to admins when a new posting was created
+  def send_admin_notification
+    DelayedJob.enqueue('NewPostingNotifier', self.blog.id, self.id)
+  end  
 
 end

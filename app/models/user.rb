@@ -36,8 +36,9 @@ class User
   after_update  :reprocess_avatar, :if => :cropping?
   
   # Notifications
-  after_create :async_notify_on_creation
+  after_create   :async_notify_on_creation
   before_destroy :async_notify_on_cancellation
+  before_update  :notify_if_confirmed
   
   # Authentications
   after_create :save_new_authentication
@@ -170,6 +171,12 @@ class User
      DelayedJob.enqueue('CancelAccountNotifier', self.inspect)
   end  
   
+  # Inform admin if someone confirms an account
+  def notify_if_confirmed
+    if attribute_changed?('confirmed_at')
+      DelayedJob.enqueue('AccountConfirmedNotifier', self.id)
+    end
+  end  
   
 end
 

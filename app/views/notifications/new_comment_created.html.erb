@@ -1,0 +1,14 @@
+<h1><%= @notify_subject %></h1>
+
+<p>From: <%= @from_name %> <<%= @from_mail -%>></p>
+
+<h3>COMMENT:</h3>
+
+<%= sanitize(RedCloth.new(@comment).to_html.html_safe) %>
+
+
+
+
+
+
+

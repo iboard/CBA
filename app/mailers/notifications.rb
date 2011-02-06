@@ -26,7 +26,6 @@ class Notifications < ActionMailer::Base
   end
   
   def new_posting_created(blog,posting)
-    
     @posting = posting
     @blogtitle=blog.title
     @title   = posting.title
@@ -63,4 +62,18 @@ class Notifications < ActionMailer::Base
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
   
+  # arg[0] = commentable_identifier
+  # arg[1] = comment_email
+  # arg[2] = comment_name
+  # arg[3] = comment_comment
+  # TODO: Send to the owner of the commentable instead of admin_notification_address
+  # REVIEW: commentable doesn't work and is just a string here, see comment.rb!
+  def new_comment_created(commentable,from_mail,from_name,comment)
+    @notify_subject = "Your #{commentable}, was commented"
+    @comment = comment
+    @from_name = from_name
+    @from_mail = from_mail
+    mail( :from => from_mail, :to => APPLICATION_CONFIG['admin_notification_address'], :subjcect => @notify_subject)
+  end
+
 end

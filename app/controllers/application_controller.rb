@@ -28,6 +28,8 @@ class ApplicationController < ActionController::Base
   def setup_buttons
     @pivotal_tracker_project = APPLICATION_CONFIG['pivotal_tracker_project']
     @github_project          = APPLICATION_CONFIG['github_project']
+    @twitter_name            = APPLICATION_CONFIG['twitter_name']
+    @twitter_link            = APPLICATION_CONFIG['twitter_link']
   end
 
 end

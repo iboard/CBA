@@ -1,27 +1,35 @@
 <%= form_for([@blog,@posting], :html => { :multipart => true } ) do |f| %>
 
+  
   <% if @posting.errors.any? %>
+    <!-- ERRORS =================================== -->
     <div id="error_explanation">
       <h2><%= pluralize(@posting.errors.count, "error") %> prohibited this posting from being saved:</h2>
 
       <ul>
       <% @posting.errors.full_messages.each do |msg| %>
-        <li><%= msg %>
+        <li><%= msg %></li>
+      <% end %>
+      <% @posting.attachments.each do |p| %>
+         <ul>
+         <% p.errors.each do |error| %>
+           <li><%=  p.errors[error].join("<br/>".html_safe) -%></li>
+         <% end %>
+         </ul>
       <% end %>
       </ul>
     </div>
   <% end %>
 
+  <!-- FIELDS ===================================== -->
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, :size => 80 %>
   </div>
-
   <div class="field">
     <%= f.label :body %>
     <%= f.text_area :body, :rows => 10, :cols => 60 %>
   </div>
-
   <div class="field">
     <%= f.label :cover_picture %>
     <%= render( 
@@ -34,6 +42,7 @@
         :confirm => t(:are_you_sure)) unless @posting.new_record? %>
   </div>
   
+  <!-- ATTACHMENTS ================================ -->
   <div id='attachments' style='clear: right;'>
     <h3><%= t(:attachments) -%></h3>
     <blockquote>
@@ -46,11 +55,9 @@
       </p>
     </blockquote>
   </div>
+
   <div class='before_save_button'></div>
-  
-
   <div class='clear'></div>
-
 
   <div class="actions">
     <%= f.label :submit, t(:save_changes) %>  

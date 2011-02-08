@@ -21,6 +21,10 @@ class Attachment
                       end 
                     } 
   
+  validates_attachment_size :file, 
+    :less_than=>CONSTANTS['max_size_of_attachments_in_mb'].to_i.megabyte, 
+    :if => Proc.new { |uploaded| !uploaded.file_file_name.blank? }
+  
   embedded_in :content_item, :inverse_of => :attachments
   
 end

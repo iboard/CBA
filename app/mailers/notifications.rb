@@ -25,13 +25,14 @@ class Notifications < ActionMailer::Base
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
   
-  def new_posting_created(blog,posting)
-    @posting = posting
-    @blogtitle=blog.title
-    @title   = posting.title
-    @username= posting.user.name
-    @content = RedCloth.new(posting.body).to_html.html_safe
-    @url     = blog_posting_url(blog,posting)
+  def new_posting_created(blog_id,posting_id)
+    blog      = Blog.find(blog_id)
+    posting   = blog.postings.find(posting_id)
+    @blogtitle= blog.title
+    @title    = posting.title
+    @username = posting.user.name
+    @content  = RedCloth.new(posting.body).to_html.html_safe
+    @url      = blog_posting_url(blog,posting)
     @notify_subject = "A NEW POSTING WAS CREATED AT #{APPLICATION_CONFIG['name']}"
 
     begin
@@ -45,14 +46,14 @@ class Notifications < ActionMailer::Base
       # TODO: The following code doesn't work. Either there is a bug somewhere
       # TODO: in CBA or in Rails::Mail. Only the cover-pic arrives.
       # TODO: Check if it's possible to attach more files with Rails Mail - it should!
-      ### # Attach attachments
-      ### @content << "ATTACHMENTS"
-      ### posting.attachments.each do |attachment|
-      ###   if File.exist?(attachment.file.path)
-      ###     @contetn << "ADDING #{attachment.file_file_name}, #{attachment.file.path}"
-      ###     attachments[attachment.file_file_name] = File.read(attachment.file.path)
-      ###   end
-      ### end
+      # Attach attachments
+      posting.attachments.each do |att|
+        path = att.file.path.gsub(/\?.*$/,"")
+        file = File::basename(path)
+        if File.exist?(path)
+          attachments[file] = File.read(path)
+        end
+      end
     rescue => e
       msg = "<br/><br/>*** ERROR ATTACHING FILE #{e.to_s} **** #{__FILE__}:#{__LINE__}"
       @content += msg.html_safe
@@ -62,18 +63,20 @@ class Notifications < ActionMailer::Base
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
   
-  # arg[0] = commentable_identifier
-  # arg[1] = comment_email
-  # arg[2] = comment_name
-  # arg[3] = comment_comment
-  # TODO: Send to the owner of the commentable instead of admin_notification_address
-  # REVIEW: commentable doesn't work and is just a string here, see comment.rb!
-  def new_comment_created(commentable,from_mail,from_name,comment)
-    @notify_subject = "Your #{commentable}, was commented"
-    @comment = comment
+  # arg[0] = recipient,
+  # arg[1] = commentable.title,
+  # arg[2] = email, 
+  # arg[3] = name, 
+  # arg[4] = comment
+  def new_comment_created(recipient,title,from_mail,from_name,comment)
+    @notify_subject = "Your entry '#{title}', was commented by #{from_name}"
+    @comment   = comment
     @from_name = from_name
     @from_mail = from_mail
-    mail( :from => from_mail, :to => APPLICATION_CONFIG['admin_notification_address'], :subjcect => @notify_subject)
+    mail( :from => from_mail, 
+          :to => [APPLICATION_CONFIG['admin_notification_address'],recipient].uniq, 
+          :subjcect => @notify_subject
+    )
   end
 
 end

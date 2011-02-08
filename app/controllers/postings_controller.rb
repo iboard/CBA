@@ -17,6 +17,7 @@ class PostingsController < ApplicationController
     @posting = @blog.postings.create(params[:posting])
     @posting.user = current_user
     if @posting.save && @blog.save
+      @posting.attachments.each(&:save) if @posting.attachments
       redirect_to @blog, :notice => t(:posting_successfully_created)
     else
       render :new

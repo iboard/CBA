@@ -43,6 +43,10 @@ module ApplicationHelper
     f.hidden_field(:_destroy) + "&nbsp;".html_safe + link_to_function(name,"remove_fields(this)")
   end
   
+  # Check if paginate is on last page
+  def is_on_last_page(collection)
+    collection.total_pages && (collection.current_page < collection.total_pages)
+  end
   
   
 end

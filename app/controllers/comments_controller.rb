@@ -3,19 +3,16 @@
 class CommentsController < ApplicationController
   
   respond_to :html, :xml, :js
-  
+  before_filter :find_root_object_and_comment, :only=>[:update,:destroy]  
   def create
     @commentable = predecessors.last
-    @comment = @commentable.comments.build(params[:comment])
-    if @comment.valid?
-      @comment.save
-      remember_comment
-      redirect_to commentable_path
+    @comment, errors = Comment::build_and_validate_comment(@commentable,params[:comment])    
+    if errors
+      flash[:error] = t(:comment_could_not_be_saved, :errors => errors)
     else
-      flash[:error] = t(:comment_could_not_be_saved, 
-        :errors => @comment.errors.full_messages.join("<br/>")).html_safe
-      redirect_to commentable_path
+      remember_comment
     end
+    redirect_to commentable_path
   end
   
   def edit
@@ -31,8 +28,6 @@ class CommentsController < ApplicationController
   
   
   def update
-    @root_object = predecessors.first
-    @comment = predecessors.last.comments.find(params[:id])
     unless params[:commit] == t(:cancel)
       @comment.comment = params[:comment][:comment]
       remember_comment
@@ -46,8 +41,6 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @root_object = predecessors.first
-    @comment = predecessors.last.comments.find(params[:id])
     @comment.destroy
     @root_object.save
     respond_to do |format|
@@ -104,4 +97,9 @@ class CommentsController < ApplicationController
     end
   end
   
+  
+  def find_root_object_and_comment
+    @root_object = predecessors.first
+    @comment = predecessors.last.comments.find(params[:id])
+  end
 end

@@ -61,3 +61,7 @@ Feature: Pages
     And I click on "Create Page"
     Then I should see "Create a new Page" within "#container"
     And I should see "Body can't be blank"
+    
+  Scenario: Pagination should work on pages::index
+    pending
+    

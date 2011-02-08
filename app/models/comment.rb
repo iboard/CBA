@@ -20,6 +20,18 @@ class Comment
   def time_left_to_edit
     @time_left_to_edit ||= CONSTANTS['max_time_to_edit_new_comments'].to_i - ( (Time.now()-self.updated_at )/1.minute ).to_i
   end
+
+
+  def self.build_and_validate_comment(commentable, form_params)
+    comment = commentable.comments.build(form_params)
+    if comment.valid?
+      comment.save
+    else
+      errors =  comment.errors.full_messages.join("<br/>").html_safe
+    end
+    [comment, errors]
+  end
+
   
   private
   

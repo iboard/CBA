@@ -7,7 +7,7 @@ $('.load_more').before( '<div id="page<%= @postings.current_page -%>" style="cle
                           '<%= escape_javascript(render(:partial => @postings)) -%>'+
                           '</div>');
   
-<% if @postings.total_pages && (@postings.current_page < @postings.total_pages) %>
+<% if is_on_last_page(@postings) %>
    $('#load_more').html( '<%=  escape_javascript(link_to_function(t(:load_more),"insert_load_button( 'load_more','#{t(:loading)}',"+
         "'#{root_path(:page => (params[:page] ? (params[:page].to_i+1) : 2))}')", :id => "load_more_link" )) -%>');
    $('#page<%= @postings.current_page -%>').slideDown();

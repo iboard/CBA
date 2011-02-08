@@ -15,7 +15,7 @@ class Page
 
   scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
         
-  embeds_many :comments
+  embeds_many          :comments, :as => :commentable
   validates_associated :comments
   
   # TODO: Move this definitions to a library-module

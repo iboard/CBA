@@ -13,8 +13,7 @@ class Comment
   
   embedded_in :commentable, :inverse_of => :comments
   
-  scope :since, lambda { |since| where(:created_at.gt => since) } 
-  
+  scope :since, lambda { |since| where(:created_at.gt => since) }   
   after_create :send_notification
 
   # Calculate the time left a user can edit a comment
@@ -30,9 +29,17 @@ class Comment
     # arg[1] = comment_email
     # arg[2] = comment_name
     # arg[3] = comment_comment
-    DelayedJob.enqueue('NewCommentNotifier', 
-      "@#{::APPLICATION_CONFIG['name']}", 
-      self.email, self.name, self.comment
+    if self.commentable.respond_to?(:user)
+      user = self.commentable.user
+    end
+    recipient = user ? user.email : APPLICATION_CONFIG['admin_notification_address']
+    DelayedJob.enqueue('NewCommentNotifier',
+      Time.now+10.second,
+      recipient,
+      self.commentable.title,
+      self.email, 
+      self.name, 
+      self.comment
     )
 
   end

@@ -4,14 +4,11 @@ class CommentsController < ApplicationController
   
   respond_to :html, :xml, :js
   
-  #needed? helper_method :commentable_path
-  
   def create
     @commentable = predecessors.last
     @comment = @commentable.comments.build(params[:comment])
     if @comment.valid?
       @comment.save
-      predecessors.first.save
       remember_comment
       redirect_to commentable_path
     else
@@ -62,12 +59,20 @@ class CommentsController < ApplicationController
   
   private
   
+  # build path to commentable
+  # e.g.:  Blog, Posting => blog_posting_path(blog,posting)
+  # e.g.:  Page          => page_path(page)
   def commentable_path
     path = predecessors.map { |c| c.class.to_s.underscore }.join("_")+"_path"
     parts = predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
     eval("#{path}(#{parts})")
   end
     
+  # Collect predecessors from router-path
+  # e.g /blog/:blog_id/postings/:postings_id/comments ....
+  #     predecessors => Blog, Posting
+  # e.g /page/:page_id/comments
+  #     predecessors => Page
   def predecessors
     return @predecessors if defined?(@predecessors)
     @predecessors = []
@@ -79,16 +84,22 @@ class CommentsController < ApplicationController
     @predecessors
   end
   
+  
+  # Save comment_ids with timestamps in session[:comments]
+  # Will be used in Ability.rb to check if comment can be edited.
   def remember_comment
     begin
       mycomments = session[:comments] || []
-      session[:comments] = mycomments.reject {|r| 
+      session[:comments] = mycomments.reject { |r| 
           (r[1].to_i < (Time.now-CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes).to_i) ||
           r[0].to_s.eql?(@comment.id.to_s)
       } 
       session[:comments] << [@comment.id.to_s,@comment.updated_at.to_i]
     rescue => e
-      Rails.logger.warn("***WARNING*** #{e.inspect} *** RESET SESSION COMMENTS #{__FILE__}:#{__LINE__}")
+      Rails.logger.warn(  "***WARNING*** #{e.inspect} *** "+
+                          "RESET SESSION COMMENTS "+
+                          "#{__FILE__}:#{__LINE__}"
+                       )
       session[:comments] = [@comment.id.to_s,@comment.updated_at.to_i]
     end
   end

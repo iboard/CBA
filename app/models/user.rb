@@ -163,18 +163,18 @@ class User
 
   # Inform admin about sign ups and cancellations of accounts
   def async_notify_on_creation
-     DelayedJob.enqueue('NewSignUpNotifier', self.id)
+     DelayedJob.enqueue('NewSignUpNotifier', Time.now, self.id)
   end  
   
   # Inform admin about cancellations of accounts
   def async_notify_on_cancellation
-     DelayedJob.enqueue('CancelAccountNotifier', self.inspect)
+     DelayedJob.enqueue('CancelAccountNotifier', Time.now, self.inspect)
   end  
   
   # Inform admin if someone confirms an account
   def notify_if_confirmed
     if attribute_changed?('confirmed_at')
-      DelayedJob.enqueue('AccountConfirmedNotifier', self.id)
+      DelayedJob.enqueue('AccountConfirmedNotifier', Time.now, self.id)
     end
   end  
   

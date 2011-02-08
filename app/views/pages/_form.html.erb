@@ -5,9 +5,16 @@
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
 
       <ul>
-      <% @page.errors.full_messages.each do |msg| %>
-        <li><%= msg %>
-      <% end %>
+        <% @page.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        <% @page.attachments.each do |p| %>
+          <ul>
+            <% p.errors.each do |error| %>
+              <li><%=  p.errors[error].join("<br/>".html_safe) -%></li>
+            <% end %>
+          </ul>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -16,19 +23,16 @@
     <%= f.label :title %>
     <%= f.text_field :title, :size => 80 %>
   </div>
-  
   <div class="field">
       <%= f.label :show_in_menu %>
       <%= f.check_box :show_in_menu %> <%= t(:show_in_menu) %>
       <%= t(:at_position) -%>: 
       <%= f.text_field :menu_order, :size => 5, :placeholder => t(:last_position) %>
   </div>
-  
   <div class="field">
     <%= f.label :body %>
     <%= f.text_area :body, :rows => 20, :cols => 80 %>
   </div>
-  
   <div class="field">
     <%= f.label :cover_picture %>
     <div style='margin-left: 200px'>

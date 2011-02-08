@@ -7,13 +7,15 @@ class Posting
   include ContentItem
   acts_as_content_item
   has_cover_picture
-    
+  
+  referenced_in         :user, :inverse_of => :postings
+  field                 :user_id  
+  validates_presence_of :user_id
+  
   field                 :body, :required => true
   validates_presence_of :body
 
   referenced_in         :blog, :inverse_of => :postings
-  referenced_in         :user, :inverse_of => :postings
-  validates_presence_of :user
         
   embeds_many           :comments, :as => :commentable
   validates_associated  :comments

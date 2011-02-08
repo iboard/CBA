@@ -81,6 +81,8 @@ Feature: Postings
     And I should see "Edit" within "#posting"
     And I should see "Delete" within "#posting"
     
-    
+  Scenario: Pagination should work on postings::index
+    pending
+   
 
   

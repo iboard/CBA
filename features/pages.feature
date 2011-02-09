@@ -62,6 +62,24 @@ Feature: Pages
     Then I should see "Create a new Page" within "#container"
     And I should see "Body can't be blank"
     
+  Scenario: Moderator/Admin should be able to edit a page
+    Given I am on the pages page
+    And I click on link "Edit"
+    Then I should be on the edit page for "Page 1"
+    And I should see "Editing page"
+    
+  Scenario: Moderator/Admin should be able to modify a page
+    Given I am on the edit page for "Page 1"
+    And I fill in "Title" with "This is Page 1, modified" 
+    And I fill in "Body" with "Cucumber tests rock!"
+    And I click on "Update Page"
+    Then I should be on the page path of "This is Page 1, modified"
+    And I should see "This is Page 1, modified"
+    And I should see "Cucumber tests rock!"
+    And I should see "Page was successfully updated."
+    And I should not see "Error"
+    
+    
   Scenario: Pagination should work on pages::index
     pending
     

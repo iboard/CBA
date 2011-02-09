@@ -1,6 +1,6 @@
 <% javascript 'endless_page' %>
 
-<%= render :partial => '/blogs/blog' %>
+<%= render :partial => '/blogs/blog', :locals => { :blog => @blog} %>
 
 <p><%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting %></p>
 
@@ -9,7 +9,7 @@
 
 <div id='postings' style='clear: right;'>
     <% @postings.each do |posting| %>
-      <%= render :partial => '/blogs/posting_header', :locals => { :posting => posting } %>
+      <%= render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog } %>
     <% end %>
     <%= render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) } %>
 </div>

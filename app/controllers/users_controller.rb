@@ -19,16 +19,13 @@ class UsersController < ApplicationController
   end
 
   def crop_avatar
-    unless @user.new_avatar?
+    if !@user.new_avatar?
       redirect_to @user, :notice => flash[:notice] 
-      return
-    end
-    if is_in_crop_mode?
+    elsif is_in_crop_mode?
       if @user.update_attributes(params[:user]) 
         render :show
       else
-        redirect_to edit_user_path(@user), 
-          :error => @user.errors.map(&:to_s).join("<br />")
+        redirect_to edit_user_path(@user), :error => @user.errors.map(&:to_s).join("<br />")
       end
     end
   end
@@ -38,8 +35,7 @@ class UsersController < ApplicationController
   
   def update_roles
     @user.update_attributes!(params[:user])
-    redirect_to registrations_path, 
-      :notice => t(:roles_of_user_updated,:user => @user.name)
+    redirect_to registrations_path, :notice => t(:roles_of_user_updated,:user => @user.name)
   end
   
   def destroy

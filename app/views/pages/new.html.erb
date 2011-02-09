@@ -1,7 +1,5 @@
 <% title t(:new_page) %>
 
-
-
-<%= render 'form' %>
+<%= render :partial => 'form', :locals => { :page => @page } %>
 
 <%= link_to 'Back', pages_path %>

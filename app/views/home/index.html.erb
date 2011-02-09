@@ -21,7 +21,7 @@
     
       <% for posting in @postings %>
         <div style='clear: right;'>
-           <%= render posting %>
+           <%= render :partial =>  posting, :locals => { :blog => @blog } %>
            <p style='clear: left;'></p>
         </div>
       <% end %>

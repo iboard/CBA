@@ -56,9 +56,7 @@ class CommentsController < ApplicationController
   # e.g.:  Blog, Posting => blog_posting_path(blog,posting)
   # e.g.:  Page          => page_path(page)
   def commentable_path
-    path = predecessors.map { |c| c.class.to_s.underscore }.join("_")+"_path"
-    parts = predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
-    eval("#{path}(#{parts})")
+    eval("%s(%s)" % find_path_and_parts)
   end
     
   # Collect predecessors from router-path
@@ -81,25 +79,18 @@ class CommentsController < ApplicationController
   # Save comment_ids with timestamps in session[:comments]
   # Will be used in Ability.rb to check if comment can be edited.
   def remember_comment
-    begin
-      mycomments = session[:comments] || []
-      session[:comments] = mycomments.reject { |r| 
-          (r[1].to_i < (Time.now-CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes).to_i) ||
-          r[0].to_s.eql?(@comment.id.to_s)
-      } 
-      session[:comments] << [@comment.id.to_s,@comment.updated_at.to_i]
-    rescue => e
-      Rails.logger.warn(  "***WARNING*** #{e.inspect} *** "+
-                          "RESET SESSION COMMENTS "+
-                          "#{__FILE__}:#{__LINE__}"
-                       )
-      session[:comments] = [@comment.id.to_s,@comment.updated_at.to_i]
-    end
+    session[:comments] = @comment.update_session_comments(session[:comments])
   end
   
+  def find_path_and_parts
+    path = predecessors.map { |p| p.class.to_s.underscore }.join("_")+"_path"
+    parts = predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
+    [path, parts]
+  end
   
   def find_root_object_and_comment
     @root_object = predecessors.first
     @comment = predecessors.last.comments.find(params[:id])
   end
+  
 end

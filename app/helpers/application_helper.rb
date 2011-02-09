@@ -48,5 +48,4 @@ module ApplicationHelper
     collection.total_pages && (collection.current_page < collection.total_pages)
   end
   
-  
 end

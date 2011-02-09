@@ -31,7 +31,18 @@ class Comment
     end
     [comment, errors]
   end
-
+  
+  def update_session_comments(comments)
+    begin
+      remove_old_comments(comments) << [self.id.to_s,self.updated_at.to_i]
+    rescue => e
+      Rails.logger.warn(  
+        "***WARNING*** #{e.inspect} *** "+ "RESET SESSION COMMENTS "+
+        "#{__FILE__}:#{__LINE__}"
+      )
+      [self.id.to_s,self.updated_at.to_i]
+    end
+  end
   
   private
   
@@ -53,7 +64,14 @@ class Comment
       self.name, 
       self.comment
     )
-
+  end
+  
+  # Remove self and old comments from session (comments) 
+  def remove_old_comments(comments)
+    (comments || []).reject { |r| 
+        (r[1].to_i < (Time.now-CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes).to_i) ||
+        r[0].to_s.eql?(self.id.to_s)
+    }
   end
 
 

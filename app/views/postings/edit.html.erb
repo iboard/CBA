@@ -1,4 +1,4 @@
 <% title t(:edit_posting,:posting => @blog.title) %>
 
 
-<%= render :partial => 'form' %>
+<%= render :partial => 'form' , :locals => {:posting => @posting, :blog => @blog } %>

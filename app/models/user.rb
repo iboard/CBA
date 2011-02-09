@@ -24,14 +24,14 @@ class User
                   
   attr_accessor :clear_avatar
   
-  has_attached_file :avatar,
-                    :styles => { 
-                      :popup  => "800x600=",
-                      :medium => "300x300>",
-                      :thumb  => "100x100>",
-                      :icon   => "64x64"
-                    },
-                    :processors => [:cropper]
+  has_mongoid_attached_file :avatar,
+                            :styles => { 
+                              :popup  => "800x600=",
+                              :medium => "300x300>",
+                              :thumb  => "100x100>",
+                              :icon   => "64x64"
+                            },
+                            :processors => [:cropper]
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update  :reprocess_avatar, :if => :cropping?
   

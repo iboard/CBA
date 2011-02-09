@@ -14,10 +14,7 @@ class PostingsController < ApplicationController
   end
   
   def create
-    @posting = @blog.postings.create(params[:posting])
-    @posting.user = current_user
-    if @posting.save && @blog.save
-      @posting.attachments.each(&:save) if @posting.attachments
+    if (@posting=@blog.create_posting(params[:posting],current_user)).errors.empty?
       redirect_to @blog, :notice => t(:posting_successfully_created)
     else
       render :new

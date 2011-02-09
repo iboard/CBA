@@ -9,27 +9,39 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  # Load all pages marked with 'show_in_menu => true'
-  before_filter  :load_top_pages
-  before_filter  :setup_buttons
-  
   # == Display a flash if CanCan doesn't allow access    
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message
     redirect_to root_url
   end
+  
+  helper_method :top_pages
+  helper_method :pivotal_tracker_project
+  helper_method :github_project
+  helper_method :twitter_name
+  helper_method :twitter_link
 
   private
 
-  def load_top_pages
+  def top_pages
     @top_pages ||= Page.where(:show_in_menu => true).asc(:menu_order)
   end
-  
-  def setup_buttons
-    @pivotal_tracker_project = APPLICATION_CONFIG['pivotal_tracker_project']
-    @github_project          = APPLICATION_CONFIG['github_project']
-    @twitter_name            = APPLICATION_CONFIG['twitter_name']
-    @twitter_link            = APPLICATION_CONFIG['twitter_link']
-  end
 
+  def pivotal_tracker_project
+    @pivotal_tracker_project ||= APPLICATION_CONFIG['pivotal_tracker_project']
+  end
+  
+  def github_project
+    @github_project          ||= APPLICATION_CONFIG['github_project']
+  end
+  
+  def twitter_name
+    @twitter_name            ||= APPLICATION_CONFIG['twitter_name']
+  end
+  
+  def twitter_link
+    @twitter_link            ||= APPLICATION_CONFIG['twitter_link']
+  end
+  
+  
 end

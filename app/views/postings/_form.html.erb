@@ -1,16 +1,16 @@
-<%= form_for([@blog,@posting], :html => { :multipart => true } ) do |f| %>
+<%= form_for([blog,posting], :html => { :multipart => true } ) do |f| %>
 
   
-  <% if @posting.errors.any? %>
+  <% if posting.errors.any? %>
     <!-- ERRORS =================================== -->
     <div id="error_explanation">
-      <h2><%= pluralize(@posting.errors.count, "error") %> prohibited this posting from being saved:</h2>
+      <h2><%= pluralize(posting.errors.count, "error") %> prohibited this posting from being saved:</h2>
 
       <ul>
-      <% @posting.errors.full_messages.each do |msg| %>
+      <% posting.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      <% @posting.attachments.each do |p| %>
+      <% posting.attachments.each do |p| %>
          <ul>
          <% p.errors.each do |error| %>
            <li><%=  p.errors[error].join("<br/>".html_safe) -%></li>
@@ -34,12 +34,12 @@
     <%= f.label :cover_picture %>
     <%= render( 
           :partial => 'cover_picture', 
-          :locals => { :posting => @posting, :format => :thumb, :style => 'display: inline; ' } 
+          :locals => { :posting => posting, :format => :thumb, :style => 'display: inline; ' } 
         )
     -%>
     <%= f.file_field :cover_picture %>
-    <%= link_to( t(:delete_picture), delete_cover_picture_blog_posting_path(@posting.blog,@posting), :remote => true,
-        :confirm => t(:are_you_sure)) unless @posting.new_record? %>
+    <%= link_to( t(:delete_picture), delete_cover_picture_blog_posting_path(posting.blog,posting), :remote => true,
+        :confirm => t(:are_you_sure)) unless posting.new_record? %>
   </div>
   
   <!-- ATTACHMENTS ================================ -->

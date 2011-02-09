@@ -1,6 +1,6 @@
 <% title @blog.title + ": " + t(:new_posting) %>
 
 
-<%= render :partial => 'form' %>
+<%= render :partial => 'form', :locals => { :blog => @blog, :posting => @posting } %>
 
 <p style='clear:right;'><%= link_to t(:cancel), @blog %></p>

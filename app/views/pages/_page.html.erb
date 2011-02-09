@@ -1,48 +1,48 @@
-<%= set_browser_address(@page.id,@page.title) %>
+<%= set_browser_address(page.id,page.title) %>
 
-<% title @page.title %>
+<% title page.title %>
 
 <!-- PICTURE -->
 <%= render( :partial => 'cover_picture', 
-    :locals => { :page => @page, :format => :medium, :style => "float:right; margin-left: 10px;" }
-    ) if @page.cover_picture_exists?
+    :locals => { :page => page, :format => :medium, :style => "float:right; margin-left: 10px;" }
+    ) if page.cover_picture_exists?
 %>
 
 <!-- BUTTONS -->
-<% if can? :manage, @page %>
-  <%= link_to t(:edit), edit_page_path(@page) %> |
+<% if can? :manage, page %>
+  <%= link_to t(:edit), edit_page_path(page) %> |
 <% end %>
 <%= link_to t(:pages_index), pages_path %>
 
 <!-- BODY -->
-<div id='page_<%= @page.id -%>' class='page_body'>
-  <%= sanitize(@page.render_body).html_safe %>
+<div id='page_<%= page.id -%>' class='page_body'>
+  <%= sanitize(page.render_body).html_safe %>
 </div>
 
 <!-- ATTACHMENTS -->
-<% unless @page.attachments.empty? %>
+<% unless page.attachments.empty? %>
   <h3><%= t(:attachments) -%></h3>
   <ul>
-    <%= render @page.attachments %>
+    <%= render page.attachments %>
   </ul>
 <% end %>
 
 <!-- COMMENTS -->
 <%= content_tag :div, :id => 'comments' do %>
-  <h5><%= t(:number_of_comments, :count => @page.comments.count)%></h5>
-  <%= render :partial => @page.comments, :locals => { :commentable => @page, :path_components => [@page]} %>
+  <h5><%= t(:number_of_comments, :count => page.comments.count)%></h5>
+  <%= render :partial => page.comments, :locals => { :commentable => page, :path_components => [page]} %>
 <% end %>
 
 <!-- NEW COMMENT -->
 <%= content_tag :div, :id => 'new_comment_form' do %>
   <h5><%= t(:post_a_comment) -%></h5>
-  <%= form_for [@page,comment = @page.comments.build(  
+  <%= form_for [page,comment = page.comments.build(  
                                            :name => current_user_field(:name,''), 
                                            :email => current_user_field(:email, '') 
                                         )] do |f| %>
     <%= render :partial => '/comments/comment_fields', 
                :locals => { :f => f, 
-                            :commentable => @page,
+                            :commentable => page,
                             :comment => comment 
                           } 
      %>

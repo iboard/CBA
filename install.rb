@@ -4,7 +4,7 @@
 
 # More info: http://github.com/iboard/CBA/
 
-require "#{File.dirname __FILE__}/install/libinstall"
+require "./install/libinstall"
 
 puts "CBA INSTALLATION"
 puts "Any problems? See http://github.com/iboard/CBA/issues"

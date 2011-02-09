@@ -4,7 +4,7 @@
 
 # More info: http://github.com/iboard/CBA/
 
-require "./install/libinstall"
+require "#{ARGV[2]}/install/libinstall"
 
 puts "CBA INSTALLATION"
 puts "Any problems? See http://github.com/iboard/CBA/issues"

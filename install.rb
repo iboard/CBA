@@ -1,7 +1,10 @@
-# Application Generator Template
-# Modifies a Rails app to use Mongoid and Devise
-# Usage: rails new app_name -m http://github.com/iboard/CBA/raw/master/install.rb
+# Application Installation and Setup-script for CBA
+# clone and setup CBA from http://github.com/iboard/CBA
 
+# Usage: 
+#
+#   ruby < <(curl http://github.com/iboard/CBA/install.rb)
+#
 # More info: http://github.com/iboard/CBA/
 
 
@@ -10,6 +13,31 @@
                           HELPER FUNCTIONS
  ========================================================================= 
 =end
+SCREEN_WIDTH=79
+
+class String
+  def blank?
+    self.strip == ""
+  end
+end
+
+def ask(prompt)
+  print prompt
+  gets
+end
+
+unless defined? yes?
+  def yes? prompt
+    while true
+      a=ask(prompt+" (Y/n)").strip.upcase
+      return true if ['Y','YES'].include?(a)
+      return false if ['N','NO'].include?(a)
+      puts "Please answer Y, yes or N, no"
+    end
+  end
+end
+    
+
 def terminate msg
   puts msg
   exit 1
@@ -18,9 +46,13 @@ end
 def run_and_check(prompt,cmd,excepted,msg,suffix="\n")
   print "%-40.40s" % prompt
   print ": "
-  p=File.popen(cmd,"r")
-  rc=p.read.strip
-  p.close
+  begin
+    p=File.popen(cmd,"r")
+    rc=p.read.strip
+    p.close
+  rescue
+    rc = ""
+  end
   if rc =~ Regexp.new(excepted)
     print "OK" + suffix
     return rc.strip
@@ -46,13 +78,13 @@ end
  ========================================================================= 
 =end
 
-puts "="*79
+puts "="*SCREEN_WIDTH
 puts "CBA INSTALLATION"
 puts "Any problems? See http://github.com/iboard/CBA/issues"
-puts "="*79
+puts "="*SCREEN_WIDTH
 
 #----------------------------------------------------------------------------
-# Test Environment
+# Test Environment and fetch system parameters
 #----------------------------------------------------------------------------
 
 puts "1. Test environment"
@@ -82,6 +114,16 @@ terminate "ABORTED" unless run_and_check(
   "RAILS 3.x.x SHOULD BE INSTALLED BUT CHECK RETURNS"
 )
 
+mongo_version=run_and_get(
+  "Checking for MongoDB", "mongo --version",
+  "COULD NOT FIND MONGODB (Please install -> mongodb.org)"
+)
+
+mongod=run_and_get(
+  "Checking if mongod is running", "ps xa|grep mongod|grep -v grep|sed 's/^.* \\///g'",
+  "MongoDB daemon 'mongod' not found"
+)
+
 identify=run_and_get(
   "Checking for identify (ImageMagick)", "which identify",
   "COULD NOT FIND PROGRAM identify (Please install -> www.imagemagick.org)"
@@ -98,7 +140,34 @@ rails_root=run_and_get(
   "Checking for Rails.root","pwd","COULD NOT GET CURRENT WORKING DIRECTORY"
 )
   
+#----------------------------------------------------------------------------
+# Summary
+#----------------------------------------------------------------------------
+puts "\nSummary " + "*"*(SCREEN_WIDTH-1-"Summary".length)
+if !mongo_version || mongo_version.blank? 
+  puts "  There is no local MongoDB found."
+  puts "  You can use CBA, though you have to configure an external"
+  puts "  MongoDB-Server."
+elsif !mongod || mongod.blank?
+  puts "  MongoDB seems to be installed but not started."
+  puts "  Don't forget to start mongod before using the application or"
+  puts "  configure an external MongoDB-Server."
+else
+  puts "  Everything looks fine."
+end
 
+puts "IF YOU CONTINUE, THE DIRECTORY #{rails_root} WILL BE REMOVED!"
+puts "And then, CBA will be installed to #{rails_root}"
+puts ""
+app_name=File::basename(rails_root) 
+cmd = "rm -r "+File::basename(rails_root)
+`pwd`
+unless yes?("Continiue with #{cmd}")
+  puts "Canceled"
+  exit 8
+end
+`cd ..; #{cmd}`
+`git clone git://github.com/iboard/CBA.git #{app_name}`
 
 ###git :init
 ###git :add => '.'

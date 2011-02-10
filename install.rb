@@ -177,13 +177,14 @@ installed_in=run_and_get(
   "Checking clone", "pwd",
   "COULD NOT RUN `pwd` (wrong Operating System?)"
 )
+
 unless File::basename(installed_in) == app_name
   puts "Ooops. Should be in directory #{app_name}"
   puts "Terminated"
   exit 7
 end
 
-`thor application:configure`
+system("thor application:configure")
 
 
 

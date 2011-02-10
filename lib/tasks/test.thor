@@ -30,9 +30,20 @@ class Application < Thor
   
   desc "configure", "Configure application"
   def configure
-    puts "HERE WE GO"
+    sample_files = %w( application.yml mailserver_setting.rb mongoid.yml omniauth_settings.rb )
+    for target in sample_files
+      unless File::exist? "config/#{target}"
+        `cp config/#{target}.sample config/#{target}`
+      else
+        puts "config/#{target} exists. No action"
+      end
+    end
+    `bundle install`
+    puts "Please edit the files #{sample_files.join(', ')} to fit your needs"
+    puts "And then, good luck when starting your engine with 'rails server'"
+    puts "Thank you for installing CBA!"
+    puts "If you need further help, please visit https://github.com/iboard/CBA/wiki"
   end
     
 end
-
 

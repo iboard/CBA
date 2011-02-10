@@ -1,51 +1,19 @@
-CBA is based on Rails3-Mongoid-Devise
-=====================================
+CBA Application Template
+========================
 
-Rails3-Mongoid-Devise
----------------------
+Please read README.textile
 
-Original by "fortuity" at http://github.com/fortuity/rails3-mongoid-devise
+Or quickstart with:
 
-You can use this project as a starting point for a Rails web application. 
-It requires Rails 3 and uses Mongoid http://mongoid.org/ for data storage 
-and Devise http://github.com/plataformatec/devise for user management and 
-authentication.
-
-CBA
----
-Extensions by Andi Altendorfer:
-I've added some features I need for nearly any of my applications. 
-So, you may too.
-
-* OmniAuth
-* Paperclip
-* CanCan
+   curl -o install_cba.rb https://github.com/iboard/CBA/raw/master/install.rb
+   ruby install_cba.rb
+   
+You'll be asked for the application-directory to create. No need to mkdir 
+before.
 
 
-Public Domain Dedication
-------------------------
 
-→ The MIT License
 
-Copyright © 2011 Andreas Altendorfer, World Wide Education
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
 
 
 

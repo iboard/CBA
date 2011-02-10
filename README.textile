@@ -8,15 +8,31 @@ is "Rails3-Mongoid-Devise by fortuity":http://github.com/fortuity/rails3-mongoid
 
 h2. Installation
 
-At the moment installation is a matter of change. The documentation will follow as soon as the installation process will be worked out cleanly. 
+Quickstart with:
 
-Thou there is one thing you should know: You have to set role 'admin' to your first user!
-Afer signing up your first user open your console and do this with
+<code>   curl -o install_cba.rb https://github.com/iboard/CBA/raw/master/install.rb</code>
+<code>   ruby install_cba.rb</code>
 
-  rails console
-  u=User.first
-  u.roles=['admin']
-  u.save
+You'll be asked for the directory to create. No need to mkdir before.
+
+ *The <code>install_cba.rb</code> will do:*
+
+# Check if your environment fits the requirements
+# Aks you some parameters
+# Clones CBA from Github
+# Setup configuration files
+
+ *You have to do then:*
+ 
+# Edit configurations files to fit your needs.
+## Make sure your configured SMTP-Settings will work before you sign up.
+# Start the engine <code>rails server</code>
+# Sign up your first user (will be 'admin' automatically)
+
+If you need further help, please visit https://github.com/iboard/CBA/wiki
+
+bq. Greetings<br /> - Andreas Altendorfer, @Nickendell, http://cba.iboard.cc
+
 
 h2. Delayed Jobs
 

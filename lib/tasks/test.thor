@@ -1,5 +1,15 @@
 class Application < Thor
 
+  no_tasks do
+    def gsub_file(filename,search,replace)
+      f_in=File.read(filename)
+      f_out=File.new(filename,"w")
+      f_out << f_in.gsub(/#{search}/, replace)
+      f_out.close
+    end
+  end
+
+
   desc "test_all", "Run tests and cucumber"
   def test_all
     puts "RUNNING TEST UNITS"
@@ -27,7 +37,37 @@ class Application < Thor
     puts "\nSearching for STYLE-Remarks in all files"
     system "find . -type f -exec grep -H \"STYLE\" {} \\; | grep -v \..git | grep -v log\/"
   end
+  
+  desc "configure", "Configure application"
+  def configure  
+    sample_files = %w( application.yml mailserver_setting.rb mongoid.yml omniauth_settings.rb )
+    for target in sample_files
+      unless File::exist? "config/#{target}"
+        `cp config/#{target}.sample config/#{target}`
+      else
+        puts "config/#{target} exists. No action"
+      end
+    end
+    `bundle install`
+    appname  = ask("Please enter the database name to use   :").strip
+    gsub_file 'config/mongoid.yml', 'APPNAME', appname
+    puts ""
+    puts "INSTALLATION COMPLETE!"
+    puts ""
+    puts "Please edit the files #{sample_files.join(', ')} to fit your needs"
+    puts
+    puts "First steps:"
+    puts "  * cd to your app-directory"
+    puts "  * Edit the files mentioned above - MAKE SURE SMTP WORKS!"
+    puts "  * Start the server: 'rails server'"
+    puts "  * Sign up your first user (first user will be admin automatically - ignore registration mail!)"
+    puts ""
+    puts "Thank you for installing CBA!"
+    puts "If you need further help, please visit https://github.com/iboard/CBA/wiki"
+    puts ""
+    puts "Greetings"
+    puts "  - Andi Altendorfer, @Nickendell"
+    puts ""
+  end
     
 end
-
-

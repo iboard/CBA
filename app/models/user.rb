@@ -42,6 +42,7 @@ class User
   
   # Authentications
   after_create :save_new_authentication
+  after_create :set_admin_for_first_user
    
   
   # Roles - Do not change the order and do not remove roles if you
@@ -177,6 +178,14 @@ class User
       DelayedJob.enqueue('AccountConfirmedNotifier', Time.now, self.id)
     end
   end  
+  
+  def set_admin_for_first_user
+    if User.count == 1
+      self.roles=['admin']
+      self.confirmed_at = Time.now
+      self.save!
+    end
+  end
   
 end
 

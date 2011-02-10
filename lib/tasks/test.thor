@@ -27,6 +27,11 @@ class Application < Thor
     puts "\nSearching for STYLE-Remarks in all files"
     system "find . -type f -exec grep -H \"STYLE\" {} \\; | grep -v \..git | grep -v log\/"
   end
+  
+  desc "configure", "Configure application"
+  def configure
+    puts "HERE WE GO"
+  end
     
 end
 

@@ -55,12 +55,18 @@ class Application < Thor
     gsub_file 'db/seeds.rb', /INITIALUSERNAME/, username
     gsub_file 'db/seeds.rb', /INITIALEMAIL/, useremail  
     gsub_file 'config/mongoid.yml', 'APPNAME', appname
-    `rake db:setup`
+    `rake db:setup > /dev/null 2>&1`
     puts ""
     puts "INSTALLATION COMPLETE!"
     puts ""
     puts "Please edit the files #{sample_files.join(', ')} to fit your needs"
-    puts "And then, good luck when starting your engine with 'rails server'"
+    puts
+    puts "First steps:"
+    puts "  * Edit the files mentioned above"
+    puts "  * Start the server 'rails server'"
+    puts "  * Login with '#{useremail} and password 'cbaadmin'"
+    puts "  * Change the password of your user"
+    puts ""
     puts "Thank you for installing CBA!"
     puts "If you need further help, please visit https://github.com/iboard/CBA/wiki"
     puts ""

@@ -55,7 +55,7 @@ class Application < Thor
     gsub_file 'db/seeds.rb', /INITIALUSERNAME/, username
     gsub_file 'db/seeds.rb', /INITIALEMAIL/, useremail  
     gsub_file 'config/mongoid.yml', 'APPNAME', appname
-    `rake db:seed`
+    `rake db:setup`
     puts ""
     puts "INSTALLATION COMPLETE!"
     puts ""

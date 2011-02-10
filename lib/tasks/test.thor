@@ -62,7 +62,8 @@ class Application < Thor
     puts "Please edit the files #{sample_files.join(', ')} to fit your needs"
     puts
     puts "First steps:"
-    puts "  * cd `pwd`"
+    print "  * cd "
+    `pwd`
     puts "  * Edit the files mentioned above"
     puts "  * Start the server 'rails server'"
     puts "  * Login with '#{useremail} and password 'cbaadmin'"

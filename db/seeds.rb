@@ -8,9 +8,8 @@
 
 #puts 'EMPTY THE MONGODB DATABASE'
 #Mongoid.master.collections.reject { |c| c.name == 'system.indexes'}.each(&:drop)
-user = User.create! :name => 'INITIALUSERNAME', :email => 'INITIALEMAIL', :password => 'cbaadmin', :password_confirmation => 'cbaadmin'
+user = User.create :name => 'INITIALUSERNAME', :email => 'INITIALEMAIL', :password => 'cbaadmin', :password_confirmation => 'cbaadmin', :confirmed_at => Time.now
 user.roles=['admin']
-user.confirmed_at = Time.now()
 user.save!
 puts 'New user created: ' << user.name
 puts "PLEASE CHANGE YOUR PASSWORD IMMEDIATELY! THE INITIAL PASSWORD IS cbaadmin"

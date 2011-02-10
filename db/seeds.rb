@@ -10,6 +10,8 @@ puts 'EMPTY THE MONGODB DATABASE'
 Mongoid.master.collections.reject { |c| c.name == 'system.indexes'}.each(&:drop)
 user = User.create :name => 'INITIALUSERNAME', :email => 'INITIALEMAIL', :password => 'cbaadmin', :password_confirmation => 'cbaadmin'
 user.roles=['admin']
+user.save!
+sleep 10
 user.confirmed_at=Time.now
 user.save!
 puts 'New user created: ' << user.name

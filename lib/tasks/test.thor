@@ -62,10 +62,10 @@ class Application < Thor
     puts "Please edit the files #{sample_files.join(', ')} to fit your needs"
     puts
     puts "First steps:"
-    print "  * cd "
-    `pwd`
+    puts "  * cd to your app-directory"
     puts "  * Edit the files mentioned above"
-    puts "  * Start the server 'rails server'"
+    puts "  * run: 'rake db:setup'"
+    puts "  * Start the server: 'rails server'"
     puts "  * Login with '#{useremail} and password 'cbaadmin'"
     puts "  * Change the password of your user"
     puts ""

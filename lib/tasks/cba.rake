@@ -61,7 +61,8 @@ namespace :cba do
     
     User.all.each do |user|
       puts "Processing #{user.name}'s Avatar"
-      unless user.avatar.nil? || user.avatar_file_name.nil?
+      unless user.avatar.nil? || 
+        user.avatar_file_name.nil?
         puts "  - " + user.avatar_file_name
         user.avatar.reprocess! 
       end

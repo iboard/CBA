@@ -42,9 +42,8 @@ class User
   
   # Authentications
   after_create :save_new_authentication
-  after_create :set_admin_for_first_user
-   
-  
+  after_create :first_user_hook
+     
   # Roles - Do not change the order and do not remove roles if you
   # already have productive data! Thou it's safe to append new roles
   # at the end of the string. And it's safe to rename roles in place
@@ -178,14 +177,14 @@ class User
       DelayedJob.enqueue('AccountConfirmedNotifier', Time.now, self.id)
     end
   end  
-  
-  def set_admin_for_first_user
-    if User.count == 1
-      self.roles=['admin']
+
+  # If created user is first user, confirm and make admin
+  def first_user_hook
+    if User.count < 2
       self.confirmed_at = Time.now
+      self.roles=['admin']
       self.save!
     end
-  end
-  
+  end  
 end
 

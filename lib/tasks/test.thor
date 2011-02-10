@@ -50,10 +50,6 @@ class Application < Thor
     end
     `bundle install`
     appname  = ask("Please enter the database name to use   :").strip
-    username = ask("Please enter the username for your admin:").strip
-    useremail= ask("Please enter admins email-address       :").strip
-    gsub_file 'db/seeds.rb', /INITIALUSERNAME/, username
-    gsub_file 'db/seeds.rb', /INITIALEMAIL/, useremail  
     gsub_file 'config/mongoid.yml', 'APPNAME', appname
     puts ""
     puts "INSTALLATION COMPLETE!"
@@ -62,9 +58,9 @@ class Application < Thor
     puts
     puts "First steps:"
     puts "  * cd to your app-directory"
-    puts "  * Edit the files mentioned above"
+    puts "  * Edit the files mentioned above - MAKE SURE SMTP WORKS!"
     puts "  * Start the server: 'rails server'"
-    puts "  * Sign up your first user (first user will be admin)"
+    puts "  * Sign up your first user (first user will be admin automatically - ignore registration mail!)"
     puts ""
     puts "Thank you for installing CBA!"
     puts "If you need further help, please visit https://github.com/iboard/CBA/wiki"

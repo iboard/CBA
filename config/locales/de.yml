@@ -1,20 +1,51 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+de:
   locales:
     de: 'Deutsch'
     en: 'English'
-  language_switched_to: 'Language set to %{lang}.'
+  language_switched_to: 'Sprache wurde auf %{lang} geändert.'
+  datetime:
+    distance_in_words:
+      x_minutes:
+        zero: "jetzt"
+        one: "einer Minute"
+        other: "%{count} Minuten"   
+      less_than_x_minutes: 
+        zero: "weniger als einer Minute"
+        one: "ungefähr einer Minute"
+        other: "%{count} Minuten"
+      about_x_hours:
+        zero: 'nicht ganz einer Stunde'
+        one: 'ungefähr einer Stunde'
+        other: 'ungefähr %{count} Stunden'
+      x_days:
+        zero: "heute"
+        one: "gestern"
+        other: "%{count} Tagen"
+      x_months:
+        one: "einem Monat"
+        other: "%{count} Monaten"
+      about_x_months:
+        zero: 'dieses Monat'
+        one: 'ungefähr einem Monat'
+        other: 'ungefähr %{count} Monaten'
+      over_x_years:
+        one: "mehr als einem Jahr"
+        other: "mehr als %{count} Jahren"
+      about_x_years:
+        one: "ungefähr einem Jahr"
+        other: "ungefähr %{count} Jahren"
   userlist:
-    title: "Listing Users"
-    roles: "Roles"
-    edit_user: "Edit user %{user}"
-    user_profile: "Profile of %{name}"
+    title: "Benutzerliste"
+    roles: "Rollen"
+    edit_user: "Benutzer %{user} bearbeiten"
+    user_profile: "Profile von %{name}"
     detail: 'Detail'
   menu:
     home: "Home"
-    userlist: "Userlist"
+    userlist: "Benutzerliste"
   role_label_confirmed_user: "Registered user"
   role_label_moderator: "Can manage all entries"
   role_label_author: "Can create entires and mange owned entries"
@@ -69,7 +100,7 @@ en:
   post_a_comment: 'Post a comment'
   anonymous: 'Anonymous'
   will_not_be_shown_public: 'Will not be shown public'
-  user_wrote_a_comment_at: "<strong>%{user}</strong>, %{at} ago"
+  user_wrote_a_comment_at: "<strong>%{user}</strong>, vor %{at}"
   post_comment: 'Post comment'
   comment_could_not_be_saved: '<b>Comment could not be saved!</b><br/>%{errors}'
   body_could_not_be_empty: 'Comment could not be empty!'

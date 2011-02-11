@@ -54,7 +54,7 @@ class Application < Thor
       copy_file( "config/#{target}.sample", "config/#{target}" )
     end
     
-    #`bundle install`
+    `bundle install`
     
     # Patch files
     gsub_file  'config/mongoid.yml', 'APPNAME', appname

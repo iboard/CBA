@@ -44,7 +44,7 @@ Cba::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
-  config.action_mailer.default_url_options = { :host => 'yourhost.com' }
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
   ### ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp

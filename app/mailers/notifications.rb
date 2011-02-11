@@ -4,14 +4,14 @@ class Notifications < ActionMailer::Base
 
   default :from => APPLICATION_CONFIG['registration_from']
 
-  # When a new users signed up inform the adminstrator
+  # When a new user signed up, inform the adminstrator
   def sign_up(new_user)
     @user = new_user
     @notify_subject = "NEW SIGN UP AT #{APPLICATION_CONFIG['name']}"
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
 
-  # Inform the admin if a user will cancel the account.
+  # Inform the admin when a user cancel an account.
   def cancel_account(user_info)
     @user_info = user_info
     @notify_subject = "USER CANCELED ACCOUNT AT #{APPLICATION_CONFIG['name']}"
@@ -25,6 +25,7 @@ class Notifications < ActionMailer::Base
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
   
+  # Inform admin when new postings created
   def new_posting_created(blog_id,posting_id)
     blog      = Blog.find(blog_id)
     posting   = blog.postings.find(posting_id)
@@ -63,6 +64,7 @@ class Notifications < ActionMailer::Base
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
   
+  # Infrom owner of commentable, and admin when a comment was posted
   # arg[0] = recipient,
   # arg[1] = commentable.title,
   # arg[2] = email, 

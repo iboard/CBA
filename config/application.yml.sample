@@ -5,6 +5,7 @@ development:
     title_prefix:      'HTML-Title-Prefix:'
     stylesheet_screen: application
     stylesheet_print:  application
+    layout:            application
     copyright:         Your copyright
     copyright_url:     http://www.your.site
     meta_description:  'CBA Template Application'
@@ -38,6 +39,7 @@ test:
     title_prefix:      'iBoard.cc (test): '    
     stylesheet_screen: application
     stylesheet_print:  application
+    layout:            application
     copyright:         Andreas Altendorfer
     copyright_url:     http://altendorfer.at
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
@@ -72,6 +74,7 @@ production:
     title_prefix:      'iBoard.cc: '
     stylesheet_screen: application
     stylesheet_print:  application
+    layout:            application
     copyright:         Andreas Altendorfer
     copyright_url:     http://altendorfer.at
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'

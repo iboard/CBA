@@ -1,13 +1,10 @@
 class Application < Thor
 
-  no_tasks do
-    def gsub_file(filename,search,replace)
-      f_in=File.read(filename)
-      f_out=File.new(filename,"w")
-      f_out << f_in.gsub(/#{search}/, replace)
-      f_out.close
-    end
-  end
+  include Thor::Actions
+  Thor::Sandbox::Application.source_root(File.dirname(__FILE__)+"/../..")
+  
+  #no_tasks do
+  #end
 
 
   desc "test_all", "Run tests and cucumber"
@@ -40,17 +37,56 @@ class Application < Thor
   
   desc "configure", "Configure application"
   def configure  
+    
+    # Prompt
+    puts " Enter WITHOUT file-extensions! mylayout, not mylayout.css"
+    puts " ---------------------------------------------------------"
+    appname  = ask("Please enter the database name to use   :").strip
+    css      = ask("CSS-file     default 'application'      :").strip
+    layout   = ask("layout-file  default 'application'      :").strip
+    css      = 'application' if css.strip.eql? ""
+    layout   = 'application' if layout.strip.eql? ""
+    appname  = 'cba'         if appname.strip.eql? ""
+    
+    # copy sample-files
     sample_files = %w( application.yml mailserver_setting.rb mongoid.yml omniauth_settings.rb )
     for target in sample_files
-      unless File::exist? "config/#{target}"
-        `cp config/#{target}.sample config/#{target}`
-      else
-        puts "config/#{target} exists. No action"
-      end
+      copy_file( "config/#{target}.sample", "config/#{target}" )
     end
-    `bundle install`
-    appname  = ask("Please enter the database name to use   :").strip
-    gsub_file 'config/mongoid.yml', 'APPNAME', appname
+    
+    #`bundle install`
+    
+    # Patch files
+    gsub_file  'config/mongoid.yml', 'APPNAME', appname
+    gsub_file  'config/application.yml', /layout:([ |\t]*)(\S*)$/, "layout: #{layout}"
+    gsub_file  'config/application.yml', /stylesheet_screen:([ |\t]*)(\S*)$/, "stylesheet_screen: #{css}"
+    gsub_file  'config/application.yml', /stylesheet_print:([ |\t]*)(\S*)$/, "stylesheet_print:  #{css}"
+    
+    # copy files
+    unless css.eql? 'application'
+      puts "  Copy application.css to #{css}.css - edit to fit your needs"
+      copy_file("public/stylesheets/application.css", "public/stylesheets/#{css}.css")
+    end
+    unless layout.eql? 'application'
+      puts "  Copy application.html.erb to #{layout}.html.erb - edit to fit your needs"
+      copy_file("app/views/layouts/application.html.erb", "app/views/layouts/#{layout}.html.erb")
+    end
+    
+    # inject .gitignore
+    unless css.eql? 'application'
+      puts "  Adding #{css}.css to .gitignore"
+      append_file( '.gitignore' ) do 
+        "\npublic/stylesheets/#{css}.css"
+      end 
+    end
+    unless layout.eql? 'application'
+      puts "  Adding #{layout}.html.erb to .gitignore"
+      append_file( '.gitignore' ) do 
+        "\napp/views/layouts/#{layout}.html.erb"
+      end       
+    end
+    
+    
     puts ""
     puts "INSTALLATION COMPLETE!"
     puts ""

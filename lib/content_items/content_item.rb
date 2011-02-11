@@ -25,7 +25,7 @@ module ContentItem
         include Mongoid::Timestamps
         include CoverPicture
         
-        # ContentItems should have a unique title
+        # ContentItems should have an unique title
         field :title
         index :title
         validates_presence_of :title

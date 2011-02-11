@@ -8,7 +8,7 @@ en:
   language_switched_to: 'Language set to %{lang}.'
   userlist:
     title: "Listing Users"
-    roles: "Roles"
+    role: "Role"
     edit_user: "Edit user %{user}"
     user_profile: "Profile of %{name}"
     detail: 'Detail'
@@ -28,10 +28,10 @@ en:
   edit_profile: 'Edit profile'
   you: 'You'
   last_login_at: 'Last signed in at %{time} ago'
-  roles: 'Roles'
-  edit_roles: 'Edit roles'
-  edit_roles_for_user: 'Edit roles of user "%{user}"'
-  roles_of_user_updated: 'Roles for "%{user}" successfully updated'
+  role: 'Role'
+  edit_role: 'Edit role'
+  edit_role_for_user: 'Edit role of user "%{user}"'
+  role_of_user_updated: 'Role for "%{user}" successfully updated'
   edit: 'Edit'
   clear_avatar: 'Delete avatar-file on server'
   upload_avatar: 'Upload avatar'

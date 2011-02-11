@@ -17,6 +17,14 @@ class UsersController < ApplicationController
 
   def show
   end
+  
+  def edit_role
+  end
+  
+  def update_role
+    @user.update_attributes!(params[:user])
+    redirect_to registrations_path, :notice => t(:role_of_user_updated,:user => @user.name)
+  end
 
   def crop_avatar
     if !@user.new_avatar?

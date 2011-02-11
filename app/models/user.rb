@@ -49,9 +49,7 @@ class User
   # already have productive data! Thou it's safe to append new roles
   # at the end of the string. And it's safe to rename roles in place
   ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
-  
-  #scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
-  
+    
   scope :with_role, lambda { |role| { :where => {:roles_mask.gte => ROLES.index(role.to_s)} } }
   
   def cropping?
@@ -83,7 +81,7 @@ class User
   # Ask if the user has at least a specific role.
   #   @user.role?('admin')
   def role?(role)
-    self.roles_mask || 0 >= ROLES.index(role.to_sym)
+    self.roles_mask >= ROLES.index(role)
   end
   
   # virtual attribute needed for the view but is false always.

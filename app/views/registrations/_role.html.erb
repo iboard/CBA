@@ -1,0 +1,9 @@
+<%= current_user.role.to_s.humanize %>
+
+<% if user_signed_in? && current_user.role?(:maintainer) %>
+  <%= partial_title %>
+  <div class='field'>
+    <%= f.label :roles_mask %>
+    <%= f.select :roles_mask, options_for_select( (0..(User::ROLES.count-1)).map {|i| [ User::ROLES[i].to_s.humanize, i] }, user.roles_mask) %>
+  </div>
+<% end %>

@@ -27,10 +27,10 @@ module NavigationHelpers
       title = $1
       page = Page.where(:title => title).first
       "/p/#{page.link_to_title}"
-    when /edit roles page for "([^"]*)"/
+    when /edit role page for "([^"]*)"/
       begin
         user = User.where(:name => $1).first
-        "/users/#{user.id}/edit_roles"
+        "/users/#{user.id}/edit_role"
       rescue Object => e
         raise "Can't find user #{user.name} / #{e.inspect}"
       end

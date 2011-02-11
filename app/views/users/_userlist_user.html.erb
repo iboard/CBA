@@ -5,7 +5,7 @@
 <%=link_to user.name, user %>
 
 <%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %>
-<% if user_signed_in? && current_user.role?([:admin,:maintainer]) %>
+<% if user_signed_in? && current_user.role?(:maintainer) %>
   <%= link_to_function t("userlist.detail"), 
                        "toggle_div('user_information_#{user.id.to_s}')",
                        :class => 'admin' 

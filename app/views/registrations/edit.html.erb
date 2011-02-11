@@ -49,12 +49,12 @@
 
   <div class='clear'></div>
   
-  <% if current_user.role?(:maintainer) %>
-    <div class='field'>
-      <%= f.label :roles_mask %>
-      <%= f.select :roles_mask, options_for_select( (0..(User::ROLES.count-1)).map {|i| [ User::ROLES[i].humanize, i] }, @user.roles_mask) %>
-    </div>
-  <% end %>
+  <%= render :partial => 'role', 
+         :locals => { :user => @user, 
+                      :f => f,
+                      :partial_title => "<h2>#{t('userlist.role')}</h2>".html_safe
+                    } 
+  %>
   
   <h2><%= t(:save_changes) -%></h2>
   <% if @user.authentications.empty? %>

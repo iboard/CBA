@@ -9,7 +9,7 @@ admin:
   name: admin
   password: secret
   email: admin@test.te
-  roles_mask: -1
+  roles_mask: 5
 
 user:
   id: 4d2c58baf911055abd000002

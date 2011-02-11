@@ -50,7 +50,7 @@ class User
   # at the end of the string. And it's safe to rename roles in place
   ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
     
-  scope :with_role, lambda { |role| { :where => {:roles_mask.gte => ROLES.index(role.to_s)} } }
+  scope :with_role, lambda { |role| { :where => {:roles_mask.gte => ROLES.index(role) } } }
   
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
@@ -69,19 +69,19 @@ class User
   end
 
   def role=(role)
-    self.roles_mask = ROLES.index(role.to_sym)
+    self.roles_mask = ROLES.index(role)
     Rails.logger.warn("SET ROLES TO #{self.roles_mask} FOR #{self.inspect}")
   end
   
-  # return user's role as string.
+  # return user's role as symbol.
   def role
-    ROLES[roles_mask]
+    ROLES[roles_mask].to_sym
   end
   
   # Ask if the user has at least a specific role.
   #   @user.role?('admin')
   def role?(role)
-    self.roles_mask >= ROLES.index(role)
+    self.roles_mask >= ROLES.index(role.to_sym)
   end
   
   # virtual attribute needed for the view but is false always.

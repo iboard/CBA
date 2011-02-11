@@ -27,4 +27,14 @@ class ActiveSupport::TestCase
     end
   end
   
+  def create_valid_user_with_roles_mask(role)
+    user = User.new(
+                      :email => "#{role.to_s}@test.te", :name => role.to_s,
+                      :password => 'secret', :password_confirmation => 'secret'
+                   )
+    user.role=role
+    user.save!
+    user
+  end
+  
 end

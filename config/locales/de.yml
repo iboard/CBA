@@ -5,7 +5,7 @@ de:
   locales:
     de: 'Deutsch'
     en: 'English'
-  language_switched_to: 'Sprache wurde auf %{lang} geändert.'
+  language_switched_to: 'Sprache wurde auf %{lang} geändert. NOCH NICHT VOLLSTÄNDIG ÜBERSETZT!!'
   datetime:
     distance_in_words:
       x_minutes:

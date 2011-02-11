@@ -17,6 +17,14 @@ class UsersController < ApplicationController
 
   def show
   end
+  
+  def edit_role
+  end
+  
+  def update_role
+    @user.update_attributes!(params[:user])
+    redirect_to registrations_path, :notice => t(:role_of_user_updated,:user => @user.name)
+  end
 
   def crop_avatar
     if !@user.new_avatar?
@@ -28,14 +36,6 @@ class UsersController < ApplicationController
         redirect_to edit_user_path(@user), :error => @user.errors.map(&:to_s).join("<br />")
       end
     end
-  end
-  
-  def edit_roles
-  end
-  
-  def update_roles
-    @user.update_attributes!(params[:user])
-    redirect_to registrations_path, :notice => t(:roles_of_user_updated,:user => @user.name)
   end
   
   def destroy

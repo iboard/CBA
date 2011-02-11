@@ -24,24 +24,20 @@ class Ability
           user == usr
         end
         
-        # Users with roles 
-        for role in user.roles
-          case role
-          when 'confirmed_user'
+        # Users with role
+        if user.role?(:guest)
             can :read, [Page, Blog, Posting]
-          when 'moderator'
-            can :manage, [Page, Posting]
-          when 'author'
-            can :create, [Page, Blog, Posting]
-            #can :manage, Page do |page|
-            #  page && page.user == user
-            #end
-          when 'maintainer'
-            can :manage, [Page, Blog, Posting]
-          else
-            raise Exception.new("Unknown role '#{role}' in #{__FILE__}:#{__LINE__}")
-          end
         end
+        if user.role?(:author)
+          can :create, [Page, Blog, Posting]
+        end
+        if user.role?(:moderator)
+          can :manage, [Posting]
+        end
+        if user.role?(:maintainer)
+          can :manage, [Page, Blog, Posting]
+        end
+        
       end
       
       # Anybody

@@ -49,12 +49,12 @@
 
   <div class='clear'></div>
   
-  <%= render :partial => 'roles', 
-      :locals => { :user => @user, 
-                   :f => f,
-                   :partial_title => "<h2>#{t('userlist.roles')}</h2>".html_safe} 
+  <%= render :partial => 'role', 
+         :locals => { :user => @user, 
+                      :f => f,
+                      :partial_title => "<h2>#{t('userlist.role')}</h2>".html_safe
+                    } 
   %>
-
   
   <h2><%= t(:save_changes) -%></h2>
   <% if @user.authentications.empty? %>

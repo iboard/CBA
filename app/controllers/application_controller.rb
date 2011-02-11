@@ -10,6 +10,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  layout APPLICATION_CONFIG['layout'] ? APPLICATION_CONFIG['layout'].to_s.strip : 'application'
+  
   # == Display a flash if CanCan doesn't allow access    
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message

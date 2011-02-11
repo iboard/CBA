@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    RedCloth (4.2.2)
+    RedCloth (4.2.5)
     ZenTest (4.4.2)
     abstract (1.0.0)
     actionmailer (3.0.4)
@@ -219,7 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth (= 4.2.2)
+  RedCloth (= 4.2.5)
   ZenTest
   autotest
   bson_ext (>= 1.1.5)

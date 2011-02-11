@@ -1,6 +1,9 @@
 #
 # Load iBoard Modules 
 #
+
+require "redcloth"
+
 require "string_extensions"
 include StringExtensions
 

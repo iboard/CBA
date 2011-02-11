@@ -1,5 +1,9 @@
 # Use this mailer to send notifications eg for newly created pages, sign ups
 # and so on.
+unless defined? RedCloth
+  include "redcloth"
+end
+
 class Notifications < ActionMailer::Base
 
   default :from => APPLICATION_CONFIG['registration_from']

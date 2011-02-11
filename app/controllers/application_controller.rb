@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   layout APPLICATION_CONFIG['layout'] ? APPLICATION_CONFIG['layout'].to_s.strip : 'application'
+  before_filter  :set_language_from_cookie
   
   # == Display a flash if CanCan doesn't allow access    
   rescue_from CanCan::AccessDenied do |exception|
@@ -46,5 +47,10 @@ class ApplicationController < ActionController::Base
     @twitter_link            ||= APPLICATION_CONFIG['twitter_link']
   end
   
+  def set_language_from_cookie
+    if cookies && cookies[:lang]
+      I18n.locale = cookies[:lang].to_sym
+    end
+  end  
   
 end

@@ -14,8 +14,13 @@ class HomeController < ApplicationController
     respond_to do |format|
        format.js { render :index }
        format.html { render :index }
-    end
-    
+    end    
+  end
+  
+  def set_locale
+    I18n.locale=params[:locale].to_sym
+    cookies.permanent[:lang] = params[:locale]
+    redirect_to request.env['HTTP_REFERER'], :notice => t(:language_switched_to, :lang => t("locales.#{params[:locale]}"))
   end
 
 end

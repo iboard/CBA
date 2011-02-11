@@ -802,6 +802,13 @@
     text-align: center;
   }
   
+  .first_language_selector {
+   border-left: 1px solid #5C5C5C;
+   margin-left: 10px;
+  }
+  
+  .language_selector {
+  }
   
 } /* END SCREEN */
 

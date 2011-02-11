@@ -6,7 +6,6 @@
 # marked with 'show_in_menu' and orders them by
 # 'menu_order asc'. This pages will be displayed as a 'main-menu' 
 # (see views/home/menu/)
-require "redcloth"
 
 class ApplicationController < ActionController::Base
   protect_from_forgery

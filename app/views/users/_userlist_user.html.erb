@@ -12,8 +12,8 @@
   %>  
   <ul class='user_detail admin' id='user_information_<%= user.id.to_s -%>', style='display: none;'>
     <li>
-      <strong><%= t(:roles) %></strong>: <%= user.roles.map(&:humanize) -%>
-      <%= link_to t(:edit_roles), edit_roles_user_path(user)  %> |
+      <strong><%= t(:role) %></strong>: <%= user.role.to_s.humanize -%>
+      <%= link_to t(:edit_role), edit_role_user_path(user)  %> |
       <%= link_to t(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete %>
     </li>
     <% for attribute in user.attributes %>
@@ -29,9 +29,7 @@
 <br />
 
 <small id="user_roles_<%= user.name -%>">
-  <% unless user.roles.empty? %>
-    <%= user.roles.map(&:humanize).join(", ")%><br />
-  <% end %>
+  <%= user.role.to_s.humanize %><br />
   <%= t(:last_login_at,:time => distance_of_time_in_words(Time.now(),user.last_sign_in_at||Time.at(0))) %>
   <% if user.authentications.any? %>
      <br/>

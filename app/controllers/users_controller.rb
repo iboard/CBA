@@ -30,14 +30,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def edit_roles
-  end
-  
-  def update_roles
-    @user.update_attributes!(params[:user])
-    redirect_to registrations_path, :notice => t(:roles_of_user_updated,:user => @user.name)
-  end
-  
   def destroy
     @user.delete
     redirect_to registrations_path,

@@ -17,8 +17,9 @@ class User
   
   validates_presence_of :name
   validates_uniqueness_of :name, :email, :case_sensitive => false
-  attr_accessible :name, :email, :password, :password_confirmation, :roles,
-                  :remember_me, :roles, :authentication_token, :confirmation_token,
+
+  attr_accessible :name, :email, :password, :password_confirmation, :roles_mask,
+                  :remember_me, :authentication_token, :confirmation_token,
                   :avatar, :clear_avatar, :crop_x, :crop_y, :crop_w, :crop_h,
                   :time_zone, :language, :use_gravatar
                   
@@ -47,8 +48,11 @@ class User
   # Roles - Do not change the order and do not remove roles if you
   # already have productive data! Thou it's safe to append new roles
   # at the end of the string. And it's safe to rename roles in place
-  ROLES = %w(confirmed_user moderator author maintainer admin)
-  scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
+  ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
+  
+  #scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
+  
+  scope :with_role, lambda { |role| { :where => {:roles_mask.gte => ROLES.index(role.to_s)} } }
   
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
@@ -66,29 +70,20 @@ class User
     User.all.any? ? (self == User.first || role?(:admin)) : true
   end
 
-  # Set the roles for the user
-  # Example: <code>@user.roles=['confirmed_user','author']
-  def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
-    Rails.logger.info("SET ROLES TO #{self.roles.inspect}")
+  def role=(role)
+    self.roles_mask = ROLES.index(role.to_sym)
+    Rails.logger.warn("SET ROLES TO #{self.roles_mask} FOR #{self.inspect}")
   end
   
-  # return all roles set to the user.
-  def roles
-    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
+  # return user's role as string.
+  def role
+    ROLES[roles_mask]
   end
   
-  # Ask if the user has a specific role or any of the given roles.
-  # Examples:
+  # Ask if the user has at least a specific role.
   #   @user.role?('admin')
-  #   @user.role?(['admin','maintainer']) # any of ...
   def role?(role)
-    return roles.include? role.to_s unless role.is_a?(Array)
-    my_roles = self.roles
-    role.each do |r|
-      return true if my_roles.include?(r.to_s)
-    end
-    return false
+    self.roles_mask || 0 >= ROLES.index(role.to_sym)
   end
   
   # virtual attribute needed for the view but is false always.
@@ -182,7 +177,7 @@ class User
   def first_user_hook
     if User.count < 2
       self.confirmed_at = Time.now
-      self.roles=['admin']
+      self.role=:admin
       self.save!
     end
   end  

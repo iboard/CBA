@@ -33,8 +33,8 @@ Cba::Application.routes.draw do
     member do
       get :crop_avatar
       put :crop_avatar
-      get :edit_roles
-      put :update_roles
+      get :edit_role
+      put :update_role
     end
   end
   

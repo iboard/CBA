@@ -52,7 +52,7 @@ Feature: Pages
     And I fill in "Body" with "h1. Page three body"
     And I click on "Create Page"
     Then I should see "Create a new Page" within "#container"
-    And I should see "Title can't be blank"
+    And I should see "can't be blank"
     
   Scenario: It should not be able to save a page without a body
     Given I am on the pages page
@@ -60,7 +60,7 @@ Feature: Pages
     And I fill in "Title" with "Page three body"
     And I click on "Create Page"
     Then I should see "Create a new Page" within "#container"
-    And I should see "Body can't be blank"
+    And I should see "can't be blank"
     
   Scenario: Moderator/Admin should be able to edit a page
     Given I am on the pages page

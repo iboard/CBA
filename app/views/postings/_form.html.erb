@@ -1,25 +1,6 @@
 <%= form_for([blog,posting], :html => { :multipart => true } ) do |f| %>
 
-  
-  <% if posting.errors.any? %>
-    <!-- ERRORS =================================== -->
-    <div id="error_explanation">
-      <h2><%= pluralize(posting.errors.count, "error") %> prohibited this posting from being saved:</h2>
-
-      <ul>
-      <% posting.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      <% posting.attachments.each do |p| %>
-         <ul>
-         <% p.errors.each do |error| %>
-           <li><%=  p.errors[error].join("<br/>".html_safe) -%></li>
-         <% end %>
-         </ul>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= errors_for(posting) %>  
 
   <!-- FIELDS ===================================== -->
   <div class="field">

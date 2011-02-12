@@ -31,7 +31,7 @@ Feature: Blogs
     And I click on link "Create a new Blog"
     And I click on "Create Blog"
     Then I should see "Create a new Blog" within "#container"
-    And I should see "Title can't be blank"
+    And I should see "can't be blank"
 
   Scenario: Admin should be able to delete a blog
     Given I am on the blogs page

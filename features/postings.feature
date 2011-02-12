@@ -64,7 +64,7 @@ Feature: Postings
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
     And I click on "Create Posting"
-    Then I should see "Title is already taken"
+    Then I should see "already taken"
 
   Scenario: "There should be a link to edit, delete, and back to the blog when I read a posting"
     Given I am on the blog path of "Blog 1"

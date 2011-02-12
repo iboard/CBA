@@ -129,3 +129,12 @@ en:
   loading: 'Loading …'
   load_more: 'Show more …'
   end_of_list: ' -- END -- '
+  errors:
+    zero: "No error"
+    one: "One error"
+    other: "%{count} errors"
+  posting: 'Posting'
+  prohibited_this_resource_from_being_saved:
+    %{resource} can not be saved.
+  blog: 'Blog'
+  page: 'Page'

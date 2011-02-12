@@ -1,6 +1,5 @@
 <% title t(:new_blog) %>
 
-
-<%= render 'form' %>
+<%= render :partial => 'form', :locals => {:blog => @blog} %>
 
 <%= link_to t(:blog_index), blogs_path %>

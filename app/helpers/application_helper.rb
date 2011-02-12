@@ -47,5 +47,32 @@ module ApplicationHelper
   def is_on_last_page(collection)
     collection.total_pages && (collection.current_page < collection.total_pages)
   end
-  
+
+  # Display errors for resource
+  def errors_for(resource)
+    rc = ""
+    if resource.errors.any?
+      rc += "<div id='error_explanation'>"+
+              "<h2>"+ 
+                t(:errors, :count => resource.errors.count) + ": " +
+                t(:prohibited_this_resource_from_being_saved, :resource => t(resource.class.to_s.downcase.to_sym)) +
+              "</h2>"+
+              "<ul>" +
+                 resource.errors.full_messages.map { |msg| 
+                   "<li><b>"+ msg.split(" ",2)[0] + "</b>: " + msg.split(" ",2)[1] +"</li>"
+                 }.join
+            if defined? resource.attachments
+              rc += "<ul>" + 
+                    resource.attachments.map { |p|
+                       p.errors.map { |error|
+                         "<li>" + p.errors[error].join(", ".html_safe) + "</li>"
+                       }.join
+                    }.join + 
+                    "</ul>"
+            end
+      rc += "</ul></div>"
+      rc.html_safe
+    end
+    
+  end  
 end

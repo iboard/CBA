@@ -1,9 +1,9 @@
 de:
   errors:
     messages:
-      not_found: "not found"
-      already_confirmed: "was already confirmed"
-      not_locked: "was not locked"
+      not_found: "nicht gefunden"
+      already_confirmed: "wurde bereits bestätigt"
+      not_locked: "ist nicht gesperrt"
 
   devise:
     users:

@@ -1,24 +1,7 @@
 <%= form_for(page, :html => { :multipart => true } ) do |f| %>
 
-  <% if page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
-
-      <ul>
-        <% @page.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        <% @page.attachments.each do |p| %>
-          <ul>
-            <% p.errors.each do |error| %>
-              <li><%=  p.errors[error].join("<br/>".html_safe) -%></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= errors_for page %>
+  
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, :size => 80 %>

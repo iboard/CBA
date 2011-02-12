@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @commentable = predecessors.last
     @comment, errors = Comment::build_and_validate_comment(@commentable,params[:comment])    
     if errors
-      flash[:error] = t(:comment_could_not_be_saved, :errors => errors)
+      flash[:error] = t(:comment_could_not_be_saved, :errors => errors).html_safe
     else
       remember_comment
     end
@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
     @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
     respond_to do |format|
       format.js
-      format.html { redirect_to commentable_path, :notice => t(:comment_successfully_updated) }
+      format.html { redirect_to commentable_path, :notice => t(:comment_successfully_updated).html_safe }
     end
   end
   

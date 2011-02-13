@@ -21,7 +21,7 @@ class AuthenticationsController < ApplicationController
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = t(:authentication_successful)
       redirect_to authentications_url
-    elsif create_new_omniauth_user(omniauth)
+    elsif user = create_new_omniauth_user(omniauth)
       # Create a new User through omniauth
       flash[:notice] = t(:signed_in_successfully)
       sign_in_and_redirect(:user, user)
@@ -52,5 +52,6 @@ class AuthenticationsController < ApplicationController
     user = User.new
     user.apply_omniauth(omniauth)
     user.save
+    user
   end
 end

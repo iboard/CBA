@@ -5,6 +5,10 @@
   <%= image_tag @user.avatar_url(:thumb), :style=>'float: right;' %>
 <% end %>
 
+<div class='field'>
+  <%= label_tag :role, t(:role) %>
+  <%= @user.role.to_s -%><br /><br/>
+</div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), 
   :html => { :method => :put, :multipart => true }) do |f| %>
@@ -48,13 +52,7 @@
   <% end %>
 
   <div class='clear'></div>
-  
-  <%= render :partial => 'role', 
-         :locals => { :user => @user, 
-                      :f => f,
-                      :partial_title => "<h2>#{t('userlist.role')}</h2>".html_safe
-                    } 
-  %>
+
   
   <h2><%= t(:save_changes) -%></h2>
   <% if @user.authentications.empty? %>

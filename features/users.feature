@@ -71,4 +71,16 @@ Feature: User Roles
     Then I should be on registrations page
     And I should see "User successfully deleted"
     And I should not see "testmax"
+    
+  Scenario: Any user should not be able to set own role
+    Given I am on the edit user page
+    Then I should not see "Roles mask"
+    
+  Scenario: Admin should not be able to degree his role
+    Given I am on edit role page for "admin"
+    Then I should be on the registrations page
+    And I should see "You can't change your own role"
+
+    
+
   

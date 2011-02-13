@@ -326,3 +326,4 @@ de:
     %{resource} kann nicht gespeichert werden.
   blog: 'Blog'
   page: 'Seite'
+  you_can_not_change_your_own_role: "Die eigene Rolle kann nicht geändert werden."

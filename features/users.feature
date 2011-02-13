@@ -24,6 +24,13 @@ Feature: User Roles
     And I should not see "admin"
     And I should not see "staff"
 
+  Scenario: Non-admins should not edit roles of users
+    Given I sign out
+    And I am logged in as user "staff@iboard.cc" with password "thisisnotsecret"
+    Given I am on edit role page for "admin"
+    Then I should be on the home page
+    And I should see "You are not authorized to access this page"
+
   Scenario: Display a list of users when I'm logged in as an admin
     Given I am on registrations page
     Then I should see "admin"

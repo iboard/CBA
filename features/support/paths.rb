@@ -15,6 +15,8 @@ module NavigationHelpers
       '/users/sign_in'
     when /sign_out/
       '/users/sign_out'
+    when /the edit user page/
+      '/users/edit'
     when /edit page for "([^"]*)"/
       title = $1
       page = Page.where(:title => title).first

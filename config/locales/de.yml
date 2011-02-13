@@ -127,7 +127,7 @@ de:
         other: 'etwa %{count} Stunden'
       x_days:
         one: 'ein Tag'
-        other: '%{count} Tage'
+        other: '%{count} Tagen'
       about_x_months:
         one: 'etwa ein Monat'
         other: 'etwa %{count} Monate'
@@ -203,120 +203,120 @@ de:
   menu:
     home: "Home"
     userlist: "Benutzerliste"
-  role_label_confirmed_user: "Registered user"
-  role_label_moderator: "Can manage all entries"
-  role_label_author: "Can create entires and mange owned entries"
-  role_label_maintainer: "Can do everything but system-configuration"
-  role_label_admin: "Can do everything"
-  edit_resource_named: "Edit %{resource} '%{name}'"
-  save_changes: "Save changes"
-  crop_avatar: "Crop avatar image"
-  user_successfully_updated: 'User successfully updated'
-  crop_help: 'Define the rectangle to crop in the upper picture and see live preview below.'
-  edit_profile: 'Edit profile'
-  you: 'You'
-  last_login_at: 'Last signed in at %{time} ago'
+  role_label_confirmed_user: "Registrierter Benutzer"
+  role_label_moderator: "Kann alle Einträge uneingeschränkt bearbeiten"
+  role_label_author: "Kann Einträge erstellen und die eingenen Einträge bearbeiten."
+  role_label_maintainer: "Kann alles ausser System und Benutzereinstellungen ändern"
+  role_label_admin: "Kann alles"
+  edit_resource_named: "%{resource} '%{name}' bearbeiten"
+  save_changes: "Änderungen Speichern"
+  crop_avatar: "Avatar zuschneiden"
+  user_successfully_updated: 'Benutzer erfolgreich geändert'
+  crop_help: 'Lege den Ausschnitt im oberen Bild fest. Eine Vorschau zeigt das untere Bild.'
+  edit_profile: 'Profil bearbeiten'
+  you: 'Du'
+  last_login_at: 'Zuletzt eingeloggt vor %{time}'
   role: 'Role'
-  edit_role: 'Edit role'
-  edit_role_for_user: 'Edit role of user "%{user}"'
-  role_of_user_updated: 'Role for "%{user}" successfully updated'
-  edit: 'Edit'
-  clear_avatar: 'Delete avatar-file on server'
-  upload_avatar: 'Upload avatar'
-  or_clear_avatar: 'Or clear'
-  welcome: 'Welcome'
-  list_registrations: 'List all registrations'
-  or_user_omni_auth: 'Or use an authenticaton provider'
-  sign_in: 'Sign in'
-  authentications: 'Authentications'
-  back_to: 'Back to'
-  registration_settings: 'Registration settings'
-  your_associated_accounts: 'Your current authentication providers'
-  you_have_no_authentications_yet: 'You have no associated authentication providers yet'
-  authentications_for_user: 'Authentications for %{user}'
+  edit_role: 'Rolle bearbeiten'
+  edit_role_for_user: 'Rolle des Benutzers "%{user}" bearbeiten'
+  role_of_user_updated: 'Rolle für "%{user}" erfolgreich geändert'
+  edit: 'Bearbeiten'
+  clear_avatar: 'Avatar-file vom Server löschen'
+  upload_avatar: 'Avatar hochladen'
+  or_clear_avatar: 'Oder löschen'
+  welcome: 'Willkommen'
+  list_registrations: 'Alle Registrationen'
+  or_user_omni_auth: 'Oder einen Authentifizierungs-Provider benutzen'
+  sign_in: 'Anmelden'
+  authentications: 'Authentifizierungen'
+  back_to: 'Zurück zu'
+  registration_settings: 'Benutzer-Einstellungen'
+  your_associated_accounts: 'Aktuell benutzte Authentifizierungs-Provider'
+  you_have_no_authentications_yet: 'Derzeit keine Authentifizierungs-Provider benutzt'
+  authentications_for_user: 'Authentifizierungen von %{user}'
   links: 'Links'
-  stay_logged_in: 'Stay logged in even if you close your browser.'
-  login: 'Sign in'
-  logout: 'Sign out'
-  show_in_menu: 'Show within the menu'
-  listing_pages: 'Listing pages'
-  new_page: 'Create a new Page'
-  read: 'Read'
-  are_you_sure: 'Are you sure?'
-  destroy: 'Delete'
-  at_position: 'At position'
-  last_position: 'last'
-  page_not_found: 'Page not found'
-  delete_picture: 'Delete picture'
-  deleted: 'DELETED!'
-  destroyed: 'DELETED!'
+  stay_logged_in: 'Angemeldet bleiben, auch wenn der Browser geschlossen wird.'
+  login: 'Anmelden'
+  logout: 'Abmelden'
+  show_in_menu: 'Im Menü anzeigen;'
+  listing_pages: 'Liste der Seiten'
+  new_page: 'Neue Seite erzeugen'
+  read: 'Lesen'
+  are_you_sure: 'Bist Du sicher?'
+  destroy: 'Löschen'
+  at_position: 'an Position'
+  last_position: 'letzte'
+  page_not_found: 'Seite nicht gefunden'
+  delete_picture: 'Bild löschen'
+  deleted: 'GELÖSCHT!'
+  destroyed: 'GELÖSCHT!'
   number_of_comments:
-    zero: "No comment yet."
-    one: "One comment"
-    other: "%{count} comments"
-  post_a_comment: 'Post a comment'
-  anonymous: 'Anonymous'
-  will_not_be_shown_public: 'Will not be shown public'
+    zero: "Noch kein Kommentar."
+    one: "Ein Kommentar"
+    other: "%{count} Kommentare"
+  post_a_comment: 'Kommentieren'
+  anonymous: 'Anonym'
+  will_not_be_shown_public: 'Wird nicht öffentlich angezeigt'
   user_wrote_a_comment_at: "<strong>%{user}</strong>, vor %{at}"
-  post_comment: 'Post comment'
-  comment_could_not_be_saved: '<b>Comment could not be saved!</b><br/>%{errors}'
-  body_could_not_be_empty: 'Comment could not be empty!'
-  is_not_an_email: 'Is not an email address'
-  cancel: 'Cancel'
-  comment_deleted: 'Comment successfully deleted'
-  comment_successfully_updated: 'Comment successfully updated'
-  edit_comment: 'Edit comment'
-  signed_in_successfully: "Signed in successfully."
-  authentication_successful: "Authentication successful."
-  signed_in_successfully: "Signed in successfully."
-  successfully_destroyed_authentication: "Successfully destroyed authentication."
-  page_successfully_created: 'Page was successfully created.'
-  page_successfully_updated: 'Page was successfully updated.'
-  pages_index: 'All pages'
-  please_enter_your_name: 'Please enter your name'
-  be_polite: 'Please be polite ;-)'
+  post_comment: 'Kommentar speichern'
+  comment_could_not_be_saved: '<b>Kommentar kann nicht gespeichert werden!</b><br/>%{errors}'
+  body_could_not_be_empty: 'Kommentar kann nicht leer sein!'
+  is_not_an_email: 'Ist keine gültige E-Mail-Adresse'
+  cancel: 'Abbrechen'
+  comment_deleted: 'Kommentar erfolgreich gespeichert'
+  comment_successfully_updated: 'Kommentar erfolgreich geändert'
+  edit_comment: 'Kommentar bearbeiten'
+  signed_in_successfully: "Erfolgreich angemeldet."
+  authentication_successful: "Erfolgreich authentifiziert."
+  signed_in_successfully: "Erfolgreich angemeldet"
+  successfully_destroyed_authentication: "Authentifizierung wurde entfernt."
+  page_successfully_created: 'Seite erfolgreich erstellt.'
+  page_successfully_updated: 'Seite erfolgreich geändert.'
+  pages_index: 'Alle Seiten'
+  please_enter_your_name: 'Gib bitte Deinen Namen ein'
+  be_polite: 'Bitte freundlich beleiben ;-)'
   num_of_comments:
-    zero: 'No comments yet'
-    one: 'One comment'
-    other: '%{count} comments'
+    zero: 'Noch keine Kommentare'
+    one: 'Ein Kommentar'
+    other: '%{count} Kommentare'
   new_since_last_visit:
     zero: ''
-    one: 'One new since your last visit'
-    other: '%{count} new since your last visit'
-  back: 'back'
-  sure?: 'Are you sure?'
-  cancel_this_account: 'Cancel this account'
-  cancel_my_account: "Cancel my account"
-  user_deleted: 'User successfully deleted'
+    one: 'Ein neuer, seit letzten Besuch'
+    other: '%{count} neue, seit letzten Besuch'
+  back: 'zurück'
+  sure?: 'Bist Du sicher?'
+  cancel_this_account: 'Diesen Account löschen'
+  cancel_my_account: "Meinen Account löschen"
+  user_deleted: 'Benutzer wurde erfolgreich gelöscht'
   blogs: 'Blogs'
-  new_blog: 'Create a new Blog'
-  blog_index: 'Index of Blogs'
-  editing_blog: 'Editing Blog'
-  blog_successfully_created: 'Blog successfully created'
-  blog_successfully_updated: 'Blog successfully updated'
-  read_blog: 'Read Blog'
-  create_new_posting: 'Create new posting'
-  new_posting: 'New Posting'
-  back_to_blog: 'Back to %{blog}'
+  new_blog: 'Neuen Blog erstellen'
+  blog_index: 'Liste der Blogs'
+  editing_blog: 'Blog bearbeiten'
+  blog_successfully_created: 'Blog wurde erfolgreich erstellt'
+  blog_successfully_updated: 'Blog wurde erfolgreich geändert'
+  read_blog: 'Blog lesen'
+  create_new_posting: 'Neuen Beitrag erstellen'
+  new_posting: 'Neuer Beitrag'
+  back_to_blog: 'Zurück zu %{blog}'
   in_blog: ', in %{blog}'
-  edit_posting: 'Edit Posting: %{posting}'
-  posting_successfully_created: 'Posting successfully created'
-  posting_successfully_updated: 'Posting successfully updated'
-  blog_successfully_destroyed: 'Blog successfully destroyed'
-  posting_successfully_destroyed: 'Posting successfully destroyed'
-  news: 'News'
-  new_attachment: '<b>New attachment</b>'
-  add_more_attachments: 'Add more attachments'
-  attachment: 'Attachment'
-  attachments: 'Attachments'
-  destroy_asset: 'Delete file'
+  edit_posting: 'Beitrag %{posting} bearbeiten'
+  posting_successfully_created: 'Beitrag erfolgreich erstellt'
+  posting_successfully_updated: 'Beitrag erfolgreich geändert'
+  blog_successfully_destroyed: 'Blog wurde gelöscht'
+  posting_successfully_destroyed: 'Beitrag wurde gelöscht'
+  news: 'Neues'
+  new_attachment: '<b>Neuer Anhang</b>'
+  add_more_attachments: 'Mehr Anhänge hinzufügen'
+  attachment: 'Anhang'
+  attachments: 'Anhänge'
+  destroy_asset: 'Datei löschen'
   edit_for_another_count_minutes:
-    zero: "Edit (for the next minute)"
-    one:  "Edit (for the next tow minutes)"
-    other: "Edit (for another %{count} minutes)"
-  loading: 'Loading …'
-  load_more: 'Show more …'
-  end_of_list: ' -- END -- '
+    zero: "Bearbeiten (noch eine Minute möglich)"
+    one:  "Bearbeiten (noch zwei Minuten möglich)"
+    other: "Bearbeiten (noch %{count} Minuten möglich)"
+  loading: 'Laden …'
+  load_more: 'Mehr anzeigen …'
+  end_of_list: ' -- ENDE -- '
   errors:
     zero: "Kein Fehler"
     one: "Ein Fehler"

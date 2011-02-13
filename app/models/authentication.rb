@@ -8,7 +8,6 @@ class Authentication
   field :provider
   field :uid
   
-  field :user_id
   referenced_in :user
  
   # Some providers can not be displayed as a humanized version of their 

@@ -50,6 +50,7 @@ module ContentItem
         end
         
         def render_for_html(txt)
+          self.interpreter ||= :markdown
           case self.interpreter.to_sym
           when :markdown
             RDiscount.new(txt).to_html

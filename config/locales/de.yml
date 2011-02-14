@@ -203,6 +203,7 @@ de:
   menu:
     home: "Home"
     userlist: "Benutzerliste"
+    
   role_label_confirmed_user: "Registrierter Benutzer"
   role_label_moderator: "Kann alle Einträge uneingeschränkt bearbeiten"
   role_label_author: "Kann Einträge erstellen und die eingenen Einträge bearbeiten."
@@ -327,3 +328,5 @@ de:
   blog: 'Blog'
   page: 'Seite'
   you_can_not_change_your_own_role: "Die eigene Rolle kann nicht geändert werden."
+  submit: 'Speichern'
+  none: '-- aus --'

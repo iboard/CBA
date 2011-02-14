@@ -8,6 +8,10 @@
     <%= f.text_field :title, :size => 80 %>
   </div>
   <div class="field">
+    <%= f.label :interpreter %>
+    <%= f.select :interpreter, [['Markdown',:markdown], ['Textile', :textile], [t(:none),:none]] %>
+  </div> 
+  <div class="field">
     <%= f.label :body %>
     <%= f.text_area :body, :rows => 10, :cols => 60 %>
   </div>

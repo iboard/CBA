@@ -13,6 +13,10 @@
       <%= f.text_field :menu_order, :size => 5, :placeholder => t(:last_position) %>
   </div>
   <div class="field">
+     <%= f.label :interpreter %>
+     <%= f.select :interpreter, [['Markdown',:markdown], ['Textile', :textile], [t(:none),:none]] %>
+  </div>
+  <div class="field">
     <%= f.label :body %>
     <%= f.text_area :body, :rows => 20, :cols => 80 %>
   </div>

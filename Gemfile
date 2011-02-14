@@ -18,6 +18,7 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip"
 # Bundle gems for views
 gem "will_paginate"
 gem "RedCloth", "4.2.5"
+gem "rdiscount"
 
 # Bundle gems for development 
 group :development do

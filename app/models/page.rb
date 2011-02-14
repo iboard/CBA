@@ -13,6 +13,9 @@ class Page
   field :body, :type => String, :required => true
   validates_presence_of :body
 
+  field                 :interpreter, :default => :markdown  
+
+
   scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
         
   embeds_many          :comments, :as => :commentable
@@ -27,9 +30,9 @@ class Page
   
   
     
-  # Render the body with RedCloth
+  # Render the body with RedCloth or Discount
   def render_body
-    RedCloth.new(body).to_html
+    render_for_html(self.body)
   end
   
   # Same as short_title but will append a $-sign instead of '...'
@@ -42,7 +45,7 @@ class Page
   private
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro
-    RedCloth.new(body.paragraphs[0]).to_html
+    render_for_html(body.paragraphs[0])
   end
   
 

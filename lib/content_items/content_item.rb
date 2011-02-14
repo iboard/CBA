@@ -49,6 +49,17 @@ module ContentItem
           content_for_intro
         end
         
+        def render_for_html(txt)
+          case self.interpreter.to_sym
+          when :markdown
+            RDiscount.new(txt).to_html
+          when :textile
+            RedCloth.new(txt).to_html
+          else
+            txt
+          end
+        end
+        
         private
         def content_for_intro
           raise "ABSTRACT_METHOD_CALLED - Overwrite content_for_intro"

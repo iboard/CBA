@@ -8,6 +8,7 @@ class Posting
   acts_as_content_item
   has_cover_picture
   
+  # Fields ======================================================
   referenced_in         :user, :inverse_of => :postings
   field                 :user_id  
   validates_presence_of :user_id
@@ -15,8 +16,11 @@ class Posting
   field                 :body, :required => true
   validates_presence_of :body
 
+  field                 :interpreter, :default => :markdown  
+  
+  # Associations  ================================================
   referenced_in         :blog, :inverse_of => :postings
-        
+
   embeds_many           :comments, :as => :commentable
   validates_associated  :comments
   
@@ -32,14 +36,14 @@ class Posting
     
   # Render the body with RedCloth
   def render_body
-    RedCloth.new(body).to_html
+    render_for_html(self.body)
   end
     
   private ################################################## private ####
   
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro
-    RedCloth.new(body.paragraphs[0]).to_html
+    render_for_html(body.paragraphs[0])
   end
 
   # Send a notification to admins when a new posting was created

@@ -10,7 +10,7 @@ class Posting
   
   referenced_in         :user, :inverse_of => :postings
   field                 :user_id  
-  validates_presence_of :user_id
+  #validates_presence_of :user_id
   
   field                 :body, :required => true
   validates_presence_of :body

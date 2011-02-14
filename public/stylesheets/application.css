@@ -88,6 +88,14 @@
     color: white;
   }
   
+  code {
+    background: #CCC;
+    padding: 3px;
+    border: 1px solid #888;
+    line-height: 170%;
+    margin: 0px;
+  }
+  
   .clear {
     clear: both;
     height: 0;

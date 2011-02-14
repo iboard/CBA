@@ -89,11 +89,12 @@
   }
   
   code {
-    background: #CCC;
+    background: #eee;
     padding: 3px;
-    border: 1px solid #888;
+    border: 1px solid #ddd;
     line-height: 170%;
     margin: 0px;
+    min-width: 400px;
   }
   
   .clear {

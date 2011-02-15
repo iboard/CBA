@@ -1,6 +1,5 @@
 @media all {
-
-
+/****
 	@font-face {
 		font-family: Delicious;
 		font-weight: 300;
@@ -27,7 +26,6 @@
 		src: url('/fonts/Delicious-Italic.otf');
 	}
 
-  /* YanoneKaffeesatz.ttf */
 	@font-face {
 		font-family: YanoneKaffeesatz;
 		font-weight: 300;
@@ -47,13 +45,14 @@
 		font-style: italic;
 		src: url('/fonts/YanoneKaffeesatz-Italic.ttf');
 	}
+  ***/
   
 }
 
 @media screen {
 
   body {
-    font-family: Delicious, Verdana, Arial, Helvetica, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
     background: #FdFeFF;
@@ -65,9 +64,6 @@
         color-stop(0.80, #E6E6E6)
     ) repeat-x;
     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
-    font-size: 0.9em;
-    font-weight: 300;
-    font-style: normal;
     color: #4A4A4A;
     min-width: 1024px;
   }
@@ -211,14 +207,12 @@
     padding-bottom: 12px;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    font-size: 12px;
   }
   
   .error_messages h2 {
     text-align: left;
     font-weight: bold;
     padding: 5px 10px;
-    font-size: 12px;
     margin: 0;
     background-color: #c00;
     color: #fff;
@@ -257,11 +251,13 @@
   }
   
   .hmenu {
+    font-size: 0.9em;
     color: #444;
     margin: 0px;
   }
   
    #session .hmenu a {
+    font-size: 0.9em; 
     text-decoration: none;
     color: #444;
     padding: 5px;
@@ -283,6 +279,7 @@
         color-stop(1.00, #333333)    ) repeat-x;
     background: #FdFeFF -moz-linear-gradient(100% 8% 0% 270deg, #EDEDEF, #DEDEDE, #333333);
     color: black;
+    font-size: 0.9em;
     -moz-border-radius: 3px; 
     -webkit-border-radius: 3px;
     -moz-box-shadow: 0px 5px 5px 3px #888;
@@ -337,7 +334,6 @@
   
   .user_edit address {
     margin-left: 210px;
-    font-size: 0.7em;
   }
   
   label {
@@ -418,7 +414,6 @@
   .user_detail li {
     margin: 5px;
     padding: 5px;
-    font-size: 1em;
   }
   
   .admin {
@@ -451,7 +446,6 @@
     right: 3px;
     color: #333;
     padding: 2px 4px;
-    font-size: 10px;
   }
   
   #container .authentication .remove:hover {
@@ -488,7 +482,6 @@
   
   #container .authentication .uid {
     color: #666;
-    font-size: 11px;
   }
   
   #container .auth_provider img {
@@ -509,9 +502,9 @@
   {
     clear: both;
     margin-top: 5px;
-    font-size: 0.7em;
     text-align: center;
     color: #444;
+    font-size: 0.5em;
   }
   
   #copyright a {
@@ -520,20 +513,10 @@
   }
   
   #action_buttons {
-    /*height: 150px;*/
-    /*background: #FdFeFF -webkit-gradient(
-         linear,
-         left top,
-         left bottom,
-         color-stop(1.0,  #FdFeFF),
-         color-stop(0.80, #E6E6E6)
-     ) repeat-x;
-     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6); 
-     float: right;*/
+    font-size: 0.7em;
      position: fixed;
      top: 0px; right: 10px;
      z-index: 2;
-     /*overflow: hidden;*/
   }
   
   #action_buttons a {
@@ -583,6 +566,7 @@
   	-moz-border-radius: 5px; 
     -webkit-border-radius: 5px;
     padding: 10px;
+    font-size: 0.8em;
   }
   
   #comments {
@@ -593,17 +577,23 @@
     margin: 0px;
     margin-bottom: 5px;
   }
+  
   #comments address {
     margin: 0px;
     margin-bottom: 5px;
     margin-top: 5px;
+    font-size: 0.8em;
   }
   
+  #container address.new_comment,
   #comments address.new_comment {
     color: #1C5A98;
+    font-size: 0.8em;
   }
 
+  #container address.old_comment,
   #comments address.old_comment {
+    font-size: 0.8em;
     color: #B3B3B3;
   }
   
@@ -625,25 +615,24 @@
   }
   
   h1 {
-    font-family: YanoneKaffeesatz, Times new roman, sans;
-    font-weight: 100;
+    font-family: Times new roman, sans;
   }
   
   #banner h1 {
-    font-family: YanoneKaffeesatz, Times new roman, sans;
+    font-size: 4.4em;
+    font-family: Times new roman, sans;
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
-    font-size: 6em;
     color: #292929;
     text-shadow: 4px 4px 4px #888;
     overflow: hidden;
   }
   
   #banner address {
-    font-family: Delicious;
-    font-weight: 100;
     font-size: 0.8em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: 100;
     margin: 0;
     padding: 0;
     margin-left: 45px;
@@ -672,9 +661,21 @@
     clear: both;
   }
   
-  #container .right_column {
-    font-size: 0.75em;
+  .page_intro .cover_picture {
+    float: right;
+    overflow: auto;
+    margin: 5px;
+    margin-right: 0px;
   }
+  
+  
+  #container .right_column {
+  }
+  
+  #container .right_column .page_intro h1 {
+    font-size: 2em;
+  }
+  
   
   .new_comments {
     color: #1C5A98;
@@ -683,21 +684,20 @@
   
   
   #container #posting {
-    margin-top: -20px;
   }
 
   #container  h1 {
-    font-size: 3.5em;
     text-shadow: 2px 1px 2px #888;
+    font-size: 3em;
+    margin: 0px;
   }
     
   #container #postings h2 {
     margin: 0px;
-    margin-top: 20px;
-    font-family: YanoneKaffeesatz;
-    font-weight: 100;
-    font-size: 2em;
+    font-family: Times new roman, Times, serif;
     text-shadow: 2px 1px 2px #888;
+    margin-top: 15px;
+    font-size: 2.5em;
     
   }
   
@@ -706,11 +706,18 @@
     text-decoration: none;
     border: none;
   }
+  
   #container #postings h2 a:hover {
     color: red;
     background: none;
     text-decoration: none;
     border: none;
+  }
+  
+  .cover_picture {
+    height: auto;
+    overflow: wrap;
+    float: right;
   }
   
   #container .blog_intro img,
@@ -726,14 +733,23 @@
     border: none;
   }
   
-  #container #postings address.new_posting {
-    color: #1C5A98;
+  #container #postings address {
+    font-size: 0.7em;
     margin: 0px;
+    margin-bottom: 20px;
+  }
+  
+  .posting_comment_links {
+    font-size: 0.7em;
+    line-height: 150%;
+  }
+  
+  #container #postings address.new_posting {
+    color: #1C5A98;    
   }
   
   #container #postings address.old_posting {
     color: #B3B3B3;
-    margin: 0px;
   }
   
   #container #postings p {
@@ -742,11 +758,16 @@
   }
   
   #posting_body {
-    font-size: 1.2em;
+    line-height: 150%;
   }
   
   
-  
+  .green_button {
+    -moz-box-shadow: 3px 3px 3px #888;
+    -webkit-box-shadow: 3px 3px 3px #888;
+    box-shadow: 3px 3px 3px #888;
+
+  }
   a.green_button {
     display: inline;
     text-decoration: none;
@@ -756,6 +777,7 @@
     background: #1B5412;
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;    
+    font-size: 0.75em;
   }
   
   .blog_intro h1 {
@@ -770,6 +792,7 @@
     width: 250px;
     float: right; 
     padding-left: 30px;
+    font-size: 0.6em;
   }
   
   .comments_counter {
@@ -804,16 +827,35 @@
     text-decoration: none;
   }
 
+  .page_body {
+    line-height: 150%;
+  }
+  
+  .edit_page {
+    border: 1px solid #C8C8C8;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 0.8em;
+  }
+  
+  .edit_page #attachments {
+    font-size: 0.75em;
+    font-weight: 100;
+  }
+  
   .page_seperator {
     clear: both;
     border-top: 1px solid #ddd;
-    font-size: 0.8em;
     text-align: center;
   }
   
   .first_language_selector {
    border-left: 1px solid #5C5C5C;
    margin-left: 10px;
+   font-size: 0.9em;
   }
   
   .language_selector {
@@ -824,7 +866,7 @@
 @media print {
 
   body {
-    font-family: Delicious, Verdana, Arial, Helvetica, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     margin-left: 2.25cm;
     margin-top: 2cm;
     margin-bottom: 1.5cm;
@@ -842,7 +884,6 @@
     display: none;
   }
   .page_seperator {
-    /*page-break-before: auto;*/
     display: none;
   }
 

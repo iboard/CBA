@@ -583,18 +583,24 @@
     margin-bottom: 5px;
     margin-top: 5px;
     font-size: 0.8em;
+    font-style: normal;
+    line-height: 100%;
   }
   
   #container address.new_comment,
   #comments address.new_comment {
     color: #1C5A98;
     font-size: 0.8em;
+    font-style: normal;
+    line-height: 100%;
   }
 
   #container address.old_comment,
   #comments address.old_comment {
     font-size: 0.8em;
     color: #B3B3B3;
+    line-height: 100%;    
+    font-style: normal;
   }
   
   #banner {

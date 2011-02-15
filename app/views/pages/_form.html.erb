@@ -15,6 +15,7 @@
   <div class="field">
      <%= f.label :interpreter %>
      <%= f.select :interpreter, [['Markdown',:markdown], ['Textile', :textile], [t(:none),:none]] %>
+     <%= render :partial => '/home/interpreter_help' %>
   </div>
   <div class="field">
     <%= f.label :body %>

@@ -14,7 +14,7 @@
   <% unless @blog.nil? %>
     <p style='clear: left;'></p>
     
-    <div id='postings' style='width: 58%; float:left'>
+    <div id='postings' class='left_column'>
       <%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => 'green_button') if can? :create, Posting %>
     
       <p><%= will_paginate @postings %></p>

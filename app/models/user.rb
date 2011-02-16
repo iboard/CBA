@@ -15,8 +15,10 @@ class User
   references_many :postings, :dependent => :delete
   
   
-  validates_presence_of :name
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_presence_of   :name
+  validates_presence_of   :email
+  validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :email, :case_sensitive => false
 
   attr_accessible :name, :email, :password, :password_confirmation, :roles_mask,
                   :remember_me, :authentication_token, :confirmation_token,
@@ -132,7 +134,7 @@ class User
   end
   
   def gravatar_id
-    Digest::MD5.hexdigest(self.email.downcase)
+    Digest::MD5.hexdigest(self.email.downcase) if self.email
   end
   
   def apply_trusted_services(omniauth)

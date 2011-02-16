@@ -65,7 +65,7 @@
     ) repeat-x;
     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
     color: #4A4A4A;
-    min-width: 1024px;
+    font-size: 0.7em;
   }
 
   a img {
@@ -169,7 +169,7 @@
   
   
   #container {
-    width: 75%;
+    width: 90%;
     margin: auto;
     margin-top: 155px;
     background: #FFF;
@@ -513,12 +513,16 @@
   }
   
   #action_buttons {
-    font-size: 0.7em;
+    font-size: 0.8em;
      position: fixed;
      top: 0px; right: 10px;
      z-index: 2;
   }
   
+  #action_buttons a:hover {
+    background: #008300;
+    color: #FFF270;
+  }
   #action_buttons a {
     display: block;
     text-decoration: none;
@@ -526,7 +530,7 @@
     margin: 5px;
     margin-top: 0px;
     padding: 5px;  
-    background: #1B5412;
+    background: #006800;
     float: right;
     -moz-border-radius: 0px 0px 5px 5px; 
     -webkit-border-radius: 0px 0px 5px 5px; 
@@ -609,19 +613,18 @@
     left: 0px;
     right: 0px;
     height: 150px;
-    background: #FdFeFF -webkit-gradient(
+    background: #333 -webkit-gradient(
          linear,
          left top,
          left bottom,
-         color-stop(1.0,  #FdFeFF),
-         color-stop(0.80, #E6E6E6)
+         color-stop(1.0,  #333),
+         color-stop(0, #999)
      ) repeat-x;
-     background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
+     background: #8C8D8E -moz-linear-gradient(100% 8% 270deg, #8C8D8E, #F9F9F9);
      overflow: hidden;
   }
   
   h1 {
-    font-family: Times new roman, sans;
   }
   
   #banner h1 {
@@ -630,14 +633,14 @@
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
-    color: #292929;
-    text-shadow: 4px 4px 4px #888;
+    color: #999;
+    text-shadow: 4px 4px 4px #444;
     overflow: hidden;
   }
   
   #banner address {
     font-size: 0.8em;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #888;
     font-weight: 100;
     margin: 0;
     padding: 0;
@@ -676,6 +679,13 @@
   
   
   #container .right_column {
+    width: 28%;
+    float: right;
+  }
+  
+  #container .left_column {
+    width: 68%;
+    float: left;
   }
   
   #container .right_column .page_intro h1 {
@@ -696,25 +706,39 @@
     text-shadow: 2px 1px 2px #888;
     font-size: 3em;
     margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
     
   #container #postings h2 {
     margin: 0px;
-    font-family: Times new roman, Times, serif;
     text-shadow: 2px 1px 2px #888;
     margin-top: 15px;
-    font-size: 2.5em;
+    font-size: 1.5em;
+    
+  }
+  
+  #container blockquote {
+    margin: 5px;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    border: 2px #ddd solid;
+    overflow: auto;
+    background: #eee;
+    padding: 10px;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;    
     
   }
   
   #container #postings h2 a {
-    color: #95150B;
+    color: #383838;
     text-decoration: none;
     border: none;
   }
   
   #container #postings h2 a:hover {
-    color: red;
+    color: #CCC;
     background: none;
     text-decoration: none;
     border: none;
@@ -787,7 +811,7 @@
   }
   
   .blog_intro h1 {
-    margin-bottom: 0px;
+    margin-bottom: 5px;
   }
   
   .blog_intro address {
@@ -795,7 +819,7 @@
   }
   
   .right_column {
-    width: 250px;
+    width: 37%;
     float: right; 
     padding-left: 30px;
     font-size: 0.6em;

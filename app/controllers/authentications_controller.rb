@@ -52,7 +52,10 @@ class AuthenticationsController < ApplicationController
   def create_new_omniauth_user(omniauth)
     user = User.new
     user.apply_omniauth(omniauth)
-    user.save
-    user
+    if user.save
+      user
+    else
+      nil
+    end
   end
 end

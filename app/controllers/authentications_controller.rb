@@ -16,20 +16,18 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
     if authentication  
       flash[:notice] = t(:signed_in_successfully)
-      sign_in_and_redirect(:user, authentication.user)  
-    elsif current_user  
-      current_user.authentications.create(:provider => omniauth ['provider'], :uid => omniauth['uid'])  
-      flash[:notice] = t(:authentication_successful)  
-      redirect_to authentications_url  
-    else  
-      if user=create_new_omniauth_user(omniauth)
-        user.authentications.build(:provider => omniauth ['provider'], :uid => omniauth['uid'])
-        if user.save
-          flash[:notice] = t(:signed_in_successfully)
-          sign_in_and_redirect(:user, user)
-          return
-        end
-      end
+      sign_in_and_redirect(:user, authentication.user)
+    elsif current_user
+      # Add authentication to signed in user
+      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      flash[:notice] = t(:authentication_successful)
+      redirect_to authentications_url
+    elsif user = create_new_omniauth_user(omniauth)
+      # Create a new User through omniauth
+      flash[:notice] = t(:signed_in_successfully)
+      sign_in_and_redirect(:user, user)
+    else
+      # New user data not valid, try again
       session[:omniauth] = omniauth.except('extra')
       redirect_to new_user_registration_url
     end
@@ -54,7 +52,10 @@ class AuthenticationsController < ApplicationController
   def create_new_omniauth_user(omniauth)
     user = User.new
     user.apply_omniauth(omniauth)
-    user.save
-    user
+    if user.save
+      user
+    else
+      nil
+    end
   end
 end

@@ -9,8 +9,8 @@ class AuthenticationsController < ApplicationController
     @authentications = current_user.authentications if current_user
   end
   
-  # Create an authentication when this callback is called from
-  # the authentication provider
+  # Create an authentication when this is called from
+  # the authentication provider callback
   def create
     omniauth = request.env["omniauth.auth"]  
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first

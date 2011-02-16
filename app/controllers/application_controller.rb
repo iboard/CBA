@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   helper_method :twitter_name
   helper_method :twitter_link
 
+  def is_current_user? usr
+    return current_user && (current_user == usr)
+  end
+
   private
 
   def top_pages

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
   
   def edit_role
-    if @user == current_user
+    if is_current_user?(@user)
       redirect_to registrations_path, :alert => t(:you_can_not_change_your_own_role)
     end
   end

@@ -40,3 +40,11 @@ en:
         subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'
+  
+  sign_in: 'Sign in'
+  sign_out: 'Sign out'
+  sign_up: 'Sign up'
+  send_me_reset_password_instructions: 'Forgot your password?'
+  didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+  forget_password: 'Forgot your password?'
+  

@@ -12,10 +12,11 @@
      <%= f.check_box :remember_me %> <%= t(:stay_logged_in)%></div>
   <% end -%>
 
-  <div class='field'><%= f.submit "Sign in" %></div>
+  <div class='field'><%= f.submit t(:sign_in) %></div>
 <% end %>
 
 <h2><%= t(:or_user_omni_auth) -%></h2>
+<address><%= t(:use_wwedu_as_provider)%><br/><br/></address>
 
 <%= render '/authentications/authentications' %>
 

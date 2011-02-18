@@ -15,6 +15,7 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]  
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
     if authentication  
+      # Just sign in an existing user with omniauth
       flash[:notice] = t(:signed_in_successfully)
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user

@@ -55,15 +55,15 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
-    background: #FdFeFF;
-    background: #FdFeFF -webkit-gradient(
+    background: #E6E6E6;
+    background: #E6E6E6 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(1.0,  #FdFeFF),
-        color-stop(0.80, #E6E6E6)
+        color-stop(1.0,  #E6E6E6),
+        color-stop(0.0, #FFF)
     ) repeat-x;
-    background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
+    background: #ffffff -moz-linear-gradient(100% 0% 90deg, #E6E6E6, #ffffff);
     color: #4A4A4A;
     font-size: 0.9em;
   }
@@ -166,6 +166,12 @@
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
   }
+  
+  #overlay #overlay_content a {
+    background: none;
+    border: 0px;
+  }
+  
   
   
   #container {
@@ -282,7 +288,7 @@
     font-size: 0.9em;
     -moz-border-radius: 3px; 
     -webkit-border-radius: 3px;
-    -moz-box-shadow: 0px 5px 5px 3px #888;
+    -moz-box-shadow: 5px 0px 10px #888;
     -webkit-box-shadow:  5px 0px 10px #000;
     box-shadow: 5px 5px 3px #888;
   }
@@ -381,15 +387,14 @@
   #userlist {
   }
   
-  
   #container img {
-    -moz-border-radius: 10px; 
-    -webkit-border-radius: 10px; 
-    border: none;
-    padding: 0px;
+    -moz-border-radius: 5px 5px 5px 5px; 
+    -webkit-border-radius: 5px 5px 5px 5px; 
     -moz-box-shadow: 5px 5px 3px #888;
     -webkit-box-shadow: 5px 5px 3px #888;
     box-shadow: 5px 5px 3px #888;
+    border: none;
+    padding: 0px;
   }
   
   #userlist img {
@@ -613,15 +618,16 @@
     left: 0px;
     right: 0px;
     height: 150px;
-    background: #333 -webkit-gradient(
-         linear,
-         left top,
-         left bottom,
-         color-stop(1.0,  #333),
-         color-stop(0, #999)
-     ) repeat-x;
-     background: #8C8D8E -moz-linear-gradient(100% 8% 270deg, #8C8D8E, #F9F9F9);
-     overflow: hidden;
+    background: #CCC;
+    background: #CCC -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(1.0,  #CCC),
+        color-stop(0.0, #FFF)
+    ) repeat-x;
+    background: #cccccc -moz-linear-gradient(0% 100% 90deg, #CCCCCC, #FFFFFF);
+    overflow: hidden;
   }
   
   h1 {
@@ -633,8 +639,8 @@
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
-    color: #999;
-    text-shadow: 4px 4px 4px #444;
+    color: #B3B3B3;
+    text-shadow: 3px 3px 3px #444;
     overflow: hidden;
   }
   
@@ -929,10 +935,10 @@
   }
 
   #container img {
-    -moz-border-radius: 10px; 
-    -webkit-border-radius: 10px; 
     border: none;
     padding: 0px;
+    -moz-border-radius: 5px 5px 5px 5px; 
+    -webkit-border-radius: 5px 5px 5px 5px; 
     -moz-box-shadow: 5px 5px 3px #888;
     -webkit-box-shadow: 5px 5px 3px #888;
     box-shadow: 5px 5px 3px #888;

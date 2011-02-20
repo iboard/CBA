@@ -4,7 +4,7 @@ $(".pagination").html('<%= escape_javascript(will_paginate(@postings)) %>');
 $('.load_more').before( '<div id="page<%= @postings.current_page -%>" style="clear: both; display: none;">'+
                           '<p class="page_seperator"><%= @postings.current_page -%>'+
                           '/<%= @postings.total_pages -%></p>'+
-                          '<%= escape_javascript(render(:partial => @postings)) -%>'+
+                          '<%= escape_javascript(render(:partial => @postings, :locals => {:blog => @blog})) -%>'+
                           '</div>');
   
 <% if is_on_last_page(@postings) %>

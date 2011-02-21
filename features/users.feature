@@ -9,10 +9,10 @@ Feature: User Roles
   Background:
     Given the following user records
       | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
+      | admin@iboard.cc  | admin     | 5          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | user@iboard.cc   | testmax   | 1          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 4          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | admin@iboard.cc  | admin     | 5          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: Non-admins and non-staff users should not see the list of users
@@ -88,6 +88,8 @@ Feature: User Roles
     Then I should be on the registrations page
     And I should see "You can't change your own role"
 
-    
+  Scenario: Total number of registered users should be displayed on "/registrations"
+    Given I am on registrations page
+    Then I should see "Total registered users: 4."
 
   

@@ -698,6 +698,20 @@
     font-size: 2em;
   }
   
+  .right_box {
+    margin: 20px;
+    margin-right: 0px;
+    border: 1px solid #ddd;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    width: 300px;
+    float: right;
+    padding: 10px;
+    background: #eee;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
   
   .new_comments {
     color: #1C5A98;

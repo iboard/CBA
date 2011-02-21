@@ -330,3 +330,7 @@ de:
   you_can_not_change_your_own_role: "Die eigene Rolle kann nicht geändert werden."
   submit: 'Speichern'
   none: '-- aus --'
+  registered_users_count:
+    zero: 'Derzeit keine registrierten Benutzer'
+    one: 'Ein registrierter Benutzer (Administrator).'
+    other: 'Insgesammt sind %{count} Benutzer registriert.'

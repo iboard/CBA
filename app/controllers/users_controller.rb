@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def index
+    @user_count = User.count
     @users = User.all.reject {|u|
       !can? :read, u
     }.paginate( :page => params[:page], 

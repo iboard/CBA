@@ -1,6 +1,10 @@
 <% title t('userlist.title') %>
 <% javascript 'endless_page' %>
 
+<%= content_tag :div, :class => 'right_box' do %>
+    <%= t(:registered_users_count, :count => @user_count) %>
+<% end %>
+
 <div style='text-align: center;'>
     <%= will_paginate @users %>
 </div>

@@ -234,6 +234,7 @@
   
   #session {
     position: fixed;
+    z-index: 3;
     top: 125px;
     left: 0px;
     right: 0px;
@@ -253,16 +254,19 @@
   }
   
   #session a {
+    z-index: 3;
     border: none;
   }
   
   .hmenu {
+    z-index: 3;
     font-size: 0.9em;
     color: #444;
     margin: 0px;
   }
   
    #session .hmenu a {
+     z-index: 3;
     font-size: 0.9em; 
     text-decoration: none;
     color: #444;
@@ -521,7 +525,7 @@
     font-size: 0.8em;
      position: fixed;
      top: 0px; right: 10px;
-     z-index: 2;
+     z-index: 3;
   }
   
   #action_buttons a:hover {
@@ -614,6 +618,7 @@
   
   #banner {
     position: fixed;
+    z-index: 2;
     top: 0px;
     left: 0px;
     right: 0px;
@@ -698,8 +703,25 @@
     font-size: 2em;
   }
   
+  .top_right_box {
+    position: relative;
+    right: -10px;
+    top: -40px;
+    border: 1px solid #ddd;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    width: 300px;
+    float: right;
+    padding: 10px;
+    background: #eee;
+    text-align: center;
+    vertical-align: middle;    
+    z-index: 0;
+  }
+  
   .right_box {
     margin: 20px;
+    margin-top: 0px;
     margin-right: 0px;
     border: 1px solid #ddd;
     -moz-border-radius: 5px; 
@@ -909,6 +931,10 @@
   }
   
   .language_selector {
+  }
+  
+  #container h1 {
+    font-size: 1.5em;
   }
   
 } /* END SCREEN */

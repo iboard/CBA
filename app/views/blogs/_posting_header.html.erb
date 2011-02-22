@@ -1,7 +1,7 @@
 <!-- TODO: Duplication - Posting Header and Links -->
 <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
 <h2><%= link_to(posting.title, blog_posting_path(blog,posting)) %></h2>
-<p style='clear: right; margin-bottom: 5px;'><span class='item_link_buttons'>
+<p style='margin-bottom: 5px;'><span class='item_link_buttons'>
   <%= link_to( t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting') \
         if can? :read, posting %>
   <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) \

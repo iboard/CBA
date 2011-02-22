@@ -838,8 +838,26 @@
     -moz-box-shadow: 3px 3px 3px #888;
     -webkit-box-shadow: 3px 3px 3px #888;
     box-shadow: 3px 3px 3px #888;
-
   }
+  
+  .item_link_buttons a {
+    display: inline;
+    text-decoration: none;
+    color: #444;
+    margin: 0px;
+    padding: 3px;    
+    background: #FC6;
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px;    
+    border-bottom: none;
+    font-size: 0.75em;   
+  }
+   a.green_button:hover,
+  .item_link_buttons a:hover {
+    background: #800000;
+    color: white;
+  }
+
   a.green_button {
     display: inline;
     text-decoration: none;
@@ -936,7 +954,7 @@
   #container h1 {
     font-size: 1.5em;
   }
-  
+
 } /* END SCREEN */
 
 @media print {

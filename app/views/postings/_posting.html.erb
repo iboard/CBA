@@ -1,6 +1,13 @@
+<!-- TODO: Duplication - Posting Header and Links -->
 <div style='clear: right;'>
 <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
 <h2><%= link_to(posting.title, blog_posting_path(blog,posting)) %></h2>
+<p class='comment_links' style='margin-bottom: 5px;'><span class='item_link_buttons'>
+<%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
+<%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
+<%= link_to( t(:destroy), blog_posting_path(blog,posting),
+  :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
+</span></p>
 <address class='<%= posting.created_at > current_user_field(\
                         :last_sign_in_at,Time::now()-1.hour) ? "new_posting"\
                         : "old_posting" -%>'>
@@ -16,11 +23,5 @@
       <% end %>
     </span> }
   <br/>
-  <span class='comment_links'>
-  <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
-  <%= " | ".html_safe + link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
-  <%= " | ".html_safe + link_to( t(:destroy), blog_posting_path(blog,posting),
-    :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
-  </span>
 </p>
 </div>

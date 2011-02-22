@@ -9,11 +9,12 @@
 %>
 
 <!-- BUTTONS -->
-<% if can? :manage, page %>
-  <%= link_to t(:edit), edit_page_path(page) %> |
-<% end %>
-<%= link_to t(:pages_index), pages_path %>
-
+<span class='item_link_buttons'>
+  <% if can? :manage, page %>
+    <%= link_to t(:edit), edit_page_path(page) %> 
+  <% end %>
+  <%= link_to t(:pages_index), pages_path %>
+</span>
 <!-- BODY -->
 <div id='page_<%= page.id -%>' class='page_body'>
   <%= sanitize(page.render_body).html_safe %>

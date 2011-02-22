@@ -5,7 +5,7 @@ en:
   locales:
     de: 'Deutsch'
     en: 'English'
-  language_switched_to: 'Language set to %{lang}.'
+  language_switched_to: 'Web-interface-language changed to %{lang}.<br/><b>Please note</b>: Content will not be translated.'
   userlist:
     title: "Listing Users"
     role: "Role"
@@ -144,3 +144,4 @@ en:
     zero: 'No registered user yet.'
     one: 'One registered user (admin).'
     other: 'Total registered users: %{count}.'
+  cover_picture: 'Cover Picture'

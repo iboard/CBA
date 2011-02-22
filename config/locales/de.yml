@@ -6,7 +6,7 @@ de:
     de: 'Deutsch'
     en: 'English'
 
-  language_switched_to: 'Sprache wurde auf %{lang} geändert. IN DIESER VERSION SIND NOCH NICHT ALLES STRING ÜBERSETZT!!'
+  language_switched_to: 'Sprache der Benutzeroberfläche wurde auf %{lang} geändert.<br/><b>Beachte</b>: Die Inhalte werden nicht übersetzt!'
   
   mongoid:      
     errors:
@@ -334,3 +334,4 @@ de:
     zero: 'Derzeit keine registrierten Benutzer'
     one: 'Ein registrierter Benutzer (Administrator).'
     other: 'Insgesammt sind %{count} Benutzer registriert.'
+  cover_picture: 'Titelbild'

@@ -55,16 +55,16 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
-    background: #E6E6E6;
-    background: #E6E6E6 -webkit-gradient(
+    background: #566;
+    background: #566 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(1.0,  #E6E6E6),
-        color-stop(0.0, #FFF)
+        color-stop(1.0,  #566),
+        color-stop(0.0, #eff)
     ) repeat-x;
     background: #ffffff -moz-linear-gradient(100% 0% 90deg, #E6E6E6, #ffffff);
-    color: #4A4A4A;
+    color: #333;
     font-size: 0.9em;
   }
 
@@ -175,16 +175,19 @@
   
   
   #container {
-    width: 90%;
+    width: 80%;
     margin: auto;
-    margin-top: 155px;
+    margin-top: 135px;
     background: #FFF;
     padding: 20px 40px;
     border: none;
     border-left: 1px solid #ccc;
-    box-shadow: 4px 5px 5px 0px #bbb;
-    -webkit-box-shadow: 4px 5px 5px 0px #bbb;
-    -moz-box-shadow: 4px 5px 5px 0px #bbb;
+    border-top: 1px solid #ccc;
+    box-shadow: 3px 3px 3px 3px #222;
+    -webkit-box-shadow: 3px 3px 3px #222;
+    -moz-box-shadow: 3px 3px 3px #222;
+    -moz-border-radius: 5px 5px 5px 5px; 
+    -webkit-border-radius: 5px 5px 5px 5px; 
   }
   
   #flash_notice, #flash_error, #flash_alert {
@@ -235,21 +238,20 @@
   #session {
     position: fixed;
     z-index: 3;
-    top: 125px;
+    top: 90px;
     left: 0px;
     right: 0px;
     padding: 5px;
-    background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
-    background: #FdFeFF -webkit-gradient(
+    background: #9BAAAA -moz-linear-gradient(100% 8% 270deg, #717D7C, #9BAAAA);
+    background: #9BAAAA -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.0,  #FdFeFF),
-        color-stop(0.80, #E6E6E6),
-        color-stop(1.00, #333333)
+        color-stop(0.0,  #9BAAAA),
+        color-stop(1.0, #717D7C)
     ) repeat-x;
     color: #444;
-    margin-top: 1px;
+    margin-top: 0px;
     padding-top: 10px;
   }
   
@@ -274,27 +276,26 @@
     padding: 5px;
     border-bottom :none;
     -moz-border-radius: 3px 3px 0px 0px; 
-    -webkit-border-radius: 3px 3px 0px 0px; 
-    
+    -webkit-border-radius: 3px 3px 0px 0px;     
   }
   
   .hmenu_current {
-    background: #FdFeFF;
-    background: #FdFeFF -webkit-gradient(
+    background: #B9C9C9;
+    background: #B9C9C9 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.0,  #EDEDEF),
-        color-stop(0.80, #DEDEDE),
-        color-stop(1.00, #333333)    ) repeat-x;
-    background: #FdFeFF -moz-linear-gradient(100% 8% 0% 270deg, #EDEDEF, #DEDEDE, #333333);
+        color-stop(0.0,  #B9C9C9),
+        color-stop(1.00, #D0E2E2)    ) repeat-x;
+    background: #B9C9C9 -moz-linear-gradient(100% 0% 270deg, #828F8F, #B9C9C9);
     color: black;
     font-size: 0.9em;
     -moz-border-radius: 3px; 
     -webkit-border-radius: 3px;
-    -moz-box-shadow: 5px 0px 10px #888;
-    -webkit-box-shadow:  5px 0px 10px #000;
-    box-shadow: 5px 5px 3px #888;
+    -moz-box-shadow: 5px 0px 2px #888;
+    -webkit-box-shadow:  2px -2px 3px #000;
+    box-shadow: 0px 0px 0px #888;
+    border-bottom: 0px;
   }
   
   #session .hmenu .hmenu_current {
@@ -303,16 +304,15 @@
   }
   
   .hmenu a:hover {
-    background: #A2ADC5;
+    background: #CBE1E1;
     color: black;
-    background: #FdFeFF;
-    background: #FdFeFF -webkit-gradient(
+    background: #CBE1E1;
+    background: #CBE1E1 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.0, #D8DEE3),
-        color-stop(0.8, #E6E6E6),
-        color-stop(1.00, #333333)    ) repeat-x;
+        color-stop(0.0, #CBE1E1),
+        color-stop(1.00, #D0E2E2)    ) repeat-x;
     ) repeat-x;
     background: #FdFeFF -moz-linear-gradient(100% 8% 0% 270deg, #D8DEE3, #E6E6E6, #333333);
     
@@ -622,14 +622,14 @@
     top: 0px;
     left: 0px;
     right: 0px;
-    height: 150px;
-    background: #CCC;
-    background: #CCC -webkit-gradient(
+    height: 90px;
+    background: #abb;
+    background: #abb -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(1.0,  #CCC),
-        color-stop(0.0, #FFF)
+        color-stop(1.0,  #abb),
+        color-stop(0.0, #eFF)
     ) repeat-x;
     background: #cccccc -moz-linear-gradient(0% 100% 90deg, #CCCCCC, #FFFFFF);
     overflow: hidden;
@@ -644,8 +644,8 @@
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
-    color: #B3B3B3;
-    text-shadow: 3px 3px 3px #444;
+    color: #3F4545;
+    text-shadow: 2px 2px 2px  #455;
     overflow: hidden;
   }
   

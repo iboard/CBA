@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
-    <title><%= APPLICATION_CONFIG['title_prefix'] -%><%= yield(:title) -%></title>
+    <title>
+      <%=  
+         strip_tags((APPLICATION_CONFIG['title_prefix'].html_safe+
+         " "+
+         yield(:title)))
+     -%>
+    </title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <%= stylesheet_link_tag( APPLICATION_CONFIG['stylesheet_screen'], :media => :screen )%>
     <%= stylesheet_link_tag( APPLICATION_CONFIG['stylesheet_print'], :media => :print )%>
@@ -34,7 +40,7 @@
           <%= render '/home/menu/language_selection' %>
         </ul>
     </div>
-    <div id="container">   
+    <div id="container">           
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

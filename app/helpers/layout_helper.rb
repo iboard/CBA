@@ -11,7 +11,7 @@ module LayoutHelper
   #   If true the title will also displayed as a h1-title within the
   #   html-page not only in the browser-window-title
   def title(page_title, show_title = true)
-    content_for(:title) { h(page_title.to_s) }
+    content_for(:title) { h(page_title.html_safe) }
     @show_title = show_title
   end
 

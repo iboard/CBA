@@ -656,20 +656,22 @@
   }
   
   #banner h1 {
-    font-family: Courier;
+    font-family: Arial;
     font-weight: 100;
     margin: 0px;
     padding: 0px;
+    padding-top: 30px;
     margin-left: 20px;
-    color: #3F4545;
+    color: #D4D7D9;
     text-shadow: 2px 2px 2px  #455;
     overflow: hidden;
+    font-size: 2em;
   }
   
   #banner address {
     font-family: Verdana, Helvetica, Arial, sans-serif;    
     font-size: 0.7em;
-    color: #4B515E;
+    color: #D4D7D9;
     font-weight: 100;
     margin: 0;
     padding: 0;
@@ -793,10 +795,12 @@
     border: 2px #ddd solid;
     overflow: auto;
     background: #eee;
-    padding: 10px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.9em;
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;    
-    
   }
   
   #container #postings h2 a {
@@ -868,18 +872,25 @@
     font-weight: 100;
   }
   
-  .item_link_buttons,
+  .item_link_buttons {
+   margin: 0px;
+   padding: 0px;
+  }
+  
+  #container .item_link_buttons {
+    padding: 0px;
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px;    
+  }
   .item_link_buttons a {
     display: inline;
     text-decoration: none;
     color: #444;
-    margin: 0px;
-    padding: 2px;    
-    background: #FC6;
+    background: #EAECEE;
     -moz-border-radius: 2px; 
     -webkit-border-radius: 2px;    
-    border-bottom: none;
-    font-size: 0.8em;   
+    border: 1px solid #DDDFE2;
+    font-size: 0.8em;
   }
    a.green_button:hover,
   .item_link_buttons a:hover {

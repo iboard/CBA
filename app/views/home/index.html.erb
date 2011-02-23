@@ -3,7 +3,7 @@
 
 <div>
   <% if (p=Page.top_pages).any? %>
-    <div class='right_column' style='border-left: 1px dotted #ddd;'>
+    <div class='right_column'>
       <% for page in p %>
         <%= render :partial => '/pages/page_intro', :locals => { :page => page } %>  
         <p class='content_seperator'></p>

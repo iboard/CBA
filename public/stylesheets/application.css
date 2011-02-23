@@ -52,21 +52,24 @@
 @media screen {
 
   body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: Times new roman, Times, serif;
     margin: 0px;
     padding: 0px;
-    background: #566;
-    background: #566 -webkit-gradient(
+    background: #677083;
+    background: #677083 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(1.0,  #566),
-        color-stop(0.0, #eff)
+        color-stop(0.95,  #677083),
+        color-stop(0.0, #EAECEE)
     ) repeat-x;
-    background: #ffffff -moz-linear-gradient(100% 0% 90deg, #E6E6E6, #ffffff);
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
     color: #333;
-    font-size: 0.9em;
+    font-size: 1.0em;
   }
+  
+  form { font-family: Verdana, Arial, Helvetica, sans-serif;}
+  h1,h2,h3 { font-family: Verdana, Helvetica, Arial, sans-serif; }
 
   a img {
     border: none;
@@ -191,6 +194,7 @@
   }
   
   #flash_notice, #flash_error, #flash_alert {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     padding: 5px 8px;
     margin: 10px 0;
   }
@@ -236,21 +240,22 @@
   }
   
   #session {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
     position: fixed;
     z-index: 3;
     top: 90px;
     left: 0px;
     right: 0px;
     padding: 5px;
-    background: #9BAAAA -moz-linear-gradient(100% 8% 270deg, #717D7C, #9BAAAA);
-    background: #9BAAAA -webkit-gradient(
+    background: #677083;
+    background: #677083 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.0,  #9BAAAA),
-        color-stop(1.0, #717D7C)
+        color-stop(0.95,  #677083),
+        color-stop(0.0, #EAECEE)
     ) repeat-x;
-    color: #444;
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);color: #444;
     margin-top: 0px;
     padding-top: 10px;
   }
@@ -280,14 +285,15 @@
   }
   
   .hmenu_current {
-    background: #B9C9C9;
-    background: #B9C9C9 -webkit-gradient(
+    background: #677083;
+    background: #677083 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.0,  #B9C9C9),
-        color-stop(1.00, #D0E2E2)    ) repeat-x;
-    background: #B9C9C9 -moz-linear-gradient(100% 0% 270deg, #828F8F, #B9C9C9);
+        color-stop(0.95,  #677083),
+        color-stop(0.0, #EAECEE)
+    ) repeat-x;
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
     color: black;
     font-size: 0.9em;
     -moz-border-radius: 3px; 
@@ -306,16 +312,15 @@
   .hmenu a:hover {
     background: #CBE1E1;
     color: black;
-    background: #CBE1E1;
-    background: #CBE1E1 -webkit-gradient(
+    background: #677083;
+    background: #677083 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.0, #CBE1E1),
-        color-stop(1.00, #D0E2E2)    ) repeat-x;
+        color-stop(0.95,  #677083),
+        color-stop(0.0, #EAECEE)
     ) repeat-x;
-    background: #FdFeFF -moz-linear-gradient(100% 8% 0% 270deg, #D8DEE3, #E6E6E6, #333333);
-    
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
   }
   
   ul.hmenu {
@@ -365,6 +370,7 @@
   
   .actions {
     margin-top: 5px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
   }
   
   .field {
@@ -472,7 +478,9 @@
   }
   
   #container .auth_provider img,
-  #container .auth_provider {
+  #container .auth_provider,
+  #container a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     padding: 0px;
     -moz-box-shadow:     none;
     -webkit-box-shadow:  none;
@@ -522,7 +530,9 @@
   }
   
   #action_buttons {
-    font-size: 0.8em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 0.7em;
      position: fixed;
      top: 0px; right: 10px;
      z-index: 3;
@@ -532,6 +542,7 @@
     background: #008300;
     color: #FFF270;
   }
+  
   #action_buttons a {
     display: block;
     text-decoration: none;
@@ -547,8 +558,13 @@
   }
 
   .pagination {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
   	text-align: center;
-  	margin: 10px;
+  	margin: 2px;
+  	padding: 3px;
+  	background: #eee;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
   }
   
   .pagination em {
@@ -562,12 +578,12 @@
   
   .pagination a {
     text-decoration: none;
+    border: none;
    }
   
   .pagination .current {
   	background: #818DA9;
   	color: white;
-  	padding: 3px;
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px; 
   }
@@ -623,39 +639,41 @@
     left: 0px;
     right: 0px;
     height: 90px;
-    background: #abb;
-    background: #abb -webkit-gradient(
+    background: #677083;
+    background: #677083 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(1.0,  #abb),
-        color-stop(0.0, #eFF)
+        color-stop(0.95,  #677083),
+        color-stop(0.0, #EAECEE)
     ) repeat-x;
-    background: #cccccc -moz-linear-gradient(0% 100% 90deg, #CCCCCC, #FFFFFF);
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
     overflow: hidden;
   }
   
   h1 {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
   }
   
   #banner h1 {
-    font-size: 4.4em;
-    font-family: Times new roman, sans;
+    font-family: Courier;
+    font-weight: 100;
     margin: 0px;
     padding: 0px;
-    margin-left: 40px;
+    margin-left: 20px;
     color: #3F4545;
     text-shadow: 2px 2px 2px  #455;
     overflow: hidden;
   }
   
   #banner address {
-    font-size: 0.8em;
-    color: #888;
+    font-family: Verdana, Helvetica, Arial, sans-serif;    
+    font-size: 0.7em;
+    color: #4B515E;
     font-weight: 100;
     margin: 0;
     padding: 0;
-    margin-left: 45px;
+    margin-left: 25px;
     overflow: hidden;
   }
 
@@ -690,12 +708,20 @@
   
   
   #container .right_column {
-    width: 28%;
+    width: 30%;
     float: right;
+    border: 1px solid #ddd;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;
+    padding: 10px;
+    background: #ddd;
+    -webkit-box-shadow: 4px 4px 4px #444;
+    -moz-box-shadow: 4px 4px 4px #444;
+    
   }
   
   #container .left_column {
-    width: 68%;
+    width: 65%;
     float: left;
   }
   
@@ -838,19 +864,22 @@
     -moz-box-shadow: 3px 3px 3px #888;
     -webkit-box-shadow: 3px 3px 3px #888;
     box-shadow: 3px 3px 3px #888;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: 100;
   }
   
+  .item_link_buttons,
   .item_link_buttons a {
     display: inline;
     text-decoration: none;
     color: #444;
     margin: 0px;
-    padding: 3px;    
+    padding: 2px;    
     background: #FC6;
     -moz-border-radius: 2px; 
     -webkit-border-radius: 2px;    
     border-bottom: none;
-    font-size: 0.75em;   
+    font-size: 0.8em;   
   }
    a.green_button:hover,
   .item_link_buttons a:hover {
@@ -976,6 +1005,7 @@
   #action_buttons,
   .pagination {
     display: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
   }
   .page_seperator {
     display: none;

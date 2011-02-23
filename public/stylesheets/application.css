@@ -789,6 +789,7 @@
   }
   
   #container blockquote {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
     margin: 5px;
     margin-left: 0px;
     margin-bottom: 20px;

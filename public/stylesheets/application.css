@@ -818,6 +818,7 @@
   }
   
   .cover_picture {
+    clear: right;
     height: auto;
     overflow: wrap;
     float: right;

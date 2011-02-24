@@ -1,4 +1,5 @@
 h1. CBA - Community Base Application
+("read this file on the project's website":http://cba.iboard.cc/p/readme)
 
 is "Rails3-Mongoid-Devise by fortuity":http://github.com/fortuity/rails3-mongoid-devise extended by Andi Altendorfer with
 

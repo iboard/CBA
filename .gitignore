@@ -16,3 +16,4 @@ config/google_analytics.head
 config/google_site_search.html
 public/system/**/*
 public/cover_pictures
+public/sitemap.xml

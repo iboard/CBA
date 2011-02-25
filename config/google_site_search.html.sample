@@ -3,7 +3,7 @@
 <script type="text/javascript">
   google.load('search', '1', {language : 'en'});
   google.setOnLoadCallback(function() {
-    var customSearchControl = new google.search.CustomSearchControl('YOUR_CODE_HERE:ylr8w4f1ul0');
+    var customSearchControl = new google.search.CustomSearchControl('YOUR_CODE_HERE:YOUR_PASS_HERE');
     customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
     var options = new google.search.DrawOptions();
     options.setAutoComplete(true);

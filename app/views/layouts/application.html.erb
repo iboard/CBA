@@ -43,9 +43,7 @@
     </div>
     
     <div id="container">
-      <%= insert_google_site_search %>
-      <div id="cse" style="width:100%;"></div>
-      
+      <div id="cse" style="display: block; width:100%; height: auto;"></div>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

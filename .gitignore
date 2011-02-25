@@ -13,5 +13,6 @@ config/application.yml
 config/mailserver_setting.rb
 config/omniauth_settings.rb
 config/google_analytics.head
+config/google_site_search.html
 public/system/**/*
 public/cover_pictures

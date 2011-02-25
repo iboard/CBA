@@ -30,6 +30,7 @@
     <div id="banner">
       <%= render :partial => '/layouts/banner' %>
     </div>
+    
     <div id="session">
         <ul class="hmenu">
           <%= render 'home/menu/application' %>
@@ -40,7 +41,10 @@
           <%= render '/home/menu/language_selection' %>
         </ul>
     </div>
-    <div id="container">           
+    
+    <div id="container">
+      <%= insert_google_site_search %>
+       
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>

@@ -71,24 +71,29 @@ namespace :cba do
   
   desc "Build Sitemap for google"
   task :generate_sitemap => :environment do
+    
     entries = []
-    xml_prefix = '
-      <?xml version="1.0" encoding="UTF-8"?>
-      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xml_prefix = '<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
             xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/1.1"
             xmlns:video="http://www.sitemaps.org/schemas/sitemap-video/1.1">
+'
+    xml_suffix = "\n</urlset>"
     
-    '
-    xml_suffix = "</urlset>"
+    for page in Page.asc(:title).all
+      entries << "    <url> 
+      <loc>http://#{DEFAULT_URL}/pages/#{page.id.to_s}</loc> 
+    </url>"
+    end
+    
     for blog in Blog.all
       for posting in blog.postings.desc(:updated_at).all
-          entries << "
-          <url> 
-            <loc>http://#{DEFAULT_URL}/blogs/#{blog.id.to_s}/postings/#{posting.id.to_s}</loc> 
-          </url>
-          "
+          entries << "    <url> 
+      <loc>http://#{DEFAULT_URL}/blogs/#{blog.id.to_s}/postings/#{posting.id.to_s}</loc> 
+    </url>"
       end
     end
+    
     sitemap = File.new(File::join(Rails.root,"public", "sitemap.xml"), "w")
     sitemap << (xml_prefix + entries.join("\n") + xml_suffix)
     sitemap.close

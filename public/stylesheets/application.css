@@ -180,9 +180,10 @@
   #container {
     width: 80%;
     margin: auto;
-    margin-top: 135px;
+    margin-top: 150px;
     background: #FFF;
-    padding: 20px 40px;
+    padding: 20px 20px;
+    padding-top: 0px;
     border: none;
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
@@ -192,6 +193,25 @@
     -moz-border-radius: 5px 5px 5px 5px; 
     -webkit-border-radius: 5px 5px 5px 5px; 
   }
+  
+  .google-search {
+    position: fixed;
+    top: 120px;
+    left: 0px;
+    right: 0px;
+    height: 45px;
+    margin: 0px;
+    background: #EAECEE;
+    padding: 0px;
+    padding-right: 5px;
+    -webkit-box-shadow: 4px 4px 4px #444;
+    -moz-box-shadow: 4px 4px 4px #444;
+  }
+  
+  .google-search-form {
+        
+  }
+  
   
   #flash_notice, #flash_error, #flash_alert {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -650,6 +670,7 @@
     background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
     overflow: hidden;
   }
+  
   
   h1 {
     font-family: Verdana, Helvetica, Arial, sans-serif;

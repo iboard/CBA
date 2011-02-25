@@ -41,13 +41,15 @@
           <%= render '/home/menu/language_selection' %>
         </ul>
     </div>
-    
     <div id="container">
-      <div id="cse" style="display: hidden; background: #fee; width:62%;"></div>
+        <div class='google-search'>
+            <%= insert_google_site_search %>
+        </div>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <div style="margin: 0px;">
+         <div id="cse" style="display: hidden; background: #fee;"></div>
         <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
         <%= yield %>
       </div>

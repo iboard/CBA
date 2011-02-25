@@ -12,6 +12,15 @@ module ApplicationHelper
     end
   end
   
+  # insert google site search if file exists
+  def insert_google_site_search
+    if File::exist?(
+         filename=File::join(Rails.root,"config/google_site_search.html")
+       )
+       File.new(filename).read.html_safe
+    end
+  end
+
   # Return the field if current_user or the default if not
   def current_user_field(fieldname,default='')
     if user_signed_in?

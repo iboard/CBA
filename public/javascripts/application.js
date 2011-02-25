@@ -3,17 +3,24 @@
 /* *******************************************************
  * jQUERY 
  ******************************************************* */
+
+/* add_fields to attachment-form */
 function add_fields(link, association, content,new_id) {  
     var new_id = new Date().getTime();  
     var regexp = new RegExp("new_" + association, "g");  
     $(link).parent().before(content.replace(regexp, new_id));  
 }
 
+/* remove fields from attachment-form */
 function remove_fields(link) {  
     $(link).prev("input[type=hidden]").val("1");  
     $(link).closest(".fields").hide();  
 }  
   
+
+/*
+   HUD, Overlay
+*/
 function initialize_hud(label,txt) {
     $('#HUDCONTAINER').html( 
        "<div id='HUD'>"+
@@ -75,6 +82,8 @@ function image_popup(img_url) {
   $('#overlay').fadeTo(500,1.0);  
 }
 
+
+/* Gallery */
 function swap_picture(hide,show) {
   $("#photo_"+hide).fadeTo(500,0.0);
   $("#photo_"+show).fadeTo(500,1.0);  
@@ -185,6 +194,8 @@ function gallery_popup(duration,args) {
   
 }
 
+
+/* Video Popups */
 function video_popup(img_url,mobile_url) {
   var new_id = new Date().getTime(); 
   var regexp = new RegExp("popup", "g");  
@@ -246,11 +257,28 @@ function insert_load_button(where,txt,path) {
   $.ajax({ url: path, context: where});
 }
 
+
+/* Handle DIV-Tags, Effects */
 function toggle_div(what) {
   var content = $("#"+what);
   content.toggle();
 }
 
+function show_div(what) {
+  var content = $("#"+what);
+  content.fadeTo(500,1.0);
+}
+
+function hide_div(what) {
+  var content = $("#"+what);
+  content.fadeTo(500,0.0);
+}
+
+/*              */
+/* MVC-Specific */
+/*              */
+
+/* Comments on Postings and Pages */
 function restore_comment(where,content) {
   where.html(content);
 }

@@ -73,22 +73,27 @@ namespace :cba do
   task :generate_sitemap => :environment do
     
     entries = []
-    xml_prefix = '<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-    "\n\n    <lastmod>#{Time.now.strftime("%Y-%m-%dT%H:%M%Z")}</lastmod>\n"+
-    "    <url><loc>http://#{DEFAULT_URL}/</loc></url>\n"
+    xml_prefix = '<?xml version="1.0" encoding="UTF-8"?>'+
+    "\n"+
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+    "\n\n    <url>
+      <loc>http://#{DEFAULT_URL}/</loc>
+      <lastmod>#{Time.now.strftime("%Y-%m-%dT%H:%M%z")}</lastmod>
+    </url>\n"
     xml_suffix = "\n</urlset>"
     
     for page in Page.asc(:title).all
       entries << "    <url> 
       <loc>http://#{DEFAULT_URL}/pages/#{page.id.to_s}</loc> 
+      <lastmod>#{page.updated_at.strftime("%Y-%m-%dT%H:%M%z")}</lastmod>
     </url>"
     end
     
     for blog in Blog.all
       for posting in blog.postings.desc(:updated_at).all
           entries << "    <url> 
-      <loc>http://#{DEFAULT_URL}/blogs/#{blog.id.to_s}/postings/#{posting.id.to_s}</loc> 
+      <loc>http://#{DEFAULT_URL}/blogs/#{blog.id.to_s}/postings/#{posting.id.to_s}</loc>
+      <lastmod>#{posting.updated_at.strftime("%Y-%m-%dT%H:%M%z")}</lastmod>
     </url>"
       end
     end

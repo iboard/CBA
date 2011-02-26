@@ -42,12 +42,14 @@
         </ul>
     </div>
     <div id="container">
-        <div class='google-search'>
-            <%= insert_google_site_search %>
-        </div>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
+      <div class='google-search'>
+          <%= insert_google_site_search %>
+      </div>
+      <div>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+      </div>    
       <div style="margin: 0px;">
          <div id="cse" style="display: hidden; background: #fee;"></div>
         <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>

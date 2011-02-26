@@ -78,14 +78,14 @@ namespace :cba do
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
     "\n\n    <url>
       <loc>http://#{DEFAULT_URL}/</loc>
-      <lastmod>#{Time.now.strftime("%Y-%m-%dT%H:%M%z")}</lastmod>
+      <lastmod>#{Time.now.strftime("%Y-%m-%d")}</lastmod>
     </url>\n"
     xml_suffix = "\n</urlset>"
     
     for page in Page.asc(:title).all
       entries << "    <url> 
       <loc>http://#{DEFAULT_URL}/pages/#{page.id.to_s}</loc> 
-      <lastmod>#{page.updated_at.strftime("%Y-%m-%dT%H:%M%z")}</lastmod>
+      <lastmod>#{page.updated_at.strftime("%Y-%m-%d")}</lastmod>
     </url>"
     end
     
@@ -93,7 +93,7 @@ namespace :cba do
       for posting in blog.postings.desc(:updated_at).all
           entries << "    <url> 
       <loc>http://#{DEFAULT_URL}/blogs/#{blog.id.to_s}/postings/#{posting.id.to_s}</loc>
-      <lastmod>#{posting.updated_at.strftime("%Y-%m-%dT%H:%M%z")}</lastmod>
+      <lastmod>#{posting.updated_at.strftime("%Y-%m-%d")}</lastmod>
     </url>"
       end
     end

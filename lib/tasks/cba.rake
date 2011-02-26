@@ -75,7 +75,8 @@ namespace :cba do
     entries = []
     xml_prefix = '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
-    "\n\n    <url><loc>http://#{DEFAULT_URL}/</loc></url>\n"
+    "\n\n    <lastmod>#{Time.now.strftime("%Y-%M-%dT%H:%M%Z")}</lastmod>\n"
+    "    <url><loc>http://#{DEFAULT_URL}/</loc></url>\n"
     xml_suffix = "\n</urlset>"
     
     for page in Page.asc(:title).all

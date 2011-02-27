@@ -52,7 +52,7 @@
 @media screen {
 
   body {
-    font-family: Times new roman, Times, serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
     background: #677083;
@@ -67,9 +67,8 @@
     color: #333;
     font-size: 1.0em;
   }
-  
-  form { font-family: Verdana, Arial, Helvetica, sans-serif;}
-  h1,h2,h3 { font-family: Verdana, Helvetica, Arial, sans-serif; }
+    
+  h1,h2,h3 { }
 
   a img {
     border: none;
@@ -215,7 +214,7 @@
   
   
   #flash_notice, #flash_error, #flash_alert {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
     padding: 5px 8px;
     margin: 10px 0;
   }
@@ -261,7 +260,6 @@
   }
   
   #session {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
     position: fixed;
     z-index: 3;
     top: 90px;
@@ -391,7 +389,7 @@
   
   .actions {
     margin-top: 5px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
   }
   
   .field {
@@ -501,14 +499,13 @@
   #container .auth_provider img,
   #container .auth_provider,
   #container a {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
     padding: 0px;
     -moz-box-shadow:     none;
     -webkit-box-shadow:  none;
     box-shadow: none; 
   }
-  
-  
+    
   #container .authentication .provider, #container .authentication .uid {
     margin-left: 38px;
     margin-right: 20px;
@@ -551,7 +548,7 @@
   }
   
   #action_buttons {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
     font-weight: 100;
     font-size: 0.7em;
      position: fixed;
@@ -579,7 +576,7 @@
   }
 
   .pagination {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
   	text-align: center;
   	margin: 2px;
   	padding: 3px;
@@ -878,13 +875,17 @@
     color: #B3B3B3;
   }
   
+  #container #postings p a,
   #container #postings p {
+    font-family: Times new roman, Times, serif;
     margin: 0px;
     margin-bottom: 5px;
   }
   
-  #posting_body {
+  #posting_body,
+  #posting_body a {
     line-height: 150%;
+    font-family: Times new roman, Times, serif;
   }
   
   
@@ -892,7 +893,7 @@
     -moz-box-shadow: 3px 3px 3px #888;
     -webkit-box-shadow: 3px 3px 3px #888;
     box-shadow: 3px 3px 3px #888;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
     font-weight: 100;
   }
   
@@ -1018,13 +1019,21 @@
   #container h1 {
     font-size: 1.5em;
   }
+  
+  .item_link_buttons a,
+  #container form,
+  #container #posting_body form,
+  form { 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+  }
+  
 
 } /* END SCREEN */
 
 @media print {
 
   body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
     margin-left: 2.25cm;
     margin-top: 2cm;
     margin-bottom: 1.5cm;
@@ -1040,7 +1049,7 @@
   #action_buttons,
   .pagination {
     display: none;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    
   }
   .page_seperator {
     display: none;

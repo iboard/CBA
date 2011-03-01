@@ -71,11 +71,12 @@ class Notifications < ActionMailer::Base
   # arg[2] = email, 
   # arg[3] = name, 
   # arg[4] = comment
-  def new_comment_created(recipient,title,from_mail,from_name,comment)
+  def new_comment_created(recipient,title,from_mail,from_name,comment, link_to_commentable)
     @notify_subject = "Your entry '#{title}', was commented by #{from_name}"
     @comment   = comment
     @from_name = from_name
     @from_mail = from_mail
+    @link_to_commentable = link_to_commentable
     mail( :from => from_mail, 
           :to => [APPLICATION_CONFIG['admin_notification_address'],recipient].uniq, 
           :subjcect => @notify_subject

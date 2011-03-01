@@ -56,13 +56,24 @@ class Comment
       user = self.commentable.user
     end
     recipient = user ? user.email : APPLICATION_CONFIG['admin_notification_address']
+    
+    # Get link to commentable
+    path = "http://#{DEFAULT_URL}/"
+    case self.commentable.class
+    when Posting
+      path += "blogs/#{self.commentable.blog_id.to_s}/postings/#{self.commentable.id}"
+    else
+      path += "#{self.commentable.class.to_s.pluralize.downcase}/#{self.commentable.id}"
+    end
+    
     DelayedJob.enqueue('NewCommentNotifier',
       Time.now+10.second,
       recipient,
       self.commentable.title,
       self.email, 
       self.name, 
-      self.comment
+      self.comment,
+      path
     )
   end
   

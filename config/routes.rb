@@ -16,6 +16,7 @@ Cba::Application.routes.draw do
     end
   end
   
+  
   # PAGES
   match '/p/:permalink' => 'pages#permalinked', :as => 'permalinked'
   resources :pages do

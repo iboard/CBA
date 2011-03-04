@@ -3,16 +3,22 @@
 class CommentsController < ApplicationController
   
   respond_to :html, :xml, :js
-  before_filter :find_root_object_and_comment, :only=>[:update,:destroy]  
+  before_filter :find_root_object_and_comment, :only=>[:update,:destroy,:show]  
+  
   def create
-    @commentable = predecessors.last
-    @comment, errors = Comment::build_and_validate_comment(@commentable,params[:comment])    
-    if errors
-      flash[:error] = t(:comment_could_not_be_saved, :errors => errors).html_safe
+    if can? :create, Comment
+      @commentable = predecessors.last
+      @comment, errors = Comment::build_and_validate_comment(@commentable,params[:comment])    
+      if errors
+        flash[:error] = t(:comment_could_not_be_saved, :errors => errors).html_safe
+      else
+        remember_comment
+      end
+      notice = nil
     else
-      remember_comment
+      notice = t(:access_denied)
     end
-    redirect_to commentable_path
+    redirect_to commentable_path, :alert => notice
   end
   
   def edit
@@ -25,7 +31,6 @@ class CommentsController < ApplicationController
       format.html
     end
   end
-  
   
   def update
     unless params[:commit] == t(:cancel)
@@ -41,11 +46,15 @@ class CommentsController < ApplicationController
   end
   
   def destroy
+    @redirect_path = commentable_path
     @comment.destroy
     @root_object.save
     respond_to do |format|
-      format.js
-      format.html { redirect_to commentable_path, :notice => t(:comment_deleted) }
+      format.js { 
+        render :destroy
+        return
+      }
+      format.html { redirect_to commentable_path, :notice => t(:comment_deleted) }    
     end
   end
   

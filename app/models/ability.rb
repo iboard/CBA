@@ -27,6 +27,7 @@ class Ability
         # Users with role
         if user.role?(:guest)
             can :read, [Page, Blog, Posting]
+            can :create, Comment
         end
         if user.role?(:author)
           can :create, [Page, Blog, Posting]
@@ -42,7 +43,7 @@ class Ability
       
       # Anybody
       can :read, [Page, Blog, Posting]
-      can [:read, :create], Comment
+      can [:read], Comment
       can :manage, Comment do |comment,session_comments|
         unless comment.new_record?
           # give 15mins to edit new comments

@@ -44,6 +44,17 @@ class Comment
     end
   end
   
+  def commentable_url
+    path = "http://#{DEFAULT_URL}/"
+    case self.commentable.class
+    when Posting
+      path += "blogs/#{self.commentable.blog_id.to_s}/postings/#{self.commentable.id}"
+    else
+      path += "#{self.commentable.class.to_s.pluralize.downcase}/#{self.commentable.id}"
+    end
+    path
+  end
+  
   private
   
   # TODO: Instead of application-name, send the class-name and title of the commentable
@@ -57,15 +68,6 @@ class Comment
     end
     recipient = user ? user.email : APPLICATION_CONFIG['admin_notification_address']
     
-    # Get link to commentable
-    path = "http://#{DEFAULT_URL}/"
-    case self.commentable.class
-    when Posting
-      path += "blogs/#{self.commentable.blog_id.to_s}/postings/#{self.commentable.id}"
-    else
-      path += "#{self.commentable.class.to_s.pluralize.downcase}/#{self.commentable.id}"
-    end
-    
     DelayedJob.enqueue('NewCommentNotifier',
       Time.now+10.second,
       recipient,
@@ -73,7 +75,7 @@ class Comment
       self.email, 
       self.name, 
       self.comment,
-      path
+      self.commentable_url
     )
   end
   
@@ -84,6 +86,5 @@ class Comment
         r[0].to_s.eql?(self.id.to_s)
     }
   end
-
-
+  
 end

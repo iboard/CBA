@@ -145,3 +145,7 @@ en:
     one: 'One registered user (admin).'
     other: 'Total registered users: %{count}.'
   cover_picture: 'Cover Picture'
+  delete_comment: 'delete comment'
+  confirm_yes: 'Yes'
+  confirm_no: 'No'
+  

@@ -102,4 +102,61 @@ namespace :cba do
     sitemap << (xml_prefix + entries.join("\n") + xml_suffix)
     sitemap.close
   end 
+
+  desc "Export comment"
+  task :export_comments => :environment do
+    
+    def build_export parent_objects, comment
+      {
+        :parents => parent_objects.map {|obj| {:class => obj.class.to_s, :id => obj.id.to_s} },
+        :comment => comment
+      }
+    end
+    
+    export = []
+    Blog.all.each do |blog|
+      blog.postings.each do |posting|
+        posting.comments.each do |comment|
+          export << build_export( [blog,posting], comment )
+        end
+      end
+    end
+    Page.all.each do |page|
+      page.comments.each do |comment|
+        export << build_export( [page], comment )
+      end
+    end
+    puts ActiveSupport::JSON.encode(export)
+  end
+  
+  desc "Import old comments"
+  task :import_old_comments => :environment do
+    puts "READING FROM STANDARD IN. PLEASE PROVIDE AN EXPORTED JSON FILE"
+    puts "SEE rake cba:export_comments"
+    puts "=============================================================="
+    text = ""
+    while( line = STDIN.gets )
+      text << line
+    end
+    
+    comments = ActiveSupport::JSON.decode(text)
+    comments.each do |comment|
+      puts "IMPORTING COMMENT FOR #{comment['parents'].inspect}"
+      puts "NAME      = #{comment['comment']['name']}"
+      puts "EMAIL     = #{comment['comment']['email']}"
+      puts "COMMENT   = #{comment['comment']['comment']}"
+      case comment['parents'].first['class']
+      when 'Blog'
+        puts "  ** Adding comment to Blog/Posting"
+      when 'Page'
+        puts "  ** Adding comment to Page"
+      else
+        puts "  ** Commentable class unknown!"
+      end
+      puts "\n"
+    end
+    #puts comments.class.to_s
+  end
+  
+  
 end

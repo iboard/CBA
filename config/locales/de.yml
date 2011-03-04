@@ -335,3 +335,7 @@ de:
     one: 'Ein registrierter Benutzer (Administrator).'
     other: 'Insgesammt sind %{count} Benutzer registriert.'
   cover_picture: 'Titelbild'
+  delete_comment: 'Kommentar löschen'
+  confirm_yes: 'Ja'
+  confirm_no: 'Nein'
+  

@@ -15,11 +15,13 @@
             :remote => true ) if can? :edit, comment, session[:comments] 
       %>
             
-      <%= link_to( t(:destroy), 
+     <%= link_to( commentable_path(comment, path_components).gsub(/\/edit$/,''), 
             commentable_path(comment, path_components).gsub(/\/edit$/,''),
+            :method => :delete,
+            :p => commentable_path(comment, path_components).gsub(/\/edit$/,''),
             :confirm => t(:are_you_sure), 
-            :remote => true, 
-            :method => :delete) if can? :manage, comment 
+            :remote => true
+            ) if can? :manage, comment 
       %>
   </address>
   

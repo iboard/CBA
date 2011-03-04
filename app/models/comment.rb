@@ -11,7 +11,7 @@ class Comment
   validates_presence_of :name
   validates_presence_of :comment
   
-  embedded_in :commentable, :inverse_of => :comments
+  referenced_in :commentable, :inverse_of => :comments, :polymorphic => true
   
   scope :since, lambda { |since| where(:created_at.gt => since) }   
   after_create :send_notification
@@ -59,24 +59,24 @@ class Comment
   
   # TODO: Instead of application-name, send the class-name and title of the commentable
   def send_notification
-    # arg[0] = commentable_identifier
-    # arg[1] = comment_email
-    # arg[2] = comment_name
-    # arg[3] = comment_comment
-    if self.commentable.respond_to?(:user)
-      user = self.commentable.user
-    end
-    recipient = user ? user.email : APPLICATION_CONFIG['admin_notification_address']
-    
-    DelayedJob.enqueue('NewCommentNotifier',
-      Time.now+10.second,
-      recipient,
-      self.commentable.title,
-      self.email, 
-      self.name, 
-      self.comment,
-      self.commentable_url
-    )
+    ## arg[0] = commentable_identifier
+    ## arg[1] = comment_email
+    ## arg[2] = comment_name
+    ## arg[3] = comment_comment
+    #if self.commentable.respond_to?(:user)
+    #  user = self.commentable.user
+    #end
+    #recipient = user ? user.email : APPLICATION_CONFIG['admin_notification_address']
+    #
+    #DelayedJob.enqueue('NewCommentNotifier',
+    #  Time.now+10.second,
+    #  recipient,
+    #  self.commentable.title,
+    #  self.email, 
+    #  self.name, 
+    #  self.comment,
+    #  self.commentable_url
+    #)
   end
   
   # Remove self and old comments from session (comments) 

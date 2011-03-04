@@ -18,8 +18,8 @@ class Page
 
   scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
         
-  embeds_many          :comments, :as => :commentable
-  validates_associated :comments
+  references_many            :comments, :inverse_of => :commentable
+  validates_associated       :comments
   
   # TODO: Move this definitions to a library-module
   # TODO: and replace this lines with just 'has_attchments'

@@ -136,7 +136,7 @@ namespace :cba do
     puts "=============================================================="
     text = ""
     while( line = STDIN.gets )
-      text << line
+      text << line unless line =~ /^\(in /
     end
     
     comments = ActiveSupport::JSON.decode(text)
@@ -148,8 +148,25 @@ namespace :cba do
       case comment['parents'].first['class']
       when 'Blog'
         puts "  ** Adding comment to Blog/Posting"
+        blog = Blog.find(comment['parents'].first['id'])
+        posting = blog.postings.find(comment['parents'].second['id'])
+        posting.comments.create(:name => comment['comment']['name'],
+                                :email => comment['comment']['email'],
+                                :comment => comment['comment']['comment'],
+                                :updated_at => comment['comment']['updated_at'],
+                                :created_at => comment['comment']['created_at'] 
+                              )
+        blog.save
       when 'Page'
         puts "  ** Adding comment to Page"
+        page = Page.find(comment['parents'].first['id'])
+        page.comments.create(:name => comment['comment']['name'],
+                                :email => comment['comment']['email'],
+                                :comment => comment['comment']['comment'],
+                                :updated_at => comment['comment']['updated_at'],
+                                :created_at => comment['comment']['created_at'] 
+                              )
+        page.save
       else
         puts "  ** Commentable class unknown!"
       end

@@ -15,7 +15,7 @@
             :remote => true ) if can? :edit, comment, session[:comments] 
       %>
             
-     <%= link_to( commentable_path(comment, path_components).gsub(/\/edit$/,''), 
+     <%= link_to( t(:destroy), 
             commentable_path(comment, path_components).gsub(/\/edit$/,''),
             :method => :delete,
             :p => commentable_path(comment, path_components).gsub(/\/edit$/,''),

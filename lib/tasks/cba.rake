@@ -136,7 +136,7 @@ namespace :cba do
     puts "=============================================================="
     text = ""
     while( line = STDIN.gets )
-      text << line
+      text << line unless line =~ /^\(in /
     end
     
     comments = ActiveSupport::JSON.decode(text)

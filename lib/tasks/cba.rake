@@ -26,8 +26,7 @@ namespace :cba do
       break if all
     end
   end
-  
-  
+    
   desc "Reprocess attachments"
   task :reprocess_attachments => :environment do
     
@@ -175,5 +174,11 @@ namespace :cba do
     #puts comments.class.to_s
   end
   
-  
+  desc "Delete SPAM-Comments"
+  task :delete_spam => :environment do
+    Comment.where(:comment => /viagra/i).each do |comment|
+      comment.commentable.comments.find(comment.id).delete
+      comment.commentable.save
+    end
+  end 
 end

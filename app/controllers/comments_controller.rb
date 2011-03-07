@@ -1,9 +1,12 @@
 # The CommentController can handle comments on polymorphic 'commentables'
 # REVIEW: The code to handle comments with different levels of commentable SMELLS!
 class CommentsController < ApplicationController
-  
+    
   respond_to :html, :xml, :js
-  before_filter :find_root_object_and_comment, :only=>[:update,:destroy,:show]  
+    
+  def index
+    @comments = Comment.desc if can? :read, Comment
+  end
   
   def create
     if can? :create, Comment
@@ -46,16 +49,16 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @redirect_path = commentable_path
+    @redirect_path ||= commentable_path
+    puts "USER LOOGED IN #{current_user.inspect}"
+    respond_to do |format|
+      format.js   # destroy.js
+      format.html { redirect_to @redirect_path, :notice => t(:comment_deleted) }    
+    end
+    puts "USER LOOGED IN #{current_user.inspect}"
     @comment.destroy
     @root_object.save
-    respond_to do |format|
-      format.js { 
-        render :destroy
-        return
-      }
-      format.html { redirect_to commentable_path, :notice => t(:comment_deleted) }    
-    end
+    puts "USER LOOGED IN #{current_user.inspect}"
   end
   
   
@@ -98,8 +101,22 @@ class CommentsController < ApplicationController
   end
   
   def find_root_object_and_comment
-    @root_object = predecessors.first
-    @comment = predecessors.last.comments.find(params[:id])
+    unless (@root_object = predecessors.first).nil?
+      @comment = predecessors.last.comments.find(params[:id])
+    else
+      @comment = Comment.find(params[:id])
+      if can?(:manage, @comment)
+        @root_object = case(@comment.commentable.class)
+                       when Posting
+                         @comment.commentable.blog
+                         @predecessors = [@comment.commentable.blog,@comment.commentable]
+                       else
+                         @comment.commentable
+                         @predecessors = [@comment.commentable]
+                       end
+        @redirect_path = comments_path
+      end
+    end
   end
   
 end

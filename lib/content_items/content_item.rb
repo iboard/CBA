@@ -19,6 +19,7 @@ module ContentItem
   # one single collection named 'content_items_content_items' and properly this
   # will not what you will do. Though it may make sense in some cases.
   module ClassMethods
+    
     def acts_as_content_item
       class_eval <<-EOV
         include Mongoid::Document

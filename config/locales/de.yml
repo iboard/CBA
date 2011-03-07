@@ -264,7 +264,7 @@ de:
   body_could_not_be_empty: 'Kommentar kann nicht leer sein!'
   is_not_an_email: 'Ist keine gültige E-Mail-Adresse'
   cancel: 'Abbrechen'
-  comment_deleted: 'Kommentar erfolgreich gespeichert'
+  comment_deleted: 'Kommentar erfolgreich gelöscht'
   comment_successfully_updated: 'Kommentar erfolgreich geändert'
   edit_comment: 'Kommentar bearbeiten'
   signed_in_successfully: "Erfolgreich angemeldet."
@@ -338,4 +338,4 @@ de:
   delete_comment: 'Kommentar löschen'
   confirm_yes: 'Ja'
   confirm_no: 'Nein'
-  
+  comments: 'Kommentare'

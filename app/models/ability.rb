@@ -43,7 +43,7 @@ class Ability
       
       # Anybody
       can :read, [Page, Blog, Posting]
-      can [:read], Comment
+      can [:read,:create], Comment
       can :manage, Comment do |comment,session_comments|
         unless comment.new_record?
           # give 15mins to edit new comments

@@ -1,3 +1,4 @@
+@focus
 Feature: Comments
   In order to maintain comments
   As an admin
@@ -36,3 +37,14 @@ Feature: Comments
     And I click on link "Delete"
     Then I should be on the page path of "Page 1"
     And I should not see "My first Comment"
+
+  Scenario: Only moderators should see a the comments-menu-item
+    Given I am logged out
+    And I am on the home page
+    Then I should not see "Comments" within ".hmenu"
+
+  Scenario: Only moderators should see a list of all comments
+    Given I am logged out
+    And I am on the comments page
+    Then I should be on the home page
+    And I should see "not authorized"

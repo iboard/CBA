@@ -15,6 +15,7 @@ en:
   menu:
     home: "Home"
     userlist: "Userlist"
+    comments: 'Comments'
   role_label_confirmed_user: "Registered user"
   role_label_moderator: "Can manage all entries"
   role_label_author: "Can create entires and mange owned entries"
@@ -148,4 +149,6 @@ en:
   delete_comment: 'delete comment'
   confirm_yes: 'Yes'
   confirm_no: 'No'
-  
+  comments: 'Comments'
+  comment_successfully_created: 'Comment successfully created'
+  comment_successfully_destroyed: 'Comment successfully deleted'

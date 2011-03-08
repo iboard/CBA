@@ -33,17 +33,17 @@ class Ability
           can :create, [Page, Blog, Posting]
         end
         if user.role?(:moderator)
-          can :manage, [Posting]
+          can :manage, [Posting, Comment]
         end
         if user.role?(:maintainer)
-          can :manage, [Page, Blog, Posting]
+          can :manage, [Page, Blog, Posting, Comment]
         end
         
       end
       
       # Anybody
       can :read, [Page, Blog, Posting]
-      can [:read], Comment
+      can [:read,:create], Comment
       can :manage, Comment do |comment,session_comments|
         unless comment.new_record?
           # give 15mins to edit new comments
@@ -55,8 +55,7 @@ class Ability
             false
           end
         end          
-      end
-      
+      end      
     end
   end
   

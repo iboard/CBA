@@ -3,6 +3,9 @@ Cba::Application.routes.draw do
   # Switch locales
   match 'switch_lcoale/:locale' => "home#set_locale", :as => 'switch_locale'
 
+  # Comments
+  resources :comments, :except => :show
+
   # BLOGS
   resources :blogs do
     member do

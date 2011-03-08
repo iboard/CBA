@@ -1,3 +1,5 @@
 <% title t(:edit_comment) %>
 
-<%= render :partial => 'edit', :locals => { :comment => @comment } %>
+<p><%= t(:back_to) -%>: <%= link_to @commentable.title, commentable_show_path %></p>
+
+<%= render :partial => 'edit', :locals => { :comment => @comment, :commentable => @commentable } %>

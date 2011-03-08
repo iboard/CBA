@@ -1,0 +1,10 @@
+<% title t(:comments) %>
+
+<% for comment in @comments %>
+  <h4><%= comment.commentable.class.to_s -%>: <%= comment.commentable.title %></h4>
+  <div class='comment', id='comment_<%= comment.id.to_s -%>'>
+     <%= comment.comment %>
+     <p><%= link_to( t(:destroy), comment, :method => :delete, :remote => true, 
+       :confirm => t(:are_you_sure) ) if can?( :destroy, comment ) %></p>
+  </div>
+<% end %>

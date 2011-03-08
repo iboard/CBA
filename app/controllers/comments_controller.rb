@@ -1,13 +1,18 @@
 # The CommentController can handle comments on polymorphic 'commentables'
 # REVIEW: The code to handle comments with different levels of commentable SMELLS!
 class CommentsController < ApplicationController
-  
+    
   respond_to :html, :xml, :js
-  before_filter :find_root_object_and_comment, :only=>[:update,:destroy,:show]  
+  
+  load_and_authorize_resource :except => [:edit,:update]
+  before_filter :load_commentable
+      
+  def index
+    @comments = Comment.desc if can? :read, Comment
+  end
   
   def create
     if can? :create, Comment
-      @commentable = predecessors.last
       @comment, errors = Comment::build_and_validate_comment(@commentable,params[:comment])    
       if errors
         flash[:error] = t(:comment_could_not_be_saved, :errors => errors).html_safe
@@ -18,70 +23,61 @@ class CommentsController < ApplicationController
     else
       notice = t(:access_denied)
     end
-    redirect_to commentable_path, :alert => notice
+    redirect_to view_context.commentable_show_path(@commentable), :alert => notice  
   end
   
   def edit
-    @form_components  = predecessors
-    @commentable = @form_components.last
-    @comment = @commentable.comments.find(params[:id])
-    @form_components << @comment
-    respond_to do |format|
-      format.js
-      format.html
+    @comment = Comment.find(params[:id])
+    if can? :edit, @comment, session[:comments]
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    else
+      redirect_to view_context.commentable_show_path(@comment.commentable), :alert => t(:not_authorized)
     end
   end
   
   def update
-    unless params[:commit] == t(:cancel)
-      @comment.comment = params[:comment][:comment]
-      remember_comment
-      @comment.save
-    end
-    @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
-    respond_to do |format|
-      format.js
-      format.html { redirect_to commentable_path, :notice => t(:comment_successfully_updated).html_safe }
+    @comment = Comment.find(params[:id])
+    if can? :edit, @comment, session[:comments]
+      
+      unless params[:commit] == t(:cancel)
+        @comment.comment = params[:comment][:comment]
+        remember_comment
+        @comment.save
+      end
+      @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
+      respond_to do |format|
+        format.js
+        format.html { redirect_to view_context.commentable_show_path(@commentable), :notice => t(:comment_successfully_updated).html_safe }
+      end
+    else
+      redirect_to view_context.commentable_show_path(@comment.commentable), :alert => t(:not_authorized)
     end
   end
   
   def destroy
-    @redirect_path = commentable_path
+    @commentable ||= @comment.commentable
     @comment.destroy
-    @root_object.save
+    @commentable.save
     respond_to do |format|
-      format.js { 
-        render :destroy
-        return
-      }
-      format.html { redirect_to commentable_path, :notice => t(:comment_deleted) }    
+      format.js
+      format.html { redirect_to view_context.commentable_show_path(@commentable), :notice => t(:comment_successfully_destroyed).html_safe }
     end
   end
   
   
   private
-  
-  # build path to commentable
-  # e.g.:  Blog, Posting => blog_posting_path(blog,posting)
-  # e.g.:  Page          => page_path(page)
-  def commentable_path
-    eval("%s(%s)" % find_path_and_parts)
-  end
-    
-  # Collect predecessors from router-path
-  # e.g /blog/:blog_id/postings/:postings_id/comments ....
-  #     predecessors => Blog, Posting
-  # e.g /page/:page_id/comments
-  #     predecessors => Page
-  def predecessors
-    return @predecessors if defined?(@predecessors)
-    @predecessors = []
+  def load_commentable    
+    return @commentable if @commentable
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        @predecessors << $1.classify.constantize.find(value)
+        @commentable = $1.classify.constantize.find(value)
+        break
       end
     end
-    @predecessors
+    @commentable
   end
   
   
@@ -89,17 +85,6 @@ class CommentsController < ApplicationController
   # Will be used in Ability.rb to check if comment can be edited.
   def remember_comment
     session[:comments] = @comment.update_session_comments(session[:comments])
-  end
-  
-  def find_path_and_parts
-    path = predecessors.map { |p| p.class.to_s.underscore }.join("_")+"_path"
-    parts = predecessors.map { |c| "'#{c.id.to_s}'" }.join(",")
-    [path, parts]
-  end
-  
-  def find_root_object_and_comment
-    @root_object = predecessors.first
-    @comment = predecessors.last.comments.find(params[:id])
   end
   
 end

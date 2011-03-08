@@ -7,7 +7,7 @@ class Page
   include ContentItem
   acts_as_content_item
   has_cover_picture
-    
+      
   field :show_in_menu, :type => Boolean, :default => true
   field :menu_order, :type => Integer, :default => 99999
   field :body, :type => String, :required => true

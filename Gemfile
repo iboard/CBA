@@ -8,7 +8,7 @@ gem "mongoid", ">=2.0.0.beta.20"
 gem "bson_ext", ">=1.1.5"
 
 # Bundle gem needed for Devise and cancan
-gem "devise", ">=1.1.5"
+gem "devise", ">=1.1.6"
 gem "cancan"
 gem "omniauth"
 

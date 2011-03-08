@@ -11,17 +11,16 @@
       <%= link_to( comment.time_left_to_edit > 0 ? \
                    t(:edit_for_another_count_minutes,:count => comment.time_left_to_edit) :\
                    t(:edit), 
-            commentable_path(comment, path_components),
-            :remote => true ) if can? :edit, comment, session[:comments] 
+            edit_comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
+            :remote => true ) if can? :manage, comment, session[:comments] 
       %>
             
      <%= link_to( t(:destroy), 
-            commentable_path(comment, path_components).gsub(/\/edit$/,''),
+            comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
             :method => :delete,
-            :p => commentable_path(comment, path_components).gsub(/\/edit$/,''),
-            :confirm => t(:are_you_sure), 
-            :remote => true
-            ) if can? :manage, comment 
+            :remote => true,
+            :confirm => t(:are_you_sure)
+            ).gsub("rel=\"nofollow\"","") if can? :destroy, session[:comments]  
       %>
   </address>
   

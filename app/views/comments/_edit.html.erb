@@ -1,4 +1,9 @@
-<%= form_for @form_components do |f| %>
+<%= form_for [@comment], :remote => true  do |f| %>
+  
   <%= render :partial => 'comment_fields', 
-  :locals => {:f => f, :comment => @comment, :commentable => @commentable } %>
+             :locals => {  :f => f, 
+                           :comment => @comment, 
+                           :commentable => @commentable
+                        } 
+  %>
 <% end %>

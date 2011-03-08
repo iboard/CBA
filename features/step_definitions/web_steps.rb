@@ -304,3 +304,13 @@ Given /^I sign out$/ do
   visit "/users/sign_out"
 end
 
+
+Given /^the following comment records for page "([^"]*)"$/ do |commentable, table|  
+  page = Page.where(:title => commentable).first
+  page.comments.delete_all
+  table.hashes.each do |hash|
+    page.comments << Factory('comment', hash)
+    page.save
+  end  
+  
+end

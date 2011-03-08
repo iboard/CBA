@@ -4,6 +4,16 @@
  * jQUERY 
  ******************************************************* */
 
+// Make sure that every Ajax request sends the CSRF token
+// New for Rails 3.0.4 which loses session on ajax-delete-requests
+function CSRFProtection(xhr) {
+ var token = $('meta[name="csrf-token"]').attr('content');
+ if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+}
+if ('ajaxPrefilter' in $) $.ajaxPrefilter(function(options, originalOptions, xhr) { CSRFProtection(xhr); });
+else $(document).ajaxSend(function(e, xhr) { CSRFProtection(xhr); });
+
+
 /* add_fields to attachment-form */
 function add_fields(link, association, content,new_id) {  
     var new_id = new Date().getTime();  

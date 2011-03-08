@@ -33,10 +33,10 @@ class Ability
           can :create, [Page, Blog, Posting]
         end
         if user.role?(:moderator)
-          can :manage, [Posting]
+          can :manage, [Posting, Comment]
         end
         if user.role?(:maintainer)
-          can :manage, [Page, Blog, Posting]
+          can :manage, [Page, Blog, Posting, Comment]
         end
         
       end
@@ -55,8 +55,7 @@ class Ability
             false
           end
         end          
-      end
-      
+      end      
     end
   end
   

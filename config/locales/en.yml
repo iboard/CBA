@@ -152,3 +152,4 @@ en:
   comments: 'Comments'
   comment_successfully_created: 'Comment successfully created'
   comment_successfully_destroyed: 'Comment successfully deleted'
+  not_authorized: You're not authorized to access this page

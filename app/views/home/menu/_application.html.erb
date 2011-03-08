@@ -14,7 +14,7 @@
   <li><%= menu_link_to t("menu.userlist"), registrations_path %></li>
 <% end %>
 
-<% if can? :manage, Comment %>
+<% if can? :read, Comment.new %>
   <li><%= menu_link_to t("menu.comments"), comments_path %></li>
 <% end %>
 

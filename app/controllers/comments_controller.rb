@@ -8,7 +8,11 @@ class CommentsController < ApplicationController
   before_filter :load_commentable
       
   def index
-    @comments = Comment.desc if can? :read, Comment
+    if can? :read, Comment.new
+      @comments = Comment.desc 
+    else
+      redirect_to root_path, :alert => t(:not_authorized)
+    end
   end
   
   def create

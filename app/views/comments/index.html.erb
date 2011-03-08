@@ -1,10 +1,20 @@
 <% title t(:comments) %>
 
 <% for comment in @comments %>
-  <h4><%= comment.commentable.class.to_s -%>: <%= comment.commentable.title %></h4>
   <div class='comment', id='comment_<%= comment.id.to_s -%>'>
-     <%= comment.comment %>
-     <p><%= link_to( t(:destroy), comment, :method => :delete, :remote => true, 
-       :confirm => t(:are_you_sure) ) if can?( :destroy, comment ) %></p>
+     <h2><%= link_to comment.commentable.title, commentable_show_path(comment.commentable) %></h2>
+     <p>
+       <strong><%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
+               :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>          
+       </strong>
+     </p>
+     <p>
+       <%= comment.comment %>
+     </p>
+     <p>
+       <%= link_to( t(:destroy), comment, :method => :delete, :remote => true, 
+                    :confirm => t(:are_you_sure) ) if can?( :destroy, comment ) 
+       %>
+     </p>
   </div>
 <% end %>

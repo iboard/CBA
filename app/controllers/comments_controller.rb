@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   respond_to :html, :xml, :js
   
   load_and_authorize_resource :except => [:edit,:update]
+  load_resource :only => [:edit, :update]
   before_filter :load_commentable
       
   def index
@@ -31,7 +32,6 @@ class CommentsController < ApplicationController
   end
   
   def edit
-    @comment = Comment.find(params[:id])
     if can? :edit, @comment, session[:comments]
       respond_to do |format|
         format.js
@@ -43,9 +43,7 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @comment = Comment.find(params[:id])
     if can? :edit, @comment, session[:comments]
-      
       unless params[:commit] == t(:cancel)
         @comment.comment = params[:comment][:comment]
         remember_comment
@@ -83,7 +81,6 @@ class CommentsController < ApplicationController
     end
     @commentable
   end
-  
   
   # Save comment_ids with timestamps in session[:comments]
   # Will be used in Ability.rb to check if comment can be edited.

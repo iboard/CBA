@@ -343,3 +343,4 @@ de:
   comment_successfully_created: 'Kommentar wurde gespeichert'
   comment_successfully_destroyed: 'Kommentar wurde gelöscht' 
   not_authorized: Sie haben für diese Seite keine Berechtigung.
+  comments_of_last_year: Kommentare des letzten Jahres

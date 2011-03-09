@@ -1,8 +1,11 @@
-<% title t(:comments) %>
+<% title t(:comments_of_last_year) %>
 
 <% for comment in @comments %>
   <div class='comment', id='comment_<%= comment.id.to_s -%>'>
-     <h2><%= link_to comment.commentable.title, commentable_show_path(comment.commentable) %></h2>
+     <h2>
+        <%= link_to comment.commentable.title, commentable_show_path(comment.commentable) %>
+        <small>(<%= comment.commentable.class.to_s.humanize %>)</small>
+     </h2>
      <p>
        <strong><%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
                :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>

@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       
   def index
     if can? :read, Comment.new
-      @comments = Comment.where(:updated_at.gt => Time.now-1.year).desc(:updated_at)
+      @comments = Comment.where(:updated_at.gt => Time.now-1.year).desc('created_at')
     else
       redirect_to root_path, :alert => t(:not_authorized)
     end

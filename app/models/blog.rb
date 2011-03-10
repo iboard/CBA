@@ -8,6 +8,7 @@ class Blog
   acts_as_content_item
   has_cover_picture
   
+  # REVIEW: Why postings are referenced and not embedded?
   references_many :postings, :dependent => :delete
   validates_associated :postings
 

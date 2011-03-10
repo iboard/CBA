@@ -20,6 +20,20 @@ module ApplicationHelper
        File.new(filename).read.html_safe
     end
   end
+  
+  def insert_extra_headers
+    "<meta name='Language' content='#{t('locales.'+I18n.locale.to_s)}, #{I18n.locale}' />
+    <meta name='Author' content='#{APPLICATION_CONFIG['copyright']}' />
+    <meta name='publisher' content='#{APPLICATION_CONFIG['copyright']}' />
+    <meta name='robots' content='index, follow, noarchive' />
+    <meta name='distribution' content='global' />
+    <meta name='page-topic' content='RAILS, Programming, Mac OS X, iOS, Web-Development' />
+    <meta name='description' content='#{strip_tags(APPLICATION_CONFIG['name'])} | #{strip_tags(APPLICATION_CONFIG['slogan'])}' />
+    <meta name='keywords' content='RAILS, CBA, Application Template, devise, cancan, omniAuth, Programming, Mac OS X, iOS, Web-Development' />
+    <meta name='revisit-after' content='2 days' />
+    <meta http-equiv='reply-to' content='#{APPLICATION_CONFIG['admin_notification_address']}' />
+    ".html_safe
+  end
 
   # Return the field if current_user or the default if not
   def current_user_field(fieldname,default='')

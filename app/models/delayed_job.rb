@@ -89,7 +89,8 @@ class DelayedJob
           puts "" unless Rails.env == 'production'
         end
       end
-      sleep( CONSTANTS['sleep_in_delayed_jobs_worker'].to_i || 60 )
+      puts "Sleeping #{CONSTANTS['sleep_in_delayed_jobs_worker']}" unless Rails.env == 'production'
+      sleep( (CONSTANTS['sleep_in_delayed_jobs_worker'] || "60" ).to_i )
     end
   end
   

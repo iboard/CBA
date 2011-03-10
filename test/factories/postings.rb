@@ -5,3 +5,4 @@ Factory.define :posting do |p|
    p.blog_id    "4d2c96042d194751eb000002"
 end
 
+

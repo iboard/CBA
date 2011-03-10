@@ -79,6 +79,15 @@ Feature: Pages
     And I should see "Page was successfully updated."
     And I should not see "Error"
     
+  @focus
+  Scenario: "A Page should be commentable"
+    Given I am on the page path of "Page 1"
+    And I fill in "Comment" with "And here my comment for this page"
+    And I click on "Post comment"
+    Then I should be on the page path of "Page 1"
+    And I should see "Comment successfully created. You can edit it for the next"
+    And I should see "And here my comment for this page"
+
     
   Scenario: Pagination should work on pages::index
     pending

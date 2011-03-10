@@ -1,7 +1,7 @@
 Feature: Postings
   In order to post on blogs
   As an user
-  I want create, edit, and delete postings
+  I want create, edit, delete, and comment postings
   
   Background:
     Given the following user records
@@ -80,7 +80,19 @@ Feature: Postings
     And I click on link "My First Posting"
     And I should see "Edit" within "#posting"
     And I should see "Delete" within "#posting"
-    
+  
+  Scenario: "A Posting should be commentable"
+    Given the following posting records for blog "Blog 1" and user "admin"
+      | title       | body        |
+      | Posting one | lorem ipsum |
+    And I am on the blog path of "Blog 1"
+    And I click on link "Posting one"
+    And I fill in "Comment" with "And here my comment"
+    And I click on "Post comment"
+    Then I should be on the read posting "Posting one" page of blog "Blog 1"
+    And I should see "Comment successfully created. You can edit it for the next"
+    And I should see "And here my comment"
+      
   Scenario: Pagination should work on postings::index
     pending
    

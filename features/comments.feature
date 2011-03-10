@@ -48,3 +48,14 @@ Feature: Comments
     And I am on the comments page
     Then I should be on the home page
     And I should see "not authorized"
+    
+  Scenario: Comments page should list ip-addresses of posters
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with "A Poster"
+    And I fill in "Email" with "my@email.cc"
+    And I fill in "Comment" with "A stupid comment but you got my IP"
+    And I click on "Post comment"
+    And I click on link "Comments" within ".hmenu"
+    Then I should see "A stupid comment"
+    And I should see "Posted from 127.0.0.1"
+    

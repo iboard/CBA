@@ -344,3 +344,8 @@ de:
   comment_successfully_destroyed: 'Kommentar wurde gelöscht' 
   not_authorized: Sie haben für diese Seite keine Berechtigung.
   comments_of_last_year: Kommentare des letzten Jahres
+  posted_from_ip: 'Von der IP %{ip} aus aufgegeben'
+  comment_successfully_created_edit_for_minutes:
+    zero: 'Kommentar wurde gespeichert'
+    one: 'Kommentar wurde gespeichert und kann noch 1 Minute bearbeitet werden.'
+    other: 'Kommentar wurde gespeichert und kann noch %{count} Minuten bearbeitet werden.'

@@ -18,11 +18,13 @@ class CommentsController < ApplicationController
   
   def create
     if can? :create, Comment
+      params[:comment][:from_ip] = request.env['REMOTE_ADDR']
       @comment, errors = Comment::build_and_validate_comment(@commentable,params[:comment])    
       if errors
         flash[:error] = t(:comment_could_not_be_saved, :errors => errors).html_safe
       else
         remember_comment
+        flash[:notice] = t(:comment_successfully_created_edit_for_minutes,:count => CONSTANTS['max_time_to_edit_new_comments'].to_i).html_safe
       end
       notice = nil
     else

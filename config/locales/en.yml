@@ -154,3 +154,8 @@ en:
   comment_successfully_destroyed: 'Comment successfully deleted'
   not_authorized: You're not authorized to access this page
   comments_of_last_year: Last year comments
+  posted_from_ip: 'Posted from %{ip}'
+  comment_successfully_created_edit_for_minutes:
+    zero: 'Comment successfully created'
+    one: 'Comment successfully created. You can edit it for one minute'
+    other: 'Comment successfully created. You can edit it for the next %{count} minutes'

@@ -310,7 +310,17 @@ Given /^the following comment records for page "([^"]*)"$/ do |commentable, tabl
   page.comments.delete_all
   table.hashes.each do |hash|
     page.comments << Factory('comment', hash)
-    page.save
   end  
-  
+  page.save
+end
+
+Given /^the following posting records for blog "([^"]*)" and user "([^"]*)"$/ do |blog, username, table|
+  blog = Blog.where(:title => blog).first
+  user = User.where(:name => username).first
+  blog.postings.delete_all
+  table.hashes.each do |hash|
+    hash[:user_id] = user.id
+    blog.postings.create!(hash)
+  end
+  blog.save!  
 end

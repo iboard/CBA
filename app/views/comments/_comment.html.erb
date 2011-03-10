@@ -6,8 +6,7 @@
   >
       <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
           :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>          
-    
-        
+            
       <%= link_to( comment.time_left_to_edit > 0 ? \
                    t(:edit_for_another_count_minutes,:count => comment.time_left_to_edit) :\
                    t(:edit), 

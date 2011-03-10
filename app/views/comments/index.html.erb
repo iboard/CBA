@@ -9,7 +9,7 @@
      <p>
        <strong><%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous', 
                :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>
-               (<%= comment.created_at -%>)    
+               (<%= comment.created_at -%>, <%= t(:posted_from_ip, :ip => (comment.from_ip || "n/a") ) %>)    
        </strong>
      </p>
      <p>

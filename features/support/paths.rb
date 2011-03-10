@@ -42,6 +42,12 @@ module NavigationHelpers
       title = $1
       blog = Blog.where(:title => title).first
       "/blogs/#{blog._id}"
+    when /the read posting "([^"]*)" page of blog "([^"]*)"/
+      posting_title = $1
+      blog_title = $2
+      blog = Blog.where(:title => blog_title).first
+      posting = blog.postings.where(:title => posting_title).first
+      "/blogs/#{blog._id}/postings/#{posting._id}"
     else
       begin
         page_name =~ /the (.*) page/

@@ -6,6 +6,7 @@ class Comment
   field  :name
   field  :email
   field  :comment
+  field  :from_ip
 
   validates             :email, :presence => true, :email => true
   validates_presence_of :name
@@ -46,11 +47,11 @@ class Comment
   
   def commentable_url
     path = "http://#{DEFAULT_URL}/"
-    case self.commentable.class
+    case self.commentable_type
     when Posting
-      path += "blogs/#{self.commentable.blog_id.to_s}/postings/#{self.commentable.id}"
+      path += "blogs/#{self.commentable.blog_id.to_s}/postings/#{self.commentable_id}"
     else
-      path += "#{self.commentable.class.to_s.pluralize.downcase}/#{self.commentable.id}"
+      path += "#{self.commentable.class.to_s.pluralize.downcase}/#{self.commentable_id}"
     end
     path
   end
@@ -71,7 +72,7 @@ class Comment
     DelayedJob.enqueue('NewCommentNotifier',
       Time.now+10.second,
       recipient,
-      self.commentable.title,
+      self.commentable.try(:title) || "(no title)",
       self.email, 
       self.name, 
       self.comment,

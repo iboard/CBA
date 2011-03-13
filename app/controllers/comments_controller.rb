@@ -24,7 +24,9 @@ class CommentsController < ApplicationController
         flash[:error] = t(:comment_could_not_be_saved, :errors => errors).html_safe
       else
         remember_comment
-        flash[:notice] = t(:comment_successfully_created_edit_for_minutes,:count => CONSTANTS['max_time_to_edit_new_comments'].to_i).html_safe
+        flash[:notice] = t(:comment_successfully_created_edit_for_minutes,
+          :count => CONSTANTS['max_time_to_edit_new_comments'].to_i
+        ).html_safe
       end
       notice = nil
     else
@@ -40,7 +42,8 @@ class CommentsController < ApplicationController
         format.html
       end
     else
-      redirect_to view_context.commentable_show_path(@comment.commentable), :alert => t(:not_authorized)
+      redirect_to view_context.commentable_show_path(@comment.commentable), 
+        :alert => t(:not_authorized)
     end
   end
   
@@ -54,10 +57,13 @@ class CommentsController < ApplicationController
       @new_comment = (RedCloth.new(@comment.comment).to_html.html_safe)
       respond_to do |format|
         format.js
-        format.html { redirect_to view_context.commentable_show_path(@commentable), :notice => t(:comment_successfully_updated).html_safe }
+        format.html { redirect_to view_context.commentable_show_path(@commentable), 
+          :notice => t(:comment_successfully_updated).html_safe 
+        }
       end
     else
-      redirect_to view_context.commentable_show_path(@comment.commentable), :alert => t(:not_authorized)
+      redirect_to view_context.commentable_show_path(@comment.commentable), 
+        :alert => t(:not_authorized)
     end
   end
   
@@ -67,21 +73,23 @@ class CommentsController < ApplicationController
     @commentable.save
     respond_to do |format|
       format.js
-      format.html { redirect_to view_context.commentable_show_path(@commentable), :notice => t(:comment_successfully_destroyed).html_safe }
+      format.html { redirect_to view_context.commentable_show_path(@commentable), 
+        :notice => t(:comment_successfully_destroyed).html_safe 
+      }
     end
   end
   
   
   private
+  # detect /in/params/:something_id=object_id and load the object. 
   def load_commentable    
-    return @commentable if @commentable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        @commentable = $1.classify.constantize.find(value)
-        break
-      end
+    return @commentable if @commentable 
+    param = params.detect { |name, value| name.to_s =~ /(.+)_id$/ }
+    if param
+      @commentable = param[0].to_s.gsub(/_id$/,'').classify.constantize.find(param[1])
+    else
+      nil
     end
-    @commentable
   end
   
   # Save comment_ids with timestamps in session[:comments]

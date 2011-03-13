@@ -14,6 +14,7 @@ class BlogsController < ApplicationController
      end
   end
   
+  # Show all postings for this blog
   def show
     @postings = @blog.postings.desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
@@ -23,6 +24,7 @@ class BlogsController < ApplicationController
       format.xml  { render :xml => @blogs }
     end
   end
+  
   
   def new
   end
@@ -53,8 +55,8 @@ class BlogsController < ApplicationController
     end
   end
   
-  # DELETE /pages/1
-  # DELETE /pages/1.xml
+  # DELETE /blogs/:id
+  # DELETE /blogs/:id.xml
   def destroy
     @blog.destroy
     respond_to do |format|
@@ -63,6 +65,7 @@ class BlogsController < ApplicationController
     end
   end
   
+  # GET /blogs/:id/delete_cover_picture
   def delete_cover_picture
     @blog.cover_picture.destroy
     @blog.save

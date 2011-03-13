@@ -17,6 +17,7 @@ class HomeController < ApplicationController
     end    
   end
   
+  # GET /switch_locale/:locale
   def set_locale
     I18n.locale=params[:locale].to_sym
     cookies.permanent[:lang] = params[:locale]

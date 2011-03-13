@@ -101,6 +101,7 @@ class PagesController < ApplicationController
     end
   end
   
+  # GET /pages/:id/delete_cover_picture
   def delete_cover_picture
     @page.cover_picture.destroy
     @page.save

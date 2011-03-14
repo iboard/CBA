@@ -19,9 +19,11 @@ class BlogsController < ApplicationController
     @postings = @blog.postings.desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
-      format.js
+      format.js { 
+         @path = blog_path(@blog, :page => (params[:page] ? (params[:page].to_i+1) : 2) )
+      }
       format.html # index.html.erb
-      format.xml  { render :xml => @blogs }
+      format.xml  { render :xml => @blog }
     end
   end
   

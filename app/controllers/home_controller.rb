@@ -12,7 +12,10 @@ class HomeController < ApplicationController
       )
     end
     respond_to do |format|
-       format.js { render :index }
+       format.js { 
+         @path = blog_path(@blog, :page => (params[:page] ? (params[:page].to_i+1) : 2))
+         render :index 
+       }
        format.html { render :index }
     end    
   end

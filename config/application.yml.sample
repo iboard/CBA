@@ -24,6 +24,7 @@ development:
     paginate_episodes_per_page:    2
     num_postings_on_welcome_page:  2
     postings_on_homepage:          6
+    sleep_in_delayed_jobs_worker:  10
     paginate_users_per_page:       2    
     rating_range:                  (1..5)
     paginate_ratings_per_page:     2
@@ -59,6 +60,7 @@ test:
     paginate_episodes_per_page:    6
     paginate_users_per_page:       6    
     num_postings_on_welcome_page:  6
+    sleep_in_delayed_jobs_worker:  1
     postings_on_homepage:          6
     rating_range:                  (1..5)
     paginate_ratings_per_page:     20
@@ -94,6 +96,7 @@ production:
     paginate_users_per_page:       6    
     num_postings_on_welcome_page:  6
     postings_on_homepage:          6
+    sleep_in_delayed_jobs_worker:  60
     rating_range:                  (1..5)
     paginate_ratings_per_page:     20
     paginate_blog_entries_per_page: 20

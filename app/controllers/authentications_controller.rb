@@ -10,7 +10,7 @@ class AuthenticationsController < ApplicationController
   end
   
   # Create an authentication when this is called from
-  # the authentication provider callback
+  # the authentication provider callback.
   def create
     omniauth = request.env["omniauth.auth"]  
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
@@ -34,6 +34,7 @@ class AuthenticationsController < ApplicationController
     end
   end
   
+  # destroy user's authentication and return to the authentication page.
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
@@ -41,15 +42,18 @@ class AuthenticationsController < ApplicationController
     redirect_to authentications_url
   end
   
+  # try again when authentication failed.
   def auth_failure
     redirect_to '/users/sign_in', :alert => params[:message]
   end
   
   private
+  
   def create_authentication(omniauth)
     Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
   end
   
+  # Create a new user and assign an authentication to it.
   def create_new_omniauth_user(omniauth)
     user = User.new
     user.apply_omniauth(omniauth)

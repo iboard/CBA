@@ -14,15 +14,19 @@ class BlogsController < ApplicationController
      end
   end
   
+  # Show all postings for this blog
   def show
     @postings = @blog.postings.desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
-      format.js
+      format.js { 
+         @path = blog_path(@blog, :page => (params[:page] ? (params[:page].to_i+1) : 2) )
+      }
       format.html # index.html.erb
-      format.xml  { render :xml => @blogs }
+      format.xml  { render :xml => @blog }
     end
   end
+  
   
   def new
   end
@@ -53,8 +57,8 @@ class BlogsController < ApplicationController
     end
   end
   
-  # DELETE /pages/1
-  # DELETE /pages/1.xml
+  # DELETE /blogs/:id
+  # DELETE /blogs/:id.xml
   def destroy
     @blog.destroy
     respond_to do |format|
@@ -63,6 +67,7 @@ class BlogsController < ApplicationController
     end
   end
   
+  # GET /blogs/:id/delete_cover_picture
   def delete_cover_picture
     @blog.cover_picture.destroy
     @blog.save

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
-    <title>
-      <%=  
+    <title><%=  
          strip_tags((APPLICATION_CONFIG['title_prefix'].html_safe+
          " "+
          yield(:title)))
-     -%>
-    </title>
+    -%></title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <%= insert_extra_headers %>
     <%= stylesheet_link_tag( APPLICATION_CONFIG['stylesheet_screen'], :media => :screen )%>

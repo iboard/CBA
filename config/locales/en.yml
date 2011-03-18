@@ -159,3 +159,5 @@ en:
     zero: 'Comment successfully created'
     one: 'Comment successfully created. You can edit it for one minute'
     other: 'Comment successfully created. You can edit it for the next %{count} minutes'
+  allow_comments: 'Allow comments'
+  allow_public_comments: 'Allow public comments'

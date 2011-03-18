@@ -181,4 +181,18 @@ namespace :cba do
       comment.commentable.save
     end
   end 
+  
+  desc "Set comments allowed for registered users only"
+  task :set_comments_allowed_defaults => :environment do
+    Blog.all.each do |b|
+      b.allow_comments = true
+      b.allow_public_comments = false
+      b.save
+    end
+    Page.all.each do |p|
+      p.allow_comments = true
+      p.allow_public_comments = false
+      p.save
+    end
+  end
 end

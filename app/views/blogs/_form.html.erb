@@ -19,6 +19,16 @@
         :confirm => t(:are_you_sure)) unless blog.new_record? %>
   </div>
   
+  <div class="field">
+    <%= f.label :allow_comments %>
+    <%= f.check_box :allow_comments %><%= t(:allow_comments) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :allow_public_comments %>
+    <%= f.check_box :allow_public_comments %><%= t(:allow_public_comments) %>
+  </div>
+  
   <div class='clear'></div>
 
   

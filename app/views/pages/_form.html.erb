@@ -35,6 +35,17 @@
     </div>
   </div>
   
+  <div class="field">
+    <%= f.label :allow_comments %>
+    <%= f.check_box :allow_comments %><%= t(:allow_comments) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :allow_public_comments %>
+    <%= f.check_box :allow_public_comments %><%= t(:allow_public_comments) %>
+  </div>
+  
+  
   <div id='attachments' style='clear: right;'>
     <h3><%= t(:attachments) -%></h3>
     <blockquote>

@@ -11,8 +11,8 @@ Feature: Comments on postings
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following blog records
-      | title  | 
-      | Blog 1 | 
+      | title  | allow_public_comments |
+      | Blog 1 | true                  |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: When showing a posting, there should be an 'Add-Comment-Button'
@@ -50,7 +50,7 @@ Feature: Comments on postings
     And I fill in "Email" with "some@address.at"
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    Then I should see "No comment yet"
+    Then I should not see "Lorem Commentum gsheit daherred"
     And I should see "Comment could not be saved!"
     
   Scenario: Comments without an email should not be saved
@@ -64,7 +64,7 @@ Feature: Comments on postings
     And I fill in "Email" with ""
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    Then I should see "No comment yet"
+    Then I should not see "Lorem Commentum gscheit daherred"
     And I should see "Comment could not be saved!"
 
   Scenario: Comments without a comment should not be saved
@@ -77,7 +77,7 @@ Feature: Comments on postings
     And I fill in "Name" with "Frank Zappa"
     And I fill in "Email" with "some@address.at"
     And I click on "Post comment"
-    Then I should see "No comment yet"
+    Then I should not see "Frank Zappa"
     And I should see "Comment could not be saved!"
 
   Scenario: As an admin I should be able to edit a comment
@@ -113,5 +113,5 @@ Feature: Comments on postings
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
     And I click on link "Delete" within "#comments"
-    Then I should not see "Lorem Commentum gscheit daherred" within "#comments"
+    Then I should not see "Lorem Commentum gscheit daherred"
     And I should see "Comment successfully deleted"

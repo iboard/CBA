@@ -13,8 +13,9 @@ class Page
   field :body, :type => String, :required => true
   validates_presence_of :body
 
-  field                 :interpreter, :default => :markdown  
-
+  field :interpreter,                             :default => :markdown  
+  field :allow_comments,        :type => Boolean, :default => true
+  field :allow_public_comments, :type => Boolean, :default => true
 
   scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
         

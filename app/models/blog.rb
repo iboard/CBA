@@ -8,6 +8,9 @@ class Blog
   acts_as_content_item
   has_cover_picture
   
+  field :allow_comments,        :type => Boolean, :default => true
+  field :allow_public_comments, :type => Boolean, :default => true
+  
   # REVIEW: Why postings are referenced and not embedded?
   references_many :postings, :dependent => :delete
   validates_associated :postings

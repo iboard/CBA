@@ -11,9 +11,9 @@ Feature: Comments on pages
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following page records
-      | title  | body                 | show_in_menu |
-      | Page 1 | Lorem ipsum          | true         |
-      | Page 2 | Lirum Opsim          | false        |
+      | title  | body                 | show_in_menu | allow_public_comments |
+      | Page 1 | Lorem ipsum          | true         | true                  |
+      | Page 2 | Lirum Opsim          | false        | true                  |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: When showing a page, there should be an 'Add-Comment-Button'
@@ -36,7 +36,7 @@ Feature: Comments on pages
     And I fill in "Email" with "some@address.at"
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    Then I should see "No comment yet"
+    Then I should not see "Lorem Commentum gscheit daherred"
     And I should see "Comment could not be saved!"
     
   Scenario: Comments without an email should not be saved
@@ -45,7 +45,7 @@ Feature: Comments on pages
     And I fill in "Email" with ""
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
-    Then I should see "No comment yet"
+    Then I should not see "Lorem Commentum gscheit daherred"
     And I should see "Comment could not be saved!"
 
   Scenario: Comments without a comment should not be saved
@@ -54,7 +54,7 @@ Feature: Comments on pages
     And I fill in "Email" with "frank@zappa.com"
     And I fill in "Comment" with ""
     And I click on "Post comment"
-    Then I should see "No comment yet"
+    Then I should not see "Frank Zapp"
     And I should see "Comment could not be saved!"
 
   Scenario: As an admin I should be able to edit a comment
@@ -75,7 +75,7 @@ Feature: Comments on pages
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
     And I click on link "Delete" within "#comments"
-    Then I should not see "Lorem Commentum gscheit daherred" within "#comments"
+    Then I should not see "Lorem Commentum gscheit daherred"
     And I should see "Comment successfully deleted"
     
   Scenario: A new posting should be editable for n minutes after creating it

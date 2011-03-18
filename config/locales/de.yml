@@ -349,3 +349,5 @@ de:
     zero: 'Kommentar wurde gespeichert'
     one: 'Kommentar wurde gespeichert und kann noch 1 Minute bearbeitet werden.'
     other: 'Kommentar wurde gespeichert und kann noch %{count} Minuten bearbeitet werden.'
+  allow_comments: Kommentare erlauben
+  allow_public_comments: Anonyme Kommentare erlauben

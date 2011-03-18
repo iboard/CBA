@@ -15,9 +15,9 @@ Feature: Comments
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 4          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following page records
-      | title  | body                 | show_in_menu |
-      | Page 1 | Lorem ipsum          | true         |
-      | Page 2 | Lirum Opsim          | false        |
+      | title  | body                 | show_in_menu | allow_public_comments | allow_comments |
+      | Page 1 | Lorem ipsum          | true         | true                  | ture           |
+      | Page 2 | Lirum Opsim          | false        | true                  | true           |
     And the following comment records for page "Page 1"
       | name | email    | comment          |
       | Andi | aa@bb.cc | My first Comment |
@@ -59,3 +59,46 @@ Feature: Comments
     Then I should see "A stupid comment"
     And I should see "Posted from 127.0.0.1"
     
+  Scenario: No comments if page.allow_comments is false
+    Given the following page records
+      | title         | body                 | allow_public_comments | allow_comments |
+      | Uncommentable | Lorum Upsim          | false                 | false          |
+    And I am on the page path of "Uncommentable"
+    Then I should not see "Post a comment"
+
+  Scenario: Allow comments if page.allow_comments is true
+    Given the following page records
+      | title         | body                 | allow_public_comments | allow_comments |
+      | Commentable   | Lorum Upsim          | true                  | true           |
+    And I am on the page path of "Commentable"
+    Then I should see "Post a comment"
+
+  Scenario: Allow comments if blog.allow_comments is true
+    Given the following blog records
+      | title       |  allow_public_comments | allow_comments |
+      | Commentable |  true                  | true           |
+    And the following posting records for blog "Commentable" and user "admin"
+      | title       | body        |
+      | Posting one | lorem ipsum |
+    And I am on the blog path of "Commentable"
+    And I click on link "Posting one"
+    And I fill in "Comment" with "And here my comment"
+    And I click on "Post comment"
+    Then I should be on the read posting "Posting one" page of blog "Commentable"
+    And I should see "Comment successfully created. You can edit it for the next"
+    And I should see "And here my comment"
+
+  Scenario: No comments should be allowed if blog.allow_comments is false
+    Given the following blog records
+      | title         |  allow_public_comments | allow_comments |
+      | Uncommentable |  false                 | fale           |
+    And the following posting records for blog "Uncommentable" and user "admin"
+      | title       | body        |
+      | Posting one | lorem ipsum |
+    And I am on the blog path of "Uncommentable"
+    And I click on link "Posting one"
+    Then I should not see "Post a comment"
+
+  
+
+

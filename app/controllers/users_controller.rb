@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:hide_notification, :show_notification, :notifications]
   respond_to :html, :js
 
   def index
@@ -48,6 +48,46 @@ class UsersController < ApplicationController
       :notice => t(:user_deleted)
   end
 
+  # GET /hide_notification/:created_at_as_id
+  def show_notification
+    if user_signed_in?
+      ts = Time.at(params[:id].to_i)
+      notification = current_user.user_notifications.where(:created_at => ts).first
+      unless notification.nil?
+        notification.hidden = false
+        current_user.save!
+        notice = t(:notification_successfully_shown)
+        error = nil
+      else
+        notice = nil
+        error = t(:notification_cannot_be_shown)
+      end
+      redirect_to root_path, :notice => notice, :alert => error
+    end
+  end
+
+  # GET /hide_notification/:created_at_as_id
+  def hide_notification
+    if user_signed_in?
+      ts = Time.at(params[:id].to_i)
+      notification = current_user.user_notifications.where(:created_at => ts).first
+      unless notification.nil?
+        notification.hidden = true
+        current_user.save!
+        notice = t(:notification_successfully_hidden)
+        error = nil
+      else
+        notice = nil
+        error = t(:notification_cannot_be_hidden)
+      end
+      redirect_to root_path, :notice => notice, :alert => error
+    end
+  end
+  
+  def notifications
+    @notifications = current_user.user_notifications.hidden
+  end
+  
   private
   def is_in_crop_mode?
     params[:user] && 

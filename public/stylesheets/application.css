@@ -1026,7 +1026,27 @@
   form { 
     font-family: Verdana, Arial, Helvetica, sans-serif;
   }
-  
+
+  #user_notifications {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    -moz-border-radius: 5px 5px 5px 5px; 
+    -webkit-border-radius: 5px 5px 5px 5px; 
+    background: #F5EC4B;
+    color: black;
+    font-size: 0.8em;
+    margin-top: 5px;
+    padding: 0px;
+  }  
+  #user_notifications ul {
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+  #user_notifications ul li {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 
 } /* END SCREEN */
 

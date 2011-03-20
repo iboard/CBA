@@ -31,7 +31,10 @@ Cba::Application.routes.draw do
   end
 
   # USERS
-  match '/registrations' => 'users#index', :as => 'registrations'
+  match 'registrations' => 'users#index', :as => 'registrations'
+  match 'hide_notification/:id' => 'users#hide_notification', :as => 'hide_notification'
+  match 'show_notification/:id' => 'users#show_notification', :as => 'show_notification'
+  match 'notifications' => 'users#notifications', :as => 'notifications' 
   
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :users, :only => [:show,:destroy] do

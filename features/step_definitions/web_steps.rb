@@ -324,3 +324,11 @@ Given /^the following posting records for blog "([^"]*)" and user "([^"]*)"$/ do
   end
   blog.save!  
 end
+
+Given /^the following user_notification records for user "([^"]*)"$/ do |username, table|
+  user = User.where(:name => username).first
+  table.hashes.each do |hash|
+    user.user_notifications << UserNotification.new(hash)
+  end
+  user.save!
+end

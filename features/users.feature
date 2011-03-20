@@ -91,5 +91,15 @@ Feature: User Roles
   Scenario: Total number of registered users should be displayed on "/registrations"
     Given I am on registrations page
     Then I should see "Total registered users: 4."
-
+    
+  Scenario: User should see their user_notifications on any page
+    Given the following user_notification records for user "admin"
+      | message                          |
+      | This is your first notification  |
+      | This is your second notification |
+      | This is your last notification   |
+    And I am on the home page
+    Then I should see "first notification"
+    And I should see "second notification"
+    And I should see "last notification"
   

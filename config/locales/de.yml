@@ -351,3 +351,9 @@ de:
     other: 'Kommentar wurde gespeichert und kann noch %{count} Minuten bearbeitet werden.'
   allow_comments: Kommentare erlauben
   allow_public_comments: Anonyme Kommentare erlauben
+  hide: 'Verbergen'
+  notification_successfully_hidden: 'Die Nachricht wird nun verborgen. Unter <a href=/notifications>Benachrichtigungen</a> werden alle Nachrichten angezeigt.'
+  user_notifications: 'Systemnachrichten'
+  notification_successfully_shown: 'Die Nachricht wird wieder angezeigt'
+  show_again: 'Wieder anzeigen'
+  notifications: Nachrichten

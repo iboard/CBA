@@ -14,6 +14,7 @@ class User
   references_many :authentications, :dependent => :delete
   references_many :postings, :dependent => :delete
   
+  embeds_many :user_notifications
   
   validates_presence_of   :name
   validates_presence_of   :email

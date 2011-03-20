@@ -18,3 +18,9 @@
   <li><%= menu_link_to t("menu.comments"), comments_path %></li>
 <% end %>
 
+<% if user_signed_in? %>
+  <li><%= link_to "[i]", notifications_path %></li>
+<% end %>
+
+
+

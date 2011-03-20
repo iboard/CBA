@@ -15,12 +15,12 @@ Feature: Postings
       | Blog 1 |
       | Blog 2 |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
-      
+          
   Scenario: Admin should see the blog listing
     Given I am on the blogs page
     And I should see "Blog 1"
     And I should see "Blog 2"
-
+  
   Scenario: On a Blog page I want create a new posting
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -30,7 +30,7 @@ Feature: Postings
     Then I should see "Posting successfully created"
     And I should see "My First Posting"
     And I should see "admin, less than a minute ago"
-    
+  
   Scenario: "On the Blog page I want delete a posting"
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -40,7 +40,7 @@ Feature: Postings
     And I click on link "Delete" within "#postings"
     Then I should see "Posting successfully destroyed"
     And I should not see "My First Posting"
-    
+  
   Scenario: "On the Blog page I want edit a posting"
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -53,7 +53,7 @@ Feature: Postings
     And I click on "Update Posting"
     Then I should see "Posting successfully updated"
     And I should see "Music is the best"
-
+  
   Scenario: "It should not be possible to use the same title twice"
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -65,7 +65,7 @@ Feature: Postings
     And I fill in "posting_body" with "Lorem ipsum Postingum"
     And I click on "Create Posting"
     Then I should see "already taken"
-
+  
   Scenario: "There should be a link to edit, delete, and back to the blog when I read a posting"
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -92,9 +92,15 @@ Feature: Postings
     Then I should be on the read posting "Posting one" page of blog "Blog 1"
     And I should see "Comment successfully created. You can edit it for the next"
     And I should see "And here my comment"
-      
+  
   Scenario: Pagination should work on postings::index
     pending
-   
-
+  
+  Scenario: A posting should be routed without nesting in blog
+    Given the following posting records for blog "Blog 1" and user "admin"
+      | title      | body                                           |
+      | Direct Post| The posting should load the blog it belongs to |
+    And I am on the posting page of "Direct Post"
+    Then I should see "The posting should load the blog it belongs to"
+    And I should see "in Blog 1"
   

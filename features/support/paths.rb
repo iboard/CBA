@@ -48,6 +48,9 @@ module NavigationHelpers
       blog = Blog.where(:title => blog_title).first
       posting = blog.postings.where(:title => posting_title).first
       "/blogs/#{blog._id}/postings/#{posting._id}"
+    when /the posting page of "([^"]*)"/
+      posting=Posting.where(:title=> $1).first
+      "/postings/#{posting.id}"
     else
       begin
         page_name =~ /the (.*) page/

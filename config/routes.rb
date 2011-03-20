@@ -18,6 +18,7 @@ Cba::Application.routes.draw do
       resources :comments
     end
   end
+  resources :postings, :only => [:show]
   
   
   # PAGES

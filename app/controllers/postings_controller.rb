@@ -1,5 +1,6 @@
 class PostingsController < ApplicationController
 
+  before_filter :set_blog_id_if_missing
   load_and_authorize_resource :blog
   load_and_authorize_resource :posting
   
@@ -41,5 +42,12 @@ class PostingsController < ApplicationController
     @posting.cover_picture.destroy
     @posting.save
   end
-  
+
+  private
+  def set_blog_id_if_missing
+    unless params[:blog_id]
+      @posting = Posting.find(params[:id])
+      @blog    = @posting.blog
+    end
+  end  
 end

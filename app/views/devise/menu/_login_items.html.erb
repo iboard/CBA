@@ -1,6 +1,9 @@
 <% if user_signed_in? %>
   <li>
-  <%= menu_link_to(t(:logout), destroy_user_session_path) %>        
+    <%= menu_link_to "(i)", notifications_path, :title => t(:user_notifications) %>
+  </li>
+  <li>
+    <%= menu_link_to(t(:logout), destroy_user_session_path) %>        
   </li>
 <% else %>
   <li>

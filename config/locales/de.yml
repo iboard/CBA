@@ -357,3 +357,7 @@ de:
   notification_successfully_shown: 'Die Nachricht wird wieder angezeigt'
   show_again: 'Wieder anzeigen'
   notifications: Nachrichten
+  you_have_count_notifications:
+    zero: 'Es sind keine alten Systemnachrichten für sie gespeichert.'
+    one: 'Sie haben eine verteckte/alte Systemnachricht.'
+    other: 'Es sind %{count} versteckte/alte Systemnachrichten für sie gespeichert.'

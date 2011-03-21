@@ -167,3 +167,7 @@ en:
   user_notifications: System notifications
   show_again: display again
   notifications: 'Notifications'
+  you_have_count_notifications:
+    zero: 'Currently there are no hidden/old user notifications for you.'
+    one: 'There is one hidden/old user notification for you.'
+    other: 'You have stored %{count} hidden/old user notifications.'

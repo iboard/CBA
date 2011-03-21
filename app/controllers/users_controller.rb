@@ -62,7 +62,7 @@ class UsersController < ApplicationController
         notice = nil
         error = t(:notification_cannot_be_shown)
       end
-      redirect_to root_path, :notice => notice, :alert => error
+      redirect_to :back, :notice => notice, :alert => error
     end
   end
 
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
         notice = nil
         error = t(:notification_cannot_be_hidden)
       end
-      redirect_to root_path, :notice => notice, :alert => error
+      redirect_to :back, :notice => notice, :alert => error
     end
   end
   

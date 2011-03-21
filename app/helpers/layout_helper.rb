@@ -32,11 +32,10 @@ module LayoutHelper
   
   # if the link is a link to the current-page display it with a different
   # css-class to inform the user about 'here you are'.
-  def menu_link_to(name,path)
-    style = current_page?(path) ? \
-              "hmenu_current" : \
-              "hmenu"
-    link_to name, path, :class => style
+  def menu_link_to(name,path,options={})
+    style = current_page?(path) ? "hmenu_current" : "hmenu"
+    options.merge!( { :class => style } )
+    link_to( name, path, options )
   end
   
   # Outputs a Javascript to place the title of a page at the URL in cases 

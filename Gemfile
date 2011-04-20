@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=3.0.3'
+gem 'rails' #, '>=3.0.3'
 gem 'jquery-rails'  
 
 # Bundle gems needed for Mongoid
-gem "mongoid", ">=2.0.0.beta.20"
-gem "bson_ext", ">=1.1.5"
+gem "mongoid", "~>2.0.1"   #, "2.0.0.rc.7"
+gem "bson_ext"  #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
-gem "devise", ">=1.1.6"
+gem "devise", "1.1.7"
 gem "cancan"
 gem "omniauth"
 

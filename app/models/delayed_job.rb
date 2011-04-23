@@ -7,7 +7,8 @@
 class DelayedJob
   include Mongoid::Document
   include Mongoid::Timestamps
-
+  cache
+  
   field   :class_name, :required => true
   field   :not_before, :type => Time
     

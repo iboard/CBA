@@ -4,7 +4,7 @@ require 'test_helper'
 class NotificationsTest < ActionMailer::TestCase
 
   test "sign_up" do
-    user = User.first
+    user = User.first || Factory.build(:user)
     mail = Notifications.sign_up(user)
     assert_equal "NEW SIGN UP AT TESTAPPLICATION", mail.subject
     assert_equal ['test@application.tt'], mail.to

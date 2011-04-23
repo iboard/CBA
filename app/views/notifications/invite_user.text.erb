@@ -1,0 +1,21 @@
+<%= @subject %>
+============================================================================================
+
+English
+-------
+
+  You're invited to sign up to our service. 
+  If you accept this invitaton, please visit the 'Sign Up page' at <%= @sign_up_url -%> page.
+  If you don't want to accept the invitation, just ignore this mail and take no action.
+
+
+Deutsch
+-------
+
+  Sie wurden eingeladen, sich bei unseren Service anzumelden. 
+  Falls Sie diese Einladung akzeptieren, besuchen Sie bitte die Seite <%= @sign_up_url -%>.
+  Falls nicht, ignorieren Sie bitte diese Nachricht einfach.
+
+<% unless @message.blank? %>
+  <%= @message %>
+<% end %>

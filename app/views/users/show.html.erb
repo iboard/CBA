@@ -9,8 +9,21 @@
 <p>User: <%= @user.name %></p>
 
 
-<p style='clear: both;'>
-    <% if user_signed_in? && current_user == @user %>
-      <%= link_to t(:edit_profile), edit_registration_path(@user)%>
-    <% end %>
-</p>
+<p style='clear: both;'></p>
+<% if user_signed_in? %>
+  <p><strong><%= t(:your_account) %></strong></p>
+  <ul>
+    <li>
+        <% if current_user == @user || current_user.role?(:admin  )%>
+          <%= link_to t(:edit_profile), edit_registration_path(@user)%>
+        <% end %>
+    </li>
+  </ul>
+  
+  <p><strong><%= t(:invite_user) %></strong>
+  <ul>
+    <li>
+      <%= link_to t(:send_invitaiton), new_user_invitation_path(current_user), :id => 'invitation_link' %>
+    </li>
+  </ul>
+<% end %>

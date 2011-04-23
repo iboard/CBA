@@ -10,6 +10,14 @@ class User
   field :name
   field :roles_mask, :type => Fixnum, :default => 0
   field :use_gravatar, :type => Boolean, :default => true
+  field :invitation_id, :type => BSON::ObjectId
+  def invitation
+    @invitation ||= Invitation.criteria.for_ids(self.invitation_id).first
+  end
+  def invitation=(inv)
+    @invitation = nil
+    self.invitation_id = inv.id
+  end
   
   references_many :authentications, :dependent => :delete
   references_many :postings, :dependent => :delete
@@ -25,7 +33,7 @@ class User
   attr_accessible :name, :email, :password, :password_confirmation, :roles_mask,
                   :remember_me, :authentication_token, :confirmation_token,
                   :avatar, :clear_avatar, :crop_x, :crop_y, :crop_w, :crop_h,
-                  :time_zone, :language, :use_gravatar
+                  :time_zone, :language, :use_gravatar, :invitation_id
                   
   attr_accessor :clear_avatar
   
@@ -197,5 +205,6 @@ class User
       self.save!
     end
   end  
+
 end
 

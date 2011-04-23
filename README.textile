@@ -8,6 +8,7 @@ p{padding-left: 20px; padding-right: 20px; background: #eee; border: 1px solid #
 * Paperclip
 * CanCan
 * jQuery
+* autotest and spork
 
 CBA's own implementations
 

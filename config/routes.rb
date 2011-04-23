@@ -35,9 +35,11 @@ Cba::Application.routes.draw do
   match 'hide_notification/:id' => 'users#hide_notification', :as => 'hide_notification'
   match 'show_notification/:id' => 'users#show_notification', :as => 'show_notification'
   match 'notifications' => 'users#notifications', :as => 'notifications' 
+  match 'profile/:id'   => 'users#show', :as => 'profile'
   
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :users, :only => [:show,:destroy] do
+    resources :invitations
     member do
       get :crop_avatar
       put :crop_avatar
@@ -45,7 +47,7 @@ Cba::Application.routes.draw do
       put :update_role
     end
   end
-  
+    
   # AUTHENTICATIONS
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications, :only => [:index,:create,:destroy]

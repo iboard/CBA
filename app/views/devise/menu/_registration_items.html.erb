@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <li>
-  <em><%= menu_link_to(current_user.name, edit_user_registration_path) %></em>
+  <em><%= menu_link_to(current_user.name, profile_path(current_user)) %></em>
   </li>
 <% else %>
   <li>

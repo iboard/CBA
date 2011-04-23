@@ -29,6 +29,9 @@ class Ability
             can :read, [Page, Blog, Posting]
             can :create, Comment
         end
+        if user.role?(:confirmed_user)
+          can :create, Invitation
+        end
         if user.role?(:author)
           can :create, [Page, Blog, Posting]
         end

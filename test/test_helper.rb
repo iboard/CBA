@@ -1,9 +1,11 @@
-ENV["RAILS_ENV"] = "test"
-require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
+require 'spork'
 
-include Devise::TestHelpers
-
+Spork.prefork do 
+  ENV["RAILS_ENV"] = "test"
+  require File.expand_path('../../config/environment', __FILE__)
+  require 'rails/test_help'
+  include Devise::TestHelpers
+end
 
 class ActiveSupport::TestCase
   

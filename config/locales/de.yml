@@ -361,3 +361,5 @@ de:
     zero: 'Es sind keine alten Systemnachrichten für sie gespeichert.'
     one: 'Sie haben eine verteckte/alte Systemnachricht.'
     other: 'Es sind %{count} versteckte/alte Systemnachrichten für sie gespeichert.'
+  send_invitation: Einladung versenden
+  

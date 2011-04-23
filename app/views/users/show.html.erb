@@ -9,8 +9,16 @@
 <p>User: <%= @user.name %></p>
 
 
-<p style='clear: both;'>
-    <% if user_signed_in? && current_user == @user %>
-      <%= link_to t(:edit_profile), edit_registration_path(@user)%>
-    <% end %>
-</p>
+<p style='clear: both;'></p>
+<% if user_signed_in? %>
+  <ul>
+    <li>
+        <% if current_user == @user || current_user.role?(:admin  )%>
+          <%= link_to t(:edit_profile), edit_registration_path(@user)%>
+        <% end %>
+    </li>
+    <li>
+      <%= link_to t(:send_invitation), send_invitation_user_path(current_user)%>
+    </li>
+  </ul>
+<% end %>

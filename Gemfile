@@ -36,13 +36,15 @@ group :test do
   gem 'cucumber'
   gem 'rspec', '>=2.0.0.beta.13'
   gem 'rspec-rails', '>=2.0.0.beta.5'
-  gem 'spork'
+  gem 'spork', '0.9.0.rc5'
+  gem 'spork-testunit'
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'escape_utils'
   gem 'ZenTest'
   gem 'autotest'
 #  gem 'autotest-rails'
+  gem 'autotest-growl'
   gem "mocha"
   gem "gherkin"
 end

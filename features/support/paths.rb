@@ -17,6 +17,10 @@ module NavigationHelpers
       '/users/sign_out'
     when /the edit user page/
       '/users/edit'
+    when /the profile page of user "([^"]*)/
+      username = $1
+      user = User.where(name: username).first
+      "/profile/#{user.id}"
     when /edit page for "([^"]*)"/
       title = $1
       page = Page.where(:title => title).first

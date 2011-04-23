@@ -4,12 +4,12 @@
 class Ability
 
   include CanCan::Ability
- 
+
   # Called by cancan with the current_user or nil if
   # no user signed in. If so, we create a new user object which can be
   # identified as an anonymous user by calling new_record? on it.
-  # if user.new_record? is true this means the session belongs to a not 
-  # signed in user. 
+  # if user.new_record? is true this means the session belongs to a not
+  # signed in user.
   def initialize(user)
     user ||= User.new # guest user
 
@@ -18,12 +18,12 @@ class Ability
     else
       # Not Admin
       unless user.new_record?
-       
+
         # Any signed in user
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
-        
+
         # Users with role
         if user.role?(:guest)
             can :read, [Page, Blog, Posting]
@@ -42,9 +42,9 @@ class Ability
           can :manage, [Page, Blog, Posting, Comment]
           can :details, User
         end
-        
+
       end
-      
+
       # Anybody
       can :read, [Page, Blog, Posting]
       can :create, Comment
@@ -61,9 +61,9 @@ class Ability
           rescue
             false
           end
-        end          
+        end
       end
     end
   end
-  
+
 end

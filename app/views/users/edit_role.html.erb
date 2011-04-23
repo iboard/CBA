@@ -5,14 +5,14 @@
 <% end %>
 
 
-<%= form_for(@user, :url => update_role_user_path(@user), 
+<%= form_for(@user, :url => update_role_user_path(@user),
   :html => { :method => :put }) do |f| %>
 
-  
-  <%= render :partial => 'registrations/role', 
-       :locals => { :user => @user, 
+
+  <%= render :partial => 'registrations/role',
+       :locals => { :user => @user,
                     :f => f,
-                    :partial_title => "<h2>#{t('userlist.role')}</h2>".html_safe} 
+                    :partial_title => "<h2>#{t('userlist.role')}</h2>".html_safe}
    %>
 
    <p><%= f.submit %></p>

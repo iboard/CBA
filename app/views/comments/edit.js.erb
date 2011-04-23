@@ -1,6 +1,6 @@
-$('#comment_comment_<%= @comment.id -%>').html('<%= 
+$('#comment_comment_<%= @comment.id -%>').html('<%=
      escape_javascript( render :partial => 'edit', :locals => {
-       :commentable => @commentable, :comment => @comment 
-     } ) 
+       :commentable => @commentable, :comment => @comment
+     } )
   -%>'
 );

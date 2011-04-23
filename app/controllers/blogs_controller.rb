@@ -1,36 +1,36 @@
 class BlogsController < ApplicationController
-  
+
   load_and_authorize_resource
-  
+
   def index
     @blogs = Blog.paginate(
-       :page => params[:page], 
+       :page => params[:page],
        :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
      )
-    
+
      respond_to do |format|
        format.html # index.html.erb
        format.xml  { render :xml => @blogs }
      end
   end
-  
+
   # Show all postings for this blog
   def show
     @postings = @blog.postings.desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
-      format.js { 
+      format.js {
          @path = blog_path(@blog, :page => (params[:page] ? (params[:page].to_i+1) : 2) )
       }
       format.html # index.html.erb
       format.xml  { render :xml => @blog }
     end
   end
-  
-  
+
+
   def new
   end
-  
+
   def create
     @blog = Blog.new(params[:blog])
     if @blog.save
@@ -39,14 +39,14 @@ class BlogsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     respond_to do |format|
       if @blog.update_attributes(params[:blog])
-        format.html { 
+        format.html {
            redirect_to(@blog, :notice => t(:blog_successfully_updated))
         }
         format.xml  { head :ok }
@@ -56,7 +56,7 @@ class BlogsController < ApplicationController
       end
     end
   end
-  
+
   # DELETE /blogs/:id
   # DELETE /blogs/:id.xml
   def destroy
@@ -66,7 +66,7 @@ class BlogsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   # GET /blogs/:id/delete_cover_picture
   def delete_cover_picture
     @blog.cover_picture.destroy

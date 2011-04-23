@@ -2,9 +2,9 @@ class Invitation
   include Mongoid::Document
   include Mongoid::Timestamps
   cache
-  
+
   referenced_in :user # The Sponsor
-  
+
   # The invitee
   field   :name,          :required => true
     validates_presence_of   :name
@@ -18,18 +18,18 @@ class Invitation
   field   :message,       :default => ""
   field   :accepted_at,   :type => Time
   field   :accepted_by,   :type => BSON::ObjectId
-  
+
   # Filters
   before_validation  :generate_token
   after_create       :send_invitation
-  
-  
-  
+
+
+
   private
   def generate_token
     self.token = String::random_string(10)
   end
-  
+
   def send_invitation
      # arg[0] = invitation_id
      # arg[1] = subject
@@ -41,6 +41,6 @@ class Invitation
        I18n.translate(:you_are_invited_by, :name => self.user.name),
        self.message
      )
-  end  
-  
+  end
+
 end

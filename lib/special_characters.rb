@@ -1,6 +1,6 @@
 # Use <code>sc(:symbol[,:symbol,...])</code> to display special html-characters
 module SpecialCharacters
-  
+
   BR="\n<br/>".html_safe
   POINTER_RIGHT="&#08594;"
   NBSP="&nbsp;"
@@ -21,7 +21,7 @@ module SpecialCharacters
   STAR_SELECTED="&#10026;"
   APOSTROPHY_OPEN="&#10077;"
   APOSTROPHY_CLOSE="&#10078;"
-  
+
   CHARACTERS={
       :br                      => BR             ,
       :pointer_right           => POINTER_RIGHT  ,
@@ -46,15 +46,15 @@ module SpecialCharacters
       :apostrophy_open         => APOSTROPHY_OPEN,
       :apostrophy_close        => APOSTROPHY_CLOSE
   }
-  
+
   # <code>sc([:br,:pr,:close])</code> will return one html-string of special
   # characters and html-tags. <b><br />->X</b>
   def sc(*names)
-    n = [] 
+    n = []
     while x = names.shift
       n << x
     end
-    begin      
+    begin
       rc = ""
       n.each{ |c| rc += CHARACTERS[c] }
       rc.html_safe
@@ -62,5 +62,5 @@ module SpecialCharacters
       "SPECIAL CHAR #{names.inspect} NOT DEFINED IN #{__FILE__} - ERROR #{e.message}"
     end
   end
-  
+
 end

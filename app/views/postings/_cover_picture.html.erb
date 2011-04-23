@@ -1,11 +1,11 @@
-<% 
-   style  = '' unless defined? style 
-   format ||= :thumb 
+<%
+   style  = '' unless defined? style
+   format ||= :thumb
 %>
 <% if posting.cover_picture_exists? %>
   <div class='cover_picture' id='posting_cover_picture_<%= posting.id -%>' style='<%= style -%>'>
-      <%= link_to_function( image_tag( w3c_url(posting.cover_picture.url(format) )), 
-               "image_popup('#{w3c_url(posting.cover_picture.url(:popup))}')") 
+      <%= link_to_function( image_tag( w3c_url(posting.cover_picture.url(format) )),
+               "image_popup('#{w3c_url(posting.cover_picture.url(:popup))}')")
       %>
   </div>
 <% end %>

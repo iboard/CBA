@@ -9,11 +9,11 @@
                      :style => 'width: 100%;'
                     )+"</b>".html_safe %>
       <% else %>
-        <%= f.label :file %>  
+        <%= f.label :file %>
       <% end %>
       <br />
-      <%= f.file_field :file %>  
+      <%= f.file_field :file %>
       <%= link_to_remove_fields( t(:destroy_asset), f )%>
-      
+
     </div>
 </div>

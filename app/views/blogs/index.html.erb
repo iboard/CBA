@@ -3,11 +3,11 @@
 
 <div>
   <%= will_paginate @blogs %>
-  
+
   <% @blogs.each do |blog| %>
    <%= render :partial => 'blog_intro', :locals => { :blog => blog } %>
    <p class='content_seperator'></p>
   <% end %>
-  
+
   <%= will_paginate @blogs %>
 </div>

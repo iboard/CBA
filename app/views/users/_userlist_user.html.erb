@@ -1,13 +1,13 @@
-<%= link_to_function( image_tag( w3c_url(user.avatar_url(:thumb) )), 
+<%= link_to_function( image_tag( w3c_url(user.avatar_url(:thumb) )),
            "image_popup('#{w3c_url(user.avatar_url(:popup))}')")
-%> 
+%>
 
 <%=link_to user.name, user %>
 
 <%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %>
 <% if user_signed_in? && current_user.role?(:maintainer) %>
   <span id='user_detail_link_<%= user.name.underscore -%>'>
-    <%= link_to t("userlist.detail"), details_user_path(user), :class => 'admin', :remote => true %>  
+    <%= link_to t("userlist.detail"), details_user_path(user), :class => 'admin', :remote => true %>
   </span>
   <ul class='user_detail admin' id='user_information_<%= user.id.to_s -%>', style='display: none;'>
   </ul>
@@ -20,7 +20,7 @@
   <%= t(:last_login_at,:time => distance_of_time_in_words(Time.now(),user.last_sign_in_at||Time.at(0))) %>
   <% if user.authentications.any? %>
      <br/>
-       <%= user.authentications.map {|a| 
+       <%= user.authentications.map {|a|
              image_tag("/images/#{a.provider}_32.png",:class => 'omniauth_mini_icons')
            }.join().html_safe %>
      <br/>

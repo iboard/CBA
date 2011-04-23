@@ -1,13 +1,13 @@
 <% title @posting.title %>
 <div id='posting'>
-  <%= render :partial => '/postings/cover_picture', :locals => { 
+  <%= render :partial => '/postings/cover_picture', :locals => {
         :posting => @posting, :format => :medium
       } %>
-  
+
   <address class='<%= @posting.created_at > current_user_field(\
                           :last_sign_in_at,Time::now()-1.hour) ? "new_comment"\
                           : "old_comment" -%>'>
-          <%= t(:user_wrote_a_comment_at, :user => @posting.user.name, 
+          <%= t(:user_wrote_a_comment_at, :user => @posting.user.name,
               :at => distance_of_time_in_words_to_now(@posting.created_at)   ).html_safe+
           t(:in_blog, :blog => link_to(@posting.blog.title,@posting.blog) ).html_safe -%>
           <% if can? :manage, @posting %>
@@ -18,11 +18,11 @@
             </p>
           <% end %>
   </address>
-  
+
   <div id='posting_body'>
   <%= sanitize(@posting.render_body).html_safe %>
   </div>
-  
+
   <!-- ATTACHMENTS -->
   <% unless @posting.attachments.empty? %>
     <h3><%= t(:attachments) -%></h3>
@@ -30,14 +30,14 @@
       <%= render @posting.attachments %>
     </ul>
   <% end %>
-  
+
   <p style='clear: right;'><%= link_to(t(:back_to_blog, :blog => @posting.blog.short_title), @posting.blog) %></p>
- 
+
   <% if @posting.comments.any? %>
     <!-- COMMENTS -->
     <%= content_tag :div, :id => 'comments' do %>
       <h5><%= t(:number_of_comments, :count => @posting.comments.count)%></h5>
-      <%= render :partial => @posting.comments, :locals => { :commentable => @posting, 
+      <%= render :partial => @posting.comments, :locals => { :commentable => @posting,
             :path_components => [@posting.blog,@posting] } %>
     <% end %>
   <% end %>
@@ -45,16 +45,16 @@
 
     <%= content_tag :div, :id => 'new_comment_form' do %>
       <h5><%= t(:post_a_comment) -%></h5>
-      <%= form_for [@blog,@posting,comment = @posting.comments.build(  
-                                               :name => current_user_field(:name,''), 
-                                               :email => current_user_field(:email, '') 
+      <%= form_for [@blog,@posting,comment = @posting.comments.build(
+                                               :name => current_user_field(:name,''),
+                                               :email => current_user_field(:email, '')
                                             )] do |f| %>
-  
-        <%= render :partial => '/comments/comment_fields', 
-                   :locals => { :f => f, :commentable => @posting,:comment => comment } 
+
+        <%= render :partial => '/comments/comment_fields',
+                   :locals => { :f => f, :commentable => @posting,:comment => comment }
         %>
       <% end %>
     <% end %>
   <% end %>
-  
+
 </div>

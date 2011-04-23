@@ -1,11 +1,11 @@
 /* REVIEW: This file is needed for any endles-loading view. Is there a way to unify this, so we have it only once? */
 $(".pagination").html('<%= escape_javascript(will_paginate(@users)) %>');
-  
+
 $('.load_more').before( '<div id="page<%= @users.current_page -%>" style="clear: both; display: none;">'+
                           '<p class="page_seperator"><%= @users.current_page -%>'+
                           '/<%= @users.total_pages -%></p>'+
                           '<%= escape_javascript(render(:partial => @users)) -%>'+
-                          '</div>');  
+                          '</div>');
 
 <% if is_on_last_page(@users) %>
    $('#load_more').html( '<%=  escape_javascript(link_to_function(t(:load_more),"insert_load_button( 'load_more','#{t(:loading)}',"+

@@ -19,8 +19,8 @@ Cba::Application.routes.draw do
     end
   end
   resources :postings, :only => [:show]
-  
-  
+
+
   # PAGES
   match '/p/:permalink' => 'pages#permalinked', :as => 'permalinked'
   resources :pages do
@@ -34,9 +34,9 @@ Cba::Application.routes.draw do
   match 'registrations' => 'users#index', :as => 'registrations'
   match 'hide_notification/:id' => 'users#hide_notification', :as => 'hide_notification'
   match 'show_notification/:id' => 'users#show_notification', :as => 'show_notification'
-  match 'notifications' => 'users#notifications', :as => 'notifications' 
+  match 'notifications' => 'users#notifications', :as => 'notifications'
   match 'profile/:id'   => 'users#show', :as => 'profile'
-  
+
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :users, :only => [:show,:destroy] do
     resources :invitations
@@ -48,12 +48,12 @@ Cba::Application.routes.draw do
       get :details
     end
   end
-    
+
   # AUTHENTICATIONS
   match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications, :only => [:index,:create,:destroy]
   match '/auth/failure' => 'authentications#auth_failure'
-  
+
   # ROOT
   root :to => 'home#index'
 

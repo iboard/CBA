@@ -6,19 +6,19 @@
     <%= f.label :title %>
     <%= f.text_field :title, :size => 80 %>
   </div>
-  
+
   <div class="field">
     <%= f.label :cover_picture %>
-    <%= render( 
-          :partial => 'cover_picture', 
-          :locals => { :blog => blog, :format => :thumb, :style => 'display: inline; ' } 
+    <%= render(
+          :partial => 'cover_picture',
+          :locals => { :blog => blog, :format => :thumb, :style => 'display: inline; ' }
         )
     -%>
     <%= f.file_field :cover_picture %>
     <%= link_to( t(:delete_picture), delete_cover_picture_blog_path(blog), :remote => true,
         :confirm => t(:are_you_sure)) unless blog.new_record? %>
   </div>
-  
+
   <div class="field">
     <%= f.label :allow_comments %>
     <%= f.check_box :allow_comments %><%= t(:allow_comments) %>
@@ -28,12 +28,12 @@
     <%= f.label :allow_public_comments %>
     <%= f.check_box :allow_public_comments %><%= t(:allow_public_comments) %>
   </div>
-  
+
   <div class='clear'></div>
 
-  
+
   <div class="actions">
-    <%= f.label :submit, t(:save_changes) %>  
+    <%= f.label :submit, t(:save_changes) %>
     <%= f.submit %>
   </div>
 <% end %>

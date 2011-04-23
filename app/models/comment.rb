@@ -12,10 +12,10 @@ class Comment
   validates             :email, :presence => true, :email => true
   validates_presence_of :name
   validates_presence_of :comment
-  
+
   referenced_in :commentable, :inverse_of => :comments, :polymorphic => true
-  
-  scope :since, lambda { |since| where(:created_at.gt => since) }   
+
+  scope :since, lambda { |since| where(:created_at.gt => since) }
   after_create :send_notification
 
   # Calculate the time left a user can edit a comment
@@ -33,19 +33,19 @@ class Comment
     end
     [comment, errors]
   end
-  
+
   def update_session_comments(comments)
     begin
       remove_old_comments(comments) << [self.id.to_s,self.updated_at.to_i]
     rescue => e
-      Rails.logger.warn(  
+      Rails.logger.warn(
         "***WARNING*** #{e.inspect} *** "+ "RESET SESSION COMMENTS "+
         "#{__FILE__}:#{__LINE__}"
       )
       [self.id.to_s,self.updated_at.to_i]
     end
   end
-  
+
   def commentable_url
     path = "http://#{DEFAULT_URL}/"
     case self.commentable_type
@@ -56,9 +56,9 @@ class Comment
     end
     path
   end
-  
+
   private
-  
+
   # TODO: Instead of application-name, send the class-name and title of the commentable
   def send_notification
     # arg[0] = commentable_identifier
@@ -69,24 +69,24 @@ class Comment
       user = self.commentable.user
     end
     recipient = user ? user.email : APPLICATION_CONFIG['admin_notification_address']
-    
+
     DelayedJob.enqueue('NewCommentNotifier',
       Time.now+10.second,
       recipient,
       self.commentable.try(:title) || "(no title)",
-      self.email, 
-      self.name, 
+      self.email,
+      self.name,
       self.comment,
       self.commentable_url
     )
   end
-  
-  # Remove self and old comments from session (comments) 
+
+  # Remove self and old comments from session (comments)
   def remove_old_comments(comments)
-    (comments || []).reject { |r| 
+    (comments || []).reject { |r|
         (r[1].to_i < (Time.now-CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes).to_i) ||
         r[0].to_s.eql?(self.id.to_s)
     }
   end
-  
+
 end

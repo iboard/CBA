@@ -48,6 +48,19 @@ Since nearly any website needs some kind of 'semi-static pages' and we need some
 # The body is rendered with _RedCloth_
 # The MongoId of <code>/page/MONGO_ID</code> in the browser-address will be replaced by <code>/p/title_of_the_page</code> with JS.
 
+h2. Testing with spork
+
+To run autotests you have to start the spork-server and then run autotest command
+
+# AUTOFEATURE=true bundle exec spork
+# AUTOFEATURE=true bundle exec autotes
+
+To run your unit-tests using spork do
+
+# bundle exec spork TestUnit --port 8988
+# testdrb -I test test/unit/*rb
+
+
 h2. License
 
 p. See -> "Freedom":/p/freedom

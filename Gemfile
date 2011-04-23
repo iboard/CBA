@@ -43,7 +43,7 @@ group :test do
   gem 'escape_utils'
   gem 'ZenTest'
   gem 'autotest'
-#  gem 'autotest-rails'
+  gem 'autotest-rails'
   gem 'ruby-growl'
   gem 'autotest-growl'
   gem "mocha"

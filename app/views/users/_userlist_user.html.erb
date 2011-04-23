@@ -6,9 +6,10 @@
 
 <%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %>
 <% if user_signed_in? && current_user.role?(:maintainer) %>
-  <%= link_to t("userlist.detail"), details_user_path(user), :class => 'admin', :remote => true %>  
+  <span id='user_detail_link_<%= user.name.underscore -%>'>
+    <%= link_to t("userlist.detail"), details_user_path(user), :class => 'admin', :remote => true %>  
+  </span>
   <ul class='user_detail admin' id='user_information_<%= user.id.to_s -%>', style='display: none;'>
-    <%= render :partial => 'user_detail', :locals => { :user => user } %>
   </ul>
 <% end %>
 

@@ -1,40 +1,40 @@
 
 <%= form_for([blog,posting], :html => { :multipart => true } ) do |f| %>
 
-  <%= errors_for(posting) %>  
-  
+  <%= errors_for(posting) %>
+
   <!-- FIELDS ===================================== -->
-  
+
   <div class='top_right_box'>
     <div class="field">
       <strong><%= f.label :cover_picture %></strong><br /><br />
       <%= f.file_field :cover_picture %>
     </div>
-    <%= render( 
-            :partial => 'cover_picture', 
-            :locals => { :posting => posting, :format => :thumb } 
+    <%= render(
+            :partial => 'cover_picture',
+            :locals => { :posting => posting, :format => :thumb }
           )
     -%><br/>
     <%= link_to( t(:delete_picture), delete_cover_picture_blog_posting_path(posting.blog,posting), :remote => true,
         :confirm => t(:are_you_sure), :id => 'delete_cover_picture_link') unless posting.new_record? %>
   </div>
-  
+
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, :size => 80 %>
   </div>
-  
+
   <div class="field">
     <%= f.label :interpreter %>
     <%= f.select :interpreter, [['Markdown',:markdown], ['Textile', :textile], [t(:none),:none]] %>
     <%= render :partial => '/home/interpreter_help' %>
-  </div> 
-  
+  </div>
+
   <div class="field">
     <%= f.label :body %>
     <%= f.text_area :body, :rows => 10, :cols => 60 %>
   </div>
-  
+
   <!-- ATTACHMENTS ================================ -->
   <div id='attachments' style='clear: right;'>
     <h3><%= t(:attachments) -%></h3>
@@ -53,7 +53,7 @@
   <div class='clear'></div>
 
   <div class="actions">
-    <%= f.label :submit, t(:save_changes) %>  
+    <%= f.label :submit, t(:save_changes) %>
     <%= f.submit %>
   </div>
 <% end %>

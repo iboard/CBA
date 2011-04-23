@@ -5,23 +5,23 @@ class Authentication
   include Mongoid::Document
   include Mongoid::Timestamps
   cache
-  
+
   field :provider
   field :uid
-  
+
   referenced_in :user
- 
-  # Some providers can not be displayed as a humanized version of their 
+
+  # Some providers can not be displayed as a humanized version of their
   # symbol. provide_name will do the translation.
   def provider_name
-    case provider 
-    when 'open_id' 
+    case provider
+    when 'open_id'
       "OpenID"
-    when 'thirty_seven_signals' 
+    when 'thirty_seven_signals'
       '37 Signals'
     else
       provider.titleize
     end
   end
-  
+
 end

@@ -1,15 +1,15 @@
 module CoverPicture
-  
-  def self.included(base)  
+
+  def self.included(base)
     base.extend CoverPicture::ClassMethods
   end
-  
+
   module ClassMethods
     def has_cover_picture
       class_eval <<-EOV
         include Mongoid::Paperclip
         has_mongoid_attached_file :cover_picture,
-                                  :styles => { 
+                                  :styles => {
                                     :popup  => "800x600=",
                                     :medium => "300x500>",
                                     :thumb  => "100x150>",
@@ -24,6 +24,6 @@ module CoverPicture
         end
       EOV
     end
-    
+
   end
 end

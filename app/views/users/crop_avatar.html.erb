@@ -13,18 +13,18 @@
         $( 'crop_x' ).value = coords.x1;
         $( 'crop_y' ).value = coords.y1;
         $( 'crop_w' ).value = dimensions.width;
-        $( 'crop_h' ).value = dimensions.height;  
+        $( 'crop_h' ).value = dimensions.height;
     }
-    
+
   </script>
 <% end %>
 
 <script type="text/javascript" language="javascript">
-    
-    Event.observe( window, 'load', function() {        
+
+    Event.observe( window, 'load', function() {
         new Cropper.ImgWithPreview(
             'cropbox',
-            { 
+            {
               displayOnInit: true,
               previewWrap: 'preview',
               minWidth: 100,

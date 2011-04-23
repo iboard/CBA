@@ -5,7 +5,7 @@
 </li>
 <% for attribute in user.attributes %>
   <li>
-    <strong><%= attribute[0] == "_id" ? "ID" : attribute[0].humanize %></strong>: 
+    <strong><%= attribute[0] == "_id" ? "ID" : attribute[0].humanize %></strong>:
     <%= user.try(attribute[0].to_s.underscore) %>
   </li>
 <% end %>

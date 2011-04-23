@@ -5,7 +5,7 @@
 # The original LayoutHelper module was done by Ryan Bates and got some
 # extensions for our project.
 module LayoutHelper
-  
+
   # Set the title of the html-page.
   # :param: show_title
   #   If true the title will also displayed as a h1-title within the
@@ -29,7 +29,7 @@ module LayoutHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
-  
+
   # if the link is a link to the current-page display it with a different
   # css-class to inform the user about 'here you are'.
   def menu_link_to(name,path,options={})
@@ -37,8 +37,8 @@ module LayoutHelper
     options.merge!( { :class => style } )
     link_to( name, path, options )
   end
-  
-  # Outputs a Javascript to place the title of a page at the URL in cases 
+
+  # Outputs a Javascript to place the title of a page at the URL in cases
   # where the page was addressed by it's ID
   def set_browser_address(page,title)
     unless title.length > CONSTANTS['title_max_length'].to_i
@@ -48,10 +48,10 @@ module LayoutHelper
        </script>".html_safe
      end
   end
-  
+
   # Replace blanks by %20 to satisfy w3c-validators
   def w3c_url(url)
     url.gsub(' ', '%20')
   end
-  
+
 end

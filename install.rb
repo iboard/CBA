@@ -1,7 +1,7 @@
 # Application Installation and Setup-script for CBA
 # clone and setup CBA from http://github.com/iboard/CBA
 
-# Usage: 
+# Usage:
 #
 #   curl -o install_cba.rb https://github.com/iboard/CBA/raw/master/install.rb
 #   ruby install_cba.rb
@@ -12,7 +12,7 @@
 =begin
  =========================================================================
                           HELPER FUNCTIONS
- ========================================================================= 
+ =========================================================================
 =end
 SCREEN_WIDTH=79
 
@@ -37,7 +37,7 @@ unless defined? yes?
     end
   end
 end
-    
+
 
 def terminate msg
   puts msg
@@ -76,7 +76,7 @@ end
 =begin
  =========================================================================
                                 MAIN
- ========================================================================= 
+ =========================================================================
 =end
 
 puts "="*SCREEN_WIDTH
@@ -108,17 +108,17 @@ unless os > ""
 end
 
 terminate "ABORTED" unless run_and_check(
-  "Checking for git", "which git", "git", 
+  "Checking for git", "which git", "git",
   "GIT NOT FOUND"
 )
 
 terminate "ABORTED" unless run_and_check(
-  "Checking for ruby version 1.9.x", "ruby -v", "1.9.", 
+  "Checking for ruby version 1.9.x", "ruby -v", "1.9.",
   "RUBY 1.9.x SHOULD BE INSTALLED BUT CHECK RETURNS"
 )
 
 terminate "ABORTED" unless run_and_check(
-  "Checking for rails version 3.x", "rails -v", "Rails 3\.", 
+  "Checking for rails version 3.x", "rails -v", "Rails 3\.",
   "RAILS 3.x.x SHOULD BE INSTALLED BUT CHECK RETURNS"
 )
 
@@ -147,12 +147,12 @@ imagemagick_path=File::dirname(convert)
 rails_root=run_and_get(
   "Checking for Rails.root","pwd","COULD NOT GET CURRENT WORKING DIRECTORY"
 )
-  
+
 #----------------------------------------------------------------------------
 # Summary
 #----------------------------------------------------------------------------
 puts "\nSummary " + "*"*(SCREEN_WIDTH-1-"Summary".length)
-if !mongo_version || mongo_version.blank? 
+if !mongo_version || mongo_version.blank?
   puts "  There is no local MongoDB found."
   puts "  You can use CBA, though you have to configure an external"
   puts "  MongoDB-Server."

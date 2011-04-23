@@ -1,7 +1,7 @@
 <%= form_for(page, :html => { :multipart => true } ) do |f| %>
 
   <%= errors_for page %>
-  
+
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, :size => 80 %>
@@ -9,7 +9,7 @@
   <div class="field">
       <%= f.label :show_in_menu %>
       <%= f.check_box :show_in_menu %> <%= t(:show_in_menu) %>
-      <%= t(:at_position) -%>: 
+      <%= t(:at_position) -%>:
       <%= f.text_field :menu_order, :size => 5, :placeholder => t(:last_position) %>
   </div>
   <div class="field">
@@ -24,9 +24,9 @@
   <div class="field">
     <%= f.label :cover_picture %>
     <div style='margin-left: 200px'>
-    <%= render( 
-          :partial => 'cover_picture', 
-          :locals => { :page => page, :format => :thumb, :style => 'display: inline; ' } 
+    <%= render(
+          :partial => 'cover_picture',
+          :locals => { :page => page, :format => :thumb, :style => 'display: inline; ' }
         )
     -%><br/>
     <%= f.file_field :cover_picture %>
@@ -34,7 +34,7 @@
         :confirm => t(:are_you_sure)) unless page.new_record? %>
     </div>
   </div>
-  
+
   <div class="field">
     <%= f.label :allow_comments %>
     <%= f.check_box :allow_comments %><%= t(:allow_comments) %>
@@ -44,8 +44,8 @@
     <%= f.label :allow_public_comments %>
     <%= f.check_box :allow_public_comments %><%= t(:allow_public_comments) %>
   </div>
-  
-  
+
+
   <div id='attachments' style='clear: right;'>
     <h3><%= t(:attachments) -%></h3>
     <blockquote>
@@ -60,9 +60,9 @@
   </div>
   <div class='before_save_button'></div>
 
-  
+
   <div class="actions">
-    <%= f.label :submit, t(:save_changes) %>  
+    <%= f.label :submit, t(:save_changes) %>
     <%= f.submit %>
   </div>
 <% end %>

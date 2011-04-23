@@ -1,18 +1,18 @@
 <%= hidden_field_tag "#{commentable.class.to_s.downcase.underscore}_id" , commentable.id.to_s %>
 
-<div class="field"> 
+<div class="field">
     <%= f.label :name %>
     <%= f.text_field :name, :size => 40, :placeholder => t(:please_enter_your_name) %>
 </div>
-<div class="field"> 
+<div class="field">
     <%= f.label :email %>
     <%= f.text_field :email, :size => 40, :placeholder => t(:will_not_be_shown_public) %>
 </div>
-<div class="field"> 
+<div class="field">
     <%= f.label :comment %>
     <%= f.text_area :comment, :rows => 5, :cols => 40, :placeholder => t(:be_polite) %>
 </div>
-<div class="field"> 
+<div class="field">
   <%= f.label :submit %>
   <%= f.submit t(:post_comment) %>
   <%= f.submit t(:cancel) %>

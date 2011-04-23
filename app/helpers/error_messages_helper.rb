@@ -1,6 +1,6 @@
 # Bring back the <code>error_message_for...</code> method
 module ErrorMessagesHelper
-  
+
   # Render error messages for the given objects. The :message and :header_message options are allowed.
   def error_messages_for(*objects)
     options = objects.extract_options!
@@ -15,7 +15,7 @@ module ErrorMessagesHelper
     end
   end
 
-  
+
   module FormBuilderAdditions
     def error_messages(options = {})
       @template.error_messages_for(@object, options)

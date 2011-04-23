@@ -1,5 +1,5 @@
 #
-# Load iBoard Modules 
+# Load iBoard Modules
 #
 
 require "redcloth"

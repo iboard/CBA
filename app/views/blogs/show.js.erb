@@ -7,7 +7,7 @@ $('.load_more').before( '<div id="page<%= @postings.current_page -%>" style="cle
                           '/<%= @postings.total_pages -%></p>'+
                           '<%= escape_javascript(render(:partial => @postings, :locals => {:blog => @blog})) -%>'+
                           '</div>');
-  
+
 <% if is_on_last_page(@postings) %>
    $('#load_more').html( '<%=  escape_javascript(link_to_function(t(:load_more),"insert_load_button( 'load_more','#{t(:loading)}',"+
         "'#{@path}')", :id => "load_more_link" )) -%>');

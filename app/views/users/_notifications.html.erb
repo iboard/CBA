@@ -2,7 +2,7 @@
    <ul>
      <% for notification in user_notifications %>
        <li id="noification_<%= notification.created_at.to_i -%>">
-         <strong><%= notification.created_at.to_s(:short) %></strong>: 
+         <strong><%= notification.created_at.to_s(:short) %></strong>:
          <%= notification.message %>
          <br />
          <% unless notification.hidden %>

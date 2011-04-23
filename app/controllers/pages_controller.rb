@@ -1,14 +1,14 @@
 class PagesController < ApplicationController
 
   respond_to :html, :xml, :js
-  
+
   load_and_authorize_resource :except => :permalinked
-  
+
   # GET /pages
   # GET /pages.xml
   def index
     @pages = Page.paginate(
-      :page => params[:page], 
+      :page => params[:page],
       :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
     )
 
@@ -21,7 +21,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.xml
   def show
-    params[:comment] ||= { 
+    params[:comment] ||= {
       :name => user_signed_in? ? current_user.name : t(:anonymous),
       :email=> user_signed_in? ? current_user.email : '',
       :comment => ""
@@ -31,9 +31,9 @@ class PagesController < ApplicationController
       format.xml  { render :xml => @page }
     end
   end
-  
+
   # GET /p/titel_of_the_page
-  def permalinked      
+  def permalinked
     permalink = params[:permalink].url_to_txt.escape_regex
     unless params[:permalink][-1] == '$'
       @page = Page.where(:title => /^#{permalink}$/i).first
@@ -57,7 +57,7 @@ class PagesController < ApplicationController
   end
 
   # GET /pages/1/edit
-  def edit    
+  def edit
   end
 
   # POST /pages
@@ -80,7 +80,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { 
+        format.html {
            redirect_to(@page, :notice => t(:page_successfully_updated))
         }
         format.xml  { head :ok }
@@ -100,11 +100,11 @@ class PagesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   # GET /pages/:id/delete_cover_picture
   def delete_cover_picture
     @page.cover_picture.destroy
     @page.save
   end
-  
+
 end

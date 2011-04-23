@@ -1,20 +1,20 @@
 <div class='page_intro'>
-    
+
   <% if page.cover_picture_exists? %>
-    <%= render :partial => '/pages/cover_picture', 
+    <%= render :partial => '/pages/cover_picture',
        :locals => {:page => page, :format => :thumb, :style => 'float:right;margin-left: 10px'} %>
   <% end %>
-  
+
   <h1><%= page.title %></h1>
   <%= sanitize(page.render_intro).html_safe %>
-  
+
   <p><span class='item_link_buttons'>
     <%= link_to t(:read), "/p/#{page.link_to_title}" %>
     <% if can? :manage, page %>
-       <%= link_to t(:edit), edit_page_path(page) %> 
-       <%= link_to t(:destroy), page, 
-                    :confirm => t(:are_you_sure), 
-                    :method => :delete 
+       <%= link_to t(:edit), edit_page_path(page) %>
+       <%= link_to t(:destroy), page,
+                    :confirm => t(:are_you_sure),
+                    :method => :delete
         %>
     <% end %>
     <%= t(:num_of_comments, :count => page.comments.count ) %>

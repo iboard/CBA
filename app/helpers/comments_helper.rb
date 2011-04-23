@@ -1,5 +1,5 @@
-module CommentsHelper 
-  
+module CommentsHelper
+
   def commentable_show_path(commentable=nil)
     commentable ||= @commentable
     case(commentable.class)

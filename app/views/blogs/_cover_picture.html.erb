@@ -1,8 +1,8 @@
 <% style = '' unless defined? style %>
 <% if blog.cover_picture %>
   <div class='cover_picture' id='cover_picture_<%= blog.id -%>' style='<%= style -%>'>
-      <%= link_to_function( image_tag( w3c_url(blog.cover_picture.url(format||:medium) )), 
-                 "image_popup('#{w3c_url(blog.cover_picture.url(:popup))}')") 
+      <%= link_to_function( image_tag( w3c_url(blog.cover_picture.url(format||:medium) )),
+                 "image_popup('#{w3c_url(blog.cover_picture.url(:popup))}')")
       %>
   </div>
 <% end %>

@@ -45,7 +45,7 @@ function initialize_hud(label,txt) {
 }
 
 function initialize_loading(update,txt) {
-    $(update).html("<img src='/images/spinner.gif'><br/>"+txt)
+  $(update).html("<img style='border:none; box-shadow: none;' src='/images/spinner.gif'><br/>"+txt).show();
 }
 
 function rerender(from_field,to) {
@@ -267,6 +267,23 @@ function insert_load_button(where,txt,path) {
   $.ajax({ url: path, context: where});
 }
 
+function insert_close_popup_link(id) {
+  return ("<div class='close_icon'>"+
+    "<a href='#' onclick='close_popup();return false;' style='background: none;'>"+
+    "<img src='/images/close.gif?"+id+"' style='box-shadow: none; heigth: 24px; width: 24px;'>"+
+    "</a>"
+  )
+}
+
+function insert_close_link(id) {
+  return ("<div class='close_icon' style='padding-right: 0px; float:right;'>"+
+    "<a href='#' onclick='toggle_div(\""+id+"\");return false;' style='background: none; border: none;'>"+
+      "<img src='/images/close.gif?"+id+"' style='box-shadow: none; height: 24px; width: 24px;'>"+
+    "</a>"+
+    "</div>"+
+    "</div><div style='margin-bottom: 30px; height: 0px; width: 0px;'></div>"
+  )
+}
 
 /* Handle DIV-Tags, Effects */
 function toggle_div(what) {

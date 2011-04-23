@@ -45,6 +45,7 @@ Cba::Application.routes.draw do
       put :crop_avatar
       get :edit_role
       put :update_role
+      get :details
     end
   end
     

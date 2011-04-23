@@ -6,23 +6,9 @@
 
 <%= sc(:pr,:nbsp)+t(:you)+":"+sc(:nbsp)+link_to(t(:edit),edit_registration_path(user)) if user == current_user %>
 <% if user_signed_in? && current_user.role?(:maintainer) %>
-  <%= link_to_function t("userlist.detail"), 
-                       "toggle_div('user_information_#{user.id.to_s}')",
-                       :class => 'admin' 
-  %>  
+  <%= link_to t("userlist.detail"), details_user_path(user), :class => 'admin', :remote => true %>  
   <ul class='user_detail admin' id='user_information_<%= user.id.to_s -%>', style='display: none;'>
-    <li>
-      <strong><%= t(:role) %></strong>: <%= user.role.to_s.humanize -%>
-      <%= link_to t(:edit_role), edit_role_user_path(user)  %> |
-      <%= link_to t(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete %>
-    </li>
-    <% for attribute in user.attributes %>
-      <li>
-        <strong><%= attribute[0] == "_id" ? "ID" : attribute[0].humanize %></strong>: 
-        <%= user.try(attribute[0].to_s.underscore)%>
-      </li>
-    <% end %>
-    <li></li>
+    <%= render :partial => 'user_detail', :locals => { :user => user } %>
   </ul>
 <% end %>
 

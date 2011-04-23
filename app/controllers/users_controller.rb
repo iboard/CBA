@@ -88,6 +88,13 @@ class UsersController < ApplicationController
     @notifications = current_user.user_notifications.hidden
   end
   
+  def details
+    respond_to do |format|
+       format.js 
+       format.html
+    end
+  end
+  
   private
   def is_in_crop_mode?
     params[:user] && 

@@ -48,6 +48,23 @@ Since nearly any website needs some kind of 'semi-static pages' and we need some
 # The body is rendered with _RedCloth_
 # The MongoId of <code>/page/MONGO_ID</code> in the browser-address will be replaced by <code>/p/title_of_the_page</code> with JS.
 
+h2. Testing with spork
+
+To run autotests you have to start the spork-server and then run autotest command
+
+# <code>AUTOFEATURE=true bundle exec spork</code>
+# <code>AUTOFEATURE=true bundle exec autotest</code>
+
+To run your unit-tests using spork do
+
+# <code>bundle exec spork TestUnit --port 8988</code>
+# <code>testdrb -I test test/unit/*rb</code>
+
+h2. Start all at once with thor-task
+
+You can use <code>thor application:run_autotests</code> to start the spork-server and autotest. 
+The shortest way to jump into *continuos testing* 
+
 h2. License
 
 p. See -> "Freedom":/p/freedom

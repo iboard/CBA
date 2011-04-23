@@ -17,6 +17,31 @@ class Application < Thor
     system "bundle exec cucumber | grep '[scenarios|steps]'"
   end
   
+  desc "run_autotests", "Run spork server and autotest"
+  def run_autotests
+    puts "RUNNING AUTOTESTS WITH SPORK"
+    script = "#!/bin/bash
+export AUTOFEATURE=true
+bundle exec spork > log/spork.log 2>&1 &
+echo -n 'Spork server started - waiting to allow start up '
+for i in 9 8 7 6 5 4 3 2 1
+do
+  echo -n $i
+  sleep 1
+  echo -n ' '
+done
+echo 'Start continuos testing'
+bundle exec autotest
+echo 'Autotest ended. Now stopping spork-server'
+kill %1
+"
+    sfile = File::new("tmp/autotest.sh",'w')
+    sfile << script
+    sfile.close
+    system( "bash #{sfile.path}")
+    File::unlink(sfile.path)
+  end
+
   desc "review", "Find REVIEW-Remarks"
   def review
     puts "\nSearching for REVIEW-Remarks in all files"

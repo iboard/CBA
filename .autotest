@@ -1,0 +1,8 @@
+require 'autotest/growl'
+
+Autotest::Growl::clear_terminal = false
+
+# Skip some paths
+Autotest.add_hook :initialize do |autotest|
+    %w{.git .DS_store db log tmp rerun.txt script vendor public doc}.each { |e| autotest.add_exception(e) }
+end

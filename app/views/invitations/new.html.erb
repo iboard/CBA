@@ -1,0 +1,42 @@
+<% title t(:invite_user) %>
+
+<%= form_for [@user,@user.invitations.build()] do |f|%>
+
+  <blockquote>
+    <%= t(:explain_invite_user)%>
+  </blockquote>
+  
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  
+  <p>
+    <%= f.label :roles_mask %>
+    <%= f.select :roles_mask, 
+        User::ROLES[0..current_user.roles_mask].map { |r| 
+          [t('roles.'+r.to_s),User::ROLES.index(r)] 
+        } 
+    %>
+  </p>
+  
+  <p>
+    <%= f.label :message %>
+    <%= f.text_area :message, :rows => 5, :cols => 80 %>
+  </p>
+  
+  <p>
+    <%= f.label :submit %>
+    <%= f.submit t(:send_invitaiton) %>
+  </p>
+  
+<% end %>
+
+<p>
+  <%= link_to t(:back), :back %>
+</p>

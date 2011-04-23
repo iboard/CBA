@@ -44,6 +44,7 @@ group :test do
   gem 'ZenTest'
   gem 'autotest'
 #  gem 'autotest-rails'
+  gem 'ruby-growl'
   gem 'autotest-growl'
   gem "mocha"
   gem "gherkin"

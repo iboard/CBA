@@ -11,4 +11,11 @@ Feature: Invitation
   Scenario: User Profile Mask should have an invite-link
     Given I am logged in as user "sponsor@test.te" with password "verysecret"
     And I am on the profile page of user "maintainer"
-    Then I should see "Send invitation"
+    Then I should see "Invite user"
+
+  Scenario: User should see invitation form
+    Given I am logged in as user "sponsor@test.te" with password "verysecret"
+    And I am on the profile page of user "maintainer"
+    And I click on link "Send invitation"
+    Then I should see "Invite user"
+    And I should see "Submit"

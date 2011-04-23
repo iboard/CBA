@@ -204,7 +204,13 @@ de:
     home: "Home"
     userlist: "Benutzerliste"
     comments: "Kommentare"
-    
+  roles:
+    guest: Gast
+    confirmed_user: Bestätigter Benutzer
+    moderator: Moderator
+    author: Autor
+    maintainer: Sachbearbeiter
+    admin: Administrator
   role_label_confirmed_user: "Registrierter Benutzer"
   role_label_moderator: "Kann alle Einträge uneingeschränkt bearbeiten"
   role_label_author: "Kann Einträge erstellen und die eingenen Einträge bearbeiten."
@@ -361,5 +367,11 @@ de:
     zero: 'Es sind keine alten Systemnachrichten für sie gespeichert.'
     one: 'Sie haben eine verteckte/alte Systemnachricht.'
     other: 'Es sind %{count} versteckte/alte Systemnachrichten für sie gespeichert.'
-  send_invitation: Einladung versenden
-  
+  send_invitaiton: Einladung versenden
+  invite_user: Benutzer einladen
+  explain_invite_user:
+    Sie können andere Benutzer einladen, sich für diese Webseite zu registrieren.
+    Dabei könne Sie ihre eigenen Rechte an den Eingeladenen Benutzer weitergeben.
+    Geben Sie Name und E-Mail-Adresse des Empfängers ein.
+    Optional können Sie dem Empfänger auch eine Nachricht zur Einladung schreiben.
+ 

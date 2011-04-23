@@ -171,4 +171,10 @@ en:
     zero: 'Currently there are no hidden/old user notifications for you.'
     one: 'There is one hidden/old user notification for you.'
     other: 'You have stored %{count} hidden/old user notifications.'
-  send_invitation: Send invitation
+  send_invitaiton: Send invitation
+  invite_user: Invite user
+  explain_invite_user:
+    You can invite other people to sign up with this website.
+    You can define the user-role of the invitee (up to your own rights)
+    Please enter name and e-mail of the invitee and optional post a message with your invitation.
+  

@@ -14,6 +14,7 @@ class Invitation
   field   :token,         :index => true
     validates_presence_of   :token
     validates_uniqueness_of :token
+  field   :message,       :default => ""
   field   :accepted_at,   :type => Time
   field   :accepted_by,   :type => BSON::ObjectId
   
@@ -24,6 +25,6 @@ class Invitation
   
   private
   def generate_token
-    self.token ||= String::random_string(10)
+    self.token = String::random_string(10)
   end
 end

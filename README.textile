@@ -52,13 +52,13 @@ h2. Testing with spork
 
 To run autotests you have to start the spork-server and then run autotest command
 
-# AUTOFEATURE=true bundle exec spork
-# AUTOFEATURE=true bundle exec autotes
+# <code>AUTOFEATURE=true bundle exec spork</code>
+# <code>AUTOFEATURE=true bundle exec autotest</code>
 
 To run your unit-tests using spork do
 
-# bundle exec spork TestUnit --port 8988
-# testdrb -I test test/unit/*rb
+# <code>bundle exec spork TestUnit --port 8988</code>
+# <code>testdrb -I test test/unit/*rb</code>
 
 
 h2. License

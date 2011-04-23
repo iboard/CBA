@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  
+      
   def create
     super
     session[:omniauth] = nil unless resource.new_record?

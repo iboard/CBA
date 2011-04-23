@@ -1,6 +1,9 @@
 <% title t(:invite_user) %>
 
-<%= form_for [@user,@user.invitations.build()] do |f|%>
+<%= errors_for @invitation %>
+
+
+<%= form_for [@user,@invitation] do |f|%>
 
   <blockquote>
     <%= t(:explain_invite_user)%>
@@ -8,26 +11,26 @@
   
   <p>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => t(:invitee_name), :size => 80 %>
   </p>
   
   <p>
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email,:placeholder => t(:invitee_email), :size => 80  %>
   </p>
   
   <p>
     <%= f.label :roles_mask %>
     <%= f.select :roles_mask, 
         User::ROLES[0..current_user.roles_mask].map { |r| 
-          [t('roles.'+r.to_s),User::ROLES.index(r)] 
+          [t('roles.'+r.to_s)+" ("+t("role_label_#{r.to_s}")+")",User::ROLES.index(r)] 
         } 
-    %>
+    %><br/><span style='margin-left: 200px; font-size: 0.7em;'><%= t(:explain_roles_mask_for_invitations) -%></span>
   </p>
   
   <p>
     <%= f.label :message %>
-    <%= f.text_area :message, :rows => 5, :cols => 80 %>
+    <%= f.text_area :message, :rows => 5, :cols => 80, :placeholder => t(:optional_message_for_invitation) %>
   </p>
   
   <p>

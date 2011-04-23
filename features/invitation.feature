@@ -19,3 +19,32 @@ Feature: Invitation
     And I click on link "Send invitation"
     Then I should see "Invite user"
     And I should see "Submit"
+    
+  Scenario: User should be able to send an invitation
+    Given I am logged in as user "sponsor@test.te" with password "verysecret"
+    And I am on the profile page of user "maintainer"
+    And I click on link "Send invitation"
+    And I fill in "invitation_name" with "Dear Friend"
+    And I fill in "invitation_email" with "friend@test.te"
+    And I click on "Send invitation"
+    Then I should be on the profile page of user "maintainer"
+    And I should see "Your invitation was sent to"
+    
+  Scenario: User should not send empty invitations
+    Given I am logged in as user "sponsor@test.te" with password "verysecret"
+    And I am on the profile page of user "maintainer"
+    And I click on link "Send invitation"
+    And I click on "Send invitation"
+    Then I should see "3 errors: Invitation can not be saved"
+    And I should see "Name: can't be blank"
+    And I should see "Email: can't be blank"
+
+  Scenario: Email of invitee should be format-validated
+    Given I am logged in as user "sponsor@test.te" with password "verysecret"
+    And I am on the profile page of user "maintainer"
+    And I click on link "Send invitation"
+    And I fill in "invitation_name" with "Dear Friend"
+    And I fill in "invitation_email" with "ThisIs not an email!"
+    And I click on "Send invitation"
+    Then I should see "One error: Invitation can not be saved"
+    And I should see "Email: Is not an email address"

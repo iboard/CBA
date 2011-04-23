@@ -16,6 +16,7 @@ en:
     home: "Home"
     userlist: "Userlist"
     comments: 'Comments'
+  role_label_guest: "Guests have limited access only"
   role_label_confirmed_user: "Registered user"
   role_label_moderator: "Can manage all entries"
   role_label_author: "Can create entires and mange owned entries"
@@ -177,4 +178,10 @@ en:
     You can invite other people to sign up with this website.
     You can define the user-role of the invitee (up to your own rights)
     Please enter name and e-mail of the invitee and optional post a message with your invitation.
-  
+  invitation_sent: "Your invitation was sent to %{name} at %{email}"
+  you_are_invited_by: "You're invited by %{name} to sign up"
+  thank_you_for_accepting_your_invitation: 'Thank you for accepting your invitation. Your registration is completed successfully.'
+  explain_roles_mask_for_invitations: Please select the role the invitee should have.
+  optional_message_for_invitation: "(Optionally, you can write a message which will be displayed to the invitee within the invitation mail)"
+  invitee_name: Name of the person you want to invite
+  invitee_email: Invitee's e-mail address

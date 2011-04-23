@@ -13,18 +13,20 @@ class InvitationTest < ActiveSupport::TestCase
   end
   
   test "Valid invitations should save" do
-    invitation = Invitation.new(:email => 'some@one.at', :name => 'Frank Zappa', :role => 'admin')
+    user = User.first || Factory.build(:admin)
+    invitation = user.invitations.build(:email => 'some@one.at', :name => 'Frank Zappa', :role => 'admin')
     assert invitation.save, "Valid invitation should save"
   end
   
   test "Invalid invitations should not save" do
-    invitation = Invitation.new(:email => 'some_other1@one.at', :name => 'Dweezil Zappa')
+    user = User.first || Factory.build(:admin)
+    invitation = user.invitations.build(:email => 'some_other1@one.at', :name => 'Dweezil Zappa')
     assert invitation.roles_mask == 0, "Default role should be guest"
     
-    invitation = Invitation.new(:email => 'some_other2@one.at', :roles_mask => 4)
+    invitation = user.invitations.build(:email => 'some_other2@one.at', :roles_mask => 4)
     assert !invitation.save, "Invitation should not save w/o name"
     
-    invitation = Invitation.new(:name => 'Moon Zappa', :roles_mask => 4)
+    invitation = user.invitations.build(:name => 'Moon Zappa', :roles_mask => 4)
     assert !invitation.save, "Invitation should not save w/o email"
   end
   

@@ -211,6 +211,7 @@ de:
     author: Autor
     maintainer: Sachbearbeiter
     admin: Administrator
+  role_label_guest: "Gäste haben nur eingeschränkte Rechte"    
   role_label_confirmed_user: "Registrierter Benutzer"
   role_label_moderator: "Kann alle Einträge uneingeschränkt bearbeiten"
   role_label_author: "Kann Einträge erstellen und die eingenen Einträge bearbeiten."
@@ -374,4 +375,10 @@ de:
     Dabei könne Sie ihre eigenen Rechte an den Eingeladenen Benutzer weitergeben.
     Geben Sie Name und E-Mail-Adresse des Empfängers ein.
     Optional können Sie dem Empfänger auch eine Nachricht zur Einladung schreiben.
- 
+  invitation_sent: "Ihre Einlandung an %{name} wurde an die Adresse %{email} versandt"
+  you_are_invited_by: "Sie wurden von %{name} eingeladen"
+  thank_you_for_accepting_your_invitation: 'Danke, dass Sie die Einladung angenommen haben. Ihre Registration ist nun abgeschlossen.'
+  explain_roles_mask_for_invitations: "Wählen Sie bitte die Rolle, die der eingeladene Benutzer erhalten soll."
+  optional_message_for_invitation: "(Optional können Sie hier eine Nachricht mitsenden, die dem Empfänger mit der Einladung angezeigt wird.)"
+  invitee_name: "Name der Person, die sie einladen möchten"
+  invitee_email: "An welche email-Adresse sollte die Einladung gesandt werden?

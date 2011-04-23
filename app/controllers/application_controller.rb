@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   
   # persistent language for this session/user 
   before_filter  :set_language_from_cookie
+  before_filter  :apply_invitation
   
   # == Display a flash if CanCan doesn't allow access    
   rescue_from CanCan::AccessDenied do |exception|
@@ -70,5 +71,19 @@ class ApplicationController < ActionController::Base
       I18n.locale = cookies[:lang].to_sym
     end
   end  
+  
+  def apply_invitation
+    if user_signed_in? && session[:invitation_id]
+      invitation = Invitation.find(session[:invitation_id])
+      current_user.roles_mask = invitation.roles_mask
+      current_user.invitation = invitation
+      current_user.confirmed_at = Time.now
+      invitation.accepted_at = Time.now
+      invitation.save!
+      current_user.save!
+      session[:invitation_id] = nil
+      flash[:notice] = t(:thank_you_for_accepting_your_invitation)
+    end
+  end
   
 end

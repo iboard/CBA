@@ -47,7 +47,7 @@ class Posting
   end
 
   # Send a notification to admins when a new posting was created
-  def send_notifications
+  def send_notifications    
     DelayedJob.enqueue('NewPostingNotifier', 
       Time.now + (CONSTANTS['delay_comment_notifications'].to_i).seconds,
       self.blog.id, self.id

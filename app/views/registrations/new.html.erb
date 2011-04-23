@@ -1,7 +1,20 @@
 <% title t(:sign_up) %>
+
+<% invited? %>
+
 <blockquote>    
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
+
+    
+    <% if resource.invitation %>
+      <h3><%= t(:you_are_invited_by, :name => resource.invitation.user.name) %></h3>
+      <p>
+        <%= sanitize(resource.invitation.message||"")%>
+        <ul><li><%= resource.invitation.user.name %> &lt;<%= resource.invitation.user.email -%>&gt;</li></ul>
+      </p>
+      <%= f.hidden_field :invitation_id %>
+    <% end %>
   
     <div class='field'><%= f.label :name %>
     <%= f.text_field :name %></div>

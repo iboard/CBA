@@ -60,6 +60,10 @@ To run your unit-tests using spork do
 # <code>bundle exec spork TestUnit --port 8988</code>
 # <code>testdrb -I test test/unit/*rb</code>
 
+h2. Start all at once with thor-task
+
+You can use <code>thor application:run_autotests</code> to start the spork-server and autotest. 
+The shortest way to jump into *continuos testing* 
 
 h2. License
 

@@ -2,6 +2,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+  cache
 
   field  :name
   field  :email

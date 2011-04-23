@@ -1,6 +1,7 @@
 class Invitation
   include Mongoid::Document
   include Mongoid::Timestamps
+  cache
   
   referenced_in :user # The Sponsor
   

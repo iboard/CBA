@@ -40,6 +40,7 @@ class Ability
         end
         if user.role?(:maintainer)
           can :manage, [Page, Blog, Posting, Comment]
+          can :details, User
         end
         
       end

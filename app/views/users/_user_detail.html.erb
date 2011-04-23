@@ -1,0 +1,11 @@
+<li>
+  <strong><%= t(:role) %></strong>: <%= user.role.to_s.humanize -%>
+  <%= link_to t(:edit_role), edit_role_user_path(user)  %> |
+  <%= link_to t(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete %>
+</li>
+<% for attribute in user.attributes %>
+  <li>
+    <strong><%= attribute[0] == "_id" ? "ID" : attribute[0].humanize %></strong>: 
+    <%= user.try(attribute[0].to_s.underscore) %>
+  </li>
+<% end %>

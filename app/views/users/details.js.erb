@@ -1,0 +1,4 @@
+$('#user_information_<%= @user.id.to_s -%>').html(insert_close_link("user_information_<%= @user.id.to_s -%>")+'<%=
+  escape_javascript( render :partial => "user_detail", :locals => {:user => @user} )
+-%>').slideDown(500);
+

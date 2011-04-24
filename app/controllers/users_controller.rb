@@ -11,8 +11,8 @@ class UsersController < ApplicationController
                 :per_page => CONSTANTS['paginate_users_per_page'])
 
     respond_to do |format|
-       format.js { render :index }
-       format.html { render :index }
+       format.js 
+       format.html 
     end
   end
 

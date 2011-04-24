@@ -1,9 +1,0 @@
-<% title t(:user_notifications) %>
-
-<p>
-  <%= t(:you_have_count_notifications, :count => @notifications.count ) %>
-</p>
-
-<% if @notifications.any? %>
-  <%= render :partial => 'users/notifications', :locals => { :user_notifications => @notifications } %>
-<% end %>

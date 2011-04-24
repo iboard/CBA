@@ -1,0 +1,5 @@
+- title t(:user_details)
+
+= render :partial => 'user_detail', :locals => { :user => @user }
+
+%p= link_to t(:back), :back

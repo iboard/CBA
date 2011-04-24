@@ -382,3 +382,4 @@ de:
   optional_message_for_invitation: "(Optional können Sie hier eine Nachricht mitsenden, die dem Empfänger mit der Einladung angezeigt wird.)"
   invitee_name: "Name der Person, die sie einladen möchten"
   invitee_email: "An welche email-Adresse sollte die Einladung gesandt werden?
+  do_not_send_invitation: 'Abbrechen und Einladung nicht senden'

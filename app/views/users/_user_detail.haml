@@ -1,0 +1,11 @@
+%li
+    %strong= t(:role)+":"
+    = user.role.to_s.humanize
+    = link_to t(:edit_role), edit_role_user_path(user)
+    = '|'
+    = link_to t(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete
+
+- for attribute in user.attributes
+    %li{ :style => 'margin-bottom:0px;margin-top: 3px;padding:2px; font-size: 0.8em'}
+        %strong= (attribute[0] == "_id" ? "ID" : attribute[0].humanize)+": "
+        = user.try(attribute[0].to_s.underscore)

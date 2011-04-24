@@ -1,0 +1,15 @@
+- title t('userlist.title')
+= javascript 'endless_page'
+
+%div.top_right_box= t(:registered_users_count, :count => @user_count) 
+
+%div{ :style=>'text-align: center; clear: right; margin-top: 10px' }= will_paginate @users
+
+%div#userlist
+    - for user in @users
+        %div{ :style=>'clear: right;'}= render user 
+        %p{ :style=>'clear: left;' }
+
+    = render :partial => '/home/load_more', :locals => { :resources => @users, :path => registrations_path }
+
+%div{ :style=> 'text-align: center;' }=  will_paginate @users

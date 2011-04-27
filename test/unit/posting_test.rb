@@ -18,7 +18,7 @@ class PostingTest < ActiveSupport::TestCase
     assert @blog.save, "Should save if title is unique"
     assert @user.postings.include?(p1), "Posting should belong to user"
   end
-  
+
   test "Posting should not save without an user" do
     @blog = Blog.first
     p1 = @blog.postings.build(:title => "No User Title", :body => 'Lorem')
@@ -38,7 +38,7 @@ class PostingTest < ActiveSupport::TestCase
   end
 
   # If an user choose an existing title force him to comment the
-  # existing one instead of writing a new one.  
+  # existing one instead of writing a new one.
   test "Title should be unique" do
     @blog = Blog.first
     @user = User.first
@@ -48,7 +48,7 @@ class PostingTest < ActiveSupport::TestCase
     p2 = @blog.postings.build(:title => "My Title", :body => 'Lorem', :user => @user)
     assert !p2.save, "Should not save with the same title again."
   end
-  
+
   test "A Posting should save with comments" do
     @blog = Blog.first
     @user = User.first
@@ -57,7 +57,7 @@ class PostingTest < ActiveSupport::TestCase
     @blog.postings.first.comments.create( :name => 'Andi', :email => 'test@server.to', :comment => 'Cool Comment One')
     assert @blog.save, "Blog sould save with posting and comment"
   end
-  
+
   test "A comment should have a body" do
     @blog = Blog.first
     @user = User.first
@@ -67,5 +67,15 @@ class PostingTest < ActiveSupport::TestCase
     assert !@blog.save, "Blog sould save with posting and comment"
   end
 
-  
+  test "A comment should not save without a name" do
+    @blog = Blog.first
+    @user = User.first
+    @blog.postings.create(:title => "My Title A", :body => 'Lorem', :user => @user)
+    assert @blog.save, "Blog should save with Posting"
+    comment = @blog.postings.first.comments.create(  :email => 'test@server.to', :comment => 'Comment')
+    assert !comment.save, "Comment should not save without a name"
+    assert !@blog.save, "Blog sould save with a comments without a given name"
+  end
+
+
 end

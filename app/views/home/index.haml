@@ -5,7 +5,7 @@
     - if (p=Page.top_pages).any?
         %div.right_column
             - for page in p
-                = render :partial => '/pages/page_intro', :locals => { :page => page }
+                = render :partial => 'pages/page_intro', :locals => { :page => page }
                 %p.content_seperator
 
     - unless @blog.nil? 

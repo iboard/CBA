@@ -1,30 +1,29 @@
-<%= content_tag :div, :id => "comment_#{comment.id.to_s}", :class => 'comment' do %>
-
-  <address class='<%= comment.created_at > current_user_field(\
-                      :last_sign_in_at,Time::now()-1.hour) ? "new_comment"\
-                      : "old_comment" -%>'
-  >
-      <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous',
-          :at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe %>
-
-      <%= link_to( comment.time_left_to_edit > 0 ? \
-                   t(:edit_for_another_count_minutes,:count => comment.time_left_to_edit) :\
-                   t(:edit),
-            edit_comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
-            :remote => true ) if can? :manage, comment, session[:comments]
-      %>
-
-     <%= link_to( t(:destroy),
-            comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
-            :method => :delete,
-            :remote => true,
-            :confirm => t(:are_you_sure)
-            ).gsub("rel=\"nofollow\"","") if can? :destroy, session[:comments]
-      %>
-  </address>
-
-  <div id='comment_comment_<%= comment.id.to_s -%>'>
-    <%= sanitize(RedCloth.new(comment.comment).to_html) %>
-  </div>
-
+<% unless comment.new_record? %>
+  <%= content_tag :div, :id => "comment_#{comment.id.to_s}", :class => 'comment' do %>
+  
+    <address class='<%= comment.created_at||Time::now > current_user_field(:last_sign_in_at,Time::now()-1.hour) ? "new_comment" : "old_comment" -%>'>
+        <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous',
+            :at => distance_of_time_in_words_to_now(comment.created_at)).html_safe %>
+  
+        <%= link_to( comment.time_left_to_edit > 0 ? \
+                     t(:edit_for_another_count_minutes,:count => comment.time_left_to_edit) :\
+                     t(:edit),
+              edit_comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
+              :remote => true ) if can?( :manage, comment, session[:comments] )
+        %>
+  
+       <%= link_to( t(:destroy),
+              comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
+              :method => :delete,
+              :remote => true,
+              :confirm => t(:are_you_sure)
+              ).gsub("rel=\"nofollow\"","") if can?( :destroy, session[:comments] )
+        %>
+    </address>
+  
+    <div id='comment_comment_<%= comment.id.to_s -%>'>
+      <%= sanitize(RedCloth.new(comment.comment||"").to_html) %>
+    </div>
+  
+  <% end %>
 <% end %>

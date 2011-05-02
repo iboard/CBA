@@ -955,6 +955,7 @@
     color: #B3B3B3;
   }
   
+  .insert_attachment,
   .before_save_button {
     clear: both;
     margin-top: 20px;

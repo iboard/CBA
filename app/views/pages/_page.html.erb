@@ -9,12 +9,8 @@
 %>
 
 <!-- BUTTONS -->
-<span class='item_link_buttons'>
-  <% if can? :manage, page %>
-    <%= link_to t(:edit), edit_page_path(page) %>
-  <% end %>
-  <%= link_to t(:pages_index), pages_path %>
-</span>
+<%= render :partial => 'pages/buttons', :locals => { :page => page } %>
+
 <!-- BODY -->
 <div id='page_<%= page.id -%>' class='page_body'>
   <%= sanitize(page.render_body).html_safe %>
@@ -28,28 +24,4 @@
   </ul>
 <% end %>
 
-<% if page.comments.any? %>
-  <!-- COMMENTS -->
-  <%= content_tag :div, :id => 'comments' do %>
-    <h5><%= t(:number_of_comments, :count => page.comments.count)%></h5>
-    <%= render :partial => page.comments, :locals => { :commentable => page, :path_components => [page]} %>
-  <% end %>
-<% end %>
-
-<% if page.allow_public_comments || (page.allow_comments && user_signed_in?) %>
-  <!-- NEW COMMENT -->
-  <%= content_tag :div, :id => 'new_comment_form' do %>
-    <h5><%= t(:post_a_comment) -%></h5>
-    <%= form_for [page,comment = page.comments.build(
-                                             :name => current_user_field(:name,''),
-                                             :email => current_user_field(:email, '')
-                                          )] do |f| %>
-      <%= render :partial => '/comments/comment_fields',
-                 :locals => { :f => f,
-                              :commentable => page,
-                              :comment => comment
-                            }
-       %>
-    <% end %>
-  <% end %>
-<% end %>
+<%= render :partial => 'comments', :locals => {:page => page} %>

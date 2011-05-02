@@ -1,9 +1,9 @@
 module NavigationHelpers
-   
+
   # We are using UTF-8 ✔
 
   def path_to(page_name)
-    
+
     case page_name
     when /the home page/
       '/'
@@ -21,8 +21,8 @@ module NavigationHelpers
       username = $1
       user = User.where(name: username).first
       "/profile/#{user.id}"
-    when /edit page for "([^"]*)"/
-      title = $1
+    when /(the )?edit page for "([^"]*)"/
+      title = $1 == 'the ' ? $2 : $1
       page = Page.where(:title => title).first
       "/pages/#{page._id}/edit"
     when /page path of "([^"]*)"/

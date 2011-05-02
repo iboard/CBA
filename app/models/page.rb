@@ -26,14 +26,33 @@ class Page
   # TODO: and replace this lines with just 'has_attchments'
   embeds_many :attachments
   validates_associated :attachments
-  accepts_nested_attributes_for :attachments,
-                       :allow_destroy => true
+  accepts_nested_attributes_for :attachments, :allow_destroy => true
 
+  embeds_many :page_components
+  accepts_nested_attributes_for :page_components, :allow_destroy => true
+
+  field :page_template_id, :type => BSON::ObjectId
+  def page_template
+    PageTemplate.criteria.for_ids(self.page_template_id).first if self.page_template_id
+  end
+  def page_template=(new_template)
+    self.page_template_id = new_template.id if new_template
+  end
 
 
   # Render the body with RedCloth or Discount
-  def render_body
-    render_for_html(self.body)
+  def render_body(view_context=nil)
+    @view_context ||= view_context
+    unless self.page_template_id && @view_context
+      parts = [self.title, self.body]
+      parts << self.page_components.asc(:position).map { |component|
+        "\n" + component.title + "\n" + ("-"*component.title.length) + "\n" +
+        (component.body || '')
+      }
+      render_for_html( parts.join("\n") )
+    else
+      render_with_template
+    end
   end
 
   # Same as short_title but will append a $-sign instead of '...'
@@ -49,5 +68,51 @@ class Page
     render_for_html(body.paragraphs[0])
   end
 
+  def render_with_template
+    self.page_template.render do |template|
+      template.gsub(/TITLE/, self.title)\
+              .gsub(/BODY/,  self.render_for_html(self.body||''))\
+              .gsub(/COMPONENTS/, render_components )\
+              .gsub(/COVERPICTURE/, render_cover_picture)\
+              .gsub(/COMMENTS/, render_comments)\
+              .gsub(/BUTTONS/, render_buttons)\
+              .gsub(/COMPONENT\[(\d)\]/) do |component_number|
+                 c = self.components.where(:position => component_number).first
+                 if c
+                   c.render_body
+                 else
+                   "COMPONENT #{component_number} NOT FOUND"
+                 end
+              end
+    end
+  end
+
+  def render_components
+    self.page_components.map do |component|
+      if @view_context
+        component.render_body(@view_context)
+      else
+        component.body || ''
+      end
+    end.join("\n")
+  end
+
+  def render_comments
+    if @view_context
+      @view_context.render( :partial => 'pages/comments', :locals => {:page => self} )
+    else
+      ""
+    end
+  end
+
+  def render_cover_picture
+    if self.cover_picture_exists?
+      @view_context.image_tag self.cover_picture.url(:medium)
+    end
+  end
+
+  def render_buttons
+    @view_context.render :partial => "pages/buttons", :locals => { :page => self }
+  end
 
 end

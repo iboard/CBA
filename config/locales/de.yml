@@ -383,3 +383,4 @@ de:
   invitee_name: "Name der Person, die sie einladen möchten"
   invitee_email: "An welche email-Adresse sollte die Einladung gesandt werden?
   do_not_send_invitation: 'Abbrechen und Einladung nicht senden'
+  new_page_component: 'Neue Seitenkomponente hinzufügen'

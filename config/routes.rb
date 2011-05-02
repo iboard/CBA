@@ -28,6 +28,7 @@ Cba::Application.routes.draw do
       get :delete_cover_picture
     end
     resources :comments
+    resources :components
   end
 
   # USERS

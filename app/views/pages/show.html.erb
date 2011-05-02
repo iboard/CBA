@@ -1,1 +1,6 @@
-<%= render :partial => 'page', :locals => {:page => @page } %>
+<% if @page.page_template.nil? %>
+  <%= render :partial => 'page', :locals => {:page => @page } %>
+<% else %>
+  <% title @page.title, false %>
+  <%= raw @page.render_body(self) %>
+<% end %>

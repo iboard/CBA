@@ -186,3 +186,5 @@ en:
   invitee_name: Name of the person you want to invite
   invitee_email: Invitee's e-mail address
   do_not_send_invitation: Cancel (don't send invitation)
+  new_page_component: 'Add new page component'
+  

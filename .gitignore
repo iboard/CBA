@@ -8,6 +8,8 @@ tmp/**/*
 tmp/*
 .DS_Store
 ._*
+coverage/*
+coverage/**/*
 config/mongoid.yml
 config/application.yml
 config/mailserver_setting.rb

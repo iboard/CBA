@@ -276,7 +276,7 @@ function insert_close_popup_link(id) {
 }
 
 function insert_close_link(id) {
-  return ("<div class='close_icon' style='padding-right: 0px; float:right;'>"+
+  return ("<div class='close_icon' style='padding-right: 0px; margin-right: -20px; float:right;'>"+
     "<a href='#' onclick='toggle_div(\""+id+"\");return false;' style='background: none; border: none;'>"+
       "<img src='/images/close.gif?"+id+"' style='box-shadow: none; height: 24px; width: 24px;'>"+
     "</a>"+

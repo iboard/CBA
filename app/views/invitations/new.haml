@@ -3,7 +3,7 @@
 = errors_for @invitation
 
 
-- form_for [@user,@invitation] do |f|
+= form_for [@user,@invitation] do |f|
     %blockquote= t(:explain_invite_user)
 
 
@@ -17,7 +17,9 @@
     
     %p
         = f.label :roles_mask
-        = f.select :roles_mask, User::ROLES[0..current_user.roles_mask].map { |r| [t('roles.'+r.to_s)+" ("+t("role_label_#{r.to_s}")+")",User::ROLES.index(r)] }
+        = f.select :roles_mask,                                                            |
+            User::ROLES[0..current_user.roles_mask].map { |r|                              |
+            [t('roles.'+r.to_s)+" ("+t("role_label_#{r.to_s}")+")",User::ROLES.index(r)] } |
         %br
         %span{ :style=>'margin-left: 200px; font-size: 0.7em;'}= t(:explain_roles_mask_for_invitations)
     

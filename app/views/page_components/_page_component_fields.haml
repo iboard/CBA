@@ -1,0 +1,15 @@
+.fields{ :style=>'margin-top: 10px;' }
+    .field
+        = f.label :title
+        %span{ :style => "float: right;" }= link_to_remove_fields( t(:destroy_component), f )
+        = f.text_field :title, :size => 80
+    .field
+        = f.label :body
+        = f.text_area :body, :rows => 5, :cols => 80
+    .field
+        = f.label :position_and_template
+        = f.text_field :position, :size => 5
+        = f.select(:page_template_id, PageTemplate.only(:id,:name).reject{|r| r.name !~ /^Component/}.map {|t| [t.name, t.id]},
+                   :allow_blank => t(:no_template))
+        
+

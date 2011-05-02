@@ -122,6 +122,7 @@ kill %1
     puts "  * Edit the files mentioned above - MAKE SURE SMTP WORKS!"
     puts "  * Start the server: 'rails server'"
     puts "  * Sign up your first user (first user will be admin automatically - ignore registration mail!)"
+    puts "  * Run 'rake db:seed' to setup some PageTemplates if you'll use 'Pages'"
     puts ""
     puts "Thank you for installing CBA!"
     puts "If you need further help, please visit https://github.com/iboard/CBA/wiki"

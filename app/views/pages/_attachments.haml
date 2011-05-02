@@ -1,0 +1,4 @@
+- unless page.attachments.empty?
+    %h3= t(:attachments)
+    %ul
+        = render page.attachments, :page => page

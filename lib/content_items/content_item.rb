@@ -56,6 +56,10 @@ module ContentItem
             RDiscount.new(txt).to_html
           when :textile
             RedCloth.new(txt).to_html
+          when :simple_text
+            txt.each_line.map do |line|
+              '<p>' + line.strip + '</p>' unless line.strip.blank?
+            end.compact.join("\n")
           else
             txt
           end

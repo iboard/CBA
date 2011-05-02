@@ -1,0 +1,80 @@
+-#
+-# FORM FOR EDIT PAGE
+-#
+= form_for(page, :html => { :multipart => true } ) do |f|
+
+    = errors_for page
+
+    %div.field
+        = f.label :title
+        = f.text_field :title, :size => 80
+
+    %div.field
+        = f.label :show_in_menu
+        = f.check_box :show_in_menu
+        = t(:show_in_menu)
+        = t(:at_position) + ": "
+        = f.text_field :menu_order, :size => 5, :placeholder => t(:last_position)
+        
+    %div.field
+        = f.label :page_template_id, t(:page_template)
+        = f.select(:page_template_id, 
+               PageTemplate.only(:id,:name).reject{|r| r.name =~ /^Component/ }.map {|t| [t.name, t.id]},
+               :include_blank => t(:no_template))
+
+    %div.field
+        = f.label :interpreter
+        = f.select :interpreter, [['Markdown',:markdown], ['Textile', :textile],  ['Simple Text', :simple_text], [t(:none),:none]]
+        = render :partial => '/home/interpreter_help'
+
+
+    %div.field
+        = f.label :body
+        = f.text_area :body, :rows => 20, :cols => 80
+
+    %div.field
+        = f.label :cover_picture
+        %div{:style=>'margin-left: 200px'}
+            = render(:partial => 'cover_picture',
+                     :locals => { :page => page, :format => :thumb, :style => 'display: inline; ' })
+            %br/
+            = f.file_field :cover_picture
+            = link_to( t(:delete_picture), delete_cover_picture_page_path(page), :remote => true, |
+                       :confirm => t(:are_you_sure) ) unless page.new_record?                     |
+    %div.field
+        = f.label :allow_comments
+        = f.check_box :allow_comments
+        = t(:allow_comments)
+
+    %div.field
+        = f.label :allow_public_comments
+        = f.check_box :allow_public_comments
+        = t(:allow_public_comments)
+
+    -#
+    -# ATTACHMENTS
+    -#
+    %div#attachments{ :style=>'clear: right;' }
+        %h3= t(:attachments)
+        %blockquote
+            = f.fields_for :attachments do |builder|
+                = render 'attachments/attachment_fields', :f => builder
+            %div#new_asset
+            %p= link_to_add_fields(t(:new_attachment).html_safe, f, :attachments)
+
+    %div.insert_attachment
+
+    -#
+    -# COMPONENTS
+    -#
+    %div#components
+        %h3= t(:page_components)
+        %blockquote
+            = f.fields_for :page_components do |builder|
+                = render 'page_components/page_component_fields', :f => builder
+            %div#new_component
+            %p= link_to_add_fields(t(:new_page_component).html_safe, f, :page_components)
+
+    %div.actions
+        = f.label :submit, t(:save_changes)
+        = f.submit

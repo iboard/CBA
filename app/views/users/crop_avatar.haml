@@ -12,27 +12,24 @@
             :src  => "javascripts/script_#{2 + 7}"}
 
     %script{:type=>"text/javascript", :charset=>"utf-8"}
-        function onEndCrop( coords, dimensions ) {
-        $( 'crop_x' ).value = coords.x1;
-        $( 'crop_y' ).value = coords.y1;
-        $( 'crop_w' ).value = dimensions.width;
-        $( 'crop_h' ).value = dimensions.height;
-        }
+        function onEndCrop( coords, dimensions ) {     |
+            $( 'crop_x' ).value = coords.x1;           |
+            $( 'crop_y' ).value = coords.y1;           |
+            $( 'crop_w' ).value = dimensions.width;    |
+            $( 'crop_h' ).value = dimensions.height;   |
+        }                                              |
 
 %script{ :type=>"text/javascript", :language=>"javascript"}
-    Event.observe( window, 'load', function() {
-    new Cropper.ImgWithPreview(
-    'cropbox',
-    {
-    displayOnInit: true,
-    previewWrap: 'preview',
-    minWidth: 100,
-    minHeight: 100,
-    ratioDim: { x: 100, y: 100 },
-    onEndCrop: onEndCrop
-    }
-    );
-    } );
+    Event.observe( window, 'load', function() {        |
+        new Cropper.ImgWithPreview( 'cropbox', {       |
+            displayOnInit: true,                       |
+            previewWrap: 'preview',                    |
+            minWidth: 100,                             |
+            minHeight: 100,                            |
+            ratioDim: { x: 100, y: 100 },              |
+            onEndCrop: onEndCrop                       |
+        });                                            |
+    });                                                |
 
 %div#cropbox_container
     = image_tag @user.avatar.url(:original), :id => 'cropbox'

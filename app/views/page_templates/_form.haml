@@ -1,0 +1,14 @@
+= form_for page_template do |f|
+  .field
+    = f.label :name, t(:name_for_page_template).html_safe
+    = f.text_field :name, :size => 80
+  .field{style: 'clear: left; padding-top: 20px;'}
+    = f.label :css_class
+    = f.text_field :css_class, :size => 40
+    .field{style: 'clear: left; padding-top: 20px;'}
+    = f.label :html_template, t(:html_template_label).html_safe
+    = f.text_area :html_template, :rows => 10, :cols => 80
+  .field{style: 'clear: left; padding-top: 20px;'}
+    = f.label :submit
+    = f.submit t(:commit)
+%p= link_to t(:page_templates), page_templates_path

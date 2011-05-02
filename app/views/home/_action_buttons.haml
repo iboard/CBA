@@ -1,0 +1,11 @@
+-# Tools for the app
+= link_to( 'PivotalTracker', pivotal_tracker_project, :target => 'ext_tools') if pivotal_tracker_project
+= link_to( 'Github', github_project, :target => 'ext_tools' ) if github_project
+
+-# Actions
+= link_to( t(:new_page), new_page_path ) if can? :manage, Page
+= link_to( t(:new_blog), new_blog_path ) if can? :manage, Blog
+= link_to( t(:manage_templates), page_templates_path) if can? :manage, PageTemplate
+
+-# Communications
+= link_to( (twitter_name||'Twitter'), twitter_link, :target => 'ext_tools') if twitter_link

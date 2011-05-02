@@ -2,7 +2,7 @@ Feature: Comments on postings
   In order comment postings
   As an user
   I want see, add, edit, and remove (in a short period of time after creating) comments.
-  
+
   Background:
     Given the following user records
       | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
@@ -14,7 +14,7 @@ Feature: Comments on postings
       | title  | allow_public_comments |
       | Blog 1 | true                  |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
- 
+
   Scenario: When showing a posting, there should be an 'Add-Comment-Button'
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -23,7 +23,7 @@ Feature: Comments on postings
     And I click on "Create Posting"
     And I click on link "My First Posting"
     Then I should see "Post a comment"
-    
+
   Scenario: When I fill in a comment and press commit I should see my comment
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -38,7 +38,7 @@ Feature: Comments on postings
     Then I should see "One comment"
     And I should see "Frank Zappa, less than a minute ago"
     And I should see "Lorem Commentum gscheit daherred"
-    
+
   Scenario: Comments without a name should not be saved
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
@@ -52,7 +52,7 @@ Feature: Comments on postings
     And I click on "Post comment"
     Then I should not see "Lorem Commentum gsheit daherred"
     And I should see "Comment could not be saved!"
-    
+
   Scenario: Comments without an email should not be saved
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"

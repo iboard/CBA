@@ -186,3 +186,16 @@ en:
   invitee_name: Name of the person you want to invite
   invitee_email: Invitee's e-mail address
   do_not_send_invitation: Cancel (don't send invitation)
+  new_page_component: 'Add new page component'
+  select_template: 'Select a template (optionally)'
+  no_template: '-- No layout template --'
+  manage_templates: 'Templates'
+  commit: 'Commit'
+  submit: 'Submit'
+  html_template_label: "HTML-Template<br/><small>Keywords: TITLE, BODY, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]</small>"
+  name_for_page_template: "Name<br/><small>use prefix 'Component:' for page components</small>"
+  page_component: "Component"
+  page_template_successfully_updated: Template successfully updated
+  page_template_successfully_created: Template successfully created
+  page_template_successfully_destroyed: Template successfully destroyed
+  template_in_use: 'This template is in use and can not be deleted yet'

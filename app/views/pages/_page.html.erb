@@ -17,11 +17,8 @@
 </div>
 
 <!-- ATTACHMENTS -->
-<% unless page.attachments.empty? %>
-  <h3><%= t(:attachments) -%></h3>
-  <ul>
-    <%= render page.attachments %>
-  </ul>
-<% end %>
+<%= render :partial => 'attachments', :locals => {:page => page } %>
 
+
+<!-- COMMENTS -->
 <%= render :partial => 'comments', :locals => {:page => page} %>

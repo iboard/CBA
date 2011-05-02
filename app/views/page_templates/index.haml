@@ -1,0 +1,10 @@
+- title t(:page_template_index)
+
+= link_to( t(:new_page_template), new_page_template_path, :class => 'green_button' )
+
+
+= render @page_templates
+
+- if @page_templates.count < 2
+  %blockqoute
+    If you see no templates consider to run <code>rake db:seed</code> to create default templates

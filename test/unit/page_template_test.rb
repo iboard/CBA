@@ -38,5 +38,18 @@ class PageTemplateTest < ActiveSupport::TestCase
     assert @page.render_body =~ /Component Two/, 'Body should contian Component Two'
   end
 
+  test "Page template should not be deleted if in use" do
+    template = PageTemplate.first
+    assert !template.delete, "Template is in use and should not be deleted"
+  end
+
+  test "Page template should be deleted if not in use" do
+    template = PageTemplate.first
+    Page.all.each do |page|
+      page.update_attributes! :page_template_id => nil
+    end
+    assert template.delete, "Template is not in use and should be deleted"
+  end
+
 
 end

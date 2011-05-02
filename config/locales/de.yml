@@ -7,8 +7,8 @@ de:
     en: 'English'
 
   language_switched_to: 'Sprache der Benutzeroberfläche wurde auf %{lang} geändert.<br/><b>Beachte</b>: Die Inhalte werden nicht übersetzt!'
-  
-  mongoid:      
+
+  mongoid:
     errors:
       template:
         header:
@@ -97,7 +97,7 @@ de:
     month_names: [~, Jänner, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
     abbr_month_names: [~, Jän, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
     order: [ :day, :month, :year ]
-  
+
   time:
     formats:
       default: "%A, %d. %B %Y, %H:%M Uhr"
@@ -160,9 +160,9 @@ de:
       format:
         unit: '€'
         format: '%n%u'
-        separator: 
-        delimiter: 
-        precision: 
+        separator:
+        delimiter:
+        precision:
     percentage:
       format:
         delimiter: ""
@@ -211,7 +211,7 @@ de:
     author: Autor
     maintainer: Sachbearbeiter
     admin: Administrator
-  role_label_guest: "Gäste haben nur eingeschränkte Rechte"    
+  role_label_guest: "Gäste haben nur eingeschränkte Rechte"
   role_label_confirmed_user: "Registrierter Benutzer"
   role_label_moderator: "Kann alle Einträge uneingeschränkt bearbeiten"
   role_label_author: "Kann Einträge erstellen und die eingenen Einträge bearbeiten."
@@ -348,7 +348,7 @@ de:
   confirm_no: 'Nein'
   comments: 'Kommentare'
   comment_successfully_created: 'Kommentar wurde gespeichert'
-  comment_successfully_destroyed: 'Kommentar wurde gelöscht' 
+  comment_successfully_destroyed: 'Kommentar wurde gelöscht'
   not_authorized: Sie haben für diese Seite keine Berechtigung.
   comments_of_last_year: Kommentare des letzten Jahres
   posted_from_ip: 'Von der IP %{ip} aus aufgegeben'
@@ -381,6 +381,18 @@ de:
   explain_roles_mask_for_invitations: "Wählen Sie bitte die Rolle, die der eingeladene Benutzer erhalten soll."
   optional_message_for_invitation: "(Optional können Sie hier eine Nachricht mitsenden, die dem Empfänger mit der Einladung angezeigt wird.)"
   invitee_name: "Name der Person, die sie einladen möchten"
-  invitee_email: "An welche email-Adresse sollte die Einladung gesandt werden?
+  invitee_email: "An welche email-Adresse sollte die Einladung gesandt werden?"
   do_not_send_invitation: 'Abbrechen und Einladung nicht senden'
   new_page_component: 'Neue Seitenkomponente hinzufügen'
+  select_template: 'Wähle eine Layoutvorlage (optional)'
+  no_template: '-- Keine Layout-Vorlage --'
+  manage_templates: 'Layouts'
+  commit: 'Speichern'
+  submit: 'Senden'
+  html_template_label: "HTML-Template<br/>Keywords: TITLE, BODY, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]"
+  name_for_page_template: "Name<br/><small>Prefix 'Component:' für Seitenkomponenten</small>"
+  page_component: "Komponente"
+  page_template_successfully_updated: Layout erfolgreich gespeichert
+  page_template_successfully_created: Layout erfolgreich gespeichert
+  page_template_successfully_destroyed: Layout erfolgreich gelöscht
+  template_in_use: 'Diese Vorlage wird noch benutzt und kann nicht gelöscht werden'

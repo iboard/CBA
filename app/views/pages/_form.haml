@@ -15,6 +15,12 @@
         = t(:show_in_menu)
         = t(:at_position) + ": "
         = f.text_field :menu_order, :size => 5, :placeholder => t(:last_position)
+        
+    %div.field
+        = f.label :page_template_id, t(:page_template)
+        = f.select(:page_template_id, 
+               PageTemplate.only(:id,:name).reject{|r| r.name =~ /^Component/ }.map {|t| [t.name, t.id]},
+               :include_blank => t(:no_template))
 
     %div.field
         = f.label :interpreter

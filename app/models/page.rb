@@ -33,7 +33,7 @@ class Page
 
   field :page_template_id, :type => BSON::ObjectId
   def page_template
-    PageTemplate.criteria.for_ids(self.page_template_id).first if self.page_template_id
+    PageTemplate.where(:_id => self.page_template_id.to_s).first if self.page_template_id
   end
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
@@ -76,8 +76,23 @@ class Page
               .gsub(/COVERPICTURE/, render_cover_picture)\
               .gsub(/COMMENTS/, render_comments)\
               .gsub(/BUTTONS/, render_buttons)\
+              .gsub(/ATTACHMENTS/, render_attachments)\
+              .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
+                attachment_number.gsub! /\D/,''
+                c = self.attachments[attachment_number.to_i]
+                if c
+                  if c.file_content_type =~ /image/
+                    @view_context.image_tag c.file.url(:medium)
+                  elsif
+                    @view_context.link_to( c.file_file_name, c.file.url )
+                  end
+                else
+                  "ATTACHMENT #{attachment_number} NOT FOUND"
+                end
+              }\
               .gsub(/COMPONENT\[(\d)\]/) do |component_number|
-                 c = self.components.where(:position => component_number).first
+                component_number.gsub! /\D/,''
+                 c = self.components.where(:position => component_number.to_i).first
                  if c
                    c.render_body
                  else
@@ -88,7 +103,7 @@ class Page
   end
 
   def render_components
-    self.page_components.map do |component|
+    self.page_components.asc(:position).map do |component|
       if @view_context
         component.render_body(@view_context)
       else
@@ -100,6 +115,14 @@ class Page
   def render_comments
     if @view_context
       @view_context.render( :partial => 'pages/comments', :locals => {:page => self} )
+    else
+      ""
+    end
+  end
+  
+  def render_attachments
+    if @view_context
+      @view_context.render( :partial => 'pages/attachments', :locals => {:page => self })
     else
       ""
     end

@@ -28,17 +28,18 @@ class PageComponent
                 .gsub(/COMMENTS/, self.page.render_comments)\
                 .gsub(/COMPONENT\[(\d)+\]/) { |component_number|
                   "NESTED COMPONENTS NOT SUPPORTED YET" }\
-                .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
-                   if self.page
-                     c = self.page.attachments[attachment_number.to_i]
-                     if c && c.file_content_type =~ /image/
-                       view_context.image_tag c.file.url(:medium)
-                     else
-                       "ATTACHMENT #{attachment_number} NOT FOUND"
-                     end
-                   else
-                     "NO PAGE / NO ATTACHMENT"
-                   end
+                .gsub(/ATTACHMENT\[(\d+)\]/) { |attachment_number|
+                  attachment_number.gsub! /\D/,''
+                  c = self.page.attachments[attachment_number.to_i]
+                  if c
+                    if c.file_content_type =~ /image/
+                      @view_context.image_tag( c.file.url(:medium) )
+                    else
+                      @view_context.link_to( c.file_file_name, c.file.url )
+                    end
+                  else
+                    "ATTACHMENT #{attachment_number} NOT FOUND"
+                  end
                 }
       end
     else

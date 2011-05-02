@@ -30,6 +30,9 @@ Cba::Application.routes.draw do
     resources :comments
     resources :components
   end
+  
+  # PAGE TEMPLATES
+  resources :page_templates
 
   # USERS
   match 'registrations' => 'users#index', :as => 'registrations'

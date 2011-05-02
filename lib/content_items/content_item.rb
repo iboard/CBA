@@ -62,12 +62,39 @@ module ContentItem
             end.compact.join("\n")
           else
             txt
-          end
+          end.gsub( /ATTACHMENT[\d+]/ ) { |attachment|
+            attachment_i = attachment.gsub( /\D/,'' ).to_i
+            render_attachment(attachment_i)
+          }.gsub( /COMPONENT[\d+]/ ) { |component|
+            component_i = component.gsub( /\D/,'' ).to_i
+            render_page_component(component_i)
+          }
         end
 
         private
         def content_for_intro
           raise "ABSTRACT_METHOD_CALLED - Overwrite content_for_intro"
+        end
+        
+        def render_attachment(idx)
+          idx ||= 1
+          idx -= 1
+          if @context_view
+            attachment = self.attachments[idx]
+            if attachment
+              if attachment.file_content_type =~ /image/
+                @context_view.image_tag attachment.file.url(:medium)
+              else
+                @context_view.link_to attachment.file_file_name attachment.file.original
+              end
+            else
+              "ATTACHMENT "+idx.to_s+" NOT FOUND"
+            end
+          end
+        end
+        
+        def render_component(idx)
+          "RENDER COMPONENT NOT IMPLEMENTED FOR #{self.class.to_s}"
         end
       EOV
     end

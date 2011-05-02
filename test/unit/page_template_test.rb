@@ -46,7 +46,7 @@ class PageTemplateTest < ActiveSupport::TestCase
   test "Page template should be deleted if not in use" do
     template = PageTemplate.first
     Page.all.each do |page|
-      page.update_attributes! :page_template_id => nil
+      page.update_attributes( :page_template_id => nil )
     end
     assert template.delete, "Template is not in use and should be deleted"
   end

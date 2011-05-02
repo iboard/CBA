@@ -14,7 +14,7 @@ class PageTemplate
   scope :component_templates,  where(name: /^Component/)
 
   def in_use?
-    Pages.each do |page|
+    Page.each do |page|
       return true if page.page_template_id == self.id
       page.components.each do |component|
         return true if component.page_template_id == self.id

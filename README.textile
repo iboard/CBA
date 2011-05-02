@@ -65,6 +65,13 @@ h2. Start all at once with thor-task
 You can use <code>thor application:run_autotests</code> to start the spork-server and autotest. 
 The shortest way to jump into *continuos testing* 
 
+h2. Layout and Templates
+
+* Edit application.css or 'your_name_given_at_install'.css
+* Edit views/layout/application.html or views/layout/'your_name_given_at_install'.html.erb
+* read "Posting":http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4dbebb9adaf9853b3000001a
+* visit "Demo Page":http://cba.iboard.cc/p/pagecomponent_and_pagetemplat$
+
 h2. License
 
 p. See -> "Freedom":/p/freedom

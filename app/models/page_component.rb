@@ -30,7 +30,8 @@ class PageComponent
                   "NESTED COMPONENTS NOT SUPPORTED YET" }\
                 .gsub(/ATTACHMENT\[(\d+)\]/) { |attachment_number|
                   attachment_number.gsub! /\D/,''
-                  c = self.page.attachments[attachment_number.to_i]
+                  idx = attachment_number.to_i - 1
+                  c = self.page.attachments[idx]
                   if c
                     if c.file_content_type =~ /image/
                       @view_context.image_tag( c.file.url(:medium) )
@@ -38,7 +39,7 @@ class PageComponent
                       @view_context.link_to( c.file_file_name, c.file.url )
                     end
                   else
-                    "ATTACHMENT #{attachment_number} NOT FOUND"
+                    "ATTACHMENT #{idx} NOT FOUND"
                   end
                 }
       end

@@ -55,6 +55,8 @@ module NavigationHelpers
     when /the posting page of "([^"]*)"/
       posting=Posting.where(:title=> $1).first
       "/postings/#{posting.id}"
+    when /feed/
+      "/feed.atom"
     else
       begin
         page_name =~ /the (.*) page/

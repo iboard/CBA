@@ -15,7 +15,7 @@
     <!-- prototype-lib will be loaded only when needed -->
     <%= yield :prototype %>
     <%= yield :head %>
-    <!-- %# #auto_discovery_link_tag(:atom, "/feed.atom?#{Time.now.to_i}") % -->
+    <%= auto_discovery_link_tag(:atom, "/feed") %>
     <%= insert_google_analytics_script if  (Rails.env == 'production') %>
     <%= csrf_meta_tag %>
   </head>

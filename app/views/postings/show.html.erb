@@ -20,7 +20,7 @@
   </address>
 
   <div id='posting_body'>
-  <%= sanitize(@posting.render_body).html_safe %>
+  <%= sanitize(@posting.render_body(self)).html_safe %>
   </div>
 
   <!-- ATTACHMENTS -->

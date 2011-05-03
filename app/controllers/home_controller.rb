@@ -24,10 +24,16 @@ class HomeController < ApplicationController
     @feed_items = []
     Blog.all.each.each do |blog|
       blog.postings.desc(:updated_at).each do |posting|
-        @feed_items << FeedItem.new(posting.title, posting.body, posting.updated_at, posting_url(posting),posting)
+        @feed_items << FeedItem.new(posting.title, posting.body, posting.updated_at, posting_url(posting), posting)
         posting.comments.each do |comment|
-          @feed_items << FeedItem.new( comment.name, comment.comment, comment.updated_at, posting_url(posting),comment)
+          @feed_items << FeedItem.new( ("%s %% %s" % [posting.title,comment.name]), comment.comment, comment.updated_at, posting_url(posting),comment)
         end
+      end
+    end
+    Page.asc(:updated_at).each do |page|
+      @feed_items << FeedItem.new(page.title,page.body,page.updated_at,page_url(page),page)
+      page.comments.each do |comment|
+        @feed_items << FeedItem.new( ("%s %% %s" % [page.title,comment.name]), comment.comment, comment.updated_at, page_url(page),comment)
       end
     end
     @feed_items.sort! {|a,b| a.updated_at <=> b.updated_at}

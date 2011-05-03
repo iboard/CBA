@@ -35,7 +35,8 @@ class Posting
   after_create  :send_notifications
 
   # Render the body with RedCloth
-  def render_body
+  def render_body(view_context=nil)
+    @view_context ||= view_context
     render_for_html(self.body)
   end
 

@@ -103,10 +103,11 @@ Feature: Postings
     And I am on the posting page of "Direct Post"
     Then I should see "The posting should load the blog it belongs to"
     And I should see "in Blog 1"
+  
   Scenario: Postings should be provided as atom-feed
     Given the following posting records for blog "Blog 1" and user "admin"
       | title      | body                                           |
       | Direct Post| The posting should load the blog it belongs to |
     And I am on the feed page
     Then I should see "Direct Post"
-    And I should see "The posting should load the blog it belings to"
+    And I should see "The posting should load the blog it belongs to"

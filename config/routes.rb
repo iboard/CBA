@@ -20,6 +20,7 @@ Cba::Application.routes.draw do
   end
   resources :postings, :only => [:show]
 
+  match 'feed' => "home#rss_feed", :as => 'feed'
 
   # PAGES
   match '/p/:permalink' => 'pages#permalinked', :as => 'permalinked'
@@ -30,7 +31,7 @@ Cba::Application.routes.draw do
     resources :comments
     resources :components
   end
-  
+
   # PAGE TEMPLATES
   resources :page_templates
 

@@ -1,19 +1,33 @@
 <% javascript 'endless_page' %>
 
-<%= render :partial => '/blogs/blog', :locals => { :blog => @blog} %>
+<div>
+   <% if @blog.pages.any? %>
+     <div class='right_column' style='margin-top: 40px;'>
+       <% for page in @blog.pages %>
+          <%= render :partial => 'pages/page_intro', :locals => { :page => page } %>
+          <p class='content_seperator'></p>
+       <% end %>
+     </div>
+   <% end %>
 
-<p><%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting %></p>
+  <%= raw("<div class='left_column'>" )if @blog.pages.any? %>
+
+  <%= render :partial => '/blogs/blog', :locals => { :blog => @blog} %>
+
+  <p><%= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting %></p>
 
 
-<p style='text-align: center;'><%= will_paginate @postings %></p>
+  <p style='text-align: center;'><%= will_paginate @postings %></p>
 
-<div id='postings' style='clear: right;'>
-    <% @postings.each do |posting| %>
-      <%= render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog } %>
-    <% end %>
-    <%= render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) } %>
+  <div id='postings' style='clear: right;'>
+      <% @postings.each do |posting| %>
+        <%= render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog } %>
+      <% end %>
+      <%= render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) } %>
+  </div>
+
+  <p style='text-align: center;'><%= will_paginate @postings %></p>
+
+  <%= raw("</div><div style='clear: both'></div>") if @blog.pages.any? %>
+
 </div>
-
-
-
-<p style='text-align: center;'><%= will_paginate @postings %></p>

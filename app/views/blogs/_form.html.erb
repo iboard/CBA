@@ -29,6 +29,15 @@
     <%= f.check_box :allow_public_comments %><%= t(:allow_public_comments) %>
   </div>
 
+  <div class='field'>
+    <%= f.label :page_tokens, t(:sidebar_pages) %>
+    <div style='margin-left: 200px;'>
+      <% for page in Page.asc(:title) %>
+        <%= check_box_tag "blog[page_tokens][]", page.id.to_s, blog.pages.include?(page) %> <%= page.title %><br/>
+      <% end %>
+    </div>
+  </div>
+  
   <div class='clear'></div>
 
 

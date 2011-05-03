@@ -38,6 +38,8 @@ class Page
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end
+  
+  has_and_belongs_to_many :blogs
 
 
   # Render the body with RedCloth or Discount

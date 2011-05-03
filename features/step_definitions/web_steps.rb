@@ -313,6 +313,20 @@ Given /^I sign out$/ do
   visit "/users/sign_out"
 end
 
+Given /^the following blogs with pages/ do |table|
+  Page.delete_all
+  table.hashes.each do |params|
+    blog = Blog.find_or_create_by(title: params[:title])
+    page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false)
+    blog.pages << page
+    blog.save
+  end
+end
+
+Given /^I am in the blog page of "([^"]*)"$/ do |arg1|
+  blog = Blog.where(:title => arg1).first
+  visit "/blogs/#{blog.id.to_s}"
+end
 
 Given /^the following comment records for page "([^"]*)"$/ do |commentable, table|
   page = Page.where(:title => commentable).first

@@ -1,2 +1,2 @@
-default: -r features/support -r features/step_definitions --format pretty features
-autotest: --drb -r features/support -r features/step_definitions --format progress features
+default: -c -r features/support -r features/step_definitions --format pretty features
+autotest: --drb -c -r features/support -r features/step_definitions --format progress features

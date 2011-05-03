@@ -6,7 +6,11 @@ atom_feed(:url => feed_path) do |feed|
      feed.entry(item.object, :url => item.url) do |entry|
        entry.title(item.title)
        if item.object.respond_to?(:render_body)
-         content = item.object.render_body(self)
+         if item.object.is_a?(Page)
+           content = item.object.render_body(nil)
+         else
+           content = item.object.render_body(self)
+         end
        else
          content = sanitize(simple_format(item.body))
        end

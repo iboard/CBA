@@ -1,0 +1,25 @@
+<% if page.comments.any? %>
+  <!-- COMMENTS -->
+  <%= content_tag :div, :id => 'comments' do %>
+    <h5><%= t(:number_of_comments, :count => page.comments.count)%></h5>
+    <%= render :partial => page.comments, :locals => { :commentable => page, :path_components => [page]} %>
+  <% end %>
+<% end %>
+
+<% if page.allow_public_comments || (page.allow_comments && user_signed_in?) %>
+  <!-- NEW COMMENT -->
+  <%= content_tag :div, :id => 'new_comment_form' do %>
+    <h5><%= t(:post_a_comment) -%></h5>
+    <%= form_for [page,comment = page.comments.build(
+                                             :name => current_user_field(:name,''),
+                                             :email => current_user_field(:email, '')
+                                          )] do |f| %>
+      <%= render :partial => 'comments/comment_fields',
+                 :locals => { :f => f,
+                              :commentable => page,
+                              :comment => comment
+                            }
+       %>
+    <% end %>
+  <% end %>
+<% end %>

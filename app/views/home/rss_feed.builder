@@ -5,8 +5,8 @@ atom_feed(:url => feed_path) do |feed|
    for item in @feed_items
      feed.entry(item.object, :url => item.url) do |entry|
        entry.title(item.title)
-       if item.object.respond_to?(:render)
-         content = item.object.render(self)
+       if item.object.respond_to?(:render_body)
+         content = item.object.render_body(self)
        else
          content = sanitize(simple_format(item.body))
        end

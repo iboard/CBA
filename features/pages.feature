@@ -91,3 +91,7 @@ Feature: Pages
   Scenario: Pagination should work on pages::index
     pending
 
+  Scenario: Pages should be provided as atom-feed
+    Given I am on the feed page
+    Then I should see "Lorem ipsum"
+    And I should see "Page 1"

@@ -92,6 +92,13 @@ Feature: Pages
     pending
 
   Scenario: Pages should be provided as atom-feed
-    Given I am on the feed page
+    Given I am on the page path of "Page 1"
+    And I fill in "Name" with "Frank Zappa"
+    And I fill in "Email" with "some@address.at"
+    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
+    And I click on "Post comment"
+    And I am on the feed page
     Then I should see "Lorem ipsum"
     And I should see "Page 1"
+    And I should see "Frank Zappa"
+    And I should see "Commentum"

@@ -14,7 +14,7 @@
                                              :name => current_user_field(:name,''),
                                              :email => current_user_field(:email, '')
                                           )] do |f| %>
-      <%= render :partial => '/comments/comment_fields',
+      <%= render :partial => 'comments/comment_fields',
                  :locals => { :f => f,
                               :commentable => page,
                               :comment => comment

@@ -42,7 +42,7 @@ class Page
 
   # Render the body with RedCloth or Discount
   def render_body(view_context=nil)
-    @view_context ||= view_context
+    @view_context = view_context unless view_context.nil?
     unless self.page_template_id && @view_context
       parts = [self.title, self.body]
       parts << self.page_components.asc(:position).map { |component|
@@ -119,7 +119,7 @@ class Page
       ""
     end
   end
-  
+
   def render_attachments
     if @view_context
       @view_context.render( :partial => 'pages/attachments', :locals => {:page => self })

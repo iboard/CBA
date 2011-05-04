@@ -70,6 +70,9 @@ class Page
     render_for_html(body.paragraphs[0])
   end
 
+  # TODO: Remove duplication!
+  # TODO:   This code occurs in Page and PageComponent. Move it to a single
+  # TODO:   place.
   def render_with_template
     self.page_template.render do |template|
       template.gsub(/TITLE/, self.title)\
@@ -81,8 +84,7 @@ class Page
               .gsub(/ATTACHMENTS/, render_attachments)\
               .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
                 attachment_number.gsub! /\D/,''
-                c = self.attachments[attachment_number.to_i]
-                if c
+                if c= self.attachments[attachment_number.to_i-1]
                   if c.file_content_type =~ /image/
                     @view_context.image_tag c.file.url(:medium)
                   elsif
@@ -94,7 +96,7 @@ class Page
               }\
               .gsub(/COMPONENT\[(\d)\]/) do |component_number|
                 component_number.gsub! /\D/,''
-                 c = self.components.where(:position => component_number.to_i).first
+                 c = self.components.where(:position => component_number.to_i-1).first
                  if c
                    c.render_body
                  else

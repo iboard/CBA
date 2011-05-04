@@ -16,7 +16,9 @@ class PageComponent
     self.page_template_id = new_template.id if new_template
   end
 
-
+  # TODO: Remove duplication!
+  # TODO:   This code occurs in Page and PageComponent. Move it to a single
+  # TODO:   place.
   def render_body(view_context=nil)
     @view_context = view_context
     if self.page_template && @view_context
@@ -31,8 +33,7 @@ class PageComponent
                 .gsub(/ATTACHMENT\[(\d+)\]/) { |attachment_number|
                   attachment_number.gsub! /\D/,''
                   idx = attachment_number.to_i - 1
-                  c = self.page.attachments[idx]
-                  if c
+                  if c = self.page.attachments[idx]
                     if c.file_content_type =~ /image/
                       @view_context.image_tag( c.file.url(:medium) )
                     else

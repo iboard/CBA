@@ -52,6 +52,6 @@ Feature: Blogs
       | title    | page_name | page_body         |
       | PageBlog | PageOne   | A wonderful body  |
     And I am on the blog path of "PageBlog"
-    And I click on link "Edit"
+    And I click on link "Edit" within ".blog_intro"
     Then I should see "Pages shown on side bar"
     And I should see "PageOne"

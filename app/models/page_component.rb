@@ -21,7 +21,7 @@ class PageComponent
     @view_context = view_context
     if self.page_template && @view_context
       self.page_template.render do |template|
-        template.gsub(/TITLE/, self.title)\
+        (template||"TITLE BUTTONS BODY COMPONENTS ATTACHMENTS COMMENTS").gsub(/TITLE/, self.title)\
                 .gsub(/BODY/,  self.page ? self.page.render_for_html(self.body||'') : 'BODY NO PAGE')\
                 .gsub(/COVERPICTURE/, self.page ? self.page.render_cover_picture : 'PICT NO PAGE')\
                 .gsub(/COMPONENTS/, '')\

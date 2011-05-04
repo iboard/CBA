@@ -47,8 +47,8 @@ class Page
     @view_context = view_context unless view_context.nil?
     unless self.page_template_id && @view_context
       parts = [self.title, self.body]
-      parts << self.page_components.asc(:position).map { |component|
-        "\n" + component.title + "\n" + ("-"*component.title.length) + "\n" +
+      parts << self.page_components.all.map { |component|
+        "\n(POS=#{component.position.inspect})" + component.title + "\n" + ("-"*component.title.length) + "\n" +
         (component.body || '')
       }
       render_for_html( parts.join("\n") )
@@ -107,7 +107,7 @@ class Page
   end
 
   def render_components
-    self.page_components.asc(:position).map do |component|
+    self.page_components.asc(:title).map do |component|
       if @view_context
         component.render_body(@view_context)
       else

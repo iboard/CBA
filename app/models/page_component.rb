@@ -3,8 +3,10 @@ class PageComponent
   include Mongoid::Document
   cache
   embedded_in :page
-
-  field :position, :default => 9999
+  
+  default_scope lambda { asc(:position) }
+  
+  field :position, :type => Integer, :default => 9999
   field :title,    :required => true, :default => '(unnamed)'
   field :body
 

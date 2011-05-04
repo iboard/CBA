@@ -26,3 +26,7 @@ Feature: PageComponents
     #  And I click on link 'Add component'
     #  Then I should be on the add component page for page "Page 1"
     #  And I should see "Add new component to page 'Page 1'"
+    
+  Scenario: A Page using PageTemplate should render PLACEHOLDERS in body
+    pending
+    

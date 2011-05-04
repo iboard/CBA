@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
+<html lang='<%= I18n.locale.to_s -%>'>
+  <head>
+    <title>Ooops - 404 - Not found</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/stylesheets/application.css">
+  </head>
+  <body>
+    <div id='overlay' class="ui-widget-content"></div>
+    <div id="banner">
+      <h1>Ooops - 404 - The file your're looking for doesn't exist</h1>
+    </div>
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+    <div id="container">
+      <div style="margin: 0px;">
+         <div id="cse" style="display: hidden; background: #fee;"></div>
+         <div style='text-align: center; margin: 40px; background: #FCD284;
+                     border: 1px solid #ddd; padding: 30px;
+                     -moz-border-radius: 5px 5px 5px 5px; 
+                     -webkit-border-radius: 5px 5px 5px 5px; 
+                    '>
+           <h1>The page you were looking for doesn't exist.</h1>
+           <p>You may have mistyped the address or the page may have moved.</p>
+           <br/>           <br/>           <br/>
+         </div>
+        <center><a href='/'>Start at the root page again ...</a></center>
+        <br/>           <br/>           <br/>
+      </div>
+
+      <div id='clear'></div>
+    </div>
+    <div id='copyright'>
+        © 2011 by Andreas Altendorfer %>
+    </div>
+  </body>
 </html>
+

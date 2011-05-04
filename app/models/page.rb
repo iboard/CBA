@@ -133,8 +133,10 @@ class Page
   end
 
   def render_cover_picture
-    if self.cover_picture_exists?
+    if self.cover_picture_exists? && self.cover_picture.url(:medium)
       @view_context.image_tag self.cover_picture.url(:medium)
+    else
+      ""
     end
   end
 

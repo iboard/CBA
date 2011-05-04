@@ -58,6 +58,8 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
+    # Workarround for :fields_for which will ignore default_scope of components
+    @page.page_components.sort! {|a,b| a.position <=> b.position }
   end
 
   # POST /pages

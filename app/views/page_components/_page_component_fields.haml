@@ -11,5 +11,4 @@
         = f.text_field :position, :size => 5
         = f.select(:page_template_id, PageTemplate.only(:id,:name).reject{|r| r.name !~ /^Component/}.map {|t| [t.name, t.id]},
                    :allow_blank => t(:no_template))
-        
-
+%hr

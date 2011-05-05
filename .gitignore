@@ -19,3 +19,7 @@ config/google_site_search.html
 public/system/**/*
 public/cover_pictures
 public/sitemap.xml
+public/stylesheets/disabled_styles/*
+public/stylesheets/disabled_styles/**/*
+app/views/layouts/disabled_layouts/*
+app/views/layouts/disabled_layouts/**/*

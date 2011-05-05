@@ -4,12 +4,12 @@ class BlogTest < ActiveSupport::TestCase
 
   def setup
     Blog.delete_all
-    Pages.delete_all
+    Page.delete_all
   end
 
   def cleanup
     Blog.delete_all
-    Pages.delete_all
+    Page.delete_all
   end
 
   test "sould not save without a title" do

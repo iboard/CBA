@@ -55,15 +55,15 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
-    background: #677083;
-    background: #677083 -webkit-gradient(
+    background: #DADADA;
+    background: #DADADA -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.95,  #677083),
-        color-stop(0.0, #EAECEE)
+        color-stop(0.95,  #DADADA),
+        color-stop(0.0, #FEFEFE)
     ) repeat-x;
-    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
     color: #333;
     font-size: 1.0em;
   }
@@ -137,7 +137,7 @@
     border: 5px solid #ddd;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    background: #1A1C21;
+    background: #FAFAFA;
   }
   
   .asset_preview {
@@ -266,15 +266,15 @@
     left: 0px;
     right: 0px;
     padding: 5px;
-    background: #677083;
-    background: #677083 -webkit-gradient(
+    background: #DADADA;
+    background: #DADADA -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.95,  #677083),
-        color-stop(0.0, #EAECEE)
+        color-stop(0.95,  #DADADA),
+        color-stop(0.0, #FEFEFE)
     ) repeat-x;
-    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);color: #444;
+    background: #677083 -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
     margin-top: 0px;
     padding-top: 10px;
   }
@@ -304,15 +304,15 @@
   }
   
   .hmenu_current {
-    background: #677083;
-    background: #677083 -webkit-gradient(
+    background: #C2C2C2;
+    background: #C2C2C2 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.95,  #677083),
-        color-stop(0.0, #EAECEE)
+        color-stop(0.95,  #C2C2C2),
+        color-stop(0.0, #FEFEFE)
     ) repeat-x;
-    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
+    background: #C2C2C2 -moz-linear-gradient(0% 100% 90deg, #C2C2C2, #FEFEFE);
     color: black;
     font-size: 0.9em;
     -moz-border-radius: 3px; 
@@ -329,17 +329,17 @@
   }
   
   .hmenu a:hover {
-    background: #CBE1E1;
     color: black;
-    background: #677083;
-    background: #677083 -webkit-gradient(
+    background: #F4F4F4;
+    background: #F4F4F4 -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.95,  #677083),
-        color-stop(0.0, #EAECEE)
+        color-stop(0.95,  #F4F4F4),
+        color-stop(0.0, #FEFEFE)
     ) repeat-x;
-    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
+    background: #F4F4F4 -moz-linear-gradient(0% 100% 90deg, #F4F4F4, #FEFEFE);
+
   }
   
   ul.hmenu {
@@ -589,7 +589,7 @@
     font-style: normal;
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;
-    background: #818DA9;
+    background: #8B8B8B;
     padding: 3px;
     color: white;
   }
@@ -600,7 +600,7 @@
    }
   
   .pagination .current {
-  	background: #818DA9;
+  	background: #8B8B8B;
   	color: white;
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px; 
@@ -657,15 +657,14 @@
     left: 0px;
     right: 0px;
     height: 90px;
-    background: #677083;
-    background: #677083 -webkit-gradient(
+    background: #DADADA -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0.95,  #677083),
-        color-stop(0.0, #EAECEE)
+        color-stop(0.95,  #DADADA),
+        color-stop(0.0, #FEFEFE)
     ) repeat-x;
-    background: #677083 -moz-linear-gradient(0% 100% 90deg, #677083, #EAECEE);
+    background: #DADADA -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
     overflow: hidden;
   }
   
@@ -690,7 +689,7 @@
   #banner address {
     font-family: Verdana, Helvetica, Arial, sans-serif;    
     font-size: 0.7em;
-    color: #D4D7D9;
+    color: #888888;
     font-weight: 100;
     margin: 0;
     padding: 0;

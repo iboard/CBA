@@ -355,3 +355,28 @@ Given /^the following user_notification records for user "([^"]*)"$/ do |usernam
   end
   user.save!
 end
+
+Given /^the following translated pages/ do |table|
+  Page.delete_all
+  table.hashes.each do |hash|
+    p = Page.create( title: hash[:title_en], body: hash[:body_en] )
+    p.translate!
+    p.t(:de,:title,hash[:title_de])
+    p.t(:de,:body, hash[:body_de])
+    p.save!
+  end
+end
+
+Given /^the following translated components for page "([^"]*)"$/ do |page_title, table|
+  page = Page.where(title: /#{page_title}/).first
+  page.page_components.delete_all
+  table.hashes.each do |hash|
+    c = page.page_components.create( title: hash[:title_en], body: hash[:body_en] )
+    c.translate!
+    c.t(:de, :title, hash[:title_de])
+    c.t(:de, :body, hash[:body_de])
+  end
+  page.save!
+end
+
+

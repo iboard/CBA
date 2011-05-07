@@ -26,7 +26,27 @@ Feature: PageComponents
     #  And I click on link 'Add component'
     #  Then I should be on the add component page for page "Page 1"
     #  And I should see "Add new component to page 'Page 1'"
-    
+
   Scenario: A Page using PageTemplate should render PLACEHOLDERS in body
     pending
-    
+
+
+  Scenario: Page components should have input fields for translations
+    Given the following translated components for page "Page 1"
+       | title_en   | body_en      | title_de | body_de   |
+       | GB         | Fish n chips | Austria  | Schnitzel |
+    And I am on the page path of "Page 1"
+    And I click on link "Edit"
+    Then I should see "Body (de)" within "#components"
+
+  Scenario: Page components should be translated
+    Given the following translated components for page "Page 1"
+       | title_en   | body_en      | title_de | body_de   |
+       | GB         | Fish n chips | Austria  | Schnitzel |
+    And I am on the page path of "Page 1"
+    Then I should see "Fish n chips"
+    Then I click on link "Deutsch"
+    Then I should see "Schnitzel"
+    Then I click on link "English"
+    Then I should see "Fish n chips"
+

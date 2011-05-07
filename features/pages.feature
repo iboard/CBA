@@ -102,3 +102,13 @@ Feature: Pages
     And I should see "Page 1"
     And I should see "Frank Zappa"
     And I should see "Commentum"
+
+  Scenario: Page title and body should be translated
+    Given the following translated pages
+      | title_en  | body_en      | title_de     | body_de    |
+      | GB        | Fish n chips | Deutschland  | Sauerkraut |
+    And I am on the page path of "GB"
+    And I click on link "Deutsch"
+    Then I should see "Sauerkraut"
+    Then I click on link "English"
+    Then I should see "Fish n chips"

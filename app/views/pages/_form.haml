@@ -4,10 +4,17 @@
 = form_for(page, :html => { :multipart => true } ) do |f|
 
     = errors_for page
+    
+    %div.field
+        = f.label :translations
+        %span{ style: 'left-margin: 200px;'}
+            = translation_links(page)
 
     %div.field
-        = f.label :title
-        = f.text_field :title, :size => 80
+        - translations_for_field( f, :title, :text_field, :size => 80 ) do |locale, field|
+            %span{style: 'padding-left: 0;'}
+                = raw(field)
+                %br/
 
     %div.field
         = f.label :show_in_menu
@@ -28,10 +35,11 @@
         = render :partial => '/home/interpreter_help'
 
 
-    %div.field
-        = f.label :body
-        = f.text_area :body, :rows => 20, :cols => 80
-
+    - translations_for_field( f, :body, :text_area, :rows => 8, :cols => 80 ) do |locale, field|
+        %span{style: 'padding-left: 0;'}
+            = raw(field)
+            %br/
+    
     %div.field
         = f.label :cover_picture
         %div{:style=>'margin-left: 200px'}

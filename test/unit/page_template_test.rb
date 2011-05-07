@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 require 'test_helper'
+require File.expand_path('../helpers/pages_helper_test.rb', __FILE__)
 
 class PageTemplateTest < ActiveSupport::TestCase
+
 
   def setup
     Page.delete_all
@@ -29,11 +31,11 @@ class PageTemplateTest < ActiveSupport::TestCase
   end
 
   test "Page should render with default template" do
-    @page.page_components.create(:title => 'Comp 1', :body => 'Component One', :position => 1)
-    @page.page_components.create(:title => 'Comp 2', :body => 'Component Two', :position => 2)
+    @page.page_components.create(:title => 'Comp 1', :body => 'Component One', :position => 1, :page_template_id => PagesHelperTest::default_component_template_id )
+    @page.page_components.create(:title => 'Comp 2', :body => 'Component Two', :position => 2, :page_template_id => PagesHelperTest::default_component_template_id )
     @page.save!
     @page.reload
-    assert @page.render_body =~ /With a template/, "Body should contain title #{@page.render_body}"
+    assert @page.render_body =~ /With a template/, "Body should contain title #{@page.title}"
     assert @page.render_body =~ /Component One/, 'Body should contian Component One'
     assert @page.render_body =~ /Component Two/, 'Body should contian Component Two'
   end
@@ -53,3 +55,4 @@ class PageTemplateTest < ActiveSupport::TestCase
 
 
 end
+37

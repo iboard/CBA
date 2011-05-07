@@ -3,10 +3,14 @@
 # application menu.
 # Pages can be addressed by <code>/pages/OBJECT_ID</code> or
 # <code>/p/TITLE_OF_THE_PAGE</code>. It can have comments and a 'cover-picture'
+require File.expand_path("../../../lib/translator/translator", __FILE__)
 class Page
   include ContentItem
   acts_as_content_item
   has_cover_picture
+  include Translator
+  translate_fields [:title, :body]
+
 
   field :show_in_menu, :type => Boolean, :default => true
   field :menu_order, :type => Integer, :default => 99999
@@ -41,16 +45,18 @@ class Page
 
   has_and_belongs_to_many :blogs
 
-
   # Render the body with RedCloth or Discount
   def render_body(view_context=nil)
     @view_context = view_context unless view_context.nil?
-    unless self.page_template_id && @view_context
-      parts = [self.title, self.body]
-      parts << self.page_components.all.map { |component|
-        "\n(POS=#{component.position.inspect})" + component.title + "\n" + ("-"*component.title.length) + "\n" +
-        (component.body || '')
-      }
+    unless (@view_context && self.page_template)
+      parts = [self.t(I18n.locale,:title), self.t(I18n.locale,:body)]
+      self.page_components.each do |component|
+        parts << render_for_html( [ (component.t(I18n.locale,:title)||''),
+                             ("-"*component.t(I18n.locale,:title).length),
+                             "\n"+(component.t(I18n.locale,:body) || '')
+                           ].join("\n")
+                         )
+      end
       render_for_html( parts.join("\n") )
     else
       render_with_template
@@ -67,7 +73,7 @@ class Page
   private
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro
-    render_for_html(body.paragraphs[0])
+    render_for_html((t(I18n.locale,:body)||self.body).paragraphs[0])
   end
 
   # TODO: Remove duplication!
@@ -75,8 +81,8 @@ class Page
   # TODO:   place.
   def render_with_template
     self.page_template.render do |template|
-      template.gsub(/TITLE/, self.title)\
-              .gsub(/BODY/,  self.render_for_html(self.body||''))\
+      template.gsub(/TITLE/, self.t(I18n.locale,:title))\
+              .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
               .gsub(/COMPONENTS/, render_components )\
               .gsub(/COVERPICTURE/, render_cover_picture)\
               .gsub(/COMMENTS/, render_comments)\

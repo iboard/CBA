@@ -397,3 +397,4 @@ de:
   page_template_successfully_destroyed: Layout erfolgreich gelöscht
   template_in_use: 'Diese Vorlage wird noch benutzt und kann nicht gelöscht werden'
   sidebar_pages: 'Zeige folgende Seiten in der rechten Box'
+  original_language: "<b>%{language}</b>"

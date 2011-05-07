@@ -3,6 +3,8 @@ class PageComponent
   include Mongoid::Document
   cache
   embedded_in :page
+  include Translator
+  translate_fields [:title, :body]
   
   default_scope lambda { asc(:position) }
   
@@ -25,8 +27,8 @@ class PageComponent
     @view_context = view_context
     if self.page_template && @view_context
       self.page_template.render do |template|
-        (template||"TITLE BUTTONS BODY COMPONENTS ATTACHMENTS COMMENTS").gsub(/TITLE/, self.title)\
-                .gsub(/BODY/,  self.page ? self.page.render_for_html(self.body||'') : 'BODY NO PAGE')\
+        (template||"TITLE BUTTONS BODY COMPONENTS ATTACHMENTS COMMENTS").gsub(/TITLE/, self.t(I18n.locale,:title))\
+                .gsub(/BODY/,  self.page ? self.page.render_for_html(self.t(I18n.locale,:body)||'') : 'BODY NO PAGE')\
                 .gsub(/COVERPICTURE/, self.page ? self.page.render_cover_picture : 'PICT NO PAGE')\
                 .gsub(/COMPONENTS/, '')\
                 .gsub(/COMMENTS/, self.page.render_comments)\
@@ -47,7 +49,7 @@ class PageComponent
                 }
       end
     else
-      self.page.render_for_html(self.body)
+      self.page.render_for_html(self.t(I18n.locale,:body))
     end
   end
 end

@@ -1,6 +1,6 @@
 <%= set_browser_address(page.id,page.title) %>
 
-<% title page.title %>
+<% title page.t(I18n.locale,:title)||page.title %>
 
 <!-- PICTURE -->
 <%= render( :partial => 'cover_picture',

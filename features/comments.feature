@@ -1,4 +1,3 @@
-@focus
 Feature: Comments
   In order to maintain comments
   As an admin

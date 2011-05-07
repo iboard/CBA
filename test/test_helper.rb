@@ -2,18 +2,23 @@ require 'simplecov'
 SimpleCov.start do
   add_filter "/test/"
 end
- 
+
 require 'spork'
 
-Spork.prefork do 
+Spork.prefork do
   ENV["RAILS_ENV"] = "test"
   require File.expand_path('../../config/environment', __FILE__)
   require 'rails/test_help'
   include Devise::TestHelpers
 end
 
+Spork.each_run do
+end
+
+
+
 class ActiveSupport::TestCase
-  
+
   def create_valid_user_with_id(id=nil)
     begin
       unless id.nil?
@@ -33,7 +38,7 @@ class ActiveSupport::TestCase
       nil
     end
   end
-  
+
   def create_valid_user_with_roles_mask(role)
     user = User.new(
                       :email => "#{role.to_s}@test.te", :name => role.to_s,
@@ -43,5 +48,10 @@ class ActiveSupport::TestCase
     user.save!
     user
   end
-  
+
+  def create_one_page(title='A Page', body='A Body')
+     Page.delete_all
+     Page.create title: title, body: body
+  end
+
 end

@@ -200,3 +200,4 @@ en:
   page_template_successfully_destroyed: Template successfully destroyed
   template_in_use: 'This template is in use and can not be deleted yet'
   sidebar_pages: 'Pages shown on side bar'
+  original_language: "<b>%{language}</b>"

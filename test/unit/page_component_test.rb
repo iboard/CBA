@@ -35,5 +35,16 @@ class PageComponentTest < ActiveSupport::TestCase
     assert page.render_body =~ /Component Two/, 'Component Two should be in render'
   end
 
+  test "Page component should be translatable" do
+    page = Page.first || Factory.create(:page, :title => 'Testpage', :body => 'Main Body of page')
+    c = page.page_components.create( title: 'Testcomponent', body: 'Testbody')
+    c.translate!
+    c.t :de, :title, 'Testkomponente'
+    c.t :de, :body, 'Testkoerper'
+    page.save!
+    page.reload
+    assert page.page_components.first.t(:de, :title).eql?( "Testkomponente"), "Title of component isn't translated"
+    assert page.page_components.first.t(:de, :body).eql?( "Testkoerper"), "Body of component isn't translated"
+  end
 
 end

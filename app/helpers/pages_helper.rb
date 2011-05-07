@@ -1,5 +1,8 @@
 module PagesHelper
 
+  def escape(str)
+    (str||'').gsub(/"/, "\\\"")
+  end
 
   # Show all available languages with default language in bold letters
   def translation_links(page)
@@ -31,8 +34,9 @@ module PagesHelper
                    gsub(/\".*$/,'').\
                    gsub(/#{field.to_s}\]$/, "#{field.to_s}_translations][#{locale.first.to_s}]")
       field_value= form_builder.object.send("#{field.to_s}_translations")["#{locale.first.to_s}"]
-      e = "#{field_type.to_s}_tag '#{field_name}', '#{field_value}'"
+      e = "#{field_type.to_s}_tag(\"#{field_name}\", \"#{escape(field_value)}\""
       e += (", "+ args.join(',')) if args.any?
+      e+=")"
       localed_field = eval(e)
       yield( locale.first, localed_label + localed_field )
     end

@@ -6,7 +6,7 @@ de:
     de: 'Deutsch'
     en: 'English'
 
-  language_switched_to: 'Sprache der Benutzeroberfläche wurde auf %{lang} geändert.<br/><b>Beachte</b>: Die Inhalte werden nicht übersetzt!'
+  language_switched_to: 'Sprache der Benutzeroberfläche wurde auf %{lang} geändert.<br/><b>Beachte</b>: Postings werden nicht übersetzt.'
 
   mongoid:
     errors:
@@ -398,3 +398,11 @@ de:
   template_in_use: 'Diese Vorlage wird noch benutzt und kann nicht gelöscht werden'
   sidebar_pages: 'Zeige folgende Seiten in der rechten Box'
   original_language: "<b>%{language}</b>"
+  public_comments_allowed: 'Annonyme Kommentare: %{yes_or_no}'
+  comments_allowed: 'Benutzerkommentare: %{yes_or_no}'
+  allowed: 'erlaubt'
+  forbidden: 'nicht erlaubt'
+  num_comments:
+    zero: Noch kein Beitrag
+    one: Ein Beitrag
+    other: %{count} Beiträge

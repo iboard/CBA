@@ -5,7 +5,7 @@ en:
   locales:
     de: 'Deutsch'
     en: 'English'
-  language_switched_to: 'Web-interface-language changed to %{lang}.<br/><b>Please note</b>: Content will not be translated.'
+  language_switched_to: 'Web-interface-language changed to %{lang}.<br/><b>Please note</b>: Postings will not be translated.'
   userlist:
     title: "Listing Users"
     role: "Role"
@@ -201,3 +201,11 @@ en:
   template_in_use: 'This template is in use and can not be deleted yet'
   sidebar_pages: 'Pages shown on side bar'
   original_language: "<b>%{language}</b>"
+  public_comments_allowed: 'Anonymous comments: %{yes_or_no}'
+  comments_allowed: 'Authenticated comments: %{yes_or_no}'
+  allowed: 'allowed'
+  forbidden: 'not allowed'
+  num_comments:
+    zero: No postings yet
+    one: One posting
+    other: %{count} postings

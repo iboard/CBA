@@ -10,6 +10,7 @@ class Blog
 
   field :allow_comments,        :type => Boolean, :default => true
   field :allow_public_comments, :type => Boolean, :default => true
+  field :synopsis
 
   # REVIEW: Why postings are referenced and not embedded?
   references_many :postings, :dependent => :delete

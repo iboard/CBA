@@ -13,6 +13,9 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  # This code will be run each time you run your specs.
+  Dir[File.expand_path(File.join(File.dirname(__FILE__),'..','..',
+    'spec','factories','*.rb'))].each { |f| require f }
 end
 
 

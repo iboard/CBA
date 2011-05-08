@@ -28,6 +28,12 @@
     <%= f.label :allow_public_comments %>
     <%= f.check_box :allow_public_comments %><%= t(:allow_public_comments) %>
   </div>
+  
+  <div class="field">
+    <%= f.label :synopsis %>
+    <%= f.text_area :synopsis, :rows => 5, :cols => 60 %>
+  </div>
+  
 
   <div class='field'>
     <%= f.label :page_tokens, t(:sidebar_pages) %>

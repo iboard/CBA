@@ -6,14 +6,14 @@ Feature: Blogs
   Background:
     Given the following user records
       | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | admin@iboard.cc  | admin     | 5          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | user@iboard.cc   | testmax   | 2         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+      | staff@iboard.cc  | staff     | 3          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following blog records
-      | title  |
-      | Blog 1 |
-      | Blog 2 |
+      | title  | allow_comments | allow_public_comments | synopsis                |
+      | Blog 1 | true           | true                  | First blog to test      |
+      | Blog 2 | true           | true                  | Second blog for testing |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
 
 
@@ -52,6 +52,14 @@ Feature: Blogs
       | title    | page_name | page_body         |
       | PageBlog | PageOne   | A wonderful body  |
     And I am on the blog path of "PageBlog"
-    And I click on link "Edit" within ".blog_intro"
+    And I click on link "Edit" within "#page_blog"
     Then I should see "Pages shown on side bar"
     And I should see "PageOne"
+
+  Scenario: Blog index should show summary
+    Given I am on the blogs page
+    Then I should see "No postings yet"
+    And I should see "Authenticated comments: allowed"
+    And I should see "Anonymous comments: allowed"
+    And I should see "First blog to test"
+    And I should see "Second blog for testing"

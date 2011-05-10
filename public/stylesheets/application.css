@@ -179,18 +179,17 @@
   #container {
     width: 80%;
     margin: auto;
-    margin-top: 140px;
+    margin-top: 120px;
     background: #FFF;
     padding: 20px 20px;
-    padding-top: 0px;
-    border: none;
-    border-left: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    box-shadow: 3px 3px 3px 3px #222;
-    -webkit-box-shadow: 3px 3px 3px #222;
-    -moz-box-shadow: 3px 3px 3px #222;
-    -moz-border-radius: 5px 5px 5px 5px; 
-    -webkit-border-radius: 5px 5px 5px 5px; 
+    padding-top: 10px;
+    border: 1px solid #eee;
+    border-top: none;
+    box-shadow: 3px 3px 3px 3px #aaa;
+    -webkit-box-shadow: 3px 3px 3px #aaa;
+    -moz-box-shadow: 3px 3px 3px #aaa;
+    -moz-border-radius: 3px 3px 3px 3px; 
+    -webkit-border-radius: 3px 3px 3px 3px; 
   }
   
   .google-search {

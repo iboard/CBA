@@ -43,7 +43,7 @@ module StringExtensions
       self.gsub(/\$/,"\\$")
     end
 
-    # Split the string in paragraphs (\n)
+    # Split the string into paragraphs (\n)
     # "Par 1\nPar 2".paragraphs => ['Par 1', 'Par 2']
     # "Par 1\nPar 2\nPar 3".paragraphs(0..1) => "Par 1\nPar 2"
     def paragraphs(range=nil)

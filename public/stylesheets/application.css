@@ -177,7 +177,7 @@
   
   
   #container {
-    width: 80%;
+    width: 900px;
     margin: auto;
     margin-top: 120px;
     background: #FFF;
@@ -740,7 +740,7 @@
   }
   
   #container .left_column {
-    width: 60%;
+    width: 560px;
     float: left;
   }
   

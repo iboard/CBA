@@ -295,7 +295,7 @@
   }
   
    #session .hmenu a {
-     z-index: 3;
+    z-index: 3;
     font-size: 0.9em; 
     text-decoration: none;
     color: #444;
@@ -714,7 +714,6 @@
   }  
   
   .page_intro {
-    min-height: 160px;
     clear: both;
   }
   
@@ -779,6 +778,10 @@
     vertical-align: middle;
   }
   
+  .twtr-widget.twtr-widget-profile {
+    z-index: 0;
+  }
+  
   
   .new_comments {
     color: #1C5A98;
@@ -800,7 +803,7 @@
   #container #postings h2 {
     margin: 0px;
     text-shadow: 2px 1px 2px #888;
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 1.8em;
     
   }

@@ -40,7 +40,7 @@ en:
   or_clear_avatar: 'Or clear'
   welcome: 'Welcome'
   list_registrations: 'List all registrations'
-  or_user_omni_auth: 'Or use an authenticaton provider'
+  or_user_omni_auth: 'Or use an authentication provider'
   sign_in: 'Sign in'
   authentications: 'Authentications'
   back_to: 'Back to'

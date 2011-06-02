@@ -107,6 +107,10 @@ class PagesController < ApplicationController
   def delete_cover_picture
     @page.cover_picture.destroy
     @page.save
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.js
+    end
   end
 
 end

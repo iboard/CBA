@@ -16,6 +16,7 @@ config/mailserver_setting.rb
 config/omniauth_settings.rb
 config/google_analytics.head
 config/google_site_search.html
+config/twitter.*.html
 public/system/**/*
 public/cover_pictures
 public/sitemap.xml

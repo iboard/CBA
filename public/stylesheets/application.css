@@ -68,8 +68,12 @@
     font-size: 1.0em;
   }
     
-  h1,h2,h3 { }
-
+  h1,h2,h3 { 
+    font-family: Times new roman, Times, serif; 
+  }
+  
+  address { font-style: normal; }
+  
   a img {
     border: none;
     padding: 0px;
@@ -575,13 +579,9 @@
   }
 
   .pagination {
-    
   	text-align: center;
   	margin: 2px;
   	padding: 3px;
-  	background: #eee;
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px;
   }
   
   .pagination em {
@@ -669,11 +669,11 @@
   
   
   h1 {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-family: Times new roman, Times, serif;
   }
   
   #banner h1 {
-    font-family: Arial;
+    font-family: Times new roman, Times, serif;
     font-weight: 100;
     margin: 0px;
     padding: 0px;
@@ -801,7 +801,7 @@
     margin: 0px;
     text-shadow: 2px 1px 2px #888;
     margin-top: 15px;
-    font-size: 1.2em;
+    font-size: 1.8em;
     
   }
   
@@ -875,7 +875,7 @@
   
   #container #postings p a,
   #container #postings p {
-    font-family: Times new roman, Times, serif;
+    font-family: Verdana, Arial, Helvetica, sans-seriv;
     margin: 0px;
     margin-bottom: 5px;
   }
@@ -883,7 +883,7 @@
   #posting_body,
   #posting_body a {
     line-height: 150%;
-    font-family: Times new roman, Times, serif;
+    font-family: Verdana, Arial, Helvetica, sans-seriv;
   }
   
   

@@ -727,7 +727,7 @@
   
   
   #container .right_column {
-    width: 30%;
+    width: 310px;
     float: right;
     border: 1px solid #ddd;
     -moz-border-radius: 5px; 
@@ -740,7 +740,7 @@
   }
   
   #container .left_column {
-    width: 65%;
+    width: 60%;
     float: left;
   }
   

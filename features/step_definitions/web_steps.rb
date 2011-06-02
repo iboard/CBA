@@ -244,8 +244,14 @@ end
 # and config/twitter.#{Rails.env}.html in your production code.
 Given /^the following files?$/ do |table|
   table.hashes.each do |hash|
-    File.new( File::join(Rails.root,hash['filename'].strip), "w").write(hash['content'])
+    f=File.new( File::join(Rails.root,hash['filename'].strip), "w+")
+    f.write(hash['content']+"\n")
+    f.close
   end
+end
+
+Given /^delete file "([^"]*)"$/ do |filename|
+  File.unlink( File::join(Rails.root, filename))
 end
 
 Given /^I am logged out$/ do

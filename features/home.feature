@@ -1,3 +1,4 @@
+@focus
 Feature: Home
   In order show up stuff on the root page
   As an user
@@ -5,16 +6,17 @@ Feature: Home
 
 
   Background:
-    Given the following page records
-      | title  | body                 | show_in_menu |
-      | Page 1 | Lorem ipsum          | true         |
-      | Page 2 | Lirum Opsim          | false        |
+    Given the following user records
+      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
+      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    And the following page records
+      | title          | body                 | show_in_menu |
+      | A Twitter page | Lorem Twittum        | true         |
 
   Scenario: The home-page should show top pages in a sidebar
      Given I am on the home page
-     Then I should see "Page 1"
-     And I should see "Lorem ipsum"
-     And I should not see "Lirum Opsim"
+     Then I should see "A Twitter page"
+     And I should see "Lorem Twittum"
 
   Scenario: If twitter.html exist the home page should show the twitter-box
      Given the following file
@@ -22,3 +24,4 @@ Feature: Home
        | config/twitter.test.html | This is the twitter box |
      And I am on the home page
      Then I should see "This is the twitter box"
+     Then delete file "config/twitter.test.html"

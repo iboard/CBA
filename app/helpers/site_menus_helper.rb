@@ -97,7 +97,7 @@ module SiteMenusHelper # :nodoc:
     else
       header = link_to(menu.name,menu.target)
     end
-    header += raw("<ul style='margin-left: 10px;'>") if menu.children.any?
+    header += raw("<ul>") if menu.children.any?
     header
   end
   

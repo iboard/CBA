@@ -69,7 +69,13 @@
   }
 
   h1,h2,h3 {
-    font-family: Times new roman, Times, serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #666;
+  }
+  
+  h2 {
+    border-bottom: #ddd 4px solid;
+    color: #666;
   }
 
   address { font-style: normal; }
@@ -804,11 +810,6 @@
     ) repeat-x;
     background: #DADADA -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
     overflow: hidden;
-  }
-
-
-  h1 {
-    font-family: Times new roman, Times, serif;
   }
 
   #banner h1 {

@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
   # Load what every controller may expect to be there
   helper_method :top_pages
+  helper_method :root_menu
 
   # Setup content for buttons on top of page
   helper_method :pivotal_tracker_project
@@ -42,6 +43,10 @@ class ApplicationController < ActionController::Base
   # Top Pages are shown in the top-menu
   def top_pages
     @top_pages ||= Page.where(:show_in_menu => true).asc(:menu_order)
+  end
+
+  def root_menu
+    @root_menu ||= SiteMenu.roots.first
   end
 
   # Load link to pivotal tracker from config

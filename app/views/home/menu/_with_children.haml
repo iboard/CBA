@@ -1,0 +1,6 @@
+%ul{:class => 'submenu ' + (current_root_path_include?(menu) ? 'selected_submenu' : 'not_selected_submenu')}
+  %li= menu_link_to menu.name, menu.target
+  - if menu.children.any? && recursive
+    - for child in menu.children.all
+      = render 'home/menu/with_children', :menu => child, :recursive => recursive
+      

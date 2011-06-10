@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  label: MyString
+  target: MyString
+  role_needed: 1
+  info: MyString
+
+two:
+  label: MyString
+  target: MyString
+  role_needed: 1
+  info: MyString

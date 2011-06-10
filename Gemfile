@@ -16,6 +16,9 @@ gem "omniauth"
 # Bundle gem needed for paperclip and attachments
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
+# MongoID Extensions and extras
+gem 'mongoid-tree', :require => 'mongoid/tree'
+
 # Bundle gems for views
 gem "haml"
 gem "will_paginate"

@@ -182,8 +182,8 @@
   
   #container {
     width: 900px;
-    margin: auto;
-    margin-top: 120px;
+    margin-left: 180px;
+    margin-top: 145px;
     background: #FFF;
     padding: 20px 20px;
     padding-top: 10px;
@@ -280,6 +280,8 @@
     background: #677083 -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
     margin-top: 0px;
     padding-top: 10px;
+    
+    height: 18px;
   }
   
   #session a {
@@ -292,6 +294,12 @@
     font-size: 0.9em;
     color: #444;
     margin: 0px;
+    height: 25px;
+    display: inline;
+  }
+  
+  .hmenu_with_children {
+    display: inline;
   }
   
    #session .hmenu a {
@@ -300,13 +308,15 @@
     text-decoration: none;
     color: #444;
     padding: 5px;
-    padding: 5px;
     border-bottom :none;
     -moz-border-radius: 3px 3px 0px 0px; 
     -webkit-border-radius: 3px 3px 0px 0px;     
   }
   
+  ul.submenu.selected_submenu li a.hmenu,
   .hmenu_current {
+    height: 14px;
+    display: inline;
     background: #C2C2C2;
     background: #C2C2C2 -webkit-gradient(
         linear,
@@ -325,6 +335,25 @@
     box-shadow: 0px 0px 0px #888;
     border-bottom: 0px;
   }
+  
+  
+  ul.submenu li.selected_submenu {
+    background: #5A5A5A;
+    color: white;
+    margin: 0px;
+    height: 15px;
+    width: auto;
+    padding: 5px;
+    display: block;
+    border-radius: 0px 20px 20px 0px;
+  }
+  
+  ul.submenu li.selected_submenu a {
+    background: none;
+    margin: 5px;
+    color: #ddd;
+  }
+  
   
   #session .hmenu .hmenu_current {
     border: 1px solid #888;    
@@ -348,6 +377,7 @@
   ul.hmenu {
     list-style-type: none;
     display: inline;
+    float: left;
     margin: 0px;
     padding: 0px;
     margin-left: 40px;
@@ -362,6 +392,85 @@
       padding-right: 0px;
   }
   
+  .submenu_box {
+    position: absolute; 
+    left: 15px; 
+    top: 145px;'
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+    height: auto;
+    border: 1px solid #AFAFAF;
+    border-radius: 3px 3px 3px 3px;
+    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    background: #ddd;
+    margin-right: 10px;
+    box-shadow: #444 5px 5px 15px;
+  }
+  
+  .submenu_box .hmenu_current {
+    background: #4A4A4A;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    padding-right: 25px;
+    display: inline;
+    line-height: 25px;
+    border-radius: 0px 10px 10px 0px;
+  }
+
+  .submenu_box .hmenu_current a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  #container .submenu_box ul {
+    list-style: none;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+  }
+    
+  
+  #container .submenu_box h1 {
+    margin: 0px;
+    font-size: 0.7em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+  }
+  
+  #container .submenu_box ul li {
+    margin: 0px;
+    padding: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  
+  .submenu {
+    border-radius: 5px;
+    padding: 5px;
+    height: 15px;
+    color: #444;
+    display: block;
+  }
+  
+
+  ul.submenu {
+    display: inline;
+    list-style: none;
+    margin-left: 5px;
+  }
+  
+  .submenu li {
+    list-style: none;
+    margin-left: 5px;
+  }
+  
+  .submenu li a {
+    text-decoration: none;
+    border: none;
+  }
   
   .user_edit p {
     padding: 0px;

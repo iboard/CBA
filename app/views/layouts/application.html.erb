@@ -43,21 +43,21 @@
     </div>
 
 
+    <% if current_root(self) %>
+      <div class='submenu_box'>
+        <ul>
+        <%= 
+            raw(
+              build_submenu_box(current_root(self)) do |entry| 
+                "<li>"+ entry +"</li>"
+              end 
+            )
+        %>
+        </ul>
+      </div>
+      <div style='clear: both;'></div>
+    <% end %>
     <div id="container">
-      <% if current_root(self) %>
-        <div class='submenu_box'>
-          <ul>
-          <%= 
-              raw(
-                build_submenu_box(current_root(self)) do |entry| 
-                  "<li>"+ entry +"</li>"
-                end 
-              )
-          %>
-          </ul>
-        </div>
-        <div style='clear: both;'></div>
-      <% end %>
       <!--
       <div class='google-search'>
          %= insert_google_site_search %

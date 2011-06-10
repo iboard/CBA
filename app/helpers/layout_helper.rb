@@ -30,14 +30,6 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
 
-  # if the link is a link to the current-page display it with a different
-  # css-class to inform the user about 'here you are'.
-  def menu_link_to(name,path,options={})
-    style = current_page?(path) ? "hmenu_current" : "hmenu"
-    options.merge!( { :class => style } )
-    link_to( name, path, options )
-  end
-
   # Outputs a Javascript to place the title of a page at the URL in cases
   # where the page was addressed by it's ID
   def set_browser_address(page,title)

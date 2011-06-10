@@ -192,6 +192,26 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
   end
 end
 
+Given /^the following site_menu$/ do |table|
+  SiteMenu.delete_all
+  table.hashes.each do |hash|
+    
+    level = hash[:name]
+    target= hash[:target]
+    levels = level.split(/\./)
+    
+    search_in = SiteMenu
+    for name in levels
+      item = search_in.where(:name => name).first
+      if item
+        search_in = item.children
+      else
+        search_in.create(name: name, target:target)
+      end
+    end
+  end
+end
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should

@@ -1,0 +1,27 @@
+- title t(:comments_of_last_year)
+- comments = @comments.partition{|c| c.commentable.nil? }
+= comments[0].count.to_s + " / " + comments[1].count.to_s
+- for group in [0,1] # 0 => orphaned, 1 => with commentable
+  -for comment in comments[group]
+    %div{:class=>'comment', :id=>'comment_'+comment.id.to_s}
+      - if group == 1
+        %h2
+          = link_to comment.commentable.title, commentable_show_path(comment.commentable)
+          %small
+            (
+            = comment.commentable.class.to_s.humanize
+      - else
+        = t(:orphanded_comment)
+      %p
+        %strong
+          = t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous',:at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe
+          (
+          = comment.created_at
+          , 
+          = t(:posted_from_ip, :ip => (comment.from_ip || "n/a") )
+          )
+  
+      %p
+        = sanitize(RedCloth.new(comment.comment).to_html).html_safe
+      %p
+        = link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure) ) if can?( :destroy, comment )

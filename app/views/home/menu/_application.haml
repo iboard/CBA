@@ -1,3 +1,4 @@
+- # The Top Menu, see home_helper for definition
 - main_menu(false) do |css_id, html_menu|  #false => without_children
   - unless html_menu.blank?
     %li{:id => 'menu_'+css_id.to_s, :class => 'hmenu'}= raw(html_menu)

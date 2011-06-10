@@ -57,7 +57,7 @@ module SiteMenusHelper # :nodoc:
   
   def build_submenu_box(menu,&block)
     menu = menu.first if menu.is_a?(Mongoid::Criteria)
-    if menu && menu.target
+    if menu && menu.target && (menu.role_needed||0) <= current_role
       yield( submenu_header(menu) ) + 
       menu.children.map { |child|
         raw( build_submenu_box(child,&block) )

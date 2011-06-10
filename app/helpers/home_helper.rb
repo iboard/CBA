@@ -19,7 +19,7 @@ module HomeHelper # :nodoc:
                                  :recursive=>include_children,
                                  :force => true
                               )
-                            ) if menu
+                            ) if menu && (menu.role_needed||0) <= current_role
       end
     else
       # Use default menu

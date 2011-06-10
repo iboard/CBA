@@ -1,4 +1,4 @@
-namespace :test do
+namespace :data do
   desc "Generate standard root_menu"
   task :generate_standard_root_menu => :environment do
     print "Generating site_menus ... "

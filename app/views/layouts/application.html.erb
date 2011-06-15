@@ -63,8 +63,7 @@
          %= insert_google_site_search %
       </div>
       -->
-
-      <div>
+      <div id='flashes'>
         <% flash.each do |name, msg| %>
           <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
         <% end %>
@@ -74,8 +73,8 @@
         <%= render :partial => 'users/notifications', :locals => { :user_notifications => current_user.user_notifications.displayed } %>
       <% end %>
 
-      <div style="margin: 0px;">
-         <div id="cse" style="display: hidden; background: #fee;"></div>
+      <div id='container_main'>
+         <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
         <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
         <%= yield %>
       </div>

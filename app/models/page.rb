@@ -1,6 +1,8 @@
 # A Page is a blogabble semi-static content-item.
-# If <code>show_in_menu</code> the page will have a link in the
+#
+# If <code>show_in_menu</code> is set the page will have a link in the
 # application menu.
+#
 # Pages can be addressed by <code>/pages/OBJECT_ID</code> or
 # <code>/p/TITLE_OF_THE_PAGE</code>. It can have comments and a 'cover-picture'
 require File.expand_path("../../../lib/translator/translator", __FILE__)
@@ -36,9 +38,11 @@ class Page
   accepts_nested_attributes_for :page_components, :allow_destroy => true
 
   field :page_template_id, :type => BSON::ObjectId
+
   def page_template
     PageTemplate.where(:_id => self.page_template_id.to_s).first if self.page_template_id
   end
+  
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end

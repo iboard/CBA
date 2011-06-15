@@ -1,5 +1,9 @@
 # SiteMenu
-# --------
+#
+# is a Mongoid::Tree of menu-entries
+#
+#  :name    => String # The Label
+#  :target  => The URL
 #
 class SiteMenu
   include Mongoid::Document

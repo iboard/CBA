@@ -1,10 +1,11 @@
 %div{ :class=>:blog_intro, :id=>blog.id.to_s  }
-    - if blog.cover_picture_exists?
-        = render :partial => '/blogs/cover_picture',          |
-                 :locals => { :blog => blog,                  |
-                   :format => :thumb,                         |
-                   :style => 'float:right;margin-left: 10px'} |
 %h1= blog.title
+
+- if blog.cover_picture_exists?
+    = render :partial => '/blogs/cover_picture',          |
+             :locals => { :blog => blog,                  |
+               :format => :thumb,                         |
+               :style => 'float:right;margin-left: 10px'} |
 
 - if params[:action] == 'index'
     %p{ :style => 'width: 400px; float: left;' }= blog.synopsis

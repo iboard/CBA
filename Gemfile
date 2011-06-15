@@ -30,6 +30,7 @@ group :development do
   gem "nifty-generators"
   gem "rails-erd"
   gem 'rdoc'
+  gem 'unicorn'
   #  gem 'yard' broken in OS X 10.7
 end
 

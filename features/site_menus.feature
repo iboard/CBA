@@ -13,17 +13,16 @@ Feature: SiteMenus
       | Page 1 | Lorem ipsum          | false        |
       | Page 2 | Lirum Opsim          | false        |
     And the following site_menu
-      | name           | target       |
-      | rootA          | /            |
-      | rootA.item1    | /help_fake   |
-      | rootA.item2    | /help_fake/1 |
-      | rootB          | /pages       |
-      | rootB.Blorem   | /p/page_1    |
-      | rootB.Blirum   | /p/page_2    |
-      | rootB.Blirum.a | /dummy1      |
-      | rootB.Blirum.b | /dummy2      |
+      | name              | target       |
+      | rootA             | /            |
+      | rootA.item1       | /help_fake   |
+      | rootA.item2       | /help_fake/1 |
+      | rootB             | /pages       |
+      | rootB.Blorem      | /p/page_1    |
+      | rootB.Blirum      | /p/page_2    |
+      | rootB.Blirum.Sub1 | /dummy1      |
+      | rootB.Blirum.Sub2 | /dummy2      |
 
-@focus
   Scenario: I wanna see a sumbenue on the homepage
     Given I am on the home page
     Then I should see "rootA"
@@ -35,4 +34,5 @@ Feature: SiteMenus
     And I should see "Blorem"
     And I should see "Blirum"
     Then I click on link "Blirum"
-    Then show me the page
+    Then I should see "Sub1"
+    And I should see "Sub2"

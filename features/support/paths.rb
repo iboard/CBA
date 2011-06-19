@@ -57,6 +57,10 @@ module NavigationHelpers
       "/postings/#{posting.id}"
     when /feed/
       "/feed.atom"
+    when /edit site_menu page for menu "([^"]*)"/
+      menu_name = $1
+      site_menu = SiteMenu.where(:name => menu_name).first
+      "/site_menus/#{site_menu.id.to_s}/edit"
     else
       begin
         page_name =~ /the (.*) page/

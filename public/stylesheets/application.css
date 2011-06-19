@@ -72,7 +72,7 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color: #666;
   }
-  
+
   h2 {
     border-bottom: #ddd 4px solid;
     color: #666;
@@ -190,7 +190,7 @@
     width: 75%;
     min-width: 450px;
     margin-left: 180px;
-    margin-top: 145px;
+    margin-top: 120px;
     background: #FFF;
     padding: 20px 20px;
     padding-top: 10px;
@@ -416,20 +416,20 @@
     margin-right: 10px;
     box-shadow: #444 5px 5px 15px;
   }
-  
+
   .submenu_box ul {
     margin: 0px;
     margin-left: -20px;
     font-size: 0.9em;
     line-height: 180%;
   }
-  
+
   .submenu_box ul li {
     margin: 0px;
     margin-left: -20px;
   }
 
-  
+
   .submenu_box .hmenu_current {
     margin-left: 0px;
     background: #4A4A4A;
@@ -1310,6 +1310,13 @@
     clear: both;
   }
 
+  .site_menu_entry {
+    margin-top: 20px;
+  }
+
+  .site_menu_manage_buttons {
+    font-size: 0.75em;
+  }
 
 } /* END SCREEN */
 

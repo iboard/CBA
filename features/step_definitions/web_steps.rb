@@ -195,11 +195,11 @@ end
 Given /^the following site_menu$/ do |table|
   SiteMenu.delete_all
   table.hashes.each do |hash|
-    
+
     level = hash[:name]
     target= hash[:target]
     levels = level.split(/\./)
-    
+
     search_in = SiteMenu
     for name in levels
       item = search_in.where(:name => name).first
@@ -256,6 +256,46 @@ Given /^the following (.+) records?$/ do |factory, table|
   eval "#{factory.camelize}.delete_all"
   table.hashes.each do |hash|
     Factory(factory, hash)
+  end
+end
+
+Given /^no site_menu exists/ do
+  SiteMenu.delete_all
+end
+
+Given /a default user set/ do
+  User.delete_all
+  [
+    {
+      :email => 'user@iboard.cc',
+      :name  => 'testmax',
+      :roles_mask => 1,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'guest@iboard.cc',
+      :name  => 'guest',
+      :roles_mask => 0,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'admin@iboard.cc',
+      :name  => 'admin',
+      :roles_mask => 5,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'staff@iboard.cc',
+      :name  => 'staff',
+      :roles_mask => 4,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    }
+  ].each do |hash|
+    Factory('user', hash)
   end
 end
 

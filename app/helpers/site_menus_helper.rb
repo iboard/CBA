@@ -10,7 +10,7 @@ module SiteMenusHelper # :nodoc:
     end
     root_menus.flatten.uniq.compact
   end
-    
+
   #
   # Is path included in any current_root's path?
   #
@@ -27,7 +27,7 @@ module SiteMenusHelper # :nodoc:
     end
     @current_root != nil
   end
-  
+
   def current_root_path_include?(menu)
     path_menus = []
     menu.traverse { |m|
@@ -39,13 +39,13 @@ module SiteMenusHelper # :nodoc:
     path_menus.compact!
     path_menus.any?
   end
-  
+
   def current_root_menu_include_path?(path)
     return true if current_page?(path) && path[0] != '#'
     search_item = SiteMenu.where(:target => path).first
     current_root_menu_include?(search_item)
   end
-  
+
   # if the link is a link to the current-page display it with a different
   # css-class to inform the user about 'here you are'.
   def menu_link_to(name,path,options={})
@@ -54,17 +54,17 @@ module SiteMenusHelper # :nodoc:
     options.merge!( { :class => style } )
     link_to( name, path, options )
   end
-  
+
   def build_submenu_box(menu,&block)
     menu = menu.first if menu.is_a?(Mongoid::Criteria)
     if menu && menu.target && (menu.role_needed||0) <= current_role
-      yield( submenu_header(menu) ) + 
+      yield( submenu_header(menu) ) +
       menu.children.map { |child|
         raw( build_submenu_box(child,&block) )
       }.join("") + close_submenu(menu)
     end
   end
-  
+
   def submenu_margin_left
     margin = 0
     main_menu(false) do |name,html|
@@ -73,7 +73,7 @@ module SiteMenusHelper # :nodoc:
     end
     margin.to_i
   end
-  
+
   def submenus(upto=4)
     rc=(0..upto).to_a.map { |level|
      level if content_for?("submenu_level_#{level}".to_sym)
@@ -81,18 +81,18 @@ module SiteMenusHelper # :nodoc:
     Rails.logger.info("==== SUBMENUS #{rc.inspect}")
     rc
   end
-  
+
   def current_root(view_context)
     SiteMenu.roots.each do |root|
       if root.current_child?(view_context)
         Rails.logger.info("******** CURRENT ROOT = #{root.target} ****** ")
-        return root 
+        return root
       end
     end
   end
-  
+
   def submenu_header(menu)
-    if current_page?(menu.target) 
+    if current_page?(menu.target)
       header = "<div class='hmenu_current'>" + link_to(menu.name,menu.target) + "</div>"
     else
       header = link_to(menu.name,menu.target)
@@ -100,9 +100,15 @@ module SiteMenusHelper # :nodoc:
     header += raw("<ul>") if menu.children.any?
     header
   end
-  
+
   def close_submenu(menu)
     menu.children.any? ? "</ul>" : ""
   end
-  
+
+  def site_menu_manage_buttons(menu)
+    link_to( t(:edit), edit_site_menu_path(menu) ) + " | " +
+    link_to( t(:delete), menu, :method => :delete, :confirm => t(:are_you_sure)) + " | " +
+    link_to( t(:add_submenu_item), new_site_menu_path(:parent => menu.to_param))
+  end
+
 end

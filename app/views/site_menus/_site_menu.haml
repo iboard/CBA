@@ -1,0 +1,9 @@
+%li{:class=>'site_menu_entry'}
+  = site_menu.position.to_s + ": " + site_menu.name+" => "
+  = link_to site_menu.target, site_menu.target
+  %br
+  %span{:class => 'site_menu_manage_buttons'}
+    = site_menu_manage_buttons(site_menu)
+  - if site_menu.children.any?
+    %ul
+      = render site_menu.children

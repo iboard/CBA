@@ -6,6 +6,9 @@ Cba::Application.routes.draw do
   # Comments
   resources :comments, :except => :show
 
+  # SiteMenu
+  resources :site_menus
+
   # BLOGS
   resources :blogs do
     member do

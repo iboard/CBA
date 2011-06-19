@@ -209,3 +209,11 @@ en:
     zero: No postings yet
     one: One posting
     other: %{count} postings
+  manage_menus: 'Menus'
+  site_menu_successfully_updated: Site menu entry successfully updated.
+  site_menu_could_not_be_updated: Site menu couldn't be saved.
+  site_menu_deleted: 'Site menu successfully deleted.'
+  new_site_menu_item: 'New menu entry'
+  site_menu_successfully_created: 'Menu entry successfully created'
+  add_submenu_item: 'Add submenu'
+  new_submenu_for: 'New submenu for %{parent_name}'

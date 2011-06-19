@@ -406,3 +406,11 @@ de:
     zero: Noch kein Beitrag
     one: Ein Beitrag
     other: %{count} Beiträge
+  manage_menus: 'Menüs'
+  site_menu_successfully_updated: Menü wurde erfolgreich geändert.
+  site_menu_could_not_be_updated: Menü konnte nicht gespeichert werden.
+  site_menu_deleted: 'Menü wurde gelöscht'
+  new_site_menu_item: 'Neuer Menüeintrag'
+  site_menu_successfully_created: 'Menüeintrag wurde erzeugt.'
+  add_submenu_item: 'Neues Untermenü'
+  new_submenu_for: 'Neues Untermenü für %{parent_name}'

@@ -1,0 +1,23 @@
+-#
+-# FORM FOR SITE MENU
+-#
+= form_for(site_menu) do |f|
+
+    = errors_for site_menu
+    
+    - if site_menu.parent
+        = f.hidden_field :parent_id
+
+    .field
+        = f.label :name
+        = f.text_field :name, :size => 40
+    .field
+        = f.label :target
+        = f.text_field :target, :size => 40
+    .field
+        = f.label :position
+        = f.text_field :position, :size => 3
+    .field
+        = f.label :submit, sc(:nbsp)
+        = f.submit
+

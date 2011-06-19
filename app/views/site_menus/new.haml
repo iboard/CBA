@@ -1,0 +1,6 @@
+- if @site_menu.parent
+  - title t(:new_submenu_for, :parent_name => @site_menu.parent.name)
+- else
+  - title t(:new_site_menu_item)
+
+= render 'form', :site_menu => @site_menu

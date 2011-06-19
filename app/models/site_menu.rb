@@ -10,13 +10,14 @@ class SiteMenu
   include Mongoid::Tree
   include Mongoid::Tree::Traversal
   field :name, :type => String
+  validates_presence_of :name
   field :target, :type => String
   field :position, :type => Integer, :default => 999999
   field :role_needed, :type => Integer
   field :info, :type => String
-  
+
   default_scope order_by(:position => :asc)
-  
+
   def current_child?(view_context)
     return true if view_context.current_page?(self.target)
     self.children.each do |child|

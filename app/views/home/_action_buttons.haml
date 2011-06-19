@@ -6,6 +6,7 @@
 = link_to( t(:new_page), new_page_path ) if can? :manage, Page
 = link_to( t(:new_blog), new_blog_path ) if can? :manage, Blog
 = link_to( t(:manage_templates), page_templates_path) if can? :manage, PageTemplate
+= link_to( t(:manage_menus), site_menus_path) if can? :manage, SiteMenu
 
 -# Communications
 = link_to( (twitter_name||'Twitter'), twitter_link, :target => 'ext_tools') if twitter_link

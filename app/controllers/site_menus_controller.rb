@@ -39,5 +39,14 @@ class SiteMenusController < ApplicationController
     @site_menu.delete
     redirect_to site_menus_path, :notice => t(:site_menu_deleted)
   end
+  
+  def sort_menus
+    params[:site_menu].each_with_index do |id,idx|
+      m = SiteMenu.find(id)
+      m.position = idx
+      m.save
+    end
+    render :nothing => true
+  end
 
 end

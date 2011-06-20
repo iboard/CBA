@@ -1,6 +1,7 @@
-- title t(:manage_site_menus)
+- title t(:manage_site_menus)     
 
 %p= link_to t(:add_new_menu), new_site_menu_path, :class => 'green_button'
 
-%ul{:id => 'site_menu_list'}
+%ul{ :id => 'site-menus-list' }
   = render @site_menus
+  

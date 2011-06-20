@@ -7,7 +7,11 @@ Cba::Application.routes.draw do
   resources :comments, :except => :show
 
   # SiteMenu
-  resources :site_menus
+  resources :site_menus do
+    collection do
+      post :sort_menus
+    end
+  end
 
   # BLOGS
   resources :blogs do

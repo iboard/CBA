@@ -110,5 +110,5 @@ module SiteMenusHelper # :nodoc:
     link_to( t(:delete), menu, :method => :delete, :confirm => t(:are_you_sure)) + " | " +
     link_to( t(:add_submenu_item), new_site_menu_path(:parent => menu.to_param))
   end
-
+  
 end

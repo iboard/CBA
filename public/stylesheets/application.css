@@ -1310,8 +1310,13 @@
     clear: both;
   }
 
+  #site-menus-list {
+    list-style: none;
+  }
+
   .site_menu_entry {
     margin-top: 20px;
+    list-style: none;
   }
 
   .site_menu_manage_buttons {

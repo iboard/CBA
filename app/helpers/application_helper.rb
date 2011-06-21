@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # Helpers for the entire application
 # STYLE: Don't place methods here if they are used in one special controller only
 #

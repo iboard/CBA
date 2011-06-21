@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 Cba::Application.routes.draw do
 
   # Switch locales

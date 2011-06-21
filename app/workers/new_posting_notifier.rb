@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class NewPostingNotifier < Struct.new( :args )
 
   # arg[0] = blog_id

@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 require 'openid/store/filesystem'
 require File.join(Rails.root,'config/omniauth_settings')
 Rails.application.config.middleware.use OmniAuth::Builder do

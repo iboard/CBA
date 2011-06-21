@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # SiteMenu
 #
 # is a Mongoid::Tree of menu-entries

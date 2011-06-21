@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 require File::dirname(__FILE__) + "/../mailserver_setting.rb"
 require File::dirname(__FILE__) + "/../../lib/development_mail_interceptor.rb"
 

@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # A Blog is a collection of Postings which may or may not references a
 # 'ContentItem' (eg Page).
 # When a Blog references a Page, the Page sould be seen as the 'Intro' to

@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class NewSignUpNotifier < Struct.new( :args )
 
   def perform

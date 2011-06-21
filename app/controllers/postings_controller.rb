@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class PostingsController < ApplicationController
 
   before_filter :set_blog_id_if_missing

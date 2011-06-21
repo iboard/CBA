@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class Invitation
   include Mongoid::Document
   include Mongoid::Timestamps

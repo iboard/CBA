@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # Bring back the <code>error_message_for...</code> method
 module ErrorMessagesHelper
 

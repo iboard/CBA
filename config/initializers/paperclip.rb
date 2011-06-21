@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class ActionDispatch::Http::UploadedFile
   include Paperclip::Upfile
 end

@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class UserInviter < Struct.new( :args )
 
   # arg0 = invitation_id

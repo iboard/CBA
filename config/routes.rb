@@ -37,6 +37,9 @@ Cba::Application.routes.draw do
     member do
       get :delete_cover_picture
     end
+    collection do
+      get :templates
+    end
     resources :comments
     resources :components
   end

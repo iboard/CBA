@@ -104,4 +104,5 @@ module ApplicationHelper
   def current_role
     current_user ? (current_user.roles_mask||0) : 0
   end
+  
 end

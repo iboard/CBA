@@ -24,7 +24,10 @@ class Page
   field :interpreter,                             :default => :markdown
   field :allow_comments,        :type => Boolean, :default => true
   field :allow_public_comments, :type => Boolean, :default => true
+  field :is_template,           :type => Boolean, :default => false
 
+  default_scope :where => { :is_template => false }
+  scope :templates, :where => { :is_template => true }
   scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
 
   references_many            :comments, :inverse_of => :commentable

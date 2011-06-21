@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 module HomeHelper # :nodoc:
   
   # Render a twitter-box of config/twitter.html exists

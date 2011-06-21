@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 #
 # Handle delayed jobs
 #

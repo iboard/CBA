@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class FeedItem
 
   attr_reader :title, :body, :updated_at, :url, :object

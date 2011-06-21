@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # AuthenticationController will handle OmniAuth-providers for an existing
 # user. Since authentications are handled by the omni-gem all we need is
 # index, create, and delete. There is no need to edit/update or show a single

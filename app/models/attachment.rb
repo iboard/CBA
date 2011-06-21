@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class Attachment
 
   ASSET_PATH = File::join(Rails.root,'system')

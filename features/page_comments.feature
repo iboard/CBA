@@ -4,12 +4,7 @@ Feature: Comments on pages
   I want see, add, edit, and remove (in a short period of time after creating) comments.
   
   Background:
-    Given the following user records
-      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    Given the default user set
     And the following page records
       | title  | body                 | show_in_menu | allow_public_comments |
       | Page 1 | Lorem ipsum          | true         | true                  |

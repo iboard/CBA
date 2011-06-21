@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # Store omni-auth Authentications in an extra collection.
 # This is rational-related to the User-model to prevent us to iterate through
 # all user when we receive a callback-request from the provider.

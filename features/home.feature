@@ -1,4 +1,3 @@
-@focus
 Feature: Home
   In order show up stuff on the root page
   As an user

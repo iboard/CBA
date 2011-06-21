@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # Use this mailer to send notifications eg for newly created pages, sign ups
 # and so on.
 

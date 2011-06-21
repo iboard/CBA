@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # A Page is a blogabble semi-static content-item.
 #
 # If <code>show_in_menu</code> is set the page will have a link in the

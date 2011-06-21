@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # The CommentController can handle comments on polymorphic 'commentables'
 # REVIEW: The code to handle comments with different levels of commentable SMELLS!
 class CommentsController < ApplicationController

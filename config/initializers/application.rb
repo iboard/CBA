@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #
 # Load iBoard Modules
 #

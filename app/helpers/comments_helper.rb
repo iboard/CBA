@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 module CommentsHelper
 
   def commentable_show_path(commentable=nil)

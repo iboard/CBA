@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class PagesController < ApplicationController
 
   respond_to :html, :xml, :js
@@ -7,7 +9,7 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
   def index
-    @pages = Page.paginate(
+    @pages = Page.all.paginate(
       :page => params[:page],
       :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
     )

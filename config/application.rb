@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 require File.expand_path('../boot', __FILE__)
 
 # If you are deploying to Heroku and MongoHQ,

@@ -2,9 +2,9 @@
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
     <title><%=
-         strip_tags((APPLICATION_CONFIG['title_prefix'].html_safe+
+         raw(strip_tags((APPLICATION_CONFIG['title_prefix']+
          " "+
-         yield(:title)))
+         yield(:title))))
     -%></title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.png" />

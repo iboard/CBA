@@ -1,10 +1,12 @@
+# -*- encoding : utf-8 -*-
+
 class BlogsController < ApplicationController
 
   load_and_authorize_resource
   before_filter :ensure_page_tokens, :only => [:update,:create]
 
   def index
-    @blogs = Blog.paginate(
+    @blogs = Blog.all.paginate(
        :page => params[:page],
        :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
      )

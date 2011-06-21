@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class AccountConfirmedNotifier < Struct.new( :args )
 
   # arg0 = invitation

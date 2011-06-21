@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # Define methods which should be called with every request to your application
 # or which should be callable from anywhere of your controllers
 #

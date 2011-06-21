@@ -263,7 +263,7 @@ Given /^no site_menu exists/ do
   SiteMenu.delete_all
 end
 
-Given /a default user set/ do
+Given /the default user set/ do
   User.delete_all
   [
     {

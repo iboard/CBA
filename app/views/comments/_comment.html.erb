@@ -12,7 +12,7 @@
               :remote => true ) if can?( :manage, comment, session[:comments] )
         %>
   
-       <%= link_to( t(:destroy),
+       <%= raw link_to( t(:destroy),
               comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
               :method => :delete,
               :remote => true,

@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # A Posting is a blogabble semi-static content-item.
 class Posting
   include ContentItem

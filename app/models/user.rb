@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # This is a Device-User-Class extended with ROLES, Avatar-handling, and more
 class User
   include Mongoid::Document

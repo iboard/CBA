@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class NewCommentNotifier < Struct.new( :args )
 
   # arg[0] = recipient,

@@ -4,12 +4,7 @@ Feature: Blogs
   I want list, browse, read, and edit blogs
 
   Background:
-    Given the following user records
-      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 5          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | user@iboard.cc   | testmax   | 2         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | staff@iboard.cc  | staff     | 3          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    Given the default user set
     And the following blog records
       | title  | allow_comments | allow_public_comments | synopsis                |
       | Blog 1 | true           | true                  | First blog to test      |

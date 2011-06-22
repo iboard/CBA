@@ -11,9 +11,10 @@ Feature: Pages
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following page records
-      | title  | body                 | show_in_menu |
-      | Page 1 | Lorem ipsum          | true         |
-      | Page 2 | Lirum Opsim          | false        |
+      | title  | body                 | show_in_menu | is_template |
+      | Page 1 | Lorem ipsum          | true         | false       |
+      | Page 2 | Lirum Opsim          | false        | false       |
+      | Page T | This is a Template   | false        | true        |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
 
   Scenario: Pages with 'show_in_menu' should be on the menu-bar
@@ -112,3 +113,11 @@ Feature: Pages
     Then I should see "Sauerkraut"
     Then I click on link "English"
     Then I should see "Fish n chips"
+
+  Scenario: Page index should not include Template-Pages
+    Given I am on the pages page
+    Then I should not see "Page T"
+
+  Scenario: Admins should be able to list template pages
+    Given I am on the edit page template for "Page T"
+    Then I should see "This is a Template"

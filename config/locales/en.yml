@@ -217,3 +217,5 @@ en:
   site_menu_successfully_created: 'Menu entry successfully created'
   add_submenu_item: 'Add submenu'
   new_submenu_for: 'New submenu for %{parent_name}'
+  is_a_template: 'Check if this should be a page-template'
+  is_template: 'Template?'

@@ -16,6 +16,12 @@
                 = raw(field)
                 %br/
 
+    - if current_role?(:admin)                
+        %div.field
+            = f.label :is_template, t(:template)
+            = f.check_box :is_template
+            = t(:is_a_template)
+
     %div.field
         = f.label :show_in_menu
         = f.check_box :show_in_menu

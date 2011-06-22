@@ -47,5 +47,15 @@ class PageTest < ActiveSupport::TestCase
     assert markdown.render_body =~ /\<em\>One\<\/em\>/, "* should translate to italic with markdown"
     assert textile.render_body =~ /\<strong\>One\<\/strong\>/, "* should translate to strong with textile"
   end
+  
+  test "Page select should not include templates" do
+    Page.delete_all
+    template_page = Page.create(:title => 'This is a template page', :body => "I'm a template", :is_template => true)
+    standard_page = Page.create(:title => 'This is a standard page', :body => "Standard")
+    sp = Page.first
+    tp = Page.templates.first
+    assert sp.title == 'This is a standard page', 'First without param is_template should be the standard page'
+    assert tp.title == 'This is a template page', 'Using Page.templates.first should be the template page'
+  end
 
 end

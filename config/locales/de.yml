@@ -414,3 +414,5 @@ de:
   site_menu_successfully_created: 'Menüeintrag wurde erzeugt.'
   add_submenu_item: 'Neues Untermenü'
   new_submenu_for: 'Neues Untermenü für %{parent_name}'
+  is_a_template: 'Anhacken wenn diese Seite ein Vorlage sein soll'
+  is_template: 'Vorlage?'

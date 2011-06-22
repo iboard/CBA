@@ -24,7 +24,11 @@ module NavigationHelpers
     when /(the )?edit page for "([^"]*)"/
       title = $1 == 'the ' ? $2 : $1
       page = Page.where(:title => title).first
-      "/pages/#{page._id}/edit"
+      "/pages/#{page.id.to_s}/edit"
+    when /(the )?edit page template for "([^"]*)"/
+      title = $1 == 'the ' ? $2 : $1
+      page = Page.unscoped.where(:title => title).first
+      "/pages/#{page.id.to_s}/edit"
     when /page path of "([^"]*)"/
       title = $1
       page = Page.where(:title => title).first
@@ -61,6 +65,8 @@ module NavigationHelpers
       menu_name = $1
       site_menu = SiteMenu.where(:name => menu_name).first
       "/site_menus/#{site_menu.id.to_s}/edit"
+    when /the page_template path/
+      "/pages/templates"
     else
       begin
         page_name =~ /the (.*) page/

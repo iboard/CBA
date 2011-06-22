@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ENV["RAILS_ENV"] = "test"
 require 'simplecov'
 SimpleCov.start do

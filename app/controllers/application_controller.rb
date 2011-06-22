@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   helper_method :github_project
   helper_method :twitter_name
   helper_method :twitter_link
+  helper_method :current_role?
 
 
   def is_current_user? usr
@@ -79,6 +80,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Set user.confirmed and invitation.accepted_at if session has :invitation_id
   def apply_invitation
     if user_signed_in? && session[:invitation_id]
       invitation = Invitation.find(session[:invitation_id])
@@ -91,6 +93,12 @@ class ApplicationController < ActionController::Base
       session[:invitation_id] = nil
       flash[:notice] = t(:thank_you_for_accepting_your_invitation)
     end
+  end
+  
+  # True if current_user's role is role or greater
+  def current_role?(role)
+    return false unless current_user
+    User::ROLES.index(role.to_sym) <= current_user.roles_mask
   end
 
 end

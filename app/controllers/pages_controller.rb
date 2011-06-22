@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
   respond_to :html, :xml, :js
 
+  before_filter :set_template_scope
   load_and_authorize_resource :except => :permalinked
 
   # GET /pages
@@ -112,6 +113,19 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html { render :nothing => true }
       format.js
+    end
+  end
+  
+  # GET /pages/templates
+  def templates
+    @pages = Page.templates
+  end
+  
+  private
+  def set_template_scope
+    if params[:id] && current_role?(:admin)
+      @page = Page.unscoped.find(params[:id])
+      Page.default_scope( :where => { :is_template => true } ) if @page.is_template
     end
   end
 

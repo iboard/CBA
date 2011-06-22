@@ -760,6 +760,21 @@
     padding: 10px;
     font-size: 0.8em;
   }
+  
+  .comment_avatar {
+    margin-top: 5px;
+    width: 64px;
+    height: 64px;
+    border: 1px solid #ddd;
+    padding: 0px;
+    margin-right: 10px;
+    float: left;
+  }
+  
+  
+  .comment_content {
+    margin-left: 74px;
+  }
 
   #comments {
     clear: both;
@@ -1323,6 +1338,35 @@
   .site_menu_manage_buttons {
     font-size: 0.75em;
   }
+  
+  #page_template_list {
+  }
+  
+  #page_template_list  h1 {
+    font-size: 0.9em;
+    text-shadow: none;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  #page_template_list  address {
+    font-size: 0.8em;
+    margin-top: 0px;
+  }
+  
+  #page_template_list .page_template {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px 5px 5px 5px;
+  }
+  
+  .without_shadow {
+    box-shadow: none;
+    width: 64px;
+    height: 64px;
+  }
+  
 
 } /* END SCREEN */
 

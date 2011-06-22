@@ -62,6 +62,10 @@ class Comment
     end
     path
   end
+  
+  def user
+    User.where( :name => self.name, :email => self.email).first
+  end
 
   private
 

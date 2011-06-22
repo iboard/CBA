@@ -55,6 +55,7 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
+    min-width: 900px;
     background: #DADADA;
     background: #DADADA -webkit-gradient(
         linear,
@@ -759,6 +760,21 @@
     padding: 10px;
     font-size: 0.8em;
   }
+  
+  .comment_avatar {
+    margin-top: 5px;
+    width: 64px;
+    height: 64px;
+    border: 1px solid #ddd;
+    padding: 0px;
+    margin-right: 10px;
+    float: left;
+  }
+  
+  
+  .comment_content {
+    margin-left: 74px;
+  }
 
   #comments {
     clear: both;
@@ -1344,6 +1360,13 @@
     border: 1px solid #ddd;
     border-radius: 5px 5px 5px 5px;
   }
+  
+  .without_shadow {
+    box-shadow: none;
+    width: 64px;
+    height: 64px;
+  }
+  
 
 } /* END SCREEN */
 

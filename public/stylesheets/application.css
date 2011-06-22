@@ -55,6 +55,7 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
+    min-width: 900px;
     background: #DADADA;
     background: #DADADA -webkit-gradient(
         linear,

@@ -31,6 +31,7 @@
       <div id='comment_comment_<%= comment.id.to_s -%>'>
         <%= sanitize(RedCloth.new(comment.comment||"").to_html) %>
       </div>
+      <div class='clear'></div>
     </div>
   <% end %>
 <% end %>

@@ -52,5 +52,5 @@ class Posting
       self.blog.id, self.id
     )
   end
-
 end
+

@@ -136,8 +136,7 @@ en:
     one: "One error"
     other: "%{count} errors"
   posting: 'Posting'
-  prohibited_this_resource_from_being_saved:
-    %{resource} can not be saved.
+  prohibited_this_resource_from_being_saved: "%{resource} can not be saved."
   blog: 'Blog'
   page: 'Page'
   you_can_not_change_your_own_role: "You can't change your own role"
@@ -206,9 +205,9 @@ en:
   allowed: 'allowed'
   forbidden: 'not allowed'
   num_comments:
-    zero: No postings yet
-    one: One posting
-    other: %{count} postings
+    zero: "No postings yet"
+    one: "One posting"
+    other: "%{count} postings"
   manage_menus: 'Menus'
   site_menu_successfully_updated: Site menu entry successfully updated.
   site_menu_could_not_be_updated: Site menu couldn't be saved.

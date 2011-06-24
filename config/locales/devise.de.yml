@@ -47,4 +47,5 @@ de:
   sign_up: 'Registrieren'
   forgot_password: 'Passwort vergesen?'
   didnt_receive_confirmation_instructions: 'Keine e-Mail zur Bestätigung erhalten?'
-  change_my_password: Passwort ändern
+  change_my_password: "Passwort ändern"
+

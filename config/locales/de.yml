@@ -96,7 +96,7 @@ de:
     abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
     month_names: [~, Jänner, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
     abbr_month_names: [~, Jän, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
-    order: [ :day, :month, :year ]
+    #order: [ :day, :month, :year ]
 
   time:
     formats:
@@ -138,8 +138,8 @@ de:
         one: 'fast einem Jahr'
         other: 'fast %{count} Jahren'
       about_x_years:
-        one: 'etwa einem Jahr'
-        other: 'etwa %{count} Jahre'
+        one: "etwa einem Jahr"
+        other: "etwa %{count} Jahre"
       over_x_years:
         one: 'mehr als ein Jahr'
         other: 'mehr als %{count} Jahren'
@@ -205,11 +205,11 @@ de:
     userlist: "Benutzerliste"
     comments: "Kommentare"
   roles:
-    guest: Gast
-    confirmed_user: Bestätigter Benutzer
-    moderator: Moderator
-    author: Autor
-    maintainer: Sachbearbeiter
+    guest: "Gast"
+    confirmed_user: "Bestätigter Benutzer"
+    moderator: "Moderator"
+    author: "Autor"
+    maintainer: "Sachbearbeiter"
     admin: Administrator
   role_label_guest: "Gäste haben nur eingeschränkte Rechte"
   role_label_confirmed_user: "Registrierter Benutzer"
@@ -331,8 +331,7 @@ de:
     one: "Ein Fehler"
     other: "%{count} Fehler"
   posting: 'Beitrag'
-  prohibited_this_resource_from_being_saved:
-    %{resource} kann nicht gespeichert werden.
+  prohibited_this_resource_from_being_saved: "%{resource} kann nicht gespeichert werden."
   blog: 'Blog'
   page: 'Seite'
   you_can_not_change_your_own_role: "Die eigene Rolle kann nicht geändert werden."
@@ -403,9 +402,9 @@ de:
   allowed: 'erlaubt'
   forbidden: 'nicht erlaubt'
   num_comments:
-    zero: Noch kein Beitrag
-    one: Ein Beitrag
-    other: %{count} Beiträge
+    zero: "Noch kein Beitrag"
+    one: "Ein Beitrag"
+    other: "%{count} Beiträge"
   manage_menus: 'Menüs'
   site_menu_successfully_updated: Menü wurde erfolgreich geändert.
   site_menu_could_not_be_updated: Menü konnte nicht gespeichert werden.

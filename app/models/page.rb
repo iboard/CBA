@@ -27,7 +27,7 @@ class Page
   field :is_template,           :type => Boolean, :default => false
 
   default_scope where( is_template: false )
-  scope :templates, :where => { :is_template => true }
+  scope :templates, where(is_template: true )
   scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
 
   references_many            :comments, :inverse_of => :commentable

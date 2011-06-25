@@ -29,9 +29,10 @@ class User
   embeds_many :user_notifications
 
   validates_presence_of   :name
-  validates_presence_of   :email
   validates_uniqueness_of :name, :case_sensitive => false
+  validates               :email, :presence => true, :email => true
   validates_uniqueness_of :email, :case_sensitive => false
+
 
   attr_accessible :name, :email, :password, :password_confirmation, :roles_mask,
                   :remember_me, :authentication_token, :confirmation_token,

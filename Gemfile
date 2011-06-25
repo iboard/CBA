@@ -1,7 +1,14 @@
 source 'http://rubygems.org'
+
 gem 'simplecov', '>= 0.4.0', :require => false, :group => :test
 
-gem 'rails','3.0.9'
+gem "rails", "3.1.0.rc4"
+# Rails 3.1 - Asset Pipeline
+gem 'json'
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+
 gem 'jquery-rails'  
 
 # Bundle gems needed for Mongoid
@@ -9,7 +16,7 @@ gem "mongoid", "~>2.0.1"   #, "2.0.0.rc.7"
 gem "bson_ext"  #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
-gem "devise", "1.1.7"
+gem "devise", "~>1.4.0" # ,"1.1.7"
 gem "cancan"
 gem "omniauth"
 
@@ -41,8 +48,8 @@ group :test do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec', '2.6.0'  #'>=2.0.0.beta.13'
-  gem 'rspec-rails', '2.6.1' #'>=2.0.0.beta.5'
+  gem 'rspec', '2.6.0'
+  gem 'rspec-rails', '2.6.1'
   gem 'spork', '0.9.0.rc8'
   gem 'spork-testunit'
   gem 'launchy'

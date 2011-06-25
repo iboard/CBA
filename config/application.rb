@@ -20,13 +20,17 @@ require 'action_mailer/railtie'
 require 'active_resource/railtie'
 require 'rails/test_unit/railtie'
 require File.expand_path('../../lib/configuration', __FILE__)
-
+require File.expand_path('../mailserver_setting', __FILE__)
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Cba
   class Application < Rails::Application
+    # Enable the asset pipeline
+    config.assets.enabled = true
+    
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -62,5 +66,6 @@ module Cba
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
+    
   end
 end

@@ -9,10 +9,8 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.png" />
     <%= insert_extra_headers %>
-    <%= stylesheet_link_tag( APPLICATION_CONFIG['stylesheet_screen'], :media => :screen )%>
-    <%= stylesheet_link_tag( APPLICATION_CONFIG['stylesheet_print'], :media => :print )%>
-    <%= javascript_include_tag :defaults, 'textile' %>
-    <%= javascript_include_tag 'jquery-ui.min.js', 'site_menu_sortable' %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
     <!-- prototype-lib will be loaded only when needed -->
     <%= yield :prototype %>
     <%= yield :head %>

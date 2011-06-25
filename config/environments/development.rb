@@ -11,11 +11,12 @@ Cba::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
+  # next line remarked for 3.1     
+  # config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
   ### ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options[:host] = ::DEFAULT_URL
   # A dummy setup for development - no deliveries, but logged
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

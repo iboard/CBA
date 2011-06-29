@@ -25,6 +25,9 @@ gem "will_paginate"
 gem "RedCloth", "4.2.5"
 gem "rdiscount"
 
+gem 'escape_utils'
+
+
 # Bundle gems for development 
 group :development do
   gem "nifty-generators"
@@ -41,13 +44,12 @@ group :test do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec', '2.6.0'  #'>=2.0.0.beta.13'
-  gem 'rspec-rails', '2.6.1' #'>=2.0.0.beta.5'
+  gem 'rspec', '2.6.0'
+  gem 'rspec-rails', '2.6.1'
   gem 'spork', '0.9.0.rc8'
   gem 'spork-testunit'
   gem 'launchy'
   gem 'factory_girl_rails'
-  gem 'escape_utils'
   gem 'ZenTest'
   gem 'autotest'
   gem 'autotest-rails'

@@ -109,10 +109,11 @@ Feature: Pages
       | title_en  | body_en      | title_de     | body_de    |
       | GB        | Fish n chips | Deutschland  | Sauerkraut |
     And I am on the page path of "GB"
-    And I click on link "Deutsch"
+    And I click on link "locale_de"
     Then I should see "Sauerkraut"
-    Then I click on link "English"
+    Then I click on link "locale_en"
     Then I should see "Fish n chips"
+    Then the default locale
 
   Scenario: Page index should not include Template-Pages
     Given I am on the pages page

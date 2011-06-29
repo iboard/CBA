@@ -13,6 +13,7 @@ Feature: User Roles
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | admin@iboard.cc  | admin     | 5          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 4          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    And the default locale
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: Non-admins and non-staff users should not see the list of users

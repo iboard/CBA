@@ -46,7 +46,8 @@ class HomeController < ApplicationController
   def set_locale
     I18n.locale=params[:locale].to_sym
     cookies.permanent[:lang] = params[:locale]
-    redirect_to request.env['HTTP_REFERER'], :notice => t(:language_switched_to, :lang => t("locales.#{params[:locale]}")).html_safe
+    target = request.env['HTTP_REFERER'] ? request.env['HTTP_REFERER'] : root_path
+    redirect_to target, :notice => t(:language_switched_to, :lang => t("locales.#{params[:locale]}")).html_safe
   end
 
 end

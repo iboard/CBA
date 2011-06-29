@@ -4,7 +4,7 @@
     <% if I18n.locale == locale %>
       <strong><%= t("locales.#{locale}") -%></strong>
     <% else %>
-      <%= link_to t("locales.#{locale}"), switch_locale_path(locale) %>
+      <%= link_to t("locales.#{locale}"), switch_locale_path(locale), :id => "locale_#{locale.to_s}" %>
     <% end %>
   <li>
 <% end %>

@@ -53,7 +53,16 @@ module ContentItem
           self.interpreter ||= :markdown
           case self.interpreter.to_sym
           when :markdown
-            RDiscount.new(txt).to_html
+            # replaced by redcarpet RDiscount.new(txt).to_html
+            options = [
+                       :hard_wrap, :filter_html, :filter_styles, :autolink, 
+                       :no_intraemphasis, :fenced_code, :gh_blockcode
+                      ]
+            doc = Nokogiri::HTML(Redcarpet.new(txt, *options).to_html)
+            doc.search("//pre[@lang]").each do |pre|
+              pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
+            end
+            doc.xpath('//body').to_s.html_safe
           when :textile
             RedCloth.new(txt).to_html
           when :simple_text

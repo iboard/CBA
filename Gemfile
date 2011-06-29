@@ -22,10 +22,14 @@ gem 'mongoid-tree', :require => 'mongoid/tree'
 # Bundle gems for views
 gem "haml"
 gem "will_paginate"
-gem "RedCloth", "4.2.5"
-gem "rdiscount"
-
 gem 'escape_utils'
+gem "RedCloth", "4.2.5"
+
+# Markdown
+# do "easy_install pygments" on your system
+gem 'redcarpet'
+gem 'albino'
+gem 'nokogiri'
 
 
 # Bundle gems for development 

@@ -38,7 +38,7 @@ Feature: Blogs
     Given the following blogs with pages
       | title    | page_name | page_body         |
       | PageBlog | PageOne   | A wonderful body  |
-    And I am in the blog page of "PageBlog"
+    And I am reading blog of "PageBlog"
     Then I should see "PageOne"
     And I should see "PageBlog"
 
@@ -60,9 +60,16 @@ Feature: Blogs
     And I should see "Second blog for testing"
 
   Scenario: Blog show should display synopsis
-    Given I am in the blog page of "Blog 1"
+    Given I am reading blog of "Blog 1"
     Then I should see "First blog to test"
 
   Scenario: Blog show should not display show-button (we are on the show-view already)
-    Given I am in the blog page of "Blog 1"
+    Given I am reading blog of "Blog 1"
     Then I should not see "Edit" within ".item_link_buttons"
+    
+    
+  @focus
+  Scenario: Blog index shuould display title of blog as link to blog:show
+    Given I am on the blogs page
+    And I click on link "Blog 1" within "#container_main"
+    Then I should be reading "Blog 1"

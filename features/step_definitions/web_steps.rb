@@ -406,7 +406,7 @@ Given /^the following blogs with pages/ do |table|
   end
 end
 
-Given /^I am in the blog page of "([^"]*)"$/ do |arg1|
+Given /^I am reading blog of "([^"]*)"$/ do |arg1|
   blog = Blog.where(:title => arg1).first
   visit "/blogs/#{blog.id.to_s}"
 end
@@ -462,4 +462,7 @@ Given /^the following translated components for page "([^"]*)"$/ do |page_title,
   page.save!
 end
 
-
+Then /^I should be reading "([^"]*)"$/ do |arg1|
+  blog = Blog.where( title: arg1).first
+  current_path.should == blog_path(blog) 
+end

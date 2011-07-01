@@ -3,6 +3,7 @@ module SpecialCharacters
 
   BR="\n<br/>".html_safe
   POINTER_RIGHT="&#08594;"
+  POINTER_LEFT="&#08592;"
   NBSP="&nbsp;"
   SP="&nbsp;"
   OK="&#10004;"
@@ -26,6 +27,7 @@ module SpecialCharacters
       :br                      => BR             ,
       :pointer_right           => POINTER_RIGHT  ,
       :pr                      => POINTER_RIGHT  ,
+      :pl                      => POINTER_LEFT   ,
       :nbsp                    => NBSP           ,
       :sp                      => SP             ,
       :ok                      => OK             ,

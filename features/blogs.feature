@@ -58,3 +58,11 @@ Feature: Blogs
     And I should see "Anonymous comments: allowed"
     And I should see "First blog to test"
     And I should see "Second blog for testing"
+
+  Scenario: Blog show should display synopsis
+    Given I am in the blog page of "Blog 1"
+    Then I should see "First blog to test"
+
+  Scenario: Blog show should not display show-button (we are on the show-view already)
+    Given I am in the blog page of "Blog 1"
+    Then I should not see "Edit" within ".item_link_buttons"

@@ -69,4 +69,5 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, User.with_role(:admin).all.count
   end
   
+  
 end

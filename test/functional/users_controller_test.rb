@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  test "the truth" do
-    assert true
+
+  test "The truth" do
+    assert true, "True should be the truth"
   end
 
 end

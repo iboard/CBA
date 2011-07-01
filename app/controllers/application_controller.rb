@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   def is_current_user? usr
     return current_user && (current_user == usr)
   end
+  alias current_user? is_current_user?
 
   private
 
@@ -86,8 +87,7 @@ class ApplicationController < ActionController::Base
       invitation = Invitation.find(session[:invitation_id])
       current_user.roles_mask = invitation.roles_mask
       current_user.invitation = invitation
-      current_user.confirmed_at = Time.now
-      invitation.accepted_at = Time.now
+      current_user.confirmed_at = invitation.accepted_at = Time.now
       invitation.save!
       current_user.save!
       session[:invitation_id] = nil

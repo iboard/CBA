@@ -10,7 +10,7 @@ CBA - Community Base Application Template [Github](http://github.com/iboard/CBA)
 
 This will install  a fully functional web-application, with user-authentication (incl. omniAuth) on a document oriented, non-SQL, MongoDB/MongoID database. Just ready to be extended by your 'real' application code. As a benefit, CBA will offer two MVCs `Page` and `Blog`.
 
-*Note*: [Project's README](http://cba.iboard.cc/p/readme) *should be* identical to [README.textile on Github](http://github.com/iboard/CBA/blob/master/README.textile) -- I try hard to keep both versions in synchronized state, but check out the Github-version too.
+*Note*: [Project's README](http://cba.iboard.cc/p/readme) *should be* identical to [README.md on Github](http://github.com/iboard/CBA/blob/master/README.md) -- I try hard to keep both versions in synchronized state, but check out the Github-version too.
 
 *CBA* is forked from [Rails3-Mongoid-Devise by fortuity](http://github.com/fortuity/rails3-mongoid-devise), extended by Andi Altendorfer with
 

@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
       flash[:notice] = t(:thank_you_for_accepting_your_invitation)
     end
   end
-  
+
   # True if current_user's role is role or greater
   def current_role?(role)
     return false unless current_user

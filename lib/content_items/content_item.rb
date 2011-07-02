@@ -7,8 +7,8 @@ module ContentItem
   end
 
 
-  # Render :txt as markdown with Redcarpet
   module_function
+  # Render :txt as markdown with Redcarpet
   def markdown(txt)
     options = [
                :hard_wrap, :filter_html, :filter_styles, :autolink, 

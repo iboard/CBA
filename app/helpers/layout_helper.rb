@@ -9,9 +9,10 @@
 module LayoutHelper
 
   # Set the title of the html-page.
-  # :param: show_title
-  #   If true the title will also displayed as a h1-title within the
-  #   html-page not only in the browser-window-title
+  # ==parameters: 
+  #   show_title::
+  #     If true the title will also displayed as a h1-title within the
+  #     html-page not only in the browser-window-title
   def title(page_title, show_title = true)
     content_for(:title) { h(page_title.html_safe) }
     @show_title = show_title
@@ -34,6 +35,11 @@ module LayoutHelper
 
   # Outputs a Javascript to place the title of a page at the URL in cases
   # where the page was addressed by it's ID
+  # ==parameters:
+  #   page:
+  #     The `Page` to set address for
+  #   title:
+  #     HTML-Title to use
   def set_browser_address(page,title)
     unless title.length > CONSTANTS['title_max_length'].to_i
       address = "/p/"+title.txt_to_url

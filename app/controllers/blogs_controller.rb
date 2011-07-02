@@ -77,6 +77,8 @@ class BlogsController < ApplicationController
   end
 
   private
+  # page_tokens are provided by checkboxes of the form. Make sure the
+  # Array is initialized even if no checkbox is checked.
   def ensure_page_tokens
     params[:blog][:page_tokens] ||= []
   end

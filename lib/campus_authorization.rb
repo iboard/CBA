@@ -1,4 +1,8 @@
 require 'omniauth/core'
+
+#
+#  OmniAuth extension for WWEDU campus authentication.
+#
 module OmniAuth
   module Strategies
     class Campus
@@ -35,6 +39,7 @@ module OmniAuth
       end
 
       # normalize user's data according to http://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
+      # TODO: Extend this method to apply user-roles depending on campus-user-keywords
       def auth_hash
         OmniAuth::Utils.deep_merge(super(), {
           'uid' => @uid,

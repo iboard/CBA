@@ -21,6 +21,8 @@ class Blog
   has_and_belongs_to_many :pages # This pages will be displayed in blog:show
   after_save :remove_from_old_pages
 
+  # page_tokens are page::object_ids of the pages which should be
+  # displayed on the sidebar of this blog.
   def page_tokens=(tokens)
     @pages_before = self.pages.all
     self.pages = Page.criteria.for_ids(tokens.split(','))
@@ -42,6 +44,8 @@ class Blog
     # TODO: Intro should link to a Page if one is referenced.
   end
   
+  # Remove this blog from pages which should not be displayed with this
+  # blog
   def remove_from_old_pages
     if @pages_before
       @pages_before.each do |old_page|

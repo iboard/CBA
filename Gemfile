@@ -38,7 +38,7 @@ group :development do
   gem "rails-erd"
   gem 'rdoc'
   gem 'unicorn'
-  #  gem 'yard' broken in OS X 10.7
+  gem 'yard' #broken in OS X 10.7 see how to workarround this issue 
 end
 
 # Bundle gems for testing
@@ -50,7 +50,7 @@ group :test do
   gem 'cucumber'
   gem 'rspec', '2.6.0'
   gem 'rspec-rails', '2.6.1'
-  gem 'spork', '0.9.0.rc8'
+  gem 'spork', '0.9.0.rc9'
   gem 'spork-testunit'
   gem 'launchy'
   gem 'factory_girl_rails'

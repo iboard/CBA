@@ -51,6 +51,15 @@ class Deploy < Thor
     end
   end
   
+  desc "doc [--source] [--target] [--ssh]", "generate and deploy YARD documentation"
+  method_options :source => :string, :target => :string, :ssh => :boolean
+  def doc
+    target = options[:target] ? options[:target] : "root@dav.iboard.cc:/var/www/dav/doc/cba/"
+    source = options[:source] ? options[:source] : "doc/*"
+    ssh    = options[:ssh] ? '-e ssh' : ''
+    `rm -rf doc/*; yardoc --protected --title "CBA API Documantation" Gemfile app/**/*rb lib/**/*rb; rsync --delete -avz #{ssh} #{source} #{target}`
+  end
+  
   
   private
   def kill_pid(cmd)

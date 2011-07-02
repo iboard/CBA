@@ -86,8 +86,8 @@ Layout and Templates
 
   * Edit application.css or 'your_name_given_at_install'.css
   * Edit views/layout/application.html or views/layout/'your_name_given_at_install'.html.erb
-  * Read [Posting](/blogs/4d456adae7798923b100000a/postings/4dbebb9adaf9853b3000001a)
-  * Visit [Demo Page](/p/pagecomponent_and_pagetemplat$)
+  * Read [Posting](http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4dbebb9adaf9853b3000001a)
+  * Visit [Demo Page](http://cba.iboard.cc/p/pagecomponent_and_pagetemplat$)
 
 
 License

@@ -22,6 +22,9 @@
           )
   
       %p
-        = sanitize(RedCloth.new(comment.comment).to_html).html_safe
+        - if comment.commentable
+          = comment.commentable.render_for_html(comment.comment||'').html_safe
+        - else
+          = ContentItem::markdown(comment.comment||'')
       %p
         = link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure) ) if can?( :destroy, comment )

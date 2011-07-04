@@ -1,12 +1,18 @@
 # -*- encoding : utf-8 -*-
 
-# SiteMenu
+# = SiteMenu
 #
 # is a Mongoid::Tree of menu-entries
 #
-#  :name    => String # The Label
-#  :target  => The URL
-#
+# == Fields:
+#   name:
+#     [String] The Label of the menu-item
+#   target:
+#     [String] The URL to call on click
+#   position:
+#     [Integer] The position in menus. (default order)
+#   role_needed:
+#     [Integer] The user (at least) must have this role.
 class SiteMenu
   include Mongoid::Document
   include Mongoid::Tree

@@ -19,8 +19,8 @@ Feature: Pages
 
   Scenario: Pages with 'show_in_menu' should be on the menu-bar
     Given I am on the pages page
-    Then I should see "Page 1" within ".hmenu"
-    And I should not see "Page 2" within ".hmenu"
+    Then I should see "Page 1" within "#session"
+    And I should not see "Page 2" within "#session"
 
   Scenario: A page should be shown when clicking read from the index
     Given I am on the pages page
@@ -45,7 +45,7 @@ Feature: Pages
     And I should see "successfully created"
     And I should see "Page 3"
     And I should see "Page three body" within "#container"
-    And I should see "Page 3" within ".hmenu"
+    And I should see "Page 3" within "#session"
 
   Scenario: It should not be able to save a page with no title
     Given I am on the pages page

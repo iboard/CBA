@@ -30,7 +30,12 @@ gem 'mongoid-tree', :require => 'mongoid/tree'
 gem "haml"
 gem "will_paginate"
 gem "RedCloth", "4.2.5"
-gem "rdiscount"
+
+# Markdown
+# do "easy_install pygments" on your system
+gem 'redcarpet'
+gem 'albino'
+gem "nokogiri", "1.4.6"
 
 # Bundle gems for development 
 group :development do
@@ -50,7 +55,7 @@ group :test do
   gem 'cucumber'
   gem 'rspec', '2.6.0'
   gem 'rspec-rails', '2.6.1'
-  gem 'spork', '0.9.0.rc8'
+  gem 'spork', '0.9.0.rc9'
   gem 'spork-testunit'
   gem 'launchy'
   gem 'factory_girl_rails'

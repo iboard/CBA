@@ -1,5 +1,5 @@
 %div{ :class=>:blog_intro, :id=>blog.id.to_s  }
-%h1= blog.title
+%h1= link_to blog.title, blog
 
 - if blog.cover_picture_exists?
     = render :partial => '/blogs/cover_picture',          |
@@ -7,8 +7,15 @@
                :format => :thumb,                         |
                :style => 'float:right;margin-left: 10px'} |
 
+%address{ :style=>'width: 400px; font-style: normal;' }
+    %span.item_link_buttons{:id => blog.title.underscore.downcase }
+        - if can? :manage, blog
+            = link_to t(:edit), edit_blog_path(blog)
+            = link_to t(:destroy), blog,:confirm => t(:are_you_sure),:method => :delete
+
+= ContentItem::markdown(blog.synopsis) if blog.synopsis
+
 - if params[:action] == 'index'
-    %p{ :style => 'width: 400px; float: left;' }= blog.synopsis
     %div{ :style => 'float: left; margin-left: 30px; width: 300px; padding: 5px; font-size: 0.8em;' }
         = t(:comments_allowed, :yes_or_no => blog.allow_comments ? t(:allowed) : t(:forbidden) )
         %br
@@ -16,10 +23,5 @@
         %br
         = t(:num_comments, :count => blog.postings.count)
 
-%address{ :style=>'width: 400px; font-style: normal;' }
-    %span.item_link_buttons{:id => blog.title.underscore.downcase }
-        = link_to t(:read), blog
-        - if can? :manage, blog
-            = link_to t(:edit), edit_blog_path(blog)
-            = link_to t(:destroy), blog,:confirm => t(:are_you_sure),:method => :delete
+
 %p{ :style => 'clear: both'}

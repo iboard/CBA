@@ -31,10 +31,10 @@
     </div>
 
     <div id="session">
-        <ul class="hmenu">
+        <ul>
           <%= render 'home/menu/application' %>
         </ul>
-        <ul class="hmenu" style='float: right;'>
+        <ul style='float: right;'>
           <%= render 'devise/menu/registration_items' %>
           <%= render 'devise/menu/login_items' %>
           <%= render '/home/menu/language_selection' %>
@@ -54,7 +54,7 @@
         %>
         </ul>
       </div>
-      <div style='clear: both;'></div>
+      <div class='clear'></div>
     <% end %>
     <div id="container">
       <!--
@@ -78,13 +78,15 @@
         <%= yield %>
       </div>
 
-      <div id='clear'></div>
+      <div class='clear'></div>
 
     </div>
 
     <div id='copyright'>
         © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
     </div>
+    
+    <div class='clear'></div>
 
   </body>
 </html>

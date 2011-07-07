@@ -8,6 +8,8 @@ tmp/**/*
 tmp/*
 .DS_Store
 ._*
+.sass-cache/*
+.sass-cache/**/*
 coverage/*
 coverage/**/*
 config/mongoid.yml

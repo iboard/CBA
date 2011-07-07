@@ -88,7 +88,6 @@ Feature: Pages
     And I should see "Comment successfully created. You can edit it for the next"
     And I should see "And here my comment for this page"
 
-
   Scenario: Pagination should work on pages::index
     pending
 
@@ -121,3 +120,15 @@ Feature: Pages
   Scenario: Admins should be able to list template pages
     Given I am on the edit page template for "Page T"
     Then I should see "This is a Template"
+
+  Scenario: Authors should be able to derive new pages (articles) from pages where is_template is true
+    Given I am on the new_article page
+    Then I should see "Choose a template"
+    And I select "Page T" from "page_template_id" within "form"
+    And I click on "Create"
+    And I fill in "page_title" with "This is a filled Page Template"
+    And I fill in "page_body" with "This is a filled page body"
+    And I click on "Create Page"
+    Then I should see "This is a filled Page Template"
+    And I should see "This is a filled page body"
+

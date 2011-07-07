@@ -1,5 +1,10 @@
-- title t(:listing_page_templates)
-#page_template_list
+- title t(:article_templates)
+
+%div
+  .right_box{style: 'text-align: left'}
+    = render '/home/menu/page_template_menu'
+
+#page_template_list{ style: "overflow: hidden" }
   - @pages.each do |page|
     .page_template
       %h1= page.title

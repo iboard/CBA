@@ -1,0 +1,13 @@
+- title t(:write_a_new_article)
+
+%h2= t(:step_one_choose_a_template)
+
+%p
+  %b= t(:template)
+  = @template.title
+
+%h2= t(:step_two_fill_the_page)
+
+= render :partial => 'form', :locals => { :page => @page }
+
+

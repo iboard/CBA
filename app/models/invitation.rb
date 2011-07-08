@@ -32,11 +32,12 @@ class Invitation
     self.token = String::random_string(10)
   end
 
+  # Send an invitation by email as a delayed job
+  # @param [Integer] arg[0] = invitation_id
+  # @param [String] arg[1] = subject
+  # @param [String] arg[2] = url_with_token
+  # @param [String] arg[3] = message
   def send_invitation
-     # arg[0] = invitation_id
-     # arg[1] = subject
-     # arg[2] = url_with_token
-     # arg[3] = message
      DelayedJob.enqueue('UserInviter',
        Time.now+10.second,
        self.id.to_s,

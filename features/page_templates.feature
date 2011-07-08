@@ -18,6 +18,3 @@ Feature: PageTemplates
     And I click on link "Templates" within "#action_buttons"
     Then I should be on the page_templates page
 
-
-
-

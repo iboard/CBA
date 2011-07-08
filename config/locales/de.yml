@@ -415,3 +415,9 @@ de:
   new_submenu_for: 'Neues Untermenü für %{parent_name}'
   is_a_template: 'Anhacken wenn diese Seite ein Vorlage sein soll'
   is_template: 'Vorlage?'
+  new_article: 'Neuer Artikel'
+  css_templates: 'CSS-Vorlagen'
+  article_templates: 'Artikel-Vorlagen'
+  use_new_article: 'Ein neuer Artikel wird von einer existierenden Seiten-Vorlage abgeleitet.'
+  use_css_templates_for: 'Eine CSS-Vorlage kann auf Seiten und Seiten-Komponenten benutzt werden um das Layout zu bestimmen.'
+  

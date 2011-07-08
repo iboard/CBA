@@ -218,3 +218,9 @@ en:
   new_submenu_for: 'New submenu for %{parent_name}'
   is_a_template: 'Check if this should be a page-template'
   is_template: 'Template?'
+  new_article: 'New article'
+  css_templates: 'CSS-Templates'
+  article_templates: 'Article-Templates'
+  use_new_article: 'A new article will be derived from an existing page'
+  use_css_templates_for: 'A CSS-template can be used in pages and page-components to define the layout of the page or page-component.'
+  

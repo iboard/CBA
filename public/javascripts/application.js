@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 /* *******************************************************
- * jQUERY 
+ * jQUERY
  ******************************************************* */
 
 // Make sure that every Ajax request sends the CSRF token
@@ -15,24 +15,24 @@ else $(document).ajaxSend(function(e, xhr) { CSRFProtection(xhr); });
 
 
 /* add_fields to attachment-form */
-function add_fields(link, association, content,new_id) {  
-    var new_id = new Date().getTime();  
-    var regexp = new RegExp("new_" + association, "g");  
-    $(link).parent().before(content.replace(regexp, new_id));  
+function add_fields(link, association, content,new_id) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $(link).parent().before(content.replace(regexp, new_id));
 }
 
 /* remove fields from attachment-form */
-function remove_fields(link) {  
-    $(link).prev("input[type=hidden]").val("1");  
-    $(link).closest(".fields").hide();  
-}  
-  
+function remove_fields(link) {
+    $(link).prev("input[type=hidden]").val("1");
+    $(link).closest(".fields").hide();
+}
+
 
 /*
    HUD, Overlay
 */
 function initialize_hud(label,txt) {
-    $('#HUDCONTAINER').html( 
+    $('#HUDCONTAINER').html(
        "<div id='HUD'>"+
          "<div class='centered_spinner'>"+
            "<img src=/images/spinner.gif border=0><br/><br/>"+txt+
@@ -50,10 +50,10 @@ function initialize_loading(update,txt) {
 
 function rerender(from_field,to) {
  var t = $(from_field).val();
- 
+
  /* convert on client-side with textile.js */
  $(to).html( convert(t));
- 
+
  /* or convert on server-side with ajax */
  /* $(to).load('/posting_preview/?text='+escape(t)); */
 }
@@ -72,12 +72,12 @@ function close_popup() {
 }
 
 function image_popup(img_url) {
-  var new_id = new Date().getTime(); 
-  var regexp = new RegExp("popup", "g");  
-  
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("popup", "g");
+
   set_page_opacity(0.2,1500);
-  
-  $('#overlay').html( 
+
+  $('#overlay').html(
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
            "<img src='/images/close.gif?"+new_id+"'>"+
@@ -89,14 +89,14 @@ function image_popup(img_url) {
           "</a><br/><a href='"+img_url.replace(regexp,'original')+"'>Download</a>"+
       "</div>"
       );
-  $('#overlay').fadeTo(500,1.0);  
+  $('#overlay').fadeTo(500,1.0);
 }
 
 
 /* Gallery */
 function swap_picture(hide,show) {
   $("#photo_"+hide).fadeTo(500,0.0);
-  $("#photo_"+show).fadeTo(500,1.0);  
+  $("#photo_"+show).fadeTo(500,1.0);
   $("#photo_"+hide).hide();
 }
 
@@ -104,7 +104,7 @@ function cycling(duration) {
   if ( typeof cycling.online_value == 'undefined' ) {
       cycling.online_value = 0;
   }
-  
+
   if (duration == null) {
     return cycling.online_value;
   }
@@ -113,21 +113,21 @@ function cycling(duration) {
 }
 
 function cycle_pictures(from,to,actual) {
-  
+
   var duration=cycling(null);
-  
+
   if (actual < 0) { actual = from-1; }
   var next = actual+1;
   if (next >= to) { next = from; }
-  
+
   hide_all_pictures(from,to);
-  
+
   if(duration>0) {
     swap_picture(actual,next);
   } else {
     $("#photo_"+next).show();
   }
-  
+
   if (cycling(null) > 0) {
     setTimeout(function() {
                  cycle_pictures(from,to,next);
@@ -142,11 +142,11 @@ function hide_all_pictures(from,to) {
 }
 
 function gallery_popup(duration,args) {
-  var new_id = new Date().getTime(); 
-  var regexp = new RegExp("popup", "g");  
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("popup", "g");
   var photos = args.split(",");
   var rc = new String("");
-  
+
   set_page_opacity(0.2,1500);
   cycling(duration);
   for(var i=0; i<photos.length; i++) {
@@ -155,7 +155,7 @@ function gallery_popup(duration,args) {
     var next="";
     var next_close="";
     var controller="";
-    
+
     if( i > 0 ) {
       prev = "<a href='#' onclick='swap_picture("+i+","+(i-1)+");return false;'>";
       prev_close="<img src='"+photos[i-1]+"' style='width: 64px; height: 48px; margin: 10px; vertical-align: middle;'/></a>";
@@ -179,8 +179,8 @@ function gallery_popup(duration,args) {
              next+next_close +
            "</div>";
   }
-  
-  $('#overlay').html( 
+
+  $('#overlay').html(
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
            "<img src='/images/close.gif?"+new_id+"'>"+
@@ -194,25 +194,25 @@ function gallery_popup(duration,args) {
       "</div>"
       );
   $('#overlay').fadeTo(500,1.0);
-  
+
   if(duration > 0 ) {
     $('#play').hide();
     cycle_pictures(0,photos.length,-1,duration);
   } else {
     $('#pause').hide();
   }
-  
+
 }
 
 
 /* Video Popups */
 function video_popup(img_url,mobile_url) {
-  var new_id = new Date().getTime(); 
-  var regexp = new RegExp("popup", "g");  
-  
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("popup", "g");
+
   set_page_opacity(0.2,1500);
-  
-  $('#overlay').html( 
+
+  $('#overlay').html(
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
           "<img src='/images/close.gif?"+new_id+"'>"+
@@ -225,22 +225,22 @@ function video_popup(img_url,mobile_url) {
             ">" +
               "Your browser does not support the video tag."+
             "</video>"+"</div>"+
-      "</div>"+       
+      "</div>"+
       "<center>"+
         "<a href='"+img_url+"'>"+img_url+"</a>"+"<br/>"+
         "<a href='"+mobile_url+"'>"+mobile_url+"</a>"+
-      "</center>" 
+      "</center>"
     );
-  $('#overlay').fadeTo(500,1.0);  
+  $('#overlay').fadeTo(500,1.0);
 }
 
 function youtube_popup(img_url) {
-  var new_id = new Date().getTime(); 
-  var regexp = new RegExp("popup", "g");  
-  
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("popup", "g");
+
   set_page_opacity(0.2,1500);
-  
-  $('#overlay').html( 
+
+  $('#overlay').html(
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
           "<img src='/images/close.gif?"+new_id+"'>"+
@@ -255,9 +255,9 @@ function youtube_popup(img_url) {
          "type='application/x-shockwave-flash' allowscriptaccess='always' "+
          "allowfullscreen='true' width='640' height='480'></embed></object>"+
        "</div>"+
-       "<center><a href='"+img_url+"'>YouTube: "+img_url+"</a></center>" 
+       "<center><a href='"+img_url+"'>YouTube: "+img_url+"</a></center>"
        );
-  $('#overlay').fadeTo(500,1.0);  
+  $('#overlay').fadeTo(500,1.0);
 }
 
 function insert_load_button(where,txt,path) {
@@ -309,5 +309,13 @@ function hide_div(what) {
 function restore_comment(where,content) {
   where.html(content);
 }
-  
+
+$(document).ready(function() {
+  $('#article_page_id').hover(
+      function () {
+
+      }
+  );
+});
+
 

@@ -1,9 +1,10 @@
-- title t(:page_template_index)
+- title t(:css_templates)
 
-= link_to( t(:new_page_template), new_page_template_path, :class => 'green_button' )
+%div
+  .right_box{style: 'text-align: left'}
+    = render '/home/menu/page_template_menu'
 
-
-= render @page_templates
+%div{style: "overflow: hidden;"}= render @page_templates
 
 - if @page_templates.count < 2
   %blockqoute

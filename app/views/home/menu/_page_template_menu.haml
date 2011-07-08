@@ -1,0 +1,8 @@
+%p
+  %b= link_to t(:css_templates), page_templates_path
+  = t(:use_css_templates_for)
+%p
+  %b= link_to t(:article_templates), templates_pages_path
+  = t(:use_new_article)
+%p= link_to( t(:new_article_from_template), new_article_pages_path, :class => 'green_button' )
+%p= link_to( t(:new_page_template), new_page_template_path, :class => 'green_button' )

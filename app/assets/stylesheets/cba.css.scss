@@ -28,14 +28,14 @@ h2 {
 
 address { font-style: normal; }
 
-a img {
-  border: none;
-  padding: 0px;
-}
-
 a {
   color: #46506F;
   text-decoration: none;
+
+  img {
+    border: none;
+    padding: 0px;
+  }
 
 }
 
@@ -131,8 +131,6 @@ code {
   background: none;
   border: 0px;
 }
-
-
 
 #container {
   width: 75%;
@@ -231,7 +229,7 @@ code {
   background: #677083 -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
   margin-top: 0px;
   padding-top: 10px;
-  height: 18px;
+  height: 19px;
   width: 100%;
   
    ul {
@@ -240,7 +238,7 @@ code {
      float: left;
      margin: 0px;
      padding: 0px;
-     margin-left: 10px;
+     margin-left: 5px;
      margin-right: 10px;
      
      li {
@@ -249,47 +247,12 @@ code {
        padding: 5px;
        padding-left: 0px;
        padding-right: 0px;
+       border-radius: 5px 5px 0px 0px;
        a {
          padding: 5px;
        }
      }
    }
-
-  .hmenu {
-    z-index: 3;
-    font-size: 0.9em;
-    color: #444;
-    margin: 0px;
-    height: 25px;
-    display: inline;
-    padding: 0px;
-    
-    a {
-      z-index: 3;
-      font-size: 0.9em;
-      text-decoration: none;
-      color: #444;
-      padding: 5px;
-      border-bottom :none;
-      border-radius: 3px 3px 0px 0px;
-    }
-    
-    a:hover {
-      color: #ddd;
-      background: #F4F4F4;
-      background: #F4F4F4 -webkit-gradient(
-          linear,
-          left top,
-          left bottom,
-          color-stop(0.95,  #F4F4F4),
-          color-stop(0.0, #FEFEFE)
-      ) repeat-x;
-      background: #F4F4F4 -moz-linear-gradient(0% 100% 90deg, #F4F4F4, #FEFEFE);
-      padding: 5px;
-    }
-    
-  }
-  
 }
 
 #session a {
@@ -303,53 +266,7 @@ code {
 }
 
 
-ul.submenu.selected_submenu li a.hmenu,
-.hmenu_current {
-  height: 10px;
-  display: inline;
-  background: #C2C2C2;
-  background: #C2C2C2 -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95,  #C2C2C2),
-      color-stop(0.0, #FEFEFE)
-  ) repeat-x;
-  background: #C2C2C2 -moz-linear-gradient(0% 100% 90deg, #C2C2C2, #FEFEFE);
-  color: black;
-  font-size: 0.9em;
-  border-radius: 3px 3px 0px 0px;
-  box-shadow:  2px -2px 3px #000;
-  border-bottom: 0px;
-}
 
-
-ul.submenu li.selected_submenu {
-  background: #5A5A5A;
-  color: white;
-  margin: 0px;
-  height: 15px;
-  width: auto;
-  padding: 5px;
-  display: block;
-  border-radius: 0px 20px 20px 0px;
-}
-
-ul.submenu li.selected_submenu a {
-  background: none;
-  margin: 0px;
-  color: #ddd;
-}
-
-.hmenu a:hover {
-  color: #ddd;
-}
-
-
-#session .hmenu .hmenu_current {
-  border: 1px solid #888;
-  border-bottom :none;
-}
 
 .submenu_box {
   position: fixed;
@@ -675,32 +592,45 @@ input {
   -webkit-box-shadow: 0px 0px 2px 2px #444;
 }
 
+
 .pagination {
+  
   text-align: center;
-  margin: 2px;
-  padding: 3px;
+  margin-top: 5px;
+  margin: 5px;
+  padding: 5px;
+  height: 25px;
+  
+  .current {
+    border-radius: 5px;
+    background: #8B8B8B;
+    color: white;
+    height: 20px;
+    padding: 5px;
+  }
+  
+  em {
+    font-style: normal;
+    border-radius: 5px;
+    background: #8B8B8B;
+  }
+  
+  a.prev_page, a.next_page, a {
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  a:hover.prev_page, a:hover.next_page, a:hover {
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
 }
 
-.pagination em {
-  font-style: normal;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  background: #8B8B8B;
-  padding: 3px;
-  color: white;
-}
-
-.pagination a {
-  text-decoration: none;
-  border: none;
- }
-
-.pagination .current {
-  background: #8B8B8B;
-  color: white;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
 
 .comment {
   margin-top: 25px;
@@ -785,7 +715,7 @@ input {
     margin: 0px;
     padding: 0px;
     padding-top: 30px;
-    padding-left: 20px;
+    padding-left: 0px;
     margin-left: 0px;
     color: #D4D7D9;
     text-shadow: 2px 2px 2px  #455;
@@ -799,7 +729,7 @@ input {
     font-weight: 100;
     margin: 0;
     padding: 0;
-    margin-left: 25px;
+    margin-left: 5px;
     overflow: hidden;
   }
   
@@ -1130,8 +1060,12 @@ li.load_more {
 .language_selector {
 }
 
-#container h1 {
-  font-size: 1.5em;
+#container {
+  h1 { font-size: 1.5em; }
+  
+  form, #posting_body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;    
+  }
 }
 
 .item_link_buttons a,

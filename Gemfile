@@ -43,7 +43,7 @@ group :development do
   gem "rails-erd"
   gem 'rdoc'
   gem 'unicorn'
-  #  gem 'yard' broken in OS X 10.7
+  gem 'yard' #broken in OS X 10.7
 end
 
 # Bundle gems for testing

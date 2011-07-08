@@ -1,4 +1,35 @@
 /* -*- encoding : utf-8 -*- */
+
+$button_gradient_start: #DADADA;
+$button_gradient_stop:  #FEFEFE;  
+$button_gradient_start_selected: lighten($button_gradient_start, 100%);
+$button_gradient_stop_selected: lighten($button_gradient_stop, 50%);
+
+@mixin gradient-button {
+  background: $button_gradient_start;
+  background: $button_gradient_start -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, $button_gradient_start  ),
+      color-stop(0.0, $button_gradient_stop    )
+  ) repeat-x;
+  background: $button_gradient_stop -moz-linear-gradient(0% 100% 90deg, $button_gradient_start, $button_gradient_stop);
+}
+
+@mixin gradient-button-selected {
+  background: $button_gradient_start_selected;
+  background: $button_gradient_start_selected -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, $button_gradient_start_selected  ),
+      color-stop(0.0, $button_gradient_stop_selected    )
+  ) repeat-x;
+  background: $button_gradient_stop_selected -moz-linear-gradient(0% 100% 90deg, $button_gradient_start_selected, $button_gradient_stop_selected);  
+}
+
+
 body {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   margin: 0px;
@@ -218,47 +249,54 @@ code {
   left: 0px;
   right: 0px;
   padding: 5px;
-  background: #DADADA;
-  background: #DADADA -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95,  #DADADA),
-      color-stop(0.0, #FEFEFE)
-  ) repeat-x;
-  background: #677083 -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
   margin-top: 0px;
   padding-top: 10px;
   height: 19px;
   width: 100%;
   
-   ul {
-     list-style-type: none;
-     display: inline;
-     float: left;
-     margin: 0px;
-     padding: 0px;
-     margin-left: 5px;
-     margin-right: 10px;
-     
-     li {
-       display: inline;
-       margin: 0px;
-       padding: 5px;
-       padding-left: 0px;
-       padding-right: 0px;
-       border-radius: 5px 5px 0px 0px;
-       a {
-         padding: 5px;
-       }
-     }
-   }
+  @include gradient-button;
+  
+  a {
+    z-index: 3;
+    border: none;
+  }
+  
+  ul {
+    list-style-type: none;
+    display: inline;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 5px;
+    margin-right: 10px;
+    
+    li {
+      display: inline;
+      margin: 0px;
+      padding: 5px;
+      padding-left: 0px;
+      padding-right: 0px;
+      border-radius: 5px 5px 0px 0px;
+      a {
+        padding: 5px;
+      }
+    }
+  }
+  
+  ul.selected {
+    li {
+      border: 1px solid darken($button_gradient_start, 50%);
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+      padding-top: 5px;
+      margin-top: 0px;
+      @include gradient-button-selected;
+    }
+  }
+  
 }
 
-#session a {
-  z-index: 3;
-  border: none;
-}
+
 
 
 .hmenu_with_children {

@@ -29,7 +29,7 @@
       </address>
       
       <div id='comment_comment_<%= comment.id.to_s -%>'>
-        <%= sanitize(RedCloth.new(comment.comment||"").to_html) %>
+        <%= sanitize(comment.commentable.render_for_html(comment.comment||""))%>
       </div>
       <div class='clear'></div>
     </div>

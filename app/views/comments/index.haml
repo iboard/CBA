@@ -10,6 +10,7 @@
           %small
             (
             = comment.commentable.class.to_s.humanize
+            )
       - else
         = t(:orphanded_comment)
       %p
@@ -22,6 +23,7 @@
           )
   
       %p
-        = sanitize(RedCloth.new(comment.comment).to_html).html_safe
+        = sanitize(comment.commentable.render_for_html(comment.comment||"")) if comment.commentable
+        = sanitize(RedCloth.new(comment.comment).to_html).html_safe unless comment.commentable
       %p
         = link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure) ) if can?( :destroy, comment )

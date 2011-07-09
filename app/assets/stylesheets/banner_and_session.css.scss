@@ -1,0 +1,90 @@
+#banner {
+  background: $background-banner;
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 90px;
+  padding-left: 20px;
+
+  
+  h1 {
+    font-family: $font-headline;
+    font-size:  ($font-size-default * 1.5);
+    margin: 0px;
+    padding: 0px;
+    padding-top: 30px;
+    padding-left: 0px;
+    margin-left: 0px;
+    color: #D4D7D9;
+    text-shadow: 2px 2px 2px  #455;
+  }
+
+  address {
+    font-size: ($font-size-default * 0.8);
+    color: #888888;
+    font-weight: 100;
+    overflow: hidden;
+  }
+
+}
+
+#session {
+  position: fixed;
+  z-index: 3;
+  top: 90px;
+  left: 0px;
+  right: 0px;
+  padding: 5px;
+  margin-top: 0px;
+  padding-top: 10px;
+  height: 17px;
+  width: 100%;
+  border-bottom: 1px solid $color-shadow;
+  @include bottom-shadow;
+  @include page-background;
+
+  a {
+    z-index: 3;
+    border: none;
+  }
+
+  ul {
+    list-style-type: none;
+    display: inline;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 5px;
+    margin-right: 10px;
+
+    li {
+      display: inline;
+      margin: 0px;
+      padding: 5px;
+      padding-left: 0px;
+      padding-right: 0px;
+      border-radius: 5px 5px 0px 0px;
+      a {
+        padding: 5px;
+      }
+    }
+  }
+
+  ul.selected {
+    li {
+      border: 1px solid darken($button_gradient_start, 50%);
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+      padding-top: 5px;
+      margin-top: 0px;
+      @include gradient-button-selected;
+    }
+  }
+
+}
+
+.hmenu_with_children {
+  display: inline;
+}

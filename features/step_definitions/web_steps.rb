@@ -274,13 +274,8 @@ end
 Given /the default user set/ do
   User.delete_all
   [
-    {
-      :email => 'user@iboard.cc',
-      :name  => 'testmax',
-      :roles_mask => 1,
-      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-      :confirmed_at => "2010-01-01 00:00:00"
-    },
+    #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
+    #see user.rb model
     {
       :email => 'guest@iboard.cc',
       :name  => 'guest',
@@ -289,9 +284,30 @@ Given /the default user set/ do
       :confirmed_at => "2010-01-01 00:00:00"
     },
     {
-      :email => 'admin@iboard.cc',
-      :name  => 'admin',
-      :roles_mask => 5,
+      :email => 'user@iboard.cc',
+      :name  => 'testmax',
+      :roles_mask => 1,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'author@iboard.cc',
+      :name  => 'Author',
+      :roles_mask => 2,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'moderator@iboard.cc',
+      :name  => 'Moderator',
+      :roles_mask => 3,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'maintainer@iboard.cc',
+      :name  => 'maintainer',
+      :roles_mask => 4,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
     },
@@ -299,6 +315,13 @@ Given /the default user set/ do
       :email => 'staff@iboard.cc',
       :name  => 'staff',
       :roles_mask => 4,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },
+    {
+      :email => 'admin@iboard.cc',
+      :name  => 'admin',
+      :roles_mask => 5,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
     }
@@ -464,5 +487,5 @@ end
 
 Then /^I should be reading "([^"]*)"$/ do |arg1|
   blog = Blog.where( title: arg1).first
-  current_path.should == blog_path(blog) 
+  current_path.should == blog_path(blog)
 end

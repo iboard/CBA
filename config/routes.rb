@@ -38,7 +38,9 @@ Cba::Application.routes.draw do
       get :delete_cover_picture
     end
     collection do
-      get :templates
+      get  :new_article
+      post :create_new_article
+      get  :templates
     end
     resources :comments
     resources :components

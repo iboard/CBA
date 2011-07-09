@@ -1,0 +1,13 @@
+- title t(:write_a_new_article)
+
+%h1= t(:step_one_choose_a_template)
+
+= form_tag create_new_article_pages_path do
+  .field
+    = label_tag :select_template, t(:template)    
+    = collection_select :page, :template_id, @templates, :id, :title, :prompt => t(:please_select_a_template)
+  .field
+    = label_tag :submit, t(:create_article)
+    = submit_tag t(:create)
+
+

@@ -1,7 +1,14 @@
 source 'http://rubygems.org'
+
 gem 'simplecov', '>= 0.4.0', :require => false, :group => :test
 
-gem 'rails','3.0.9'
+gem "rails", "3.1.0.rc4"
+# Rails 3.1 - Asset Pipeline
+gem 'json'
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+
 gem 'jquery-rails'  
 
 # Bundle gems needed for Mongoid
@@ -9,7 +16,7 @@ gem "mongoid", "~>2.0.1"   #, "2.0.0.rc.7"
 gem "bson_ext"  #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
-gem "devise", "1.1.7"
+gem "devise", "~>1.4.0" # ,"1.1.7"
 gem "cancan"
 gem "omniauth"
 
@@ -29,8 +36,7 @@ gem "RedCloth", "4.2.5"
 # do "easy_install pygments" on your system
 gem 'redcarpet'
 gem 'albino'
-gem 'nokogiri'
-
+gem "nokogiri", "1.4.6"
 
 # Bundle gems for development 
 group :development do

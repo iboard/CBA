@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 
-require File::dirname(__FILE__) + "/../mailserver_setting.rb"
+# moved to application.rb
+# -> require File::dirname(__FILE__) + "/../mailserver_setting.rb"
+
+
 require File::dirname(__FILE__) + "/../../lib/development_mail_interceptor.rb"
 
 ActionMailer::Base.smtp_settings = {
@@ -13,5 +16,6 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true
 }
 
-ActionMailer::Base.default_url_options[:host] = DEFAULT_URL
 Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
+
+Cba::Application.config.action_mailer.default_url_options[:host] = DEFAULT_URL

@@ -1,0 +1,63 @@
+@mixin flash-box {
+  padding: 5px 8px;
+  margin: 10px 0;  
+  border: solid 1px #6C6;
+}
+
+
+
+#container {
+  width: 75%;
+  min-width: 450px;
+  margin-left: 180px;
+  margin-top: 120px;
+  background: lighten($color-paper,18%);
+  padding: 20px 20px;
+  padding-top: 10px;
+  border: 1px solid $color-border;
+  border-top: none;
+  box-shadow: 3px 3px 3px $color-shadow;
+  border-radius: 3px 3px 3px 3px;
+
+  
+  .right_column {
+    width: 30%;
+    min-width: 310px;
+    float: right;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    padding: 10px;
+    @include container-right-box;
+    @include box-shadow;
+    
+    .page_intro {
+      h1 {
+        font-size: 2.5em;
+      }
+      p {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+
+  .left_column {
+    width: 50%;
+    min-width: 300px;
+    float: left;
+  }
+  
+  #flashes {
+    #flash_notice {
+      @include flash-box;
+      background: #CFC;
+    }
+    
+    #flash_error, 
+    #flash_alert {
+      @include flash-box;
+      background: #FCC;
+    }
+  }
+  
+}

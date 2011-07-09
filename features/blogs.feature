@@ -64,11 +64,11 @@ Feature: Blogs
     Then I should see "First blog to test"
 
   Scenario: Blog show should not display show-button (we are on the show-view already)
-    Given I am reading blog of "Blog 1"
+    Given I am logged out
+    And I am reading blog of "Blog 1"
     Then I should not see "Edit" within ".item_link_buttons"
     
     
-  @focus
   Scenario: Blog index shuould display title of blog as link to blog:show
     Given I am on the blogs page
     And I click on link "Blog 1" within "#container_main"

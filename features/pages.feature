@@ -19,8 +19,8 @@ Feature: Pages
 
   Scenario: Pages with 'show_in_menu' should be on the menu-bar
     Given I am on the pages page
-    Then I should see "Page 1" within ".hmenu"
-    And I should not see "Page 2" within ".hmenu"
+    Then I should see "Page 1" within "#session"
+    And I should not see "Page 2" within "#session"
 
   Scenario: A page should be shown when clicking read from the index
     Given I am on the pages page
@@ -45,7 +45,7 @@ Feature: Pages
     And I should see "successfully created"
     And I should see "Page 3"
     And I should see "Page three body" within "#container"
-    And I should see "Page 3" within ".hmenu"
+    And I should see "Page 3" within "#session"
 
   Scenario: It should not be able to save a page with no title
     Given I am on the pages page
@@ -88,7 +88,6 @@ Feature: Pages
     And I should see "Comment successfully created. You can edit it for the next"
     And I should see "And here my comment for this page"
 
-
   Scenario: Pagination should work on pages::index
     pending
 
@@ -122,3 +121,22 @@ Feature: Pages
   Scenario: Admins should be able to list template pages
     Given I am on the edit page template for "Page T"
     Then I should see "This is a Template"
+
+  Scenario: Authors should be able to derive new pages (articles) from pages where is_template is true
+    Given I am on the new_article page
+    Then I should see "Choose a template"
+    And I select "Page T" from "page_template_id" within "form"
+    And I click on "Create"
+    And I fill in "page_title" with "This is a filled Page Template"
+    And I fill in "page_body" with "This is a filled page body"
+    And I click on "Create Page"
+    Then I should see "This is a filled Page Template"
+    And I should see "This is a filled page body"
+
+  Scenario: The page/templates index should provide a link to create a new article for each template
+    Given I am on the templates_pages page
+    And I click on link "Create new article" within ".page_template"
+    Then I should be on the create_new_article_pages page
+    And I should see "Page T"
+
+

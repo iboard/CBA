@@ -1,3 +1,4 @@
+// -*- encoding : utf-8 -*-
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 /* *******************************************************
@@ -35,7 +36,7 @@ function initialize_hud(label,txt) {
     $('#HUDCONTAINER').html( 
        "<div id='HUD'>"+
          "<div class='centered_spinner'>"+
-           "<img src=/images/spinner.gif border=0><br/><br/>"+txt+
+           "<img src=/assets/spinner.gif border=0><br/><br/>"+txt+
          "</div>"+
        "</div>"+
        "<br/><span style='color:white; heigth: 30px; padding: 10px; font-size: 10px;'>"+
@@ -45,7 +46,7 @@ function initialize_hud(label,txt) {
 }
 
 function initialize_loading(update,txt) {
-  $(update).html("<img style='border:none; box-shadow: none;' src='/images/spinner.gif'><br/>"+txt).show();
+  $(update).html("<img style='border:none; box-shadow: none;' src='/assets/spinner.gif'><br/>"+txt).show();
 }
 
 function rerender(from_field,to) {
@@ -80,7 +81,7 @@ function image_popup(img_url) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-           "<img src='/images/close.gif?"+new_id+"'>"+
+           "<img src='/assets/close.gif?"+new_id+"'>"+
          "</a>"+
        "</div>"+
        "<div id='overlay_content' class='overlay_content'>"+
@@ -168,10 +169,10 @@ function gallery_popup(duration,args) {
     controller = "<div id='play'><a href='#' onclick=\"cycling("+duration+");"+
                  "$('#play').hide();$('#pause').show();"+
                  "cycle_pictures("+0+","+photos.length+","+(i+1)+");"+
-                 "return false;\"><img src='/images/play.png' /></a></div>"+
+                 "return false;\"><img src='/assets/play.png' /></a></div>"+
                  "<div id='pause'><a id='pause' href='#' onclick=\"cycling(0);"+
                  "$('#pause').hide();cycle_pictures("+0+","+photos.length+","+(i)+");$('#play').show();"+
-                 "return false;\"><img src='/images/pause.png' /></a></div>";
+                 "return false;\"><img src='/assets/pause.png' /></a></div>";
 
     rc += "<div id='photo_"+ i + "' style='display:none;'>"+
              prev+prev_close +
@@ -183,7 +184,7 @@ function gallery_popup(duration,args) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-           "<img src='/images/close.gif?"+new_id+"'>"+
+           "<img src='/assets/close.gif?"+new_id+"'>"+
          "</a>"+
        "</div>"+
        "<div id='overlay_content' class='overlay_content'>"+
@@ -215,7 +216,7 @@ function video_popup(img_url,mobile_url) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-          "<img src='/images/close.gif?"+new_id+"'>"+
+          "<img src='/assets/close.gif?"+new_id+"'>"+
          "</a>"+
        "</div>" +
        "<div style='margin-top: 80px; vertical-align: baseline;'>"+
@@ -243,7 +244,7 @@ function youtube_popup(img_url) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-          "<img src='/images/close.gif?"+new_id+"'>"+
+          "<img src='/assets/close.gif?"+new_id+"'>"+
          "</a>"+
        "</div>" +
        "<div style='margin-top: 80px; vertical-align: baseline;'>"+
@@ -263,14 +264,14 @@ function youtube_popup(img_url) {
 function insert_load_button(where,txt,path) {
   var target = $("#"+where);
   var id='load_more_link';
-  target.html("<div id='"+id+"'><img src='/images/spinner.gif' title='Loading...' /> "+txt+"</div>");
+  target.html("<div id='"+id+"'><img src='/assets/spinner.gif' title='Loading...' /> "+txt+"</div>");
   $.ajax({ url: path, context: where});
 }
 
 function insert_close_popup_link(id) {
   return ("<div class='close_icon'>"+
     "<a href='#' onclick='close_popup();return false;' style='background: none;'>"+
-    "<img src='/images/close.gif?"+id+"' style='box-shadow: none; heigth: 24px; width: 24px;'>"+
+    "<img src='/assets/close.gif?"+id+"' style='box-shadow: none; heigth: 24px; width: 24px;'>"+
     "</a>"
   )
 }
@@ -278,7 +279,7 @@ function insert_close_popup_link(id) {
 function insert_close_link(id) {
   return ("<div class='close_icon' style='padding-right: 0px; margin-right: -20px; float:right;'>"+
     "<a href='#' onclick='toggle_div(\""+id+"\");return false;' style='background: none; border: none;'>"+
-      "<img src='/images/close.gif?"+id+"' style='box-shadow: none; height: 24px; width: 24px;'>"+
+      "<img src='/assets/close.gif?"+id+"' style='box-shadow: none; height: 24px; width: 24px;'>"+
     "</a>"+
     "</div>"+
     "</div><div style='margin-bottom: 30px; height: 0px; width: 0px;'></div>"

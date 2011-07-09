@@ -67,6 +67,8 @@ module NavigationHelpers
       "/site_menus/#{site_menu.id.to_s}/edit"
     when /the page_template path/
       "/pages/templates"
+    when /the new_article page/
+      "/pages/new_article"
     else
       begin
         page_name =~ /the (.*) page/

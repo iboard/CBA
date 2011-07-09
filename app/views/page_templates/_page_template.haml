@@ -8,4 +8,4 @@
     = link_to( t(:delete), page_template, :method => :delete,  :confirm => t(:are_you_sure))
     ]
   %blockquote
-    %code= page_template.html_template
+    = ContentItem::markdown( "````html\n#{page_template.html_template}\n````\n" )

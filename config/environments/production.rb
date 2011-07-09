@@ -31,6 +31,11 @@ Cba::Application.configure do
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
 
+  # Added for Rails 3.1
+  config.assets.js_compressor  = :uglifier
+  config.assets.css_compressor = :scss
+
+
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
@@ -44,7 +49,7 @@ Cba::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  config.action_mailer.default_url_options = {:host => DEFAULT_URL }
   ### ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp

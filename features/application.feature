@@ -6,8 +6,8 @@ Feature: Application
   Background:
     Given the following user records
       | id | email               | name         | roles_mask | password   | password_confirmation | confirmation_token | confirmed_at |
-      | 4d2c96042d194751eb000009 | test@test.te | tester     | -1         | verysecret | verysecret            | 1234               | 2001-01-01   |
-  
+      | 4d2c96042d194751eb000009 | test@test.te | tester     | 3          | verysecret | verysecret            | 1234               | 2001-01-01   |
+ 
   Scenario: Display a copyright message on the startpage
     Given I am on the home page
     Then I should see "©"
@@ -38,6 +38,7 @@ Feature: Application
     And I should not see "Create a new Blog"
 
   Scenario: As an Admin I should see links to github and pivotal tracker and create-buttons
+    Given I am logged out
     Given I am logged in as user "test@test.te" with password "verysecret"
     And I am on the home page
     Then I should see "Github"

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
 
   before_filter :set_template_scope
-  load_and_authorize_resource :except => :permalinked
+  load_and_authorize_resource :except => [:permalinked,:new_article,:create_new_article]
 
   # GET /pages
   # GET /pages.xml
@@ -59,6 +59,15 @@ class PagesController < ApplicationController
     end
   end
 
+
+  # GET /pages/new_article
+  # Presents a list of page-templates.
+  # The submit-button will lead to :post /pages/create_new_article
+  def new_article
+    authorize! :create, Page
+    @templates = Page.templates
+  end
+
   # GET /pages/1/edit
   def edit
     # Workarround for :fields_for which will ignore default_scope of components
@@ -77,6 +86,18 @@ class PagesController < ApplicationController
         format.html { render :action => "new" }
         format.xml  { render :xml => @page.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+  
+  # POST /pages/create_new_article
+  def create_new_article
+    authorize! :create, Page
+    @template = Page.templates.find(params[:page][:template_id])
+    @page = Page.new(@template.attributes)
+    @page.is_template = false
+    @page.page_components = []
+    @template.page_components.each do |component|
+      @page.page_components.build( component.attributes )
     end
   end
 
@@ -115,12 +136,12 @@ class PagesController < ApplicationController
       format.js
     end
   end
-  
+
   # GET /pages/templates
   def templates
     @pages = Page.templates
   end
-  
+
   private
   def set_template_scope
     if params[:id] && current_role?(:admin)

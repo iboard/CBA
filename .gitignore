@@ -10,6 +10,10 @@ tmp/**/*
 tmp/*
 .DS_Store
 ._*
+.yardoc/*
+.yardoc/**/*
+.sass-cache/*
+.sass-cache/**/*
 coverage/*
 coverage/**/*
 config/mongoid.yml

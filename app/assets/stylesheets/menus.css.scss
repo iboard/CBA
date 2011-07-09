@@ -1,0 +1,51 @@
+.submenu_box {
+  position: fixed;
+  left: 15px;
+  top: 125px;
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
+  height: auto;
+  border: 1px solid $color-border;
+  border-radius: 3px 3px 3px 3px;
+  padding: 5px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  @include sidebar-background;
+  @include container-shadow;
+  margin-right: 10px;
+  line-height: 180%;
+  a {
+    padding: 5px;
+  }
+  
+  ul {
+    display: inline;
+    line-height: 180%;
+    width: 100%;
+    margin: 0px;
+    margin-left: 10px;
+    list-style: none;
+    
+    li {
+      line-height: 180%;
+      margin-left: 10px;
+    }
+    
+    .hmenu_current {
+      padding: 5px;
+      color: $color-text;
+      text-decoration: none;
+      display: inline;
+      
+      a {
+        @include gradient-button;
+        padding: 5px;
+        color: $color-text;  
+        border-radius: 0px 10px 10px 0px;      
+      }
+            
+    }
+
+  }
+}

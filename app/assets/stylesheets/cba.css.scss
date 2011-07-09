@@ -1,66 +1,25 @@
 /* -*- encoding : utf-8 -*- */
-
-$button_gradient_start: #DADADA;
-$button_gradient_stop:  #FEFEFE;  
-$button_gradient_start_selected: lighten($button_gradient_start, 100%);
-$button_gradient_stop_selected: lighten($button_gradient_stop, 50%);
-
-@mixin gradient-button {
-  background: $button_gradient_start;
-  background: $button_gradient_start -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95, $button_gradient_start  ),
-      color-stop(0.0, $button_gradient_stop    )
-  ) repeat-x;
-  background: $button_gradient_stop -moz-linear-gradient(0% 100% 90deg, $button_gradient_start, $button_gradient_stop);
-}
-
-@mixin gradient-button-selected {
-  background: $button_gradient_start_selected;
-  background: $button_gradient_start_selected -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95, $button_gradient_start_selected  ),
-      color-stop(0.0, $button_gradient_stop_selected    )
-  ) repeat-x;
-  background: $button_gradient_stop_selected -moz-linear-gradient(0% 100% 90deg, $button_gradient_start_selected, $button_gradient_stop_selected);  
-}
+/* Version Juli 9, 2011 7l  */
 
 
-body {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  margin: 0px;
-  padding: 0px;
-  min-width: 900px;
-  color: #333;
-  font-size: 1.0em;
-  background: #dadada;
-  background: #DADADA -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95,  #DADADA),
-      color-stop(0.0, #FEFEFE)
-  ) repeat-x;
-}
+@import "constants.css.scss";
+@import "errors.css.scss";
+@import "banner_and_session.css.scss";
+@import "menus.css.scss";
+@import "container.css.scss";
+@import "googlesearch.css.scss";
+@import "highlighting.css.scss";
 
-h1,h2,h3 {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: #666;
-}
-
-h2 {
-  border-bottom: #ddd 4px solid;
-  color: #666;
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-text;
+  color: $color-header;
 }
 
 address { font-style: normal; }
 
 a {
-  color: #46506F;
+  font-family: $font-text;
+  color: $color-link;
   text-decoration: none;
 
   img {
@@ -71,8 +30,7 @@ a {
 }
 
 a:hover {
-  background: #556285;
-  color: white;
+  text-decoration: underline;
 }
 
 code {
@@ -163,257 +121,6 @@ code {
   border: 0px;
 }
 
-#container {
-  width: 75%;
-  min-width: 450px;
-  margin-left: 180px;
-  margin-top: 120px;
-  background: #FFF;
-  padding: 20px 20px;
-  padding-top: 10px;
-  border: 1px solid #eee;
-  border-top: none;
-  box-shadow: 3px 3px 3px 3px #aaa;
-  border-radius: 3px 3px 3px 3px;
-}
-
-.google-search {
-  position: fixed;
-  top: 120px;
-  left: 0px;
-  right: 0px;
-  height: 45px;
-  margin: 0px;
-  background: #EAECEE;
-  padding: 0px;
-  padding-right: 10px;
-  padding-left: 10px;
-  box-shadow: 4px 4px 4px #444;
-}
-
-.google-search-form {
-
-}
-
-
-#flash_notice, #flash_error, #flash_alert {
-
-  padding: 5px 8px;
-  margin: 10px 0;
-}
-
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
-
-#flash_error, #flash_alert {
-  background-color: #FCC;
-  border: solid 1px #C66;
-}
-
-.fieldWithErrors {
-  display: inline;
-}
-
-.error_messages {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-.error_messages h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 10px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
-}
-
-.error_messages p {
-  margin: 8px 10px;
-}
-
-.error_messages ul {
-  margin: 0;
-}
-
-#session {
-  position: fixed;
-  z-index: 3;
-  top: 90px;
-  left: 0px;
-  right: 0px;
-  padding: 5px;
-  margin-top: 0px;
-  padding-top: 10px;
-  height: 19px;
-  width: 100%;
-  
-  @include gradient-button;
-  
-  a {
-    z-index: 3;
-    border: none;
-  }
-  
-  ul {
-    list-style-type: none;
-    display: inline;
-    float: left;
-    margin: 0px;
-    padding: 0px;
-    margin-left: 5px;
-    margin-right: 10px;
-    
-    li {
-      display: inline;
-      margin: 0px;
-      padding: 5px;
-      padding-left: 0px;
-      padding-right: 0px;
-      border-radius: 5px 5px 0px 0px;
-      a {
-        padding: 5px;
-      }
-    }
-  }
-  
-  ul.selected {
-    li {
-      border: 1px solid darken($button_gradient_start, 50%);
-      border-bottom: none;
-      border-radius: 5px 5px 0px 0px;
-      padding-top: 5px;
-      margin-top: 0px;
-      @include gradient-button-selected;
-    }
-  }
-  
-}
-
-
-
-
-.hmenu_with_children {
-  display: inline;
-}
-
-
-
-
-.submenu_box {
-  position: fixed;
-  left: 15px;
-  top: 145px;
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
-  height: auto;
-  border: 1px solid #AFAFAF;
-  border-radius: 3px 3px 3px 3px;
-  padding: 5px;
-  padding-top: 15px;
-  padding-bottom: 10px;
-  background: #ddd;
-  margin-right: 10px;
-  box-shadow: #444 5px 5px 15px;
-}
-
-.submenu_box ul {
-  margin: 0px;
-  margin-left: -20px;
-  font-size: 0.9em;
-  line-height: 180%;
-}
-
-.submenu_box ul li {
-  margin: 0px;
-  margin-left: -20px;
-}
-
-
-.submenu_box .hmenu_current {
-  margin-left: 0px;
-  background: #4A4A4A;
-  color: white;
-  text-decoration: none;
-  padding: 5px;
-  padding-right: 25px;
-  display: inline;
-  line-height: 25px;
-  border-radius: 0px 10px 10px 0px;
-}
-
-.submenu_box .hmenu_current {
-  margin: 0px;
-}
-
-.submenu_box .hmenu_current a {
-  color: white;
-  text-decoration: none;
-}
-
-.submenu_box ul {
-  list-style: none;
-  height: auto;
-  margin: 0px;
-  margin-left: 10px;
-  padding: 5px;
-}
-
-.submenu_box ul {
-  list-style: none;
-  margin: 0px;
-}
-.submenu_box ul li {
-  list-style: none;
-  margin: 0px;
-  margin-left: 0px;
-}
-
-#container .submenu_box h1 {
-  margin: 0px;
-  font-size: 0.7em;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-
-#container .submenu_box ul li {
-  margin: 0px;
-  padding: 5px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-.submenu {
-  border-radius: 5px;
-  padding: 5px;
-  height: 15px;
-  color: #444;
-  display: block;
-  margin: 0px;
-}
-
-
-ul.submenu {
-  display: inline;
-  list-style: none;
-  margin-left: 0px;
-}
-
-.submenu li {
-  list-style: none;
-  margin-left: 0px;
-}
-
-.submenu li a {
-  text-decoration: none;
-  border: none;
-}
 
 .user_edit p {
   padding: 0px;
@@ -632,13 +339,13 @@ input {
 
 
 .pagination {
-  
+
   text-align: center;
   margin-top: 5px;
   margin: 5px;
   padding: 5px;
   height: 25px;
-  
+
   .current {
     border-radius: 5px;
     background: #8B8B8B;
@@ -646,27 +353,27 @@ input {
     height: 20px;
     padding: 5px;
   }
-  
+
   em {
     font-style: normal;
     border-radius: 5px;
     background: #8B8B8B;
   }
-  
+
   a.prev_page, a.next_page, a {
     text-decoration: none;
     border: none;
     padding: 5px;
     border-radius: 5px;
   }
-  
+
   a:hover.prev_page, a:hover.next_page, a:hover {
     text-decoration: none;
     border: none;
     padding: 5px;
     border-radius: 5px;
   }
-  
+
 }
 
 
@@ -729,51 +436,6 @@ input {
   font-style: normal;
 }
 
-#banner {
-  position: fixed;
-  z-index: 2;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  height: 90px;
-  background: #DADADA -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95,  #DADADA),
-      color-stop(0.0, #FEFEFE)
-  ) repeat-x;
-  background: #DADADA -moz-linear-gradient(0% 100% 90deg, #DADADA, #FEFEFE);
-  overflow: hidden;
-  padding-left: 20px;
-  
-  h1 {
-    font-family: Times new roman, Times, serif;
-    font-weight: 100;
-    margin: 0px;
-    padding: 0px;
-    padding-top: 30px;
-    padding-left: 0px;
-    margin-left: 0px;
-    color: #D4D7D9;
-    text-shadow: 2px 2px 2px  #455;
-    font-size: 2em;
-  }
-  
-  address {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
-    font-size: 0.7em;
-    color: #888888;
-    font-weight: 100;
-    margin: 0;
-    padding: 0;
-    margin-left: 5px;
-    overflow: hidden;
-  }
-  
-}
-
-
 #container .content_seperator {
   height: 2px;
   clear: both;
@@ -803,28 +465,6 @@ input {
 }
 
 
-#container .right_column {
-  width: 30%;
-  min-width: 310px;
-  float: right;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  padding: 10px;
-  background: #ddd;
-  -webkit-box-shadow: 4px 4px 4px #444;
-  -moz-box-shadow: 4px 4px 4px #444;
-}
-
-#container .left_column {
-  width: 50%;
-  min-width: 300px;
-  float: left;
-}
-
-#container .right_column .page_intro h1 {
-  font-size: 2em;
-}
 
 .top_right_box {
   position: relative;
@@ -888,7 +528,6 @@ input {
 }
 
 #container blockquote {
-  font-family: Verdana, Helvetica, Arial, sans-serif;
   margin: 5px;
   margin-left: 0px;
   margin-bottom: 20px;
@@ -1100,17 +739,9 @@ li.load_more {
 
 #container {
   h1 { font-size: 1.5em; }
-  
-  form, #posting_body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;    
-  }
-}
 
-.item_link_buttons a,
-#container form,
-#container #posting_body form,
-form {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  form, #posting_body {
+  }
 }
 
 #user_notifications {

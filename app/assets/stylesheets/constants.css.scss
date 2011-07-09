@@ -1,0 +1,138 @@
+/* CBA CONSTANTS
+ * Use as @import url("./constants.css.scss");
+*/
+
+/* Fonts */
+$font-text: Verdana, Helvetica, Arial, sans-serif;
+$font-family: $font-text;
+$font-title: Times new roman, Times, serif;
+$font-headline: $font-text;
+$font-size-default: 0.98em;
+$line-height-default: 1.2em;
+
+/* Colors */
+$color-base: #888;
+$color-text: darken($color-base,80%);
+$color-paper: lighten($color-base,25%);
+$color-header: $color-base;
+$color-shadow: darken($color-base,50%);
+$color-border: $color-shadow;
+$color-link: lighten($color-text,10%);
+
+$background-page: $color-text;
+$background-container: lighten($color-paper,90%);
+$background-banner: lighten($background-page,25%);
+
+$standard-button-background: $color-text;
+$color-button-text: lighten($color-base,50%);
+$button-gradient-start: $color-base;
+$button-gradient-stop:  lighten($color-base, 40%);
+$button-gradient-start-selected: lighten($button-gradient-start, 100%);
+$button-gradient-stop-selected: lighten($button-gradient-stop, 50%);
+
+
+/* Document */
+$body-width: 900px;
+
+
+@mixin page-background {
+  background: lighten($background-page,80%);
+  background: lighten($background-page,80%) -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, lighten($background-page,80%)),
+      color-stop(0.0, lighten($background-page,25%))
+  ) repeat-x;
+}
+
+@mixin container-background {
+  background: lighten($background-page,80%);
+  background: lighten($background-page,80%) -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, lighten($background-page,80%)),
+      color-stop(0.0, lighten($background-page,25%))
+  ) repeat-x; 
+}
+
+@mixin sidebar-background {
+  background: lighten($background-page,80%);
+  background: lighten($background-page,80%) -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, lighten($background-page,80%)),
+      color-stop(0.0, lighten($background-page,55%))
+  ) repeat-x; 
+}
+
+@mixin container-shadow {
+  box-shadow: darken($background-page,10%) 5px 5px 15px;
+}
+
+@mixin gradient-button {
+  background: $button_gradient_start;
+  background: $button_gradient_start -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, $button_gradient_start  ),
+      color-stop(0.0, $button_gradient_stop    )
+  ) repeat-x;
+  background: $button_gradient_stop -moz-linear-gradient(0% 100% 90deg, $button_gradient_start, $button_gradient_stop);
+}
+
+@mixin gradient-button-selected {
+  background: $button_gradient_start_selected;
+  background: $button_gradient_start_selected -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, $button_gradient_start_selected  ),
+      color-stop(0.0, $button_gradient_stop_selected    )
+  ) repeat-x;
+  background: $button_gradient_stop_selected -moz-linear-gradient(0% 100% 90deg, $button_gradient_start_selected, $button_gradient_stop_selected);
+}
+
+@mixin bottom-shadow {
+  box-shadow: 0px 3px 3px $color-shadow;
+}
+
+@mixin box-shadow {
+  box-shadow: 3px 3px 3px $color-shadow;
+}
+
+@mixin container-right-box {
+  background: lighten($background-page,90%);
+  background: lighten($background-page,90%) -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, lighten($background-page,90%)),
+      color-stop(0.0, lighten($background-page,75%))
+  ) repeat-x; 
+  
+}
+
+
+/*
+ *  BODY & DOCUMENT
+*/
+@mixin default-font-settings {
+  font-family: $font-text;
+  font-size: $font-size-default;
+  line-height: $line-height-default;
+}
+* {
+  @include default-font-settings;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  min-width: $body-width;
+  color: #333;
+  @include page-background;
+}

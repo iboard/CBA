@@ -132,3 +132,10 @@ Feature: Pages
     Then I should see "This is a filled Page Template"
     And I should see "This is a filled page body"
 
+  Scenario: The page/templates index should provide a link to create a new article for each template
+    Given I am on the templates_pages page
+    And I click on link "Create new article" within ".page_template"
+    Then I should be on the create_new_article_pages page
+    And I should see "Page T"
+
+

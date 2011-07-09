@@ -12,3 +12,5 @@
         = link_to t(:edit), edit_page_path(page)
         |
         = link_to t(:delete), page, :method => :delete, :confirm => t(:are_you_sure)
+        |
+        = link_to t(:create_new_article), create_new_article_pages_path(:page => {:template_id => page.id.to_s}), :method => :post

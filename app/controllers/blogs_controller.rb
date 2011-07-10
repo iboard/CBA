@@ -2,6 +2,8 @@
 
 class BlogsController < ApplicationController
 
+  before_filter :unscope_drafts_for_authors
+
   load_and_authorize_resource
   before_filter :ensure_page_tokens, :only => [:update,:create]
 
@@ -19,6 +21,7 @@ class BlogsController < ApplicationController
 
   # Show all postings for this blog
   def show
+    @blog.postings.default_scope() if session[:draft_mode]
     @postings = @blog.postings.desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
@@ -81,6 +84,15 @@ class BlogsController < ApplicationController
   # Array is initialized even if no checkbox is checked.
   def ensure_page_tokens
     params[:blog][:page_tokens] ||= []
+  end
+  
+  # For update and destroy we want to include drafts, so change the default_scope
+  def unscope_drafts_for_authors
+    if current_role?(:author) && session[:draft_mode] && session[:draft_mode] == true
+      Blog.default_scope()
+    else 
+      Blog.reset_default_scope
+    end
   end
 
 end

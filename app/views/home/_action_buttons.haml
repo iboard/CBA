@@ -10,3 +10,10 @@
 
 -# Communications
 = link_to( (twitter_name||'Twitter'), twitter_link, :target => 'ext_tools') if twitter_link
+
+-# Draft Mode
+- if current_role?(:author)
+  - if session[:draft_mode]
+    = link_to t(:hide_drafts), draft_mode_path(0)
+  - else
+    = link_to t(:show_drafts), draft_mode_path(1)

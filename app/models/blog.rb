@@ -37,7 +37,7 @@ class Blog
     end
     posting
   end
-
+  
   private
   # ContentItems need to override the abstract method but a Blog didn't
   def content_for_intro

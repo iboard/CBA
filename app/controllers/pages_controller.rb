@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
 
   before_filter :set_template_scope
+  before_filter :unscope_drafts_for_authors
   load_and_authorize_resource :except => [:permalinked,:new_article,:create_new_article]
 
   # GET /pages
@@ -146,8 +147,16 @@ class PagesController < ApplicationController
   def set_template_scope
     if params[:id] && current_role?(:admin)
       @page = Page.unscoped.find(params[:id])
-      Page.default_scope( :where => { :is_template => true } ) if @page.is_template
+      Page.default_scope( :where => { :is_template => true, :is_draft => (session[:draft_mode]||false) } ) if @page.is_template
     end
   end
-
+  
+  
+  # For update and destroy we want to include drafts, so change the default_scope
+  def unscope_drafts_for_authors
+    if current_role?(:author) && session[:draft_mode] && session[:draft_mode] == true
+      Page.default_scope()
+    end
+  end
+  
 end

@@ -43,6 +43,16 @@ module ContentItem
         index :title
         validates_presence_of :title
         validates_uniqueness_of :title
+        
+        # ContentItems marked as 'draft' should not be in the default-scope
+        field :is_draft, :type => Boolean, :default => true
+        default_scope lambda { where(is_draft: false) }
+        scope :drafts, lambda { unscoped.where(is_draft: true ) }
+        
+        # Reset to default scope if draft-mode was swapped
+        def self.reset_default_scope
+          default_scope lambda { where(is_draft: false) }
+        end
 
         # Will return a truncated version of the title if it exceeds the maximum
         # length of titles used in the menu (or wherever you can't display long titles)

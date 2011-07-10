@@ -14,9 +14,9 @@ Feature: Comments
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 4          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following page records
-      | title  | body                 | show_in_menu | allow_public_comments | allow_comments |
-      | Page 1 | Lorem ipsum          | true         | true                  | ture           |
-      | Page 2 | Lirum Opsim          | false        | true                  | true           |
+      | title  | body                 | show_in_menu | allow_public_comments | allow_comments | is_draft |
+      | Page 1 | Lorem ipsum          | true         | true                  | ture           | false    |
+      | Page 2 | Lirum Opsim          | false        | true                  | true           | false    |
     And the following comment records for page "Page 1"
       | name | email    | comment          |
       | Andi | aa@bb.cc | My first Comment |
@@ -60,25 +60,25 @@ Feature: Comments
     
   Scenario: No comments if page.allow_comments is false
     Given the following page records
-      | title         | body                 | allow_public_comments | allow_comments |
-      | Uncommentable | Lorum Upsim          | false                 | false          |
+      | title         | body                 | allow_public_comments | allow_comments | is_draft |
+      | Uncommentable | Lorum Upsim          | false                 | false          | false    |
     And I am on the page path of "Uncommentable"
     Then I should not see "Post a comment"
 
   Scenario: Allow comments if page.allow_comments is true
     Given the following page records
-      | title         | body                 | allow_public_comments | allow_comments |
-      | Commentable   | Lorum Upsim          | true                  | true           |
+      | title         | body                 | allow_public_comments | allow_comments | is_draft |
+      | Commentable   | Lorum Upsim          | true                  | true           | false    |
     And I am on the page path of "Commentable"
     Then I should see "Post a comment"
 
   Scenario: Allow comments if blog.allow_comments is true
     Given the following blog records
-      | title       |  allow_public_comments | allow_comments |
-      | Commentable |  true                  | true           |
+      | title       |  allow_public_comments | allow_comments | is_draft |
+      | Commentable |  true                  | true           | false    |
     And the following posting records for blog "Commentable" and user "admin"
-      | title       | body        |
-      | Posting one | lorem ipsum |
+      | title       | body        | is_draft |
+      | Posting one | lorem ipsum | false    |
     And I am on the blog path of "Commentable"
     And I click on link "Posting one"
     And I fill in "Comment" with "And here my comment"
@@ -89,11 +89,11 @@ Feature: Comments
 
   Scenario: No comments should be allowed if blog.allow_comments is false
     Given the following blog records
-      | title         |  allow_public_comments | allow_comments |
-      | Uncommentable |  false                 | fale           |
+      | title         |  allow_public_comments | allow_comments | is_draft |
+      | Uncommentable |  false                 | fale           | false    |
     And the following posting records for blog "Uncommentable" and user "admin"
-      | title       | body        |
-      | Posting one | lorem ipsum |
+      | title       | body        | is_draft |
+      | Posting one | lorem ipsum | false    |
     And I am on the blog path of "Uncommentable"
     And I click on link "Posting one"
     Then I should not see "Post a comment"

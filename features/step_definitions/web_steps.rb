@@ -423,8 +423,8 @@ end
 Given /^the following blogs with pages/ do |table|
   Page.delete_all
   table.hashes.each do |params|
-    blog = Blog.find_or_create_by(title: params[:title])
-    page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false)
+    blog = Blog.find_or_create_by(title: params[:title], is_draft: false)
+    page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false, :is_draft => false)
     blog.pages << page
     blog.save
   end
@@ -466,7 +466,7 @@ end
 Given /^the following translated pages/ do |table|
   Page.delete_all
   table.hashes.each do |hash|
-    p = Page.create( title: hash[:title_en], body: hash[:body_en] )
+    p = Page.create( title: hash[:title_en], body: hash[:body_en], is_draft: false )
     p.translate!
     p.t(:de,:title,hash[:title_de])
     p.t(:de,:body, hash[:body_de])
@@ -489,4 +489,12 @@ end
 Then /^I should be reading "([^"]*)"$/ do |arg1|
   blog = Blog.where( title: arg1).first
   current_path.should == blog_path(blog)
+end
+
+Given /^draft mode is off$/ do
+  visit draft_mode_path(0)
+end
+
+Given /^draft mode is on$/ do
+  visit draft_mode_path(1)
 end

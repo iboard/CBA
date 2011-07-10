@@ -89,6 +89,11 @@
             %div#new_component
             %p= link_to_add_fields(t(:new_page_component).html_safe, f, :page_components)
 
+    .field
+        = f.label :is_draft, t(:save_as_draft)
+        = f.check_box :is_draft
+        = t(:will_be_shown_to_authors_only)    
+    
     %div.actions
         = f.label :submit, t(:save_changes)
         = f.submit

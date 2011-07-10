@@ -81,7 +81,7 @@ function image_popup(img_url) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-           "<img src='/assets/close.gif?"+new_id+"'>"+
+           "<img src='/images/close.gif'>"+
          "</a>"+
        "</div>"+
        "<div id='overlay_content' class='overlay_content'>"+
@@ -184,7 +184,7 @@ function gallery_popup(duration,args) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-           "<img src='/assets/close.gif?"+new_id+"'>"+
+           "<img src='/images/close.gif'>"+
          "</a>"+
        "</div>"+
        "<div id='overlay_content' class='overlay_content'>"+
@@ -216,7 +216,7 @@ function video_popup(img_url,mobile_url) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-          "<img src='/assets/close.gif?"+new_id+"'>"+
+          "<img src='/images/close.gif'>"+
          "</a>"+
        "</div>" +
        "<div style='margin-top: 80px; vertical-align: baseline;'>"+
@@ -244,7 +244,7 @@ function youtube_popup(img_url) {
   $('#overlay').html( 
        "<div class='close_icon'>"+
          "<a href='#' onclick='close_popup();return false;'>"+
-          "<img src='/assets/close.gif?"+new_id+"'>"+
+          "<img src='/images/close.gif'>"+
          "</a>"+
        "</div>" +
        "<div style='margin-top: 80px; vertical-align: baseline;'>"+
@@ -271,7 +271,7 @@ function insert_load_button(where,txt,path) {
 function insert_close_popup_link(id) {
   return ("<div class='close_icon'>"+
     "<a href='#' onclick='close_popup();return false;' style='background: none;'>"+
-    "<img src='/assets/close.gif?"+id+"' style='box-shadow: none; heigth: 24px; width: 24px;'>"+
+    "<img src='/images/close.gif' style='box-shadow: none; heigth: 24px; width: 24px;'>"+
     "</a>"
   )
 }
@@ -279,7 +279,7 @@ function insert_close_popup_link(id) {
 function insert_close_link(id) {
   return ("<div class='close_icon' style='padding-right: 0px; margin-right: -20px; float:right;'>"+
     "<a href='#' onclick='toggle_div(\""+id+"\");return false;' style='background: none; border: none;'>"+
-      "<img src='/assets/close.gif?"+id+"' style='box-shadow: none; height: 24px; width: 24px;'>"+
+      "<img src='/images/close.gif' style='box-shadow: none; height: 24px; width: 24px;'>"+
     "</a>"+
     "</div>"+
     "</div><div style='margin-bottom: 30px; height: 0px; width: 0px;'></div>"

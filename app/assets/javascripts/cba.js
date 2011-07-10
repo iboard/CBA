@@ -36,7 +36,7 @@ function initialize_hud(label,txt) {
     $('#HUDCONTAINER').html( 
        "<div id='HUD'>"+
          "<div class='centered_spinner'>"+
-           "<img src=/assets/spinner.gif border=0><br/><br/>"+txt+
+           "<img src=/images/spinner.gif border=0><br/><br/>"+txt+
          "</div>"+
        "</div>"+
        "<br/><span style='color:white; heigth: 30px; padding: 10px; font-size: 10px;'>"+
@@ -46,7 +46,7 @@ function initialize_hud(label,txt) {
 }
 
 function initialize_loading(update,txt) {
-  $(update).html("<img style='border:none; box-shadow: none;' src='/assets/spinner.gif'><br/>"+txt).show();
+  $(update).html("<img style='border:none; box-shadow: none;' src='/images/spinner.gif'><br/>"+txt).show();
 }
 
 function rerender(from_field,to) {
@@ -264,7 +264,7 @@ function youtube_popup(img_url) {
 function insert_load_button(where,txt,path) {
   var target = $("#"+where);
   var id='load_more_link';
-  target.html("<div id='"+id+"'><img src='/assets/spinner.gif' title='Loading...' /> "+txt+"</div>");
+  target.html("<div id='"+id+"'><img src='/images/spinner.gif' title='Loading...' /> "+txt+"</div>");
   $.ajax({ url: path, context: where});
 }
 

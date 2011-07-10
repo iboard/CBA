@@ -21,6 +21,10 @@
   
   #container_main a {
     border-bottom: 1px dotted $color-link;
+    
+    &:hover {
+      border-bottom: 1px solid $color-link;      
+    };
   }
     
   .right_column {

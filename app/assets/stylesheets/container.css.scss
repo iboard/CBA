@@ -18,8 +18,11 @@
   border-top: none;
   box-shadow: 3px 3px 3px $color-shadow;
   border-radius: 3px 3px 3px 3px;
-
   
+  #container_main a {
+    border-bottom: 1px dotted $color-link;
+  }
+    
   .right_column {
     width: 30%;
     min-width: 310px;

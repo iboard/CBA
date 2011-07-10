@@ -1,5 +1,5 @@
 /* -*- encoding : utf-8 -*- */
-/* Version Juli 9, 2011 7l  */
+/**** Version Juli 9, 2011 s */
 
 
 @import "constants.css.scss";
@@ -19,9 +19,8 @@ address { font-style: normal; }
 
 a {
   font-family: $font-text;
-  color: $color-link;
   text-decoration: none;
-
+  color: $color-text;
   img {
     border: none;
     padding: 0px;

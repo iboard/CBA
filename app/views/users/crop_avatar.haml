@@ -41,7 +41,7 @@
 
 %div#preview
 
-- form_for @user, :url => {:controller => 'users',:action => 'crop_avatar'} do |f| 
+= form_for @user, :url => {:controller => 'users',:action => 'crop_avatar'} do |f| 
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] 
         = f.hidden_field attribute, :id => attribute
 

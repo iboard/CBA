@@ -24,6 +24,7 @@ config/google_analytics.head
 config/google_site_search.html
 config/twitter.*.html
 public/system/**/*
+public/assets/**/*
 public/cover_pictures
 public/sitemap.xml
 public/stylesheets/disabled_styles/*

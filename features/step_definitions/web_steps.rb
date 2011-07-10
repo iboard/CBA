@@ -350,10 +350,11 @@ Given /^I am logged out$/ do
 end
 
 Given /^I am logged in as user "([^"]*)" with password "([^"]*)"$/ do |email, password|
+  visit path_to('sign_out')
   visit path_to('sign_in')
   fill_in('user_email', :with => email)
   fill_in('user_password', :with => password)
-  click_button('user_submit')
+  click_button('Sign in')
   page.should have_content("Signed in successfully.")
 end
 

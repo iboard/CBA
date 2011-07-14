@@ -437,3 +437,6 @@ de:
   is_on: 'ein'
   is_off: 'aus'
   draft_mode_switched_to: 'Entwürfe wurden %{mode}geschaltet'
+  is_a_template_flag: '(VORLAGE)'
+  is_a_draft_flag: '(ENTWURF)'
+  document_not_found: 'Dokument nicht gefunden'

@@ -26,9 +26,9 @@ class Page
   field :allow_public_comments, :type => Boolean, :default => true
   field :is_template,           :type => Boolean, :default => false
 
-  default_scope lambda { where( is_template: false, is_draft: false ) }
+  default_scope lambda { where( is_template: false) }
   scope :templates, lambda { where(is_template: true ) }
-  scope :top_pages, lambda { where(show_in_menu: true, is_draft: false ).asc(:menu_order) }
+  scope :top_pages, lambda { where(show_in_menu: true).asc(:menu_order) }
 
   references_many            :comments, :inverse_of => :commentable
   validates_associated       :comments
@@ -58,7 +58,7 @@ class Page
   def render_body(view_context=nil)
     @view_context = view_context unless view_context.nil?
     unless (@view_context && self.page_template)
-      parts = [self.t(I18n.locale,:title), self.t(I18n.locale,:body)]
+      parts = [self.title_and_flags, self.t(I18n.locale,:body)]
       self.page_components.each do |component|
         parts << render_for_html( [ (component.t(I18n.locale,:title)||''),
                              ("-"*component.t(I18n.locale,:title).length),
@@ -90,7 +90,7 @@ class Page
   # TODO:   place.
   def render_with_template
     self.page_template.render do |template|
-      template.gsub(/TITLE/, self.t(I18n.locale,:title))\
+      template.gsub(/TITLE/, self.title_and_flags)\
               .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
               .gsub(/COMPONENTS/, render_components )\
               .gsub(/COVERPICTURE/, render_cover_picture)\

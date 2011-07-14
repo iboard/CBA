@@ -2,13 +2,10 @@
 
 class BlogsController < ApplicationController
 
-  before_filter :unscope_drafts_for_authors
-
-  load_and_authorize_resource
   before_filter :ensure_page_tokens, :only => [:update,:create]
 
   def index
-    @blogs = Blog.all.paginate(
+    @blogs = scoped_blogs.all.paginate(
        :page => params[:page],
        :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
      )
@@ -21,7 +18,8 @@ class BlogsController < ApplicationController
 
   # Show all postings for this blog
   def show
-    @blog.postings.default_scope() if session[:draft_mode]
+    @blog = scoped_blogs.find(params[:id])
+    @blog.postings.unscoped if draft_mode
     @postings = @blog.postings.desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
@@ -35,6 +33,7 @@ class BlogsController < ApplicationController
 
 
   def new
+    @blog = Blog.new
   end
 
   def create
@@ -47,9 +46,11 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @blog = scoped_blogs.find(params[:id])
   end
 
   def update
+    @blog = scoped_blogs.find(params[:id])
     respond_to do |format|
       if @blog.update_attributes(params[:blog])
         format.html {
@@ -66,6 +67,7 @@ class BlogsController < ApplicationController
   # DELETE /blogs/:id
   # DELETE /blogs/:id.xml
   def destroy
+    @blog = scoped_blogs.find(params[:id])
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to(blogs_url, :notice => t(:blog_successfully_destroyed)) }
@@ -75,6 +77,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/:id/delete_cover_picture
   def delete_cover_picture
+    @blog = scoped_blogs.find(params[:id]) 
     @blog.cover_picture.destroy
     @blog.save
   end
@@ -87,11 +90,11 @@ class BlogsController < ApplicationController
   end
   
   # For update and destroy we want to include drafts, so change the default_scope
-  def unscope_drafts_for_authors
-    if current_role?(:author) && session[:draft_mode] && session[:draft_mode] == true
-      Blog.default_scope()
-    else 
-      Blog.reset_default_scope
+  def scoped_blogs
+    if current_role?(:author) && draft_mode
+      Blog
+    else
+      Blog.published
     end
   end
 

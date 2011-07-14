@@ -1,6 +1,6 @@
 <% if @page.page_template.nil? %>
   <%= render :partial => 'page', :locals => {:page => @page } %>
 <% else %>
-  <% title @page.t(I18n.locale, :title), false %>
+  <% title @page.title_and_flags, false %>
   <%= raw @page.render_body(self) %>
 <% end %>

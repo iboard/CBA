@@ -100,5 +100,17 @@ class ApplicationController < ActionController::Base
     return false unless current_user
     User::ROLES.index(role.to_sym) <= current_user.roles_mask
   end
+  
+  def draft_mode
+    return session[:draft_mode] && session[:draft_mode] == true
+  end
+  
+  def change_draft_mode(mode)
+    if current_role?(:author)
+      session[:draft_mode] = (mode && mode == "1")
+    else
+      session[:draft_mode] = false
+    end
+  end
 
 end

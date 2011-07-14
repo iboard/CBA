@@ -46,18 +46,28 @@ module ContentItem
         
         # ContentItems marked as 'draft' should not be in the default-scope
         field :is_draft, :type => Boolean, :default => true
-        default_scope lambda { where(is_draft: false) }
         scope :drafts, lambda { unscoped.where(is_draft: true ) }
         
-        # Reset to default scope if draft-mode was swapped
-        def self.reset_default_scope
-          default_scope lambda { where(is_draft: false) }
+        if self.respond_to?(:is_template)
+          scope :published, lambda { unscoped.where(is_draft: false, is_template: false ) }
+        else
+          scope :published, lambda { unscoped.where(is_draft: false ) }
         end
-
+        
         # Will return a truncated version of the title if it exceeds the maximum
         # length of titles used in the menu (or wherever you can't display long titles)
         def short_title
           title.truncate(CONSTANTS['title_max_length'].to_i, :omission => '...')
+        end
+        
+        # Display title with markers for templates and drafts
+        def title_and_flags
+          title_html = self.t(I18n.locale,:title)||self.title
+          if self.respond_to?(:is_template)
+            title_html += "&nbsp;<span class='templage_flag'>#{I18n.translate(:is_a_template_flag)}</span>".html_safe if self.is_template
+          end
+          title_html += "&nbsp;<span class='draft_flag'>#{I18n.translate(:is_a_draft_flag)}</span>".html_safe if self.is_draft
+          title_html.html_safe
         end
 
 

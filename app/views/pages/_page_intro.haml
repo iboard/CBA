@@ -2,9 +2,7 @@
   - if page.cover_picture_exists?
     = render :partial => '/pages/cover_picture', :locals => {:page => page, :format => :thumb, :style => 'float:right;margin-left: 10px'}
 
-  %h1= link_to page.title, page
-  - if page.is_draft
-    %p= t(:is_draft_label)
+  %h1= link_to page.title_and_flags, page
 
   = sanitize(page.render_intro).html_safe
 

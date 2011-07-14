@@ -77,7 +77,7 @@ class PageTest < ActiveSupport::TestCase
                                 :body => 'I am hidden',
                                 :is_template => false,
                                 :is_draft => true)
-    assert Page.count == 1, "Drafts should not be counted in default scope"
+    assert Page.published.count == 1, "Drafts should not be counted in default scope"
     assert Page.drafts.first.body == 'I am hidden', "Scope draft should fetch first draft page"
   end
 

@@ -276,6 +276,18 @@ Given /the default user set/ do
   [
     #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
     #see user.rb model
+    
+    #
+    #  ATTENTION cba makes the first user an admin! 
+    #  -> The first user of the following hash must be the admin!
+    {
+      :email => 'admin@iboard.cc',
+      :name  => 'admin',
+      :roles_mask => 5,
+      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
+      :confirmed_at => "2010-01-01 00:00:00"
+    },    
+    # Define NON-ADMINS BELOW
     {
       :email => 'guest@iboard.cc',
       :name  => 'guest',
@@ -317,19 +329,11 @@ Given /the default user set/ do
       :roles_mask => 4,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
-    },
-    {
-      :email => 'admin@iboard.cc',
-      :name  => 'admin',
-      :roles_mask => 5,
-      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-      :confirmed_at => "2010-01-01 00:00:00"
     }
   ].each do |hash|
     Factory('user', hash)
   end
 end
-
 # Make sure not to overwrite your production files!
 # Use Rails.env in your filename eg config/twitter.test.html
 # and config/twitter.#{Rails.env}.html in your production code.

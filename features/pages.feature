@@ -15,8 +15,10 @@ Feature: Pages
       | Page 1 | Lorem ipsum          | true         | false       | false    |
       | Page 2 | Lirum Opsim          | false        | false       | false    |
       | Page T | This is a Template   | false        | true        | false    |
+      | Page D | This is a Draft      | false        | false       | true     |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
 
+ 
   Scenario: Pages with 'show_in_menu' should be on the menu-bar
     Given I am on the pages page
     Then I should see "Page 1" within "#session"
@@ -122,26 +124,35 @@ Feature: Pages
     Given I am on the pages page
     Then I should not see "Page T"
 
-  Scenario: Admins should be able to list template pages
-    Given I am on the edit page template for "Page T"
-    Then I should see "This is a Template"
-
   Scenario: Authors should be able to derive new pages (articles) from pages where is_template is true
     Given I am on the new_article page
     Then I should see "Choose a template"
     And I select "Page T" from "page_template_id" within "form"
     And I click on "Create"
-    And I fill in "page_title" with "This is a filled Page Template"
-    And I fill in "page_body" with "This is a filled page body"
-    And I uncheck "page_is_draft"
+    And I fill in "page_title" with "This is a filled Page Template" within "form"
+    And I fill in "page_body" with "This is a filled page body" within "form"
+    And I uncheck "page_is_draft" within "form"
     And I click on "Create Page"
-    Then I should see "This is a filled Page Template"
-    And I should see "This is a filled page body"
+    Then I should see "This is a filled Page Template" within ".page_body"
+    And I should see "This is a filled page body" within ".page_body"
+
+  Scenario: Admins should be able to list template pages
+    Given I am on the edit page template for "Page T"
+    Then I should see "This is a Template"
 
   Scenario: The page/templates index should provide a link to create a new article for each template
     Given I am on the templates_pages page
     And I click on link "Create new article" within ".page_template"
     Then I should be on the create_new_article_pages page
     And I should see "Page T"
+
+  Scenario: Draft pages should not be displayed if not in draft-mode
+    Given I am logged out
+    And I am on page path of "Page D"
+    Then I should be on the pages page
+    Then I should see "Document not found"
+    And I should not see "Page D"
+    
+    
 
 

@@ -239,3 +239,6 @@ en:
   is_on: 'on'
   is_off: 'off'
   draft_mode_switched_to: 'Draft mode is %{mode}'
+  is_a_template_flag: '(TEMPLATE)'
+  is_a_draft_flag: '(DRAFT)'
+  document_not_found: 'Document not found'

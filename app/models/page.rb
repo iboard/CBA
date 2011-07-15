@@ -25,7 +25,33 @@ class Page
   field :allow_comments,        :type => Boolean, :default => true
   field :allow_public_comments, :type => Boolean, :default => true
   field :is_template,           :type => Boolean, :default => false
-
+  field :template_id,           :type => BSON::ObjectId, :default => nil
+  
+  # If this page is derived from a Page(Template) this method returns the
+  # template-page 
+  def template
+    if self.template_id
+      Page.templates.find(self.template_id)
+    else
+      nil
+    end
+  end
+  
+  # Set the template id
+  # @param [Page] new_template is the page to be used as template for this page
+  def template=(new_template)
+    if new_template
+      self.template_id = new_template.id
+    else
+      self.template_id = nil
+    end
+  end
+  
+  # @return [Boolean] true if this page is derived from another page and the original page still exists!
+  def derived?
+    return self.template != nil
+  end
+  
   default_scope lambda { where( is_template: false) }
   scope :templates, lambda { where(is_template: true ) }
   scope :top_pages, lambda { where(show_in_menu: true).asc(:menu_order) }
@@ -44,10 +70,12 @@ class Page
 
   field :page_template_id, :type => BSON::ObjectId
 
+  # Return the CSS PageTemplate of this page
   def page_template
     PageTemplate.where(:_id => self.page_template_id.to_s).first if self.page_template_id
   end
   
+  # Assign a CSS Template to this Page
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end

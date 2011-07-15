@@ -440,3 +440,4 @@ de:
   is_a_template_flag: '(VORLAGE)'
   is_a_draft_flag: '(ENTWURF)'
   document_not_found: 'Dokument nicht gefunden'
+  derived_from: "Abgeleitet von %{title}"

@@ -110,6 +110,7 @@ class PagesController < ApplicationController
     @template = Page.templates.find(params[:page][:template_id])
     @page = Page.new(@template.attributes)
     @page.is_template = false
+    @page.template_id=@template.id
     @page.page_components = []
     @template.page_components.each do |component|
       @page.page_components.build( component.attributes )

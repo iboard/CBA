@@ -42,23 +42,23 @@ class PageTest < ActiveSupport::TestCase
   end
 
   test "Body should be rendered with textile and markdown" do
-    markdown = Page.new(:title => "Render Body Test with md", 
-                        :body => "Parag *One*\n\nParag Two", 
+    markdown = Page.new(:title => "Render Body Test with md",
+                        :body => "Parag *One*\n\nParag Two",
                         :interpreter => :markdown,
                         :is_draft => false)
-    textile = Page.new(:title => "Render Body Test with txtl", 
-                       :body => "Parag *One*\n\nParag Two", 
-                       :interpreter => :textile, 
+    textile = Page.new(:title => "Render Body Test with txtl",
+                       :body => "Parag *One*\n\nParag Two",
+                       :interpreter => :textile,
                        :is_draft => false)
     assert markdown.render_body =~ /\<em\>One\<\/em\>/, "* should translate to italic with markdown"
     assert textile.render_body =~ /\<strong\>One\<\/strong\>/, "* should translate to strong with textile"
   end
-  
+
   test "Page select should not include templates" do
     Page.delete_all
-    template_page = Page.create(:title => 'This is a template page', 
-                                :body => "I'm a template", 
-                                :is_template => true, 
+    template_page = Page.create(:title => 'This is a template page',
+                                :body => "I'm a template",
+                                :is_template => true,
                                 :is_draft => false)
     standard_page = Page.create(:title => 'This is a standard page', :body => "Standard", :is_draft => false)
     sp = Page.first
@@ -66,12 +66,12 @@ class PageTest < ActiveSupport::TestCase
     assert sp.title == 'This is a standard page', 'First without param is_template should be the standard page'
     assert tp.title == 'This is a template page', 'Using Page.templates.first should be the template page'
   end
-  
+
   test "A page marked as draft should not be in the default scope" do
     Page.delete_all
-    online_page = Page.create(:title => 'This is online', 
-                                :body => "I'm visible", 
-                                :is_template => false, 
+    online_page = Page.create(:title => 'This is online',
+                                :body => "I'm visible",
+                                :is_template => false,
                                 :is_draft => false)
     draft_page = Page.create(:title => 'This is offline',
                                 :body => 'I am hidden',
@@ -80,5 +80,22 @@ class PageTest < ActiveSupport::TestCase
     assert Page.published.count == 1, "Drafts should not be counted in default scope"
     assert Page.drafts.first.body == 'I am hidden', "Scope draft should fetch first draft page"
   end
+
+
+  test "A page should have a referecne to the page_template" do
+    Page.delete_all
+    online_page = Page.create(:title => 'This is a Template',
+                                :body => "A Template Body",
+                                :is_template => true,
+                                :is_draft => false)
+    derived_page = Page.create(:title => 'This is derived from This is a Template',
+                                :body => 'Some Text',
+                                :is_template => false,
+                                :is_draft => false,
+                                :template_id => online_page.to_param)
+    assert derived_page.derived?, "This should be a derived page"
+    assert derived_page.template == online_page
+  end
+
 
 end

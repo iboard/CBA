@@ -8,6 +8,8 @@
 
 %h2= t(:step_two_fill_the_page)
 
+%pre= @page.inspect
+
 = render :partial => 'form', :locals => { :page => @page }
 
 

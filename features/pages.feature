@@ -135,6 +135,19 @@ Feature: Pages
     And I click on "Create Page"
     Then I should see "This is a filled Page Template" within ".page_body"
     And I should see "This is a filled page body" within ".page_body"
+    
+  Scenario: A derived page should save it's template
+    Given I am on the new_article page
+    Then I should see "Choose a template"
+    And I select "Page T" from "page_template_id" within "form"
+    And I click on "Create"
+    And I fill in "page_title" with "Derived Page" within "form"
+    And I fill in "page_body" with "This is derived from Page T" within "form"
+    And I uncheck "page_is_draft" within "form"
+    And I click on "Create Page"
+    And I should be on page path of "Derived Page"
+    And I click on link "Derived from Page T" within "#container"
+    Then I should be on page path of "Page T"
 
   Scenario: Admins should be able to list template pages
     Given I am on the edit page template for "Page T"
@@ -152,7 +165,6 @@ Feature: Pages
     Then I should be on the pages page
     Then I should see "Document not found"
     And I should not see "Page D"
-    
-    
+        
 
 

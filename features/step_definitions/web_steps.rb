@@ -276,9 +276,9 @@ Given /the default user set/ do
   [
     #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
     #see user.rb model
-    
+
     #
-    #  ATTENTION cba makes the first user an admin! 
+    #  ATTENTION cba makes the first user an admin!
     #  -> The first user of the following hash must be the admin!
     {
       :email => 'admin@iboard.cc',
@@ -286,7 +286,7 @@ Given /the default user set/ do
       :roles_mask => 5,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
-    },    
+    },
     # Define NON-ADMINS BELOW
     {
       :email => 'guest@iboard.cc',
@@ -449,7 +449,7 @@ Given /^the following comment records for page "([^"]*)"$/ do |commentable, tabl
 end
 
 Given /^the following posting records for blog "([^"]*)" and user "([^"]*)"$/ do |blog, username, table|
-  blog = Blog.where(:title => blog).first
+  blog = Blog.unscoped.where(:title => blog).first
   user = User.where(:name => username).first
   blog.postings.delete_all
   table.hashes.each do |hash|

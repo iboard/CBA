@@ -32,7 +32,7 @@ Feature: Postings
     And I should see "My First Posting"
     And I should see "admin, less than a minute ago"
 
-  Scenario: "On the Blog page I want delete a posting"
+  Scenario: On the Blog page I want delete a posting
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
@@ -43,7 +43,7 @@ Feature: Postings
     Then I should see "Posting successfully destroyed"
     And I should not see "My First Posting"
 
-  Scenario: "On the Blog page I want edit a posting"
+  Scenario: On the Blog page I want edit a posting
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
@@ -57,7 +57,7 @@ Feature: Postings
     Then I should see "Posting successfully updated"
     And I should see "Music is the best"
 
-  Scenario: "It should not be possible to use the same title twice"
+  Scenario: It should not be possible to use the same title twice
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
@@ -70,7 +70,7 @@ Feature: Postings
     And I click on "Create Posting"
     Then I should see "already taken"
 
-  Scenario: "There should be a link to edit, delete, and back to the blog when I read a posting"
+  Scenario: There should be a link to edit, delete, and back to the blog when I read a posting
     Given I am on the blog path of "Blog 1"
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
@@ -86,7 +86,7 @@ Feature: Postings
     And I should see "Edit" within "#posting"
     And I should see "Delete" within "#posting"
 
-  Scenario: "A Posting should be commentable"
+  Scenario: A Posting should be commentable
     Given the following posting records for blog "Blog 1" and user "admin"
       | title       | body        | is_draft |
       | Posting one | lorem ipsum | false    |
@@ -108,7 +108,7 @@ Feature: Postings
     And I am on the posting page of "Direct Post"
     Then I should see "The posting should load the blog it belongs to"
     And I should see "in Blog 1"
-  
+
   Scenario: Postings should be provided as atom-feed
     Given the following posting records for blog "Blog 1" and user "admin"
       | title      | body                                           | is_draft |
@@ -116,4 +116,3 @@ Feature: Postings
     And I am on the feed page
     Then I should see "Direct Post"
     And I should see "The posting should load the blog it belongs to"
-    

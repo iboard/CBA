@@ -88,3 +88,18 @@ Feature: Blogs
     And I click on link "Show drafts" within "#action_buttons"
     Then I should see "A Blog Draft"
     And I should see "THIS IS A DRAFT"
+
+  Scenario: A blog should not list draft-postings unless draft-mode is on
+    Given the following posting records for blog "Blog 1" and user "admin"
+      | title         | body            | is_draft |
+      | Posting one   | lorem ipsum     | false    |
+      | Posting Draft | A Posting Draft | true     |
+    And draft mode is off
+    And I am reading blog of "Blog 1"
+    Then I should not see "Posting Draft"
+    Then I click on link "Show drafts" within "#action_buttons"
+    Then I should see "Posting Draft"
+
+
+
+

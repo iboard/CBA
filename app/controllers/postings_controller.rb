@@ -51,6 +51,7 @@ class PostingsController < ApplicationController
     unless params[:blog_id]
       @posting = Posting.find(params[:id])
       @blog    = @posting.blog
+      params[:blog_id] = @blog.to_param
     end
   end
   

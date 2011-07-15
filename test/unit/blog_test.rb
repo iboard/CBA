@@ -36,5 +36,16 @@ class BlogTest < ActiveSupport::TestCase
     assert b1.pages.first == p1, 'Blog should be assigned to page'
   end
 
+  test "posting.scoped_postings should filter blog's posting" do
+    user = create_valid_user_with_id
+    blog = Blog.create(title: "A Blog with draft postings", is_draft: false)
+    p1 = blog.postings.create(title: "A published posting", is_draft: false, body: "Lorem upsim postumix",user_id: user.id);
+    p2 = blog.postings.create(title: "A draft posting", is_draft: true, body: "Lorem upsim postumix",user_id: user.id);
+    assert blog.save, "Blog should save with two postings"
+    assert blog.postings.count == 2, "Blog should have 2 postings"
+    assert blog.scoped_postings({is_draft: false}).count == 1, "Draft posting should not be counted"
+    assert blog.scoped_postings({is_draft: true}).count == 1, "Draft should be found with is_draft: true"
+  end
+
 
 end

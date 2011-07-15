@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   # Load what every controller may expect to be there
   helper_method :top_pages
   helper_method :root_menu
+  helper_method :draft_mode
 
   # Setup content for buttons on top of page
   helper_method :pivotal_tracker_project
@@ -102,7 +103,8 @@ class ApplicationController < ActionController::Base
   end
   
   def draft_mode
-    return session[:draft_mode] && session[:draft_mode] == true
+    return true if session[:draft_mode] && session[:draft_mode] == true
+    false
   end
   
   def change_draft_mode(mode)

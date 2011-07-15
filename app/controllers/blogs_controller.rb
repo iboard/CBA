@@ -19,8 +19,7 @@ class BlogsController < ApplicationController
   # Show all postings for this blog
   def show
     @blog = scoped_blogs.find(params[:id])
-    @blog.postings.unscoped if draft_mode
-    @postings = @blog.postings.desc(:created_at)\
+    @postings = @blog.scoped_postings({:is_draft => draft_mode}).desc(:created_at)\
       .paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
       format.js {
@@ -77,7 +76,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/:id/delete_cover_picture
   def delete_cover_picture
-    @blog = scoped_blogs.find(params[:id]) 
+    @blog = scoped_blogs.find(params[:id])
     @blog.cover_picture.destroy
     @blog.save
   end
@@ -88,7 +87,7 @@ class BlogsController < ApplicationController
   def ensure_page_tokens
     params[:blog][:page_tokens] ||= []
   end
-  
+
   # For update and destroy we want to include drafts, so change the default_scope
   def scoped_blogs
     if current_role?(:author) && draft_mode

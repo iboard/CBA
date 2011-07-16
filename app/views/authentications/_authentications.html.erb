@@ -12,18 +12,21 @@
   </a>
 <% end %>
 
+<% if defined?(OMNIAUTH_GOOGLE) %>
+  <%= link_to(                 
+        image_tag( "google_sixtyfour.png", :size => "64x64", :alt => "Google")+"Google",
+        "/auth/google_apps",
+        :class => "auth_provider"
+        ) -%>
+<% end %>
+
+
 <% if defined?(OMNIAUTH_FACEBOOK_KEY) %>
   <a href="/auth/facebook" class="auth_provider">
     <%= image_tag "facebook_sixtyfour.png", :size => "64x64", :alt => "Facebook" %>
     Facebook
   </a>
 <% end %>
-  <!--
-  <a href="/auth/google_apps" class="auth_provider">
-    <%= image_tag "google_sixtyfour.png", :size => "64x64", :alt => "Google" %>
-    Google
-  </a>
-  -->
 
 <% if defined?(OMNIAUTH_LINKED_IN_KEY) %>
   <a href="/auth/linked_in" class="auth_provider">

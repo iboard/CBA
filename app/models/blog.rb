@@ -52,7 +52,7 @@ class Blog
   # @return [Criteria] Criteria on self.pages.where( _options_ )
   def scoped_pages(options=nil)
     return self.pages unless options
-    self.pages.unscoped.where( options )
+    self.pages.where( options )
   end
   
 

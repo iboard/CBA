@@ -3,8 +3,14 @@
 require 'openid/store/filesystem'
 require File.join(Rails.root,'config/omniauth_settings')
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :open_id, OpenID::Store::Filesystem.new(Rails.root+'/tmp/openid.store')
-
+  if defined? OMNIAUTH_GOOGLE
+    #provider :google_apps, OpenID::Store::Filesystem.new('/tmp/openid.store')
+    provider :google_apps, OpenID::Store::Filesystem.new('/tmp/openid.store'), :domain => 'gmail.com'
+  end
+  
+  if defined? OMNIAUTH_OPENID
+    provider :open_id, OpenID::Store::Filesystem.new(Rails.root+'/tmp/openid.store')
+  end
   provider( :twitter, OMNIAUTH_TWITTER_KEY, OMNIAUTH_TWITTER_SECRET   ) if defined?(OMNIAUTH_TWITTER_KEY)
   provider( :facebook, OMNIAUTH_FACEBOOK_KEY, OMNIAUTH_FACEBOOK_SECRET) if defined?(OMNIAUTH_FACEBOOK_KEY)
   provider( :linked_in, OMNIAUTH_LINKED_IN_KEY, OMNIAUTH_LINKED_IN_SECRET) if defined?(OMNIAUTH_LINKED_IN_KEY)

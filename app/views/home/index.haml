@@ -2,7 +2,7 @@
 = javascript 'endless_page'
 
 %div
-    - if (p=Page.top_pages).any?
+    - if (p=Page.top_pages.where(is_draft: draft_mode)).any?
         %div.right_column
             - for page in p
                 = render :partial => 'pages/page_intro', :locals => { :page => page }

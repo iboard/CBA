@@ -18,7 +18,7 @@
               :at => distance_of_time_in_words_to_now(posting.created_at)).html_safe %>
   </address>
   <%= sanitize(posting.render_intro) %>
-
+  <p><g:plusone size="small"></g:plusone></p>
   <% if posting.blog.allow_public_comments || (posting.blog.allow_comments && user_signed_in?) %>
     <p class='posting_comment_links'>
       { <span class='comments_counter'>

@@ -16,6 +16,7 @@
     <%= yield :head %>
     <%= auto_discovery_link_tag(:atom, "/feed") %>
     <%= insert_google_analytics_script if  (Rails.env == 'production') %>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
     <%= csrf_meta_tag %>
   </head>
   <body>

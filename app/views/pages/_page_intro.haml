@@ -5,7 +5,7 @@
   %h1= link_to page.title_and_flags, page
 
   = sanitize(page.render_intro).html_safe
-
+  %p= '<g:plusone size="small"></g:plusone>'.html_safe
   %p
     %span.item_link_buttons
       = link_to t(:read), "/p/#{page.link_to_title}"

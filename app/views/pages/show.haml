@@ -3,7 +3,6 @@
 - else
   - title @page.title_and_flags, false
   = raw @page.render_body(self) 
-  = raw "<g:plusone size=\"small\"></g:plusone>"
 
 
 - if @page.derived? && current_role?(:admin)

@@ -94,10 +94,11 @@ class Page
                            ].join("\n")
                          )
       end
-      render_for_html( parts.join("\n") )
+      rc=render_for_html( parts.join("\n") )
     else
-      render_with_template
+      rc=render_with_template
     end
+    rc + "<p><g:plusone size=\"small\"></g:plusone></p>".html_safe
   end
 
   # Same as short_title but will append a $-sign instead of '...'
@@ -110,7 +111,7 @@ class Page
   private
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro
-    render_for_html((t(I18n.locale,:body)||self.body).paragraphs[0])+ "<p><g:plusone size=\"small\"></g:plusone></p>".html_safe
+    render_for_html((t(I18n.locale,:body)||self.body).paragraphs[0]) + "<p><g:plusone size=\"small\"></g:plusone></p>".html_safe
   end
 
   # TODO: Remove duplication!

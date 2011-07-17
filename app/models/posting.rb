@@ -42,7 +42,7 @@ class Posting
 
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro
-    render_for_html(body.paragraphs[0])+ "<p><g:plusone size=\"small\"></g:plusone></p>".html_safe
+    render_for_html(body.paragraphs[0])
   end
 
   # Send a notification to admins when a new posting was created

@@ -12,5 +12,5 @@
 - addr_class = posting.created_at > current_user_field(:last_sign_in_at,Time::now()-1.hour) ? "new_posting" : "old_posting"
 %address{:class=> addr_class}
   = t(:user_wrote_a_comment_at, :user => posting.user.name, :at => distance_of_time_in_words_to_now(posting.created_at)   ).html_safe
-<g:plusone size="small"></g:plusone>
+= raw "<g:plusone size=\"small\"></g:plusone>"
 = posting.render_for_html(posting.render_intro).html_safe

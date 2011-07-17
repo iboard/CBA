@@ -18,7 +18,7 @@ module ContentItem
     doc.search("//pre[@lang]").each do |pre|
       pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
     end
-    doc.xpath('//body').to_s.html_safe
+    doc.xpath('//body').to_s.gsub(/<\/?body>/,"").html_safe
   end  
   # == ContentItem
   # Can be a 'Page', a 'Posting' or something else you want to be

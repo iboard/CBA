@@ -92,10 +92,26 @@
             %p= link_to_add_fields(t(:new_page_component).html_safe, f, :page_components)
 
     .field
+        %h3= t(:components)
+        
+    .fieldgroup
+
+        .field
+            = f.label :allow_removing_components
+            = f.check_box :allow_removing_components
+            
+        .field
+            = f.label :allow_sorting_components
+            = f.check_box :allow_sorting_components
+        
+    .field
         = f.label :is_draft, t(:save_as_draft)
         = f.check_box :is_draft
-        = t(:will_be_shown_to_authors_only)    
+        = t(:will_be_shown_to_authors_only)
     
+    .field
+        %h3= t(:saving)
+
     %div.actions
         = f.label :submit, t(:save_changes)
         = f.submit

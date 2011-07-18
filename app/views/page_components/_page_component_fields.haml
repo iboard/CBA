@@ -4,7 +4,8 @@
             %span{style: 'padding-left: 0;'}
             = raw(field)
             %br/
-        %span{ :style => "float: right;" }= link_to_remove_fields( t(:destroy_component), f )
+        - if f.object.new_record? || (f.object.page && (f.object.page.allow_removing_component||f.object.page.is_template)) 
+            %span{ :style => "float: right;" }= link_to_remove_fields( t(:destroy_component), f )
     .field
         - translations_for_field( f, :body, :text_area, :rows => 5, :cols => 80 ) do |locale, field|
             %span{style: 'padding-left: 0;'}

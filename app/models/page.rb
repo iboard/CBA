@@ -27,6 +27,10 @@ class Page
   field :is_template,           :type => Boolean, :default => false
   field :template_id,           :type => BSON::ObjectId, :default => nil
   
+  # Flags
+  field :allow_removing_components, :type => Boolean, :default => true
+  field :allow_sorting_components,    :type => Boolean, :default => true
+  
   # If this page is derived from a Page(Template) this method returns the
   # template-page 
   def template

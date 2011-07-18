@@ -46,5 +46,18 @@ class PageComponentTest < ActiveSupport::TestCase
     assert page.page_components.first.t(:de, :title).eql?( "Testkomponente"), "Title of component isn't translated"
     assert page.page_components.first.t(:de, :body).eql?( "Testkoerper"), "Body of component isn't translated"
   end
+  
+  test "Page should not allow to remove components when allow_remove_components is false" do
+    page = Page.first || Factory.create(:page, :title => 'Testpage', :body => 'Main Body of page')
+    c = page.page_components.create( title: 'Testcomponent', body: 'Testbody')
+    c.save!
+    page.allow_removing_components = false
+    page.save!
+    assert !page.page_components.first.delete, "Page should not allow removing a component."
+    page.allow_removing_components = true
+    page.save!
+    assert page.page_components.first.delete, "Page should allow removing a component."
+    assert page.page_components.count == 0, "Page should have no components after removing the only one."
+  end
 
 end

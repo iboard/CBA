@@ -10,6 +10,14 @@
 @import "googlesearch.css.scss";
 @import "highlighting.css.scss";
 
+@mixin standard_box {
+	margin: 5px;
+  border: 1px solid #ddd;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  padding: 5px;	
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-text;
   color: $color-header;
@@ -754,15 +762,16 @@ li.load_more {
   font-size: 0.8em;
   margin-top: 5px;
   padding: 0px;
-}
-#user_notifications ul {
-  list-style: none;
-  margin-left: 0px;
-  padding-left: 0px;
-}
-#user_notifications ul li {
-  margin-top: 10px;
-  margin-left: 5px;
+
+  ul {
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    li {
+      margin-top: 10px;
+      margin-left: 5px;
+    }
+  }
 }
 
 /* TEMPLATES DEFINED IN DATACOLLECTION PageTemplate */
@@ -773,104 +782,65 @@ li.load_more {
 .component_default {
 }
 
-.component_float_left_200 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
+.component_float_left_100 {
+	@include standard_box;
   float: left;
-  width: 200px;
-  padding: 5px;
+  width: 100px;
 }
 
-.component_float_right_200 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  float: right;
+.component_float_left_200 {
+  @include standard_box;
+  float: left;
   width: 200px;
-  padding: 5px;
 }
 
 .component_float_left_300 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
+	@include standard_box;
   float: left;
   width: 300px;
-  padding: 5px;
 }
 
 .component_float_left_400 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
+	@include standard_box;
   float: left;
   width: 400px;
-  padding: 5px;
-}
-
-.component_float_left_100 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  float: left;
-  width: 100px;
-  padding: 5px;
-}
-
-.component_float_right_100 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  float: right;
-  width: 100px;
-  padding: 5px;
-}
-
-.component_float_right_300 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  float: right;
-  width: 300px;
-  padding: 5px;
-}
-
-.component_float_right_400 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  float: right;
-  width: 400px;
-  padding: 5px;
 }
 
 .component_float_left_500 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
+	@include standard_box;
   float: left;
   width: 500px;
-  padding: 5px;
+}
+
+
+.component_float_right_100 {
+	@include standard_box;
+  float: right;
+  width: 100px;
+}
+
+.component_float_right_200 {
+	@include standard_box;
+  float: right;
+  width: 200px;
+}
+
+.component_float_right_300 {
+	@include standard_box;
+  float: right;
+  width: 300px;
+}
+
+.component_float_right_400 {
+	@include standard_box;
+  float: right;
+  width: 400px;
 }
 
 .component_float_right_500 {
-  margin: 5px;
-  border: 1px solid #ddd;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
+	@include standard_box;
   float: right;
   width: 500px;
-  padding: 5px;
 }
 
 .clear_left {
@@ -923,4 +893,3 @@ li.load_more {
   width: 64px;
   height: 64px;
 }
-

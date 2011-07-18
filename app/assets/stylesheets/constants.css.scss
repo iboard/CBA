@@ -34,38 +34,27 @@ $button-gradient-stop-selected: lighten($button-gradient-stop, 50%);
 /* Document */
 $body-width: 900px;
 
-
-@mixin page-background {
-  background: lighten($background-page,80%);
-  background: lighten($background-page,80%) -webkit-gradient(
+@mixin standard_background($color, $percent1, $percent2) {
+  background: lighten($color, $percent1);
+  background: lighten($color, $percent1) -webkit-gradient(
       linear,
       left top,
       left bottom,
-      color-stop(0.95, lighten($background-page,80%)),
-      color-stop(0.0, lighten($background-page,25%))
-  ) repeat-x;
+      color-stop(0.95, lighten($color, $percent1)),
+      color-stop(0.0, lighten($color, $percent2))
+  ) repeat-x;	
+}
+
+@mixin page-background {
+  @include standard_background($background-page, 80%, 25%);
 }
 
 @mixin container-background {
-  background: lighten($background-page,80%);
-  background: lighten($background-page,80%) -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95, lighten($background-page,80%)),
-      color-stop(0.0, lighten($background-page,25%))
-  ) repeat-x; 
+  @include standard_background($background-page, 80%, 25%);
 }
 
 @mixin sidebar-background {
-  background: lighten($background-page,80%);
-  background: lighten($background-page,80%) -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95, lighten($background-page,80%)),
-      color-stop(0.0, lighten($background-page,55%))
-  ) repeat-x; 
+  @include standard_background($background-page, 80%, 55%);
 }
 
 @mixin container-shadow {
@@ -105,15 +94,7 @@ $body-width: 900px;
 }
 
 @mixin container-right-box {
-  background: lighten($background-page,90%);
-  background: lighten($background-page,90%) -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.95, lighten($background-page,90%)),
-      color-stop(0.0, lighten($background-page,75%))
-  ) repeat-x; 
-  
+  @include standard_background($background-page, 90%, 75%);
 }
 
 
@@ -129,7 +110,12 @@ $body-width: 900px;
   @include default-font-settings;
 }
 
+html {
+	height: 100%;
+}
+
 body {
+	height: 100%;
   margin: 0px;
   padding: 0px;
   min-width: $body-width;

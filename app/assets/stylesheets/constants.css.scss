@@ -97,6 +97,21 @@ $body-width: 900px;
   @include standard_background($background-page, 90%, 75%);
 }
 
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.clear_left {
+  clear: left;
+}
+.clear_right {
+  clear: right;
+}
+.clear_both {
+  clear: both;
+}
 
 /*
  *  BODY & DOCUMENT

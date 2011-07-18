@@ -97,13 +97,9 @@
     .fieldgroup
 
         .field
-            = f.label :allow_removing_components
-            = f.check_box :allow_removing_components
-            
-        .field
-            = f.label :allow_sorting_components
-            = f.check_box :allow_sorting_components
-        
+            = f.label :allow_removing_component
+            = f.check_box :allow_removing_component
+                    
     .field
         = f.label :is_draft, t(:save_as_draft)
         = f.check_box :is_draft

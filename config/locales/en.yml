@@ -191,7 +191,7 @@ en:
   manage_templates: 'Templates'
   commit: 'Commit'
   submit: 'Submit'
-  html_template_label: "HTML-Template<br/><small>Keywords: TITLE, BODY, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]</small>"
+  html_template_label: "HTML-Template<br/><small>Keywords: TITLE, BODY, PLUSONE, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]</small>"
   name_for_page_template: "Name<br/><small>use prefix 'Component:' for page components</small>"
   page_component: "Component"
   page_template_successfully_updated: Template successfully updated

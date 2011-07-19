@@ -89,9 +89,9 @@ class Page
   def render_body(view_context=nil)
     @view_context = view_context unless view_context.nil?
     unless (@view_context && self.page_template)
-      parts = [self.title_and_flags, self.t(I18n.locale,:body)]
+      parts = [self.title_and_flags, self.t(I18n.locale,:body),"\nPLUSONE"]
       self.page_components.each do |component|
-        parts << render_for_html( [ (component.t(I18n.locale,:title)||''),
+        parts << ( [ (component.t(I18n.locale,:title)||''),
                              ("-"*component.t(I18n.locale,:title).length),
                              "\n"+(component.t(I18n.locale,:body) || '')
                            ].join("\n")
@@ -101,7 +101,7 @@ class Page
     else
       rc=render_with_template
     end
-    rc + "<p><g:plusone size=\"small\"></g:plusone></p>".html_safe
+    rc
   end
 
   # Same as short_title but will append a $-sign instead of '...'
@@ -128,6 +128,7 @@ class Page
               .gsub(/COVERPICTURE/, render_cover_picture)\
               .gsub(/COMMENTS/, render_comments)\
               .gsub(/BUTTONS/, render_buttons)\
+              .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
               .gsub(/ATTACHMENTS/, render_attachments)\
               .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
                 attachment_number.gsub! /\D/,''

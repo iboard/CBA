@@ -101,7 +101,7 @@ module ContentItem
           }.gsub( /COMPONENT[\d+]/ ) { |component|
             component_i = component.gsub( /\D/,'' ).to_i
             render_page_component(component_i)
-          }
+          }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
         end
 
         private

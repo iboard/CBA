@@ -388,7 +388,7 @@ de:
   manage_templates: 'Layouts'
   commit: 'Speichern'
   submit: 'Senden'
-  html_template_label: "HTML-Template<br/>Keywords: TITLE, BODY, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]"
+  html_template_label: "HTML-Template<br/>Keywords: TITLE, BODY, PLUSONE, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]"
   name_for_page_template: "Name<br/><small>Prefix 'Component:' für Seitenkomponenten</small>"
   page_component: "Komponente"
   page_template_successfully_updated: Layout erfolgreich gespeichert

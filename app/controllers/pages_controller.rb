@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   respond_to :html, :xml, :js
 
   before_filter :set_default_flags, :only => [:create, :update]
-  before_filter :set_template_scope
+  before_filter :set_template_scope, :except => [:sort_components]
   
   # seems to use unscoped find ?!
   #   load_and_authorize_resource :except => [:permalinked,:new_article,:create_new_article]
@@ -112,6 +112,7 @@ class PagesController < ApplicationController
     @page.is_template = false
     @page.template_id=@template.id
     @page.page_components = []
+    @component_placeholders = {}
     @template.page_components.each do |component|
       @page.page_components.build( component.attributes )
     end
@@ -170,6 +171,25 @@ class PagesController < ApplicationController
     @pages = Page.templates
   end
 
+  # GET /pages/sort_components
+  # POST /pages/sort_components
+  def sort_components
+    @page = Page.find(params[:id])
+    unless params[:component]
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      params[:component].each_with_index do |component,idx|
+        c = @page.page_components.find(component)
+        c.position = (idx+1)*10
+      end
+      @page.save
+      render :nothing => true
+    end
+  end
+
   private
   def set_template_scope
     if params[:id] && current_role?(:admin)
@@ -193,4 +213,5 @@ class PagesController < ApplicationController
     params[:is_draft]    ||= "0"
     params[:is_template] ||= "0"
   end  
+  
 end

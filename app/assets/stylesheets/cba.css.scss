@@ -1,5 +1,5 @@
 /* -*- encoding : utf-8 -*- */
-/**** Version Juli 9, 2011 */
+/**** Version Juli 19, 2011 */
 
 
 @import "constants.css.scss";
@@ -11,6 +11,7 @@
 @import "highlighting.css.scss";
 @import "templates.css.scss";
 @import "overlay.css.scss";
+@import "page_component.css.scss";
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-text;

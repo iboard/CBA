@@ -14,6 +14,7 @@ $line-height-default: 1.2em;
 $color-base: #ddd;
 $color-text: darken($color-base,80%);
 $color-paper: lighten($color-base,25%);
+$box-background: lighten($color-base,25%);
 $color-header: $color-base;
 $color-shadow: darken($color-base,50%);
 $color-border: $color-shadow;
@@ -116,6 +117,14 @@ $body-width: 900px;
 /*
  *  BODY & DOCUMENT
 */
+
+@mixin default-box {
+  padding: 10px;
+  border: 1px solid $color-base;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: $color-base;
+}
 @mixin default-font-settings {
   font-family: $font-text;
   font-size: $font-size-default;

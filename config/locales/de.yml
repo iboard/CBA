@@ -441,3 +441,6 @@ de:
   is_a_draft_flag: '(ENTWURF)'
   document_not_found: 'Dokument nicht gefunden'
   derived_from: "Abgeleitet von %{title}"
+  use_content_as_placeholder_info: 'Inhalte dieser Vorlage werden als Platzhater in neuen Artikeln benutzt.'
+  done: 'Fertig'
+  did_you_save_changes: 'Wollen Sie diese Seite wirklich verlassen? Sind alle Änderungen gespeichert?'

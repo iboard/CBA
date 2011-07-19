@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('#component_sort_box').hide();
   $('#site-menus-list').sortable(
     {
       connectWith: '.list',

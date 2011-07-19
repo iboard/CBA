@@ -21,7 +21,7 @@ class PageComponent
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end
-  
+    
   # TODO: Remove duplication!
   # TODO:   This code occurs in Page and PageComponent. Move it to a single
   # TODO:   place.

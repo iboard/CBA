@@ -39,6 +39,8 @@ Cba::Application.routes.draw do
   resources :pages do
     member do
       get :delete_cover_picture
+      get :sort_components
+      post :sort_components
     end
     collection do
       get  :new_article

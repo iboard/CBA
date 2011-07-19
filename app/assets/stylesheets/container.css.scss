@@ -19,6 +19,19 @@
   box-shadow: 3px 3px 3px $color-shadow;
   border-radius: 3px 3px 3px 3px;
   
+  #flashes {
+    #flash_notice {
+      @include flash-box;
+      background: #CFC;
+    }
+    
+    #flash_error, 
+    #flash_alert {
+      @include flash-box;
+      background: #FCC;
+    }
+  }
+  
   /* id container_main beginning */
   #container_main {
     
@@ -57,18 +70,6 @@
       float: left;
     }
     
-    #flashes {
-      #flash_notice {
-        @include flash-box;
-        background: #CFC;
-      }
-      
-      #flash_error, 
-      #flash_alert {
-        @include flash-box;
-        background: #FCC;
-      }
-    }
   }
   /* end of id container_main */
 

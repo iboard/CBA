@@ -15,7 +15,7 @@ $color-base: #808080;
 $color-text: darken($color-base,80%);
 $color-paper: lighten($color-base,25%);
 $box-background: lighten($color-base,25%);
-$color-header: darken($color-base,25%);
+$color-header: darken($color-text,25%);
 $color-shadow: darken($color-base,50%);
 $color-border: $color-shadow;
 $color-link: lighten($color-text,10%);

@@ -112,7 +112,6 @@ class PagesController < ApplicationController
     @page.is_template = false
     @page.template_id=@template.id
     @page.page_components = []
-    @component_placeholders = {}
     @template.page_components.each do |component|
       @page.page_components.build( component.attributes )
     end

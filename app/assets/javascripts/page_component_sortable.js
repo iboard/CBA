@@ -23,5 +23,5 @@ $(document).ready(function(){
       }
     }
   );
-  $('#component_sort_box').show();
+  $('#component_sort_box').hide();
 });

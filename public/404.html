@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
-    <title>Ooops - 404 - Not found</title>
+    <title>OOPS - 404</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="stylesheet" href="/assets/application.css">
   </head>
   <body>
-    <div id='overlay' class="ui-widget-content"></div>
     <div id="banner">
-      <h1>Ooops - 404 - The file your're looking for doesn't exist</h1>
+      <%= render :partial => '/layouts/banner' %>
     </div>
 
+    <div id="session">
+        <ul>
+          <li><a href='/'>Home</a></li>
+        </ul>
+    </div>
+
+    <div class='clear'></div>
     <div id="container">
-      <div style="margin: 0px;">
-         <div id="cse" style="display: hidden; background: #fee;"></div>
-         <div style='text-align: center; margin: 40px; background: #FCD284;
+      <div id='container_main'>
+        <div style='text-align: center; margin: 40px; background: #FCD284;
                      border: 1px solid #ddd; padding: 30px;
                      -moz-border-radius: 5px 5px 5px 5px; 
                      -webkit-border-radius: 5px 5px 5px 5px; 
@@ -28,11 +33,15 @@
         <br/>           <br/>           <br/>
       </div>
 
-      <div id='clear'></div>
+      <div class='clear'></div>
+
     </div>
+
     <div id='copyright'>
         © 2011 by Andreas Altendorfer
     </div>
+    
+    <div class='clear'></div>
+
   </body>
 </html>
-

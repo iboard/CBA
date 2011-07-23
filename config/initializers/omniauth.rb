@@ -11,7 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   if defined? OMNIAUTH_OPENID
     provider :open_id, OpenID::Store::Filesystem.new(Rails.root+'/tmp/openid.store')
   end
-  provider( :twitter, OMNIAUTH_TWITTER_KEY, OMNIAUTH_TWITTER_SECRET   ) if defined?(OMNIAUTH_TWITTER_KEY)
+  provider( :twitter, OMNIAUTH_TWITTER_KEY, OMNIAUTH_TWITTER_SECRET, {:client_options => {:ssl => {:ca_path => OMNIAUTH_CAPATH}}} ) if defined?(OMNIAUTH_TWITTER_KEY)
   provider( :facebook, OMNIAUTH_FACEBOOK_KEY, OMNIAUTH_FACEBOOK_SECRET) if defined?(OMNIAUTH_FACEBOOK_KEY)
   provider( :linked_in, OMNIAUTH_LINKED_IN_KEY, OMNIAUTH_LINKED_IN_SECRET) if defined?(OMNIAUTH_LINKED_IN_KEY)
   provider( :thirty_seven_signals, OMNIAUTH_BASECAMP_ID, OMNIAUTH_BASECAMP_SECRET) if defined?(OMNIAUTH_BASECAMP_ID)

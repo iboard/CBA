@@ -23,14 +23,23 @@ $color-link: lighten($color-text,10%);
 $background-page: $color-text;
 $background-container: lighten($color-paper,90%);
 $background-banner: lighten($background-page,25%);
+$alert-background: #7D1108;
+$alert-text: white;
+$notice-background: #D0E352;
+$notice-text: black;
+
 
 $standard-button-background: $color-text;
 $color-button-text: lighten($color-base,50%);
 $button-gradient-start: $color-base;
 $button-gradient-stop:  lighten($color-base, 40%);
+$button-gradient-start-hover: lighten($color-base, 40%);
+$button-gradient-stop-hover:  lighten($color-base, 60%);
 $button-gradient-start-selected: lighten($button-gradient-start, 100%);
 $button-gradient-stop-selected: lighten($button-gradient-stop, 50%);
 
+/* Buttons */
+$radius-small: 3px;
 
 /* Document */
 $body-width: 900px;
@@ -46,6 +55,12 @@ $body-width: 900px;
   ) repeat-x;	
 }
 
+@mixin button-shape($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
 @mixin page-background {
   @include standard_background($background-page, 80%, 25%);
 }
@@ -55,7 +70,9 @@ $body-width: 900px;
 }
 
 @mixin sidebar-background {
-  @include standard_background($background-page, 80%, 55%);
+  /* @include standard_background($background-page, 80%, 55%); */
+  background: none;
+  opacity: 0.9;
 }
 
 @mixin container-shadow {
@@ -69,9 +86,22 @@ $body-width: 900px;
       left top,
       left bottom,
       color-stop(0.95, $button_gradient_start  ),
-      color-stop(0.0, $button_gradient_stop    )
+      color-stop(0.0, $button-gradient-stop    )
   ) repeat-x;
-  background: $button_gradient_stop -moz-linear-gradient(0% 100% 90deg, $button_gradient_start, $button_gradient_stop);
+  background: $button-gradient-stop -moz-linear-gradient(0% 100% 90deg, $button_gradient_start, $button-gradient-stop);
+}
+
+@mixin gradient-button-hover {
+  background: $button-gradient-start-hover;
+  background: $button-gradient-start-hover -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0.95, $button-gradient-start-hover  ),
+      color-stop(0.0, $button-gradient-stop-hover    )
+  ) repeat-x;
+  background: $button-gradient-stop-hover -moz-linear-gradient(0% 100% 90deg, $button-gradient-start-hover, $button-gradient-stop-hover);  
+  @include button-shape($radius-small);
 }
 
 @mixin gradient-button-selected {
@@ -81,9 +111,9 @@ $body-width: 900px;
       left top,
       left bottom,
       color-stop(0.95, $button_gradient_start_selected  ),
-      color-stop(0.0, $button_gradient_stop_selected    )
+      color-stop(0.0, $button-gradient-stop_selected    )
   ) repeat-x;
-  background: $button_gradient_stop_selected -moz-linear-gradient(0% 100% 90deg, $button_gradient_start_selected, $button_gradient_stop_selected);
+  background: $button-gradient-stop_selected -moz-linear-gradient(0% 100% 90deg, $button_gradient_start_selected, $button-gradient-stop_selected);
 }
 
 @mixin bottom-shadow {
@@ -112,6 +142,13 @@ $body-width: 900px;
 }
 .clear_both {
   clear: both;
+}
+
+@mixin content-item-box {
+  border: 1px solid $color-border;
+  border-radius: $radius-small;
+  -moz-border-radius: $radius-small;
+  -webkit-border-radius: $radius-small;
 }
 
 /*

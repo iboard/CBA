@@ -22,7 +22,7 @@ gem "bson_ext"  #, "1.1.5"
 # Bundle gem needed for Devise and cancan
 gem "devise", "~>1.4.0" # ,"1.1.7"
 gem "cancan"
-gem "omniauth"
+gem "omniauth", "0.2.6"
 
 # Bundle gem needed for paperclip and attachments
 gem "mongoid-paperclip", :require => "mongoid_paperclip"

@@ -1,18 +1,15 @@
 /* -*- encoding : utf-8 -*- */
-/**** Version Juli 21, 2011 */
+/**** Version Juli 21, 2011    */
 
 
 @import "constants.css.scss";
-@import "errors.css.scss";
-@import "banner_and_session.css.scss";
-@import "menus.css.scss";
-@import "container.css.scss";
-@import "googlesearch.css.scss";
-@import "highlighting.css.scss";
-@import "templates.css.scss";
-@import "overlay.css.scss";
-@import "page_component.css.scss";
 
+/* Old application.css definitions
+ * TODO: This section should be empty when clean up done
+ * See imports at end of file, where new defnitions are loaded
+ * This imports should stay at the end of this file to get old definitions
+ * overwritten.
+*/
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-text;
   color: $color-header;
@@ -28,9 +25,9 @@ a {
     border: none;
     padding: 0px;
   }
-	&:hover {
-	  border-bottom: 1px solid $color-link;
-	}
+  &:hover {
+    border-bottom: 1px solid $color-link;
+  }
 }
 
 code {
@@ -103,17 +100,17 @@ input {
 }
 
 #userlist {
-	img {
-	  float: left;
-	  padding: 0px;
-	  margin-left: 10px;
-	  margin-right: 20px;
-	  -moz-border-radius: 5px;
-	  -webkit-border-radius: 5px;
-	  border: 1px solid #ddd;
-	  width: 64px;
-	  height: 64px;
-	}
+  img {
+    float: left;
+    padding: 0px;
+    margin-left: 10px;
+    margin-right: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 64px;
+    height: 64px;
+  }
 }
 
 .user_detail {
@@ -143,10 +140,10 @@ input {
   color: #444;
   font-size: 0.5em;
 
-	a {
-	  color: #444;
-	  text-decoration: none;
-	}
+  a {
+    color: #444;
+    text-decoration: none;
+  }
 }
 
 #action_buttons {
@@ -218,63 +215,6 @@ input {
 }
 
 
-.comment {
-  margin-top: 25px;
-  margin-bottom: 5px;
-  background: #eee;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  padding: 10px;
-  font-size: 0.8em;
-}
-
-.comment_avatar {
-  margin-top: 5px;
-  width: 64px;
-  height: 64px;
-  border: 1px solid #ddd;
-  padding: 0px;
-  margin-right: 10px;
-  float: left;
-}
-
-.comment_content {
-  margin-left: 74px;
-}
-
-#comments {
-  clear: both;
-
-	p {
-	  margin: 0px;
-	  margin-bottom: 5px;
-	}
-
-	address {
-	  margin: 0px;
-	  margin-bottom: 5px;
-	  margin-top: 5px;
-	  font-size: 0.8em;
-	  font-style: normal;
-	  line-height: 100%;
-	}
-}
-
-#container address.new_comment,
-#comments address.new_comment {
-  color: #1C5A98;
-  font-size: 0.8em;
-  font-style: normal;
-  line-height: 100%;
-}
-
-#container address.old_comment,
-#comments address.old_comment {
-  font-size: 0.8em;
-  color: #B3B3B3;
-  line-height: 100%;
-  font-style: normal;
-}
 
 .page_intro {
   clear: both;
@@ -522,3 +462,16 @@ li.load_more {
   width: 64px;
   height: 64px;
 }
+
+
+/* Load new definitions and overwrite previous ones */
+@import "errors.css.scss";
+@import "banner_and_session.css.scss";
+@import "menus.css.scss";
+@import "container.css.scss";
+@import "googlesearch.css.scss";
+@import "highlighting.css.scss";
+@import "templates.css.scss";
+@import "overlay.css.scss";
+@import "page_component.css.scss";
+@import "comments.css.scss";

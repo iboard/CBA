@@ -1,24 +1,31 @@
 .submenu_box {
   position: fixed;
-  left: 15px;
+  left: 0px;
   top: 125px;
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
+  width:     170px;
+  min-width: 170px;
+  max-width: 170px;
   height: auto;
-  border: 1px solid $color-border;
-  border-radius: 3px 3px 3px 3px;
+  border: none;
+  /* border-radius: 3px 3px 3px 3px; */
   padding: 5px;
   padding-top: 15px;
   padding-bottom: 10px;
+  padding-left: 5px;
   @include sidebar-background;
-  @include container-shadow;
-  margin-right: 10px;
+  /* @include container-shadow; */
+  margin-right: 0px;
   line-height: 180%;
   a {
     padding: 5px;
+    text-decoration: none;
+    &:hover {
+      @include gradient-button-hover;
+      @include button-shape($radius-small);
+      padding: 3px;
+    }
   }
-  
+
   ul {
     display: inline;
     line-height: 180%;
@@ -26,25 +33,29 @@
     margin: 0px;
     margin-left: 10px;
     list-style: none;
-    
+
     li {
       line-height: 180%;
       margin-left: 10px;
     }
-    
+
     .hmenu_current {
       padding: 5px;
       color: $color-text;
       text-decoration: none;
       display: inline;
-      
+
       a {
         @include gradient-button;
         padding: 5px;
-        color: $color-text;  
-        border-radius: 0px 10px 10px 0px;      
+        color: $color-text;
+        border-radius: 3px 3px 3px 3px;
+        text-decoration: none;
+        &:hover {
+          text-decoration: none;
+        }
       }
-            
+
     }
 
   }

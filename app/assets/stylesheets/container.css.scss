@@ -1,7 +1,7 @@
 @mixin flash-box {
   padding: 5px 8px;
-  margin: 10px 0;  
-  border: solid 1px #6C6;
+  margin: 10px 0px;  
+  border: solid 1px $color-border;
 }
 
 
@@ -20,15 +20,18 @@
   border-radius: 3px 3px 3px 3px;
   
   #flashes {
+    background: none;
     #flash_notice {
       @include flash-box;
-      background: #CFC;
+      background: $notice-background;
+      color: $notice-text;
     }
     
     #flash_error, 
     #flash_alert {
       @include flash-box;
-      background: #FCC;
+      background: $alert-background;
+      color: $alert-text;
     }
   }
   

@@ -63,36 +63,34 @@
       </div>
       <div class='clear'></div>
     <% end %>
-    <div id="container">
-      <!--
-      <div class='google-search'>
-         %= insert_google_site_search %
-      </div>
-      -->
+    <div class='main-frame'>      
       <div id='flashes'>
         <% flash.each do |name, msg| %>
           <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
         <% end %>
+
+        <% if user_signed_in? && current_user.user_notifications.displayed.any? %>
+          <%= render :partial => 'users/notifications', :locals => { :user_notifications => current_user.user_notifications.displayed } %>
+        <% end %>
       </div>
-
-      <% if user_signed_in? && current_user.user_notifications.displayed.any? %>
-        <%= render :partial => 'users/notifications', :locals => { :user_notifications => current_user.user_notifications.displayed } %>
-      <% end %>
-
-      <div id='container_main'>
-         <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
-        <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
-        <%= yield %>
+      <div id="container">
+        <!--
+        <div class='google-search'>
+           %= insert_google_site_search %
+        </div>
+        -->
+        <div id='container_main'>
+          <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
+          <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
+          <%= yield %>
+        </div>
       </div>
-
       <div class='clear'></div>
-
     </div>
-
+  
     <div id='copyright'>
         © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
     </div>
-    
     <div class='clear'></div>
 
   </body>

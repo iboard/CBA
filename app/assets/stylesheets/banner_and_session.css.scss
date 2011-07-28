@@ -41,10 +41,10 @@
   top: 90px;
   left: 0px;
   right: 0px;
-  padding: 5px;
-  margin-top: 0px;
-  padding-top: 10px;
-  height: 17px;
+  padding: 0px;
+  padding-top: 5px;
+  margin: 0px;
+  height: 23px;
   width: 100%;
   border-bottom: 1px solid $color-shadow;
   @include bottom-shadow;
@@ -53,20 +53,12 @@
   .not_selected {
     a {
       &:hover {
-        @include gradient-button-hover;
         @include button-shape($radius-small);
+        @include gradient-button-hover;
       }
     }
   }
 
-  a {
-    z-index: 3;
-    border: none;
-    &:hover {
-      @include gradient-button-hover;
-      @include button-shape($radius-small);
-    }
-  }
 
   ul {
     list-style-type: none;
@@ -77,30 +69,33 @@
     margin-left: 5px;
     margin-right: 10px;
 
+    .selected {
+      li {
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+        a {
+          @include button-shape($radius-small);
+          padding: 5px;
+          @include gradient-button-hover;
+        }
+      }
+    }
+
     li {
       display: inline;
       margin: 0px;
-      padding: 5px;
-      padding-left: 0px;
-      padding-right: 0px;
-      border-radius: 5px 5px 0px 0px;
+      padding: 0px;
       a {
+        @include button-shape($radius-small);
         padding: 5px;
+        height: 30px;
+        &:hover {
+          @include gradient-button-hover;
+        }
       }
     }
   }
-
-  ul.selected {
-    li {
-      border: 1px solid darken($button_gradient_start, 50%);
-      border-bottom: none;
-      border-radius: 5px 5px 0px 0px;
-      padding-top: 5px;
-      margin-top: 0px;
-      @include gradient-button-selected;
-    }
-  }
-
 }
 
 .hmenu_with_children {

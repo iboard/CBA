@@ -2,7 +2,7 @@
 
 %div
   - if @blog.pages.any?
-    .right_column{style:'margin-top: 40px;'}
+    .right_column
       - for page in @blog.pages.where(is_draft: draft_mode)
         = render :partial => 'pages/page_intro', :locals => { :page => page }
         %p.content_seperator

@@ -62,7 +62,7 @@ $body-width: 900px;
 }
 
 @mixin page-background {
-  @include standard_background($background-page, 80%, 25%);
+  @include standard_background($background-page, 80%, 85%);
 }
 
 @mixin container-background {
@@ -117,7 +117,7 @@ $body-width: 900px;
 }
 
 @mixin bottom-shadow {
-  box-shadow: 0px 3px 3px $color-shadow;
+  box-shadow: 0px 2px 2px $color-shadow; 
 }
 
 @mixin box-shadow {
@@ -126,6 +126,12 @@ $body-width: 900px;
 
 @mixin container-right-box {
   @include standard_background($background-page, 90%, 75%);
+}
+
+@mixin right-bottom-border {
+  border: none;
+  border-left: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
 }
 
 .clear {

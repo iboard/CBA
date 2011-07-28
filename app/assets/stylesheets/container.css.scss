@@ -38,6 +38,7 @@
   /* id container_main beginning */
   #container_main {
     
+    
     a {
       border-bottom: 1px dotted $color-link;
       &:hover { border-bottom: 1px solid $color-link; }
@@ -48,21 +49,21 @@
     }
 
     .right_column {
-      width: 30%;
+      margin-right: -20px;
+      margin-top: -20px;
+      width: 310px;
       min-width: 310px;
       float: right;
-      border: 1px solid $color-border;
-      border-radius: 5px;
       padding: 10px;
       @include container-right-box;
-      @include box-shadow;
-      
+      @include right-bottom-border;
+      border-radius: 0px 0px 0px $radius-small;
       .page_intro {
         h1 {
-          font-size: 2.5em;
+          font-size: 1.5em;
         }
         p {
-          font-size: 1.2em;
+          font-size: 1.0em;
         }
       }
     }

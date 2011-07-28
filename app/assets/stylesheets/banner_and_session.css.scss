@@ -1,3 +1,8 @@
+@mixin horizontal-menu-background {
+  background: lighten($background-banner, 30%);
+}
+
+
 #banner {
   background: $background-banner;
   position: fixed;
@@ -43,7 +48,7 @@
   width: 100%;
   border-bottom: 1px solid $color-shadow;
   @include bottom-shadow;
-  @include page-background;
+  @include horizontal-menu-background;
 
   .not_selected {
     a {

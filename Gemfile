@@ -2,17 +2,19 @@ source 'http://rubygems.org'
 
 gem 'simplecov', '>= 0.4.0', :require => false, :group => :test
 
-gem "rails", "3.1.0.rc4"
+gem "rails", "3.1.0.rc5"
 # Rails 3.1 - Asset Pipeline
 
-gem 'json'
-gem 'sass'
-gem 'coffee-script'
-gem 'uglifier'
-gem 'jquery-rails'  
-
-gem 'therubyracer'
-gem 'execjs'
+group :assets do
+  gem 'sass-rails', "~> 3.1.0.rc"
+  gem 'coffee-script'
+  gem 'uglifier'  
+  gem 'json'
+  gem 'jquery-rails'  
+  gem 'therubyracer'
+  gem 'execjs'
+  gem 'sprockets', '~> 2.0.0.beta.12'
+end
 
 
 # Bundle gems needed for Mongoid

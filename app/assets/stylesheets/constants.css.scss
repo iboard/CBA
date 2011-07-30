@@ -9,6 +9,7 @@ $font-title: Times new roman, Times, serif;
 $font-headline: $font-text;
 $font-size-default: 0.98em;
 $line-height-default: 1.2em;
+$sidebar-width: 180px;
 
 /* Colors */
 $color-base: #808080;
@@ -40,6 +41,9 @@ $button-gradient-stop-selected: lighten($button-gradient-stop, 50%);
 
 /* Buttons */
 $radius-small: 3px;
+$radius-medium: 5px;
+$radius-large: 10px;
+$radius-huge: 20px;
 
 /* Document */
 $body-width: 900px;
@@ -80,15 +84,16 @@ $body-width: 900px;
 }
 
 @mixin gradient-button {
+  width: 160px;
   background: $button_gradient_start;
   background: $button_gradient_start -webkit-gradient(
       linear,
       left top,
       left bottom,
-      color-stop(0.95, $button_gradient_start  ),
+      color-stop(0.25, $button_gradient_start  ),
       color-stop(0.0, $button-gradient-stop    )
   ) repeat-x;
-  background: $button-gradient-stop -moz-linear-gradient(0% 100% 90deg, $button_gradient_start, $button-gradient-stop);
+  background: $button-gradient-stop -moz-linear-gradient(0% 5% 90deg, $button_gradient_start, $button-gradient-stop);
 }
 
 @mixin gradient-button-hover {

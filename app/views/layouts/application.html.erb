@@ -62,6 +62,15 @@
         </ul>
       </div>
       <div class='clear'></div>
+      
+      <div id='scroll-to-top'>
+        <%= link_to image_tag("arrow_up_small.png"), '#' %>
+        <div id='scroll-position'></div>
+      </div>
+      <div id='copyright'>
+           © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
+      </div>
+      
     <% end %>
     <div class='main-frame'>      
       <div id='flashes'>
@@ -85,11 +94,7 @@
           <%= yield %>
         </div>
       </div>
-      <div class='clear'></div>
-    </div>
-  
-    <div id='copyright'>
-        © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
+      <div class='clear'></div> 
     </div>
     <div class='clear'></div>
 

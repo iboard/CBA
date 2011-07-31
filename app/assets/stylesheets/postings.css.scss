@@ -1,18 +1,31 @@
-.comment_links {
-  position: relative;
-  top: -30px;
-  left: -1 * $sidebar-width - 10;
-  background: $hud-background;
-  padding: 10px;
-  width: $sidebar-width - 20;
-  @include button-shape($radius-small);
-  border-radius: $radius-small 0 0 $radius-small;
-  border: 1px solid $color-shadow;
-  border-right: none;
+$side-tab-width: $sidebar-width - 20;
+$side-tab-height: 25px;
+
+.side-tab {
+  margin-left: -1 * ($side-tab-width + 21);
+  margin-top: $side-tab-height;
   float: left;
-  margin: 0px;
-  margin-right: -1 * $sidebar-width - 10;
-  overflow: hidden;
-  z-index: 5;
-  text-align: right;
+  width: $side-tab-width;
+  min-width: $side-tab-width;
+  height: $side-tab-height;
+  
+  .comment-links {
+    overflow: hidden;
+    z-index: 10;
+    height: $side-tab-height;
+    text-align: right;
+    width: $side-tab-width - 20;
+    background: $hud-background;
+    padding: 10px;
+    width: $side-tab-width -5;
+    @include button-shape($radius-small);
+    border-radius: $radius-small 0 0 $radius-small;
+    border: 1px solid $color-shadow;
+    border-right: none;
+  }
+  
+}
+
+.side-tab-content {
+ overflow: auto;
 }

@@ -21,6 +21,9 @@ $color-shadow: darken($color-base,50%);
 $color-border: $color-shadow;
 $color-link: lighten($color-text,10%);
 $hud-background: lighten($color-base,50%);
+$color-action-delete: #99363C;
+$color-action-delete-text: white;
+
 
 $background-page: $color-text;
 $background-container: lighten($color-paper,90%);
@@ -48,6 +51,8 @@ $radius-huge: 20px;
 
 /* Document */
 $body-width: 900px;
+$content-min-width: 600px;
+$form-width: 600px;
 
 @mixin standard_background($color, $percent1, $percent2) {
   background: lighten($color, $percent1);
@@ -64,6 +69,11 @@ $body-width: 900px;
   border-radius: $radius;
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
+}
+
+@mixin button-background($color) {
+  background: $color;
+  border: 1px solid $color-border;
 }
 
 @mixin page-background {

@@ -1,0 +1,30 @@
+$label-width: $form-width / 3;
+$field-width: $form-width / 3 * 2;
+label {
+  width: $label-width;
+}
+
+input[type="text"] {
+    width: $field-width;
+}
+
+textarea {
+  width: $field-width;
+}
+
+form {
+  .field {
+    a {
+      @include button-shape($radius-small);
+      @include button-background($color-action-delete);
+      color: $color-action-delete-text;
+      display: inline;
+      border: none;
+      border-bottom: none;
+      &:hover {
+       background: white;
+       color: black; 
+      }
+    }
+  }
+}

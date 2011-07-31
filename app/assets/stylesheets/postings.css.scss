@@ -1,0 +1,18 @@
+.comment_links {
+  position: relative;
+  top: -30px;
+  left: -1 * $sidebar-width - 10;
+  background: $hud-background;
+  padding: 10px;
+  width: $sidebar-width - 20;
+  @include button-shape($radius-small);
+  border-radius: $radius-small 0 0 $radius-small;
+  border: 1px solid $color-shadow;
+  border-right: none;
+  float: left;
+  margin: 0px;
+  margin-right: -1 * $sidebar-width - 10;
+  overflow: hidden;
+  z-index: 5;
+  text-align: right;
+}

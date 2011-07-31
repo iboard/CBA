@@ -122,15 +122,41 @@
   font-size: 2.5em;
   position: relative;
   top: -45px;
-  opacity: 0.5;
+  opacity: 0.75;
+  &:hover {
+    opacity: 1.0;
+    text-decoration: none;
+    border:none;
+  }
 }
 
 #scroll-to-top {
   @extend #copyright;
   bottom: 20px;
+  height: 64px;
+  width: 64px;
+  overflow: hidden;
   left: $sidebar-width/2 - 32;
+  a {
+    height: 64px;
+    width: 64px;
+    display: block;
+    text-decoration: none;
+    &:hover {
+      opacity: 1.0;
+      text-decoration: none;
+      border:none;
+    }
+  }
   
   img {
     @include button-shape($radius-medium);
   }
+  
+  &:hover {
+    opacity: 1.0;
+    text-decoration: none;
+    border:none;
+  }
+  
 }

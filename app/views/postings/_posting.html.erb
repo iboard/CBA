@@ -1,15 +1,22 @@
 <!-- TODO: Duplication - Posting Header and Links -->
 <div style='clear: right;'>
-  <h2><%= link_to(posting.title, blog_posting_path(blog,posting)) %></h2>
+  <h2 
+  onmouseover="showSideTab($('#posting_<%= posting.id.to_s -%>'));"
+  onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>');">
+    <%= link_to(posting.title, blog_posting_path(blog,posting)) %>
+  </h2>
   <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
-  <p class='comment_links' style='margin-bottom: 5px;'>
-    <span class='item_link_buttons'>
-      <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
-      <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
-      <%= link_to( t(:destroy), blog_posting_path(blog,posting),
-        :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
-    </span>
-  </p>
+  <% if can? :edit, posting %>
+    <div class='comment_links' style='margin-bottom: 5px;' 
+         id='posting_<%= posting.id.to_s -%>'>
+      <span class='item_link_buttons'>
+        <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
+        <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
+        <%= link_to( t(:destroy), blog_posting_path(blog,posting),
+          :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
+      </span>
+    </div>
+  <% end %>
   <address class='<%= posting.created_at > current_user_field(\
                           :last_sign_in_at,Time::now()-1.hour) ? "new_posting"\
                           : "old_posting" -%>'
@@ -31,3 +38,4 @@
     </p>
   <% end %>
 </div>
+<%= javascript_tag "hideSideTab($('#posting_#{posting.id.to_s}'))" -%>

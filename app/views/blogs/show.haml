@@ -11,7 +11,7 @@
 
   = render :partial => '/blogs/blog', :locals => { :blog => @blog}
 
-  %p= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting
+  %p.green-button= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting
 
   %p{style: 'text-align: center;'}= will_paginate @postings
 

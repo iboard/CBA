@@ -246,3 +246,4 @@ en:
   use_content_as_placeholder_info: 'Content of this component will be used as placeholders in new articles'
   done: 'done'
   did_you_save_changes: 'Are you sure you want to close this page? Did you save all modifications?'
+  scroll_to_top: 'Scroll to top'

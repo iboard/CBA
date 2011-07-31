@@ -20,6 +20,7 @@ $color-header: darken($color-text,25%);
 $color-shadow: darken($color-base,50%);
 $color-border: $color-shadow;
 $color-link: lighten($color-text,10%);
+$hud-background: lighten($color-base,50%);
 
 $background-page: $color-text;
 $background-container: lighten($color-paper,90%);

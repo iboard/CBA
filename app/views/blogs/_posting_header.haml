@@ -3,12 +3,12 @@
   - if can? :edit, posting
     .side-tab
       .comment-links{:style=>'margin-bottom: 5px;',:id => "posting_#{posting.id.to_s}"}
-        .item_link_buttons
+        .item_link_buttons{:onmouseover=>"cancelSideTabTimeouts()"}
           = link_to( t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting')
           = link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting
           = link_to( t(:destroy), blog_posting_path(blog,posting), :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting
   .side-tab-content
-    %h2{ :onmouseover => "showSideTab($('#posting_#{posting.id.to_s}'))", :onmouseout => "hideWithDelay('posting_#{posting.id.to_s}')"}= link_to(posting.title, blog_posting_path(blog,posting))
+    %h2{ :onmouseover => "showSideTab($('#posting_#{posting.id.to_s}'))", :onmouseout => "hideWithDelay('posting_#{posting.id.to_s}',100)"}= link_to(posting.title, blog_posting_path(blog,posting))
     - if posting.is_draft
       %p= t(:is_draft_label)
     = render :partial => '/postings/cover_picture', :locals => { :posting => posting }  

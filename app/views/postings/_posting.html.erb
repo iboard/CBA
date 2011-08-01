@@ -2,8 +2,8 @@
 <div style='clear: right;'>
   <% if can? :edit, posting %>
     <div class='side-tab'>
-      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' style='margin-bottom: 5px;'>
-        <span class='item_link_buttons'>
+      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',100)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
           <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
           <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
           <%= link_to( t(:destroy), blog_posting_path(blog,posting),
@@ -15,7 +15,7 @@
   <div class='side-tab-content'>
     <h2 
       onmouseover="showSideTab($('#posting_<%= posting.id.to_s -%>'));"
-      onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>');">
+      onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',2000);">
       <%= link_to(posting.title, blog_posting_path(blog,posting)) %>
     </h2>
     <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>

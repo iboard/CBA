@@ -1,8 +1,8 @@
 <!-- TODO: Duplication - Posting Header and Links -->
 <div style='clear: right;'>
   <% if can? :edit, posting %>
-    <div class='side-tab'>
-      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',100)">
+    <div class='side-tab' id='side-tab-posting_<%=  posting.id.to_s -%>'>
+      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',500)">
         <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
           <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
           <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>

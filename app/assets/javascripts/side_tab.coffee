@@ -27,15 +27,16 @@ this.hideWithDelay = (what,time) ->
   sidetab_timeouts.push setTimeout("hideSideTab($(\"#"+what+"\"))", time)
 
 this.showSideTab = (what) ->
-  if focusChanged(what)
-    cancelSideTabTimeouts()
-    closeNotFocused(what)
-    sidetab_focus = what
-    id = what.attr('id')
-    $("#side-tab-#{id}").show()
-    style = what.attr('style')
-    unless style.match /display: block/    
-      what.show('slide', {direction: 'right', class: 'comment-links'},250)
+  if what.attr('id')
+    if focusChanged(what)
+      cancelSideTabTimeouts()
+      closeNotFocused(what)
+      sidetab_focus = what
+      id = what.attr('id')
+      $("#side-tab-#{id}").show()
+      style = what.attr('style')
+      unless style.match /display: block/    
+        what.show('slide', {direction: 'right', class: 'comment-links'},250)
         
     
 this.hideSideTab = (what) ->

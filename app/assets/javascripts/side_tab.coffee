@@ -13,13 +13,9 @@ hideSideTabs = ->
 focusChanged = (new_focus) ->
   return new_focus != sidetab_focus
 
-closeNotFocused = (except)->
-  cnt_tabs = $(".side-tab").length
-  for idx in [0..(cnt_tabs-1)]
-    tab = $(".side-tab:nth-child(#{idx})")
-    unless tab.attr('id') == "side-tab-#{except.attr('id')}"
-      tab.hide()
-    
+closeNotFocused = (except) ->
+  cnt_tabs = $(".side-tab").hide() 
+      
 # GLOBAL FUNCTIONS
 
 this.cancelSideTabTimeouts = ->
@@ -32,11 +28,11 @@ this.hideWithDelay = (what,time) ->
 
 this.showSideTab = (what) ->
   if focusChanged(what)
+    cancelSideTabTimeouts()
     closeNotFocused(what)
     sidetab_focus = what
     id = what.attr('id')
     $("#side-tab-#{id}").show()
-    cancelSideTabTimeouts()
     style = what.attr('style')
     unless style.match /display: block/    
       what.show('slide', {direction: 'right', class: 'comment-links'},250)
@@ -58,4 +54,3 @@ $(document).ready ->
   $(".comment-links").hide()
   
   
-

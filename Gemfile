@@ -36,7 +36,7 @@ gem 'mongoid-tree', :require => 'mongoid/tree'
 gem "haml"
 gem "will_paginate"
 gem 'escape_utils'
-gem "RedCloth", "4.2.5"
+gem "RedCloth", "4.2.4.pre3" # "4.2.5" doesn't work with ruby 1.9.3.preview1
 
 # Markdown
 # do "easy_install pygments" on your system

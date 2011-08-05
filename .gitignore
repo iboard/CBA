@@ -33,3 +33,9 @@ public/stylesheets/disabled_styles/*
 public/stylesheets/disabled_styles/**/*
 app/views/layouts/disabled_layouts/*
 app/views/layouts/disabled_layouts/**/*
+test/unit/coverage
+test/unit/coverage/*
+test/unit/coverage/**/*
+redcloth
+redcloth/*
+redcloth/**/*

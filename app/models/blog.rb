@@ -46,7 +46,7 @@ class Blog
     return self.postings unless options
     self.postings.unscoped.where( options )
   end
-  
+
   # find pages with filter
   # @param [Hash] options a filter to find pages of this blog e.g. '{ is_draft: true }'
   # @return [Criteria] Criteria on self.pages.where( _options_ )
@@ -54,7 +54,7 @@ class Blog
     return self.pages unless options
     self.pages.where( options )
   end
-  
+
 
   private
   # ContentItems need to override the abstract method but a Blog didn't

@@ -31,6 +31,7 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
 # MongoID Extensions and extras
 gem 'mongoid-tree', :require => 'mongoid/tree'
+gem 'mongoid_fulltext'
 
 # Bundle gems for views
 gem "haml"

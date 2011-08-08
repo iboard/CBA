@@ -7,7 +7,7 @@
         = render :partial => 'pages/page_intro', :locals => { :page => page }
         %p.content_seperator
 
-  = raw("<div class='left_column'>" )if @blog.pages.any?
+  = raw("<div class='left_column'>" ) if @blog.pages.any?
 
   = render :partial => '/blogs/blog', :locals => { :blog => @blog}
 

@@ -10,6 +10,12 @@
             = insert_twitter_box
     - unless @blog.nil? 
         %p{:style=>'clear: left;'}
+        
+        = form_tag "/" do
+            Search: 
+            = text_field_tag :search, params[:search]
+            = submit_tag t(:search)
+        
         %div#postings.left_column
             = link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => 'green_button') if can? :create, Posting
             .pagination_box= will_paginate @postings

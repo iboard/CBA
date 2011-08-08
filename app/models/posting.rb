@@ -29,8 +29,18 @@ class Posting
   accepts_nested_attributes_for :attachments,
                                 :allow_destroy => true
 
+
   # Send notifications
   after_create  :send_notifications
+  
+  # Full-text-search
+  include Mongoid::FullTextSearch
+  fulltext_search_in    :fulltext
+  def fulltext
+    title + " " + body + " " + comments.map(&:comment).join(" ")
+  end
+  update_ngram_index
+  
 
   # Render the body with RedCloth
   def render_body(view_context=nil)

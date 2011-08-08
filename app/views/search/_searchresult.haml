@@ -1,0 +1,9 @@
+#results
+  - if search.result.any?
+    - for hit in search.result
+      - unless hit.class == Array
+        .result
+          %h3= link_to( hit.title + " (#{hit.class.to_s.humanize})", hit)
+          = raw hit.render_intro
+  - else
+    =  t(:nothing_found)

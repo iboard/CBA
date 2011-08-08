@@ -150,6 +150,10 @@ $form-width: 600px;
   border-bottom: 1px solid $color-border;
 }
 
+@mixin input-border {
+  border-radius: 10px 10px 10px 10px;
+}
+
 .clear {
   clear: both;
   height: 0;

@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   # persistent language for this session/user
   before_filter  :set_language_from_cookie
   before_filter  :apply_invitation
+  before_filter  :setup_search
 
   # == Display a flash if CanCan doesn't allow access
   rescue_from CanCan::AccessDenied do |exception|
@@ -113,6 +114,11 @@ class ApplicationController < ActionController::Base
     else
       session[:draft_mode] = false
     end
+  end
+  
+  def setup_search
+    params[:search] ||= {:search => ""}
+    @search ||= Search.new(params[:search]||{:search => ""})
   end
 
 end

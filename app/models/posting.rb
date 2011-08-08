@@ -39,7 +39,6 @@ class Posting
   def fulltext
     title + " " + body + " " + comments.map(&:comment).join(" ")
   end
-  update_ngram_index
   
 
   # Render the body with RedCloth

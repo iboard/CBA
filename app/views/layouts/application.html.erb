@@ -51,6 +51,9 @@
 
     <% if current_root(self) %>
       <div class='submenu_box'>
+        <div id='searchbox'>
+          <%= render 'search/form' %>
+        </div>
         <ul>
         <%=
             raw(

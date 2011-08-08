@@ -1,0 +1,16 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#searchbox {
+  form {
+    margin-left: 15px;
+    input { 
+      width: 140px;
+      background: white url(/images/magnify.png) center right no-repeat;
+      @include input-border;
+      padding: 2px;
+    }
+  }
+  margin-bottom: 10px;
+}

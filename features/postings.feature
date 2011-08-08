@@ -117,17 +117,3 @@ Feature: Postings
     And I am on the feed page
     Then I should see "Direct Post"
     And I should see "The posting should load the blog it belongs to"
-
-  Scenario: The homepage should have a searchbox for postings
-    Given the following posting records for blog "News" and user "admin"
-      | title      | body                                           | is_draft |
-      | Direct Post| The posting should load the blog it belongs to | false    |
-      | Hotzenplotz| This is some text I wanna search for           | false    |
-      | Your Title | This is another text I proberly wanna search   | false    |
-    And I am on the home page
-    And I fill in "search" with "Hotzenplotz"
-    And I click on "Search"
-    Then I should see "Hotzenplotz"
-    And I should see "This is some text I wanna search for"
-    And I should not see "This is another text I proberly wanna search"
-  

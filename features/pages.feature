@@ -127,11 +127,11 @@ Feature: Pages
   Scenario: Authors should be able to derive new pages (articles) from pages where is_template is true
     Given I am on the new_article page
     Then I should see "Choose a template"
-    And I select "Page T" from "page_template_id" within "form"
+    And I select "Page T" from "page_template_id" within ".field"
     And I click on "Create"
-    And I fill in "page_title" with "This is a filled Page Template" within "form"
-    And I fill in "page_body" with "This is a filled page body" within "form"
-    And I uncheck "page_is_draft" within "form"
+    And I fill in "page_title" with "This is a filled Page Template" within "#container_main form"
+    And I fill in "page_body" with "This is a filled page body" within "#container_main form"
+    And I uncheck "page_is_draft" within "#container_main form"
     And I click on "Create Page"
     Then I should see "This is a filled Page Template" within ".page_body"
     And I should see "This is a filled page body" within ".page_body"
@@ -139,11 +139,11 @@ Feature: Pages
   Scenario: A derived page should save it's template
     Given I am on the new_article page
     Then I should see "Choose a template"
-    And I select "Page T" from "page_template_id" within "form"
+    And I select "Page T" from "page_template_id" within "#container_main form"
     And I click on "Create"
-    And I fill in "page_title" with "Derived Page" within "form"
-    And I fill in "page_body" with "This is derived from Page T" within "form"
-    And I uncheck "page_is_draft" within "form"
+    And I fill in "page_title" with "Derived Page" within "#container_main form"
+    And I fill in "page_body" with "This is derived from Page T" within "#container_main form"
+    And I uncheck "page_is_draft" within "#container_main form"
     And I click on "Create Page"
     And I should be on page path of "Derived Page"
     And I click on link "Derived from Page T" within "#container"

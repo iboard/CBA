@@ -1,0 +1,3 @@
+= form_for @search do |f|
+  = f.text_field :search, :placeholder => t(:search), :id => 'searchfield'
+  = f.submit "Search" if Rails.env == "test"

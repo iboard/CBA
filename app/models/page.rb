@@ -30,6 +30,19 @@ class Page
   # Flags
   field :allow_removing_component, :type => Boolean, :default => true
   
+  # Full-text-search
+  include Mongoid::FullTextSearch
+  fulltext_search_in    :fulltext
+  def fulltext
+    [
+      title, 
+      body,
+      comments.map(&:comment).join(" "),
+      (page_components.any? ? page_components.map{|c| c.body}.join(" ") : "")
+    ].join(' ')
+  end
+  
+  
   # If this page is derived from a Page(Template) this method returns the
   # template-page 
   def template

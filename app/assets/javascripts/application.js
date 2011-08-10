@@ -8,4 +8,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jsort_sortable
 //= require_tree .

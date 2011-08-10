@@ -195,7 +195,7 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
 end
 
 Given /^the following site_menu$/ do |table|
-  SiteMenu.delete_all
+  SiteMenu.unscoped.delete_all
   table.hashes.each do |hash|
 
     level = hash[:name]
@@ -246,23 +246,36 @@ Then /^I should not see class (.+)$/ do |classname|
 end
 
 Given /^the following default pages?$/ do |table|
-  Page.delete_all
+  Page.unscoped.delete_all
   t = PageTemplate.find_or_create_by(name: 'default')
-  t.save
+  t.save!
   table.hashes.each do |hash|
     Factory('page', hash.merge( :page_template_id => t.id ))
   end
 end
 
 Given /^the following (.+) records?$/ do |factory, table|
-  eval "#{factory.camelize}.delete_all"
+  eval "#{factory.camelize}.unscoped.delete_all"
   table.hashes.each do |hash|
     Factory(factory, hash)
   end
 end
 
+
+Given /^only the following page records$/ do |table|
+  Page.unscoped.delete_all
+  puts "Page count is #{Page.unscoped.count}"
+  table.hashes.each do |hash|
+    p = Page.new( :title => hash[:title], :body => hash[:body], :show_in_menu => false,
+       :is_draft => false, :is_template => false, :page_template_id => nil)
+    p.translate!
+    p.save!
+  end
+  puts "Stored #{Page.count} pages, #{Page.templates.count} templates"
+end
+
 Given /^no site_menu exists/ do
-  SiteMenu.delete_all
+  SiteMenu.unscoped.delete_all
 end
 
 Given /the default locale/ do
@@ -272,7 +285,7 @@ end
 
 
 Given /the default user set/ do
-  User.delete_all
+  User.unscoped.delete_all
   [
     #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
     #see user.rb model
@@ -397,7 +410,7 @@ Given /^I visit the episode page for user "([^"]*)" and episode "([^"]*)"$/ do |
 end
 
 Given /^no (.*) records?$/ do |table_name|
-  eval "#{table_name.camelize}.delete_all"
+  eval "#{table_name.camelize}.unscoped.delete_all"
 end
 
 Given /^I visit "([^"]*)"$/ do |url|
@@ -425,7 +438,7 @@ Given /^I sign out$/ do
 end
 
 Given /^the following blogs with pages/ do |table|
-  Page.delete_all
+  Page.unscoped.delete_all
   table.hashes.each do |params|
     blog = Blog.find_or_create_by(title: params[:title], is_draft: false)
     page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false, :is_draft => false)
@@ -441,7 +454,7 @@ end
 
 Given /^the following comment records for page "([^"]*)"$/ do |commentable, table|
   page = Page.where(:title => commentable).first
-  page.comments.delete_all
+  page.comments.unscoped.delete_all
   table.hashes.each do |hash|
     page.comments << Factory('comment', hash)
   end
@@ -451,7 +464,7 @@ end
 Given /^the following posting records for blog "([^"]*)" and user "([^"]*)"$/ do |blog, username, table|
   blog = Blog.unscoped.where(:title => blog).first
   user = User.where(:name => username).first
-  blog.postings.delete_all
+  blog.postings.unscoped.delete_all
   table.hashes.each do |hash|
     hash[:user_id] = user.id
     blog.postings.create!(hash)
@@ -468,7 +481,7 @@ Given /^the following user_notification records for user "([^"]*)"$/ do |usernam
 end
 
 Given /^the following translated pages/ do |table|
-  Page.delete_all
+  Page.unscoped.delete_all
   table.hashes.each do |hash|
     p = Page.create( title: hash[:title_en], body: hash[:body_en], is_draft: false )
     p.translate!
@@ -480,7 +493,7 @@ end
 
 Given /^the following translated components for page "([^"]*)"$/ do |page_title, table|
   page = Page.where(title: /#{page_title}/).first
-  page.page_components.delete_all
+  page.page_components.unscoped.delete_all
   table.hashes.each do |hash|
     c = page.page_components.create( title: hash[:title_en], body: hash[:body_en] )
     c.translate!
@@ -502,3 +515,11 @@ end
 Given /^draft mode is on$/ do
   visit draft_mode_path(1)
 end
+
+Given /^I have a clean database$/ do
+  Posting.destroy_all
+  Page.destroy_all
+  Comment.destroy_all
+end
+
+

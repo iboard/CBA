@@ -2,8 +2,6 @@
 
 Cba::Application.routes.draw do
 
-  get "search/index"
-
   # Switch locales
   match 'switch_lcoale/:locale' => "home#set_locale", :as => 'switch_locale'
   

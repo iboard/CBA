@@ -16,9 +16,8 @@ group :assets do
   gem 'sprockets', '~> 2.0.0.beta.12'
 end
 
-
 # Bundle gems needed for Mongoid
-gem "mongoid", "~>2.0.1"   #, "2.0.0.rc.7"
+gem "mongoid", "2.1.6" #:path => "/Users/aa/Development/R31/mongoid-1"
 gem "bson_ext"  #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
@@ -35,9 +34,10 @@ gem 'mongoid_fulltext'
 
 # Bundle gems for views
 gem "haml"
-gem "will_paginate"
+gem "will_paginate", "3.0.pre4"
 gem 'escape_utils'
 gem "RedCloth", "4.2.5" #"4.2.4.pre3 doesn't work with ruby 1.9.2-p180  
+gem "jsort", "~> 0.0.1"
 
 # Markdown
 # do "easy_install pygments" on your system
@@ -66,7 +66,7 @@ group :test do
   gem 'spork', '0.9.0.rc9'
   gem 'spork-testunit'
   gem 'launchy'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "1.1.0"
   gem 'ZenTest'
   gem 'autotest'
   gem 'autotest-rails'

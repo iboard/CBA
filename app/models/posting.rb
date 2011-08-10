@@ -19,7 +19,7 @@ class Posting
   # Associations  ================================================
   referenced_in         :blog, :inverse_of => :postings
 
-  references_many       :comments, :inverse_of => :commentable
+  references_many       :comments, :inverse_of => :commentable, :as => 'commentable'
   validates_associated  :comments
 
   # TODO: Move this definitions to a library-module

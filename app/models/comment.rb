@@ -13,7 +13,9 @@ class Comment
 
   validates             :email, :presence => true, :email => true
   validates_presence_of :name
+  validates_length_of   :name, :minimum => 1
   validates_presence_of :comment
+  validates_length_of   :comment, :minimum => 1
 
   referenced_in :commentable, :inverse_of => :comments, :polymorphic => true
 

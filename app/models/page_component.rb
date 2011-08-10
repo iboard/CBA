@@ -58,9 +58,9 @@ class PageComponent
 
   # Ask our page if removing of components is allowed 
   alias_method :__original__delete, :delete
-  def delete
+  def delete(options={})
     if self.page.is_template || self.page.allow_removing_component == true
-      __original__delete
+      __original__delete(options)
     else
       self.errors.add('base', "Removing components is not allowed")
       false

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
   $('#site-menus-list').sortable(
     {
       connectWith: '.list',
@@ -21,4 +21,4 @@ $(document).ready(function(){
       }
     }
   )
-});
+});*/

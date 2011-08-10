@@ -72,7 +72,7 @@ class Page
   scope :templates, lambda { where(is_template: true ) }
   scope :top_pages, lambda { where(show_in_menu: true).asc(:menu_order) }
 
-  references_many            :comments, :inverse_of => :commentable
+  references_many            :comments, :inverse_of => :commentable, :as => 'commentable'
   validates_associated       :comments
 
   # TODO: Move this definitions to a library-module

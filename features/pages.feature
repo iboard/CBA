@@ -1,15 +1,11 @@
+@focus
 Feature: Pages
   In order to maintain and read pages
-  As an user
+  As a user
   I want list, browse, read, and edit pages
 
   Background:
-    Given the following user records
-      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    Given the default user set
     And the following page records
       | title  | body                 | show_in_menu | is_template | is_draft |
       | Page 1 | Lorem ipsum          | true         | false       | false    |
@@ -17,7 +13,6 @@ Feature: Pages
       | Page T | This is a Template   | false        | true        | false    |
       | Page D | This is a Draft      | false        | false       | true     |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
-
  
   Scenario: Pages with 'show_in_menu' should be on the menu-bar
     Given I am on the pages page
@@ -119,7 +114,7 @@ Feature: Pages
     Then I click on link "locale_en"
     Then I should see "Fish n chips"
     Then the default locale
-
+  
   Scenario: Page index should not include Template-Pages
     Given I am on the pages page
     Then I should not see "Page T"
@@ -148,11 +143,11 @@ Feature: Pages
     And I should be on page path of "Derived Page"
     And I click on link "Derived from Page T" within "#container"
     Then I should be on page path of "Page T"
-
+  
   Scenario: Admins should be able to list template pages
     Given I am on the edit page template for "Page T"
     Then I should see "This is a Template"
-
+    
   Scenario: The page/templates index should provide a link to create a new article for each template
     Given I am on the templates_pages page
     And I click on link "Create new article" within ".page_template"

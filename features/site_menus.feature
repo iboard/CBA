@@ -56,7 +56,7 @@ Feature: SiteMenus
   Scenario: Admin should be able to edit a menu entry
     Given I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
     And I am on the site_menus page
-    And I click on link "Edit" within ".site_menu_entry"
+    And I click on link "Edit" within ".site_menu_manage_buttons"
     Then I should be on the edit site_menu page for menu "rootA"
     And I fill in "Name" with "ROOT-A"
     And I click on "Update Site menu"
@@ -66,7 +66,7 @@ Feature: SiteMenus
   Scenario: Admin should be able to delete a menu entry
     Given I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
     And I am on the site_menus page
-    And I click on link "Delete" within ".site_menu_entry"
+    And I click on link "Delete" within ".site_menu_manage_buttons"
     Then I should be on the site_menus page
     And I should not see "rootA"
 

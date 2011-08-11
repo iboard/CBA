@@ -7,8 +7,10 @@ Feature: Search
 
   Background:
     Given the default user set
+    And I am logged out
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
     And I have a clean database
+    And draft mode is off
     And the following blog records
       | title  | is_draft |
       | News   | false    |
@@ -18,20 +20,12 @@ Feature: Search
       | Hotzenplotz| This is some text I wanna search for lorem     | false    |
       | Your Title | This is another text I proberly wanna search   | false    |
     And only the following page records
-      | title    | body                 | show_in_menu | is_template | is_draft |
+      | title    | body                 | show_in_menu | is_draft    | is_template |
       | Page A   | Lorem ipsum          | true         | false       | false    |
       | Page B   | Lirum Opsim          | true         | false       | false    |
       | Testpage | Rails Rulez Lorem    | true         | false       | false    |
-    And I am on the pages page
 
-  Scenario: The homepage should have a searchbox for postings
-    Given I am on the home page
-    And I fill in "searchfield" with "Hotzenplotz"
-    And I click on "Search"
-    Then I should see "Hotzenplotz"
-    And I should see "This is some text I wanna search for"
-    And I should not see "This is another text I proberly wanna search"
-
+@focus_todo
   Scenario: The homepage should have a searchbox for pages
     Given I am on the home page
     And I fill in "searchfield" with "Rails"
@@ -40,6 +34,7 @@ Feature: Search
     And I should see "Rails Rulez"
     And I should not see "The posting should load the blog it belongs to"
 
+@focus_todo
   Scenario: The homepage should have a searchbox for pages and postings
     Given I am on the home page
     And I fill in "searchfield" with "Lorem"
@@ -48,3 +43,11 @@ Feature: Search
     And I should see "Rails Rulez"
     And I should see "Hotzenplotz"
     And I should not see "The posting should load the blog it belongs to"
+
+  Scenario: The homepage should have a searchbox for postings
+    Given I am on the home page
+    And I fill in "searchfield" with "Hotzenplotz"
+    And I click on "Search"
+    Then I should see "Hotzenplotz"
+    And I should see "This is some text I wanna search for"
+    And I should not see "This is another text I proberly wanna search"

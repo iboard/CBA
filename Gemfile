@@ -8,16 +8,16 @@ gem "rails", "3.1.0.rc5"
 group :assets do
   gem 'sass-rails', "~> 3.1.0.rc"
   gem 'coffee-script'
-  gem 'uglifier'  
+  gem 'uglifier'
   gem 'json'
-  gem 'jquery-rails'  
+  gem 'jquery-rails'
   gem 'therubyracer'
   gem 'execjs'
   gem 'sprockets', '~> 2.0.0.beta.12'
 end
 
 # Bundle gems needed for Mongoid
-gem "mongoid", "2.1.6" #:path => "/Users/aa/Development/R31/mongoid-1"
+gem "mongoid", "2.1.6" #  :path => "/Users/aa/Development/R31/mongoid-1" #"2.1.6"
 gem "bson_ext"  #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
@@ -36,7 +36,9 @@ gem 'mongoid_fulltext'
 gem "haml"
 gem "will_paginate", "3.0.pre4"
 gem 'escape_utils'
-gem "RedCloth", "4.2.5" #"4.2.4.pre3 doesn't work with ruby 1.9.2-p180  
+gem "RedCloth", "4.2.5" #"4.2.4.pre3 doesn't work with ruby 1.9.2-p180
+
+# Gems by iboard.cc/CBA
 gem "jsort", "~> 0.0.1"
 
 # Markdown
@@ -45,13 +47,13 @@ gem 'redcarpet'
 gem 'albino'
 gem "nokogiri", "1.4.6"
 
-# Bundle gems for development 
+# Bundle gems for development
 group :development do
   gem "nifty-generators"
   gem "rails-erd"
   gem 'rdoc'
   gem 'unicorn'
-  gem 'yard' #broken in OS X 10.7 see how to workarround this issue 
+  gem 'yard'
 end
 
 # Bundle gems for testing
@@ -67,7 +69,7 @@ group :test do
   gem 'spork-testunit'
   gem 'launchy'
   gem 'factory_girl_rails', "1.1.0"
-  gem 'ZenTest'
+  gem 'ZenTest', '4.5.0'
   gem 'autotest'
   gem 'autotest-rails'
   gem 'ruby-growl'

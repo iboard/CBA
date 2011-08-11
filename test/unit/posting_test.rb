@@ -61,20 +61,21 @@ class PostingTest < ActiveSupport::TestCase
   test "A comment should have a body" do
     @blog = Blog.first
     @user = User.first
-    @blog.postings.create(:title => "My Title", :body => 'Lorem', :user => @user, :is_draft => false)
+    posting = @blog.postings.create(:title => "My Title", :body => 'Lorem', :user => @user, :is_draft => false)
     assert @blog.save, "Blog should save with Posting"
-    comment = @blog.postings.first.comments.create( :name => 'Andi', :email => 'test@server.to', :comment => '')
+    comment =posting.comments.create( :name => 'Andi', :email => 'test@server.to', :comment => '')
     assert !comment.valid?, "Comment with blank comment should not be valid"
+    assert !posting.valid?, "Posting with blank comment should not be valid"
     assert !@blog.save, "Blog sould not save with posting and blank comment"
   end
 
   test "A comment should not save without a name" do
     @blog = Blog.first
     @user = User.first
-    @blog.postings.create(:title => "My Title A", :body => 'Lorem', :user => @user)
+    posting = @blog.postings.create(:title => "My Title A", :body => 'Lorem', :user => @user)
     assert @blog.save, "Blog should save with Posting"
-    comment = @blog.postings.first.comments.create(  :email => 'test@server.to', :comment => 'Comment')
-    assert !comment.save, "Comment should not save without a name"
+    comment = posting.comments.create(  :email => 'test@server.to', :comment => 'Comment')
+    assert !comment.valid?, "Comment should not save without a name"
     assert !@blog.save, "Blog sould not save with a comment without a given name"
   end
 

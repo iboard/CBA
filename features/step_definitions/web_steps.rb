@@ -264,14 +264,12 @@ end
 
 Given /^only the following page records$/ do |table|
   Page.unscoped.delete_all
-  puts "Page count is #{Page.unscoped.count}"
   table.hashes.each do |hash|
     p = Page.new( :title => hash[:title], :body => hash[:body], :show_in_menu => false,
        :is_draft => false, :is_template => false, :page_template_id => nil)
     p.translate!
     p.save!
   end
-  puts "Stored #{Page.count} pages, #{Page.templates.count} templates"
 end
 
 Given /^no site_menu exists/ do

@@ -34,7 +34,7 @@ gem 'mongoid_fulltext'
 
 # Bundle gems for views
 gem "haml"
-gem "will_paginate"
+gem "will_paginate", "3.0.pre4"
 gem 'escape_utils'
 gem "RedCloth", "4.2.5" #"4.2.4.pre3 doesn't work with ruby 1.9.2-p180
 

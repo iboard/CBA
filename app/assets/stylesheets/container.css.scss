@@ -11,13 +11,11 @@
   margin-bottom: 5px;
   width: 1000px;
   background: none;
-/*  box-shadow: 3px 3px 3px $color-shadow; */
   #flash_notice {
     @include flash-box;
     background: $notice-background;
     color: $notice-text;
-  }
-  
+  }  
   #flash_error, 
   #flash_alert {
     @include flash-box;

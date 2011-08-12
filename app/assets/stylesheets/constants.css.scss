@@ -154,6 +154,14 @@ $form-width: 600px;
   border-radius: 10px 10px 10px 10px;
 }
 
+@mixin clear-borders {
+  border: 0px solid;
+  border-top: 0 px solid;
+  border-left: 0 px solid;
+  border-right: 0 px solid;
+  border-bottom: 0 px solid;
+}
+
 .clear {
   clear: both;
   height: 0;

@@ -18,6 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 address { font-style: normal; }
 
 a {
+  @include clear-borders;
   font-family: $font-text;
   text-decoration: none;
   color: $color-text;
@@ -161,47 +162,6 @@ input {
   -webkit-border-radius: 0px 0px 5px 5px;
   -webkit-box-shadow: 0px 0px 2px 2px #444;
 }
-
-
-.pagination {
-
-  text-align: center;
-  border: none;
-  margin-top: 5px;
-  margin: 5px;
-  padding: 5px;
-  height: 25px;
-
-  .current {
-    border-radius: 5px;
-    background: #8B8B8B;
-    color: white;
-    height: 20px;
-    padding: 5px;
-  }
-
-  em {
-    font-style: normal;
-    border-radius: 5px;
-    background: #8B8B8B;
-  }
-
-  a.prev_page, a.next_page, a {
-    text-decoration: none;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-  }
-
-  a:hover.prev_page, a:hover.next_page, a:hover {
-    text-decoration: none;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-  }
-
-}
-
 
 
 .page_intro {
@@ -460,3 +420,5 @@ li.load_more {
 @import "postings.css.scss";
 @import "forms.css.scss";
 @import "search.css.scss";
+@import "will_paginate.css.scss";
+

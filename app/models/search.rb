@@ -17,9 +17,15 @@ class Search
   
   def result
     return @result if @result
-    @result ||= Posting.fulltext_search self.search
-    pages = Page.fulltext_search(self.search)
-    @result << pages if pages && !pages.empty?
+
+    @result = []
+
+    [Page,Posting].each do |ressource|
+      found = ressource.fulltext_search(self.search)
+      Rails.logger.info("    FOUND #{found.count} ITEMS")
+      @result += [found] if found && !found.empty?
+    end
+
     @result.compact!
     @result.flatten!
     @result

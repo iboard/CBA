@@ -36,7 +36,7 @@ class Posting
 
   # Full-text-search
   include Mongoid::FullTextSearch
-  fulltext_search_in    :fulltext
+  fulltext_search_in :fulltext, :index_name => 'site_search'
   def fulltext
     title + " " + body + " " + comments.map(&:comment).join(" ")
   end

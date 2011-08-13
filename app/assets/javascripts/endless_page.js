@@ -37,7 +37,7 @@ function controllToTopLink() {
 }
 
 function nearBottomOfPage() {
-  return scrollDistanceFromBottom() < 150;
+  return scrollDistanceFromBottom() < 350;
 }
 
 function scrollDistanceFromBottom(argument) {

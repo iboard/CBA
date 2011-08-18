@@ -9,4 +9,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jsort_sortable
+//= require progress_upload_field
 //= require_tree .

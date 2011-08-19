@@ -21,6 +21,10 @@ class User
     @invitation = nil
     self.invitation_id = inv.id
   end
+  
+  def articles
+    []
+  end
 
   references_many :authentications, :dependent => :delete
   references_many :postings, :dependent => :delete

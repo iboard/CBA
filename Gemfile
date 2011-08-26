@@ -4,14 +4,6 @@ gem 'simplecov', '>= 0.4.0', :require => false, :group => :test
 
 gem "rails", "3.1.0.rc6"
 # Rails 3.1 - Asset Pipeline
-<<<<<<< HEAD:Gemfile
-gem 'json'
-gem 'sass'
-gem 'coffee-script'
-gem 'uglifier'
-gem 'therubyracer'
-=======
->>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:Gemfile
 
 group :assets do
   gem 'sass-rails', "~> 3.1.0.rc"
@@ -63,11 +55,7 @@ group :development do
   gem "rails-erd"
   gem 'rdoc'
   gem 'unicorn'
-<<<<<<< HEAD:Gemfile
-  gem 'yard' #broken in OS X 10.7 see how to workarround this issue 
-=======
   gem 'yard'
->>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:Gemfile
 end
 
 # Bundle gems for testing

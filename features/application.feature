@@ -55,7 +55,7 @@ Feature: Application
   Scenario: Authors should be able to switch to draft-mode
     Given the default user set
     And I am logged out
-    And I am logged in as user "author@iboard.cc" with password "thisisnotsecret"
+    And I am logged in as user "guest@iboard.cc" with password "thisisnotsecret"
     And the following blog records
       | id                       | title    | is_draft |
       | 4d2c96042d194751eb000001 | News     | false    |
@@ -63,7 +63,9 @@ Feature: Application
     And I am on the blogs page
     Then I should see "News"
     And I should not see "Neues"
-    And I click on link "Show drafts"
+    And I am logged out
+    And I am logged in as user "author@iboard.cc" with password "thisisnotsecret"
+    And I am on the blogs page
     Then I should see "News"
     And I should see "Neues"
     

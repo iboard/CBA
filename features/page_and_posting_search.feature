@@ -1,5 +1,3 @@
-@focus
-@fokus
 Feature: Search
   In order Search for posts and pages
   As a user
@@ -25,7 +23,7 @@ Feature: Search
       | Page B   | Lirum Opsim          | true         | false       | false    |
       | Testpage | Rails Rulez Lorem    | true         | false       | false    |
 
-@focus_todo
+
   Scenario: The homepage should have a searchbox for pages
     Given I am on the home page
     And I fill in "searchfield" with "Rails"
@@ -34,7 +32,7 @@ Feature: Search
     And I should see "Rails Rulez"
     And I should not see "The posting should load the blog it belongs to"
 
-@focus_todo
+
   Scenario: The homepage should have a searchbox for pages and postings
     Given I am on the home page
     And I fill in "searchfield" with "Lorem"

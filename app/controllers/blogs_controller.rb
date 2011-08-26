@@ -36,7 +36,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(params[:blog])
+    @blog = Blog.create(params[:blog])
     if @blog.save
       redirect_to @blog, :notice => t(:blog_successfully_created)
     else
@@ -90,7 +90,7 @@ class BlogsController < ApplicationController
 
   # For update and destroy we want to include drafts, so change the default_scope
   def scoped_blogs
-    if current_role?(:author) && draft_mode
+    if current_role?(:author)
       Blog
     else
       Blog.published

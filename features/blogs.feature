@@ -22,6 +22,19 @@ Feature: Blogs
     Then I should be on the blog path of "Blog 3"
     And I should see "successfully created"
     And I should see "Blog 3"
+    
+@focus
+  Scenario: Admin creates an unpublished blog
+    Given I am on the blogs page
+    And I click on link "Create a new Blog"
+    And I fill in "Title" with "Blog 3"
+    And I check "blog_is_draft"
+    And I click on "Create Blog"
+    Then I should be on the blog path of "Blog 3"
+    And I should see "successfully created"
+    And I should see "Blog 3"
+  
+
 
   Scenario: It should not be able to save a blog with no title
     Given I am on the blogs page
@@ -76,7 +89,9 @@ Feature: Blogs
     And I click on link "Blog 1" within "#container_main"
     Then I should be reading "Blog 1"
 
+@focus
   Scenario: A blog marked as draft should not be shown on the blogs page
+    Given I am logged in as user "guest@iboard.cc" with password "thisisnotsecret"
     Given draft mode is off
     And I am on the blogs page
     Then I should not see "A Blog Draft"

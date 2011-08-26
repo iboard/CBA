@@ -25,12 +25,54 @@ class Page
   field :allow_comments,        :type => Boolean, :default => true
   field :allow_public_comments, :type => Boolean, :default => true
   field :is_template,           :type => Boolean, :default => false
+  field :template_id,           :type => BSON::ObjectId, :default => nil
 
-  default_scope where( is_template: false )
-  scope :templates, where(is_template: true )
-  scope :top_pages, :where => { :show_in_menu => true }, :asc => :menu_order
+  # Flags
+  field :allow_removing_component, :type => Boolean, :default => true
 
-  references_many            :comments, :inverse_of => :commentable
+  # Full-text-search
+  include Mongoid::FullTextSearch
+  fulltext_search_in    :fulltext, :index_name => 'site_search'
+  def fulltext
+    [
+      title,
+      body,
+      comments.map(&:comment).join(" "),
+      (page_components.any? ? page_components.map{|c| c.body}.join(" ") : "")
+    ].join(' ')
+  end
+
+
+  # If this page is derived from a Page(Template) this method returns the
+  # template-page
+  def template
+    if self.template_id
+      Page.templates.find(self.template_id)
+    else
+      nil
+    end
+  end
+
+  # Set the template id
+  # @param [Page] new_template is the page to be used as template for this page
+  def template=(new_template)
+    if new_template
+      self.template_id = new_template.id
+    else
+      self.template_id = nil
+    end
+  end
+
+  # @return [Boolean] true if this page is derived from another page and the original page still exists!
+  def derived?
+    return self.template != nil
+  end
+
+  default_scope lambda { where( is_template: false) }
+  scope :templates, lambda { where(is_template: true ) }
+  scope :top_pages, lambda { where(show_in_menu: true).asc(:menu_order) }
+
+  references_many            :comments, :inverse_of => :commentable, :as => 'commentable'
   validates_associated       :comments
 
   # TODO: Move this definitions to a library-module
@@ -44,10 +86,12 @@ class Page
 
   field :page_template_id, :type => BSON::ObjectId
 
+  # Return the CSS PageTemplate of this page
   def page_template
     PageTemplate.where(:_id => self.page_template_id.to_s).first if self.page_template_id
   end
-  
+
+  # Assign a CSS Template to this Page
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end
@@ -58,18 +102,19 @@ class Page
   def render_body(view_context=nil)
     @view_context = view_context unless view_context.nil?
     unless (@view_context && self.page_template)
-      parts = [self.t(I18n.locale,:title), self.t(I18n.locale,:body)]
+      parts = [self.title_and_flags, self.t(I18n.locale,:body),"\nPLUSONE"]
       self.page_components.each do |component|
-        parts << render_for_html( [ (component.t(I18n.locale,:title)||''),
+        parts << ( [ (component.t(I18n.locale,:title)||''),
                              ("-"*component.t(I18n.locale,:title).length),
                              "\n"+(component.t(I18n.locale,:body) || '')
                            ].join("\n")
                          )
       end
-      render_for_html( parts.join("\n") )
+      rc=render_for_html( parts.join("\n") )
     else
-      render_with_template
+      rc=render_with_template
     end
+    rc
   end
 
   # Same as short_title but will append a $-sign instead of '...'
@@ -90,12 +135,13 @@ class Page
   # TODO:   place.
   def render_with_template
     self.page_template.render do |template|
-      template.gsub(/TITLE/, self.t(I18n.locale,:title))\
+      template.gsub(/TITLE/, self.title_and_flags)\
               .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
               .gsub(/COMPONENTS/, render_components )\
               .gsub(/COVERPICTURE/, render_cover_picture)\
               .gsub(/COMMENTS/, render_comments)\
               .gsub(/BUTTONS/, render_buttons)\
+              .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
               .gsub(/ATTACHMENTS/, render_attachments)\
               .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
                 attachment_number.gsub! /\D/,''

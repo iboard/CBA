@@ -1,6 +1,8 @@
 %div{ :class=>:blog_intro, :id=>blog.id.to_s  }
 %h1= link_to blog.title, blog
-
+- if blog.is_draft
+    %p= t(:is_draft_label)
+  
 - if blog.cover_picture_exists?
     = render :partial => '/blogs/cover_picture',          |
              :locals => { :blog => blog,                  |

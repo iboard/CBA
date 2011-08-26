@@ -1,0 +1,61 @@
+$label-width: $form-width / 3;
+$field-width: $form-width / 3 * 2;
+
+
+#container #container_main {
+  label {
+    width: $label-width;
+  }
+  
+  input[type="text"] {
+      width: $field-width;
+  }
+  
+  textarea {
+    width: $field-width;
+  }
+  
+  form {
+    .field {
+      #attachments {
+        margin-left: $label-width;
+        display: block;
+        
+        input[type="file"] {
+          width: $field-width - 80px;
+        }
+        
+        a {
+          background: none;
+          color: $color-text;
+        }
+        
+        .attachment {
+          @include button-shape(5px);
+          border: 1px solid lighten($color-shadow, 50%);
+          padding: 5px;
+          width: $field-width;
+          margin-bottom: 10px;
+        }
+        
+        .attachment-label {
+          display: block;
+          margin-bottom: 5px;
+          
+          a.nostyle-link {
+            border: none;
+            border-bottom: none;
+            font-weight: bold;
+            &:hover {
+              text-decoration: underline;
+            };
+          }
+        }
+        .file-field {
+          margin-top: 5px;
+          display: inline;
+        }
+      }
+    }
+  }
+}

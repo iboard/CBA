@@ -5,11 +5,13 @@ class PageComponent
   include Mongoid::Document
   cache
   embedded_in :page
+  embedded_in :article
+  
   include Translator
   translate_fields [:title, :body]
   
   default_scope lambda { asc(:position) }
-  
+    
   field :position, :type => Integer, :default => 9999
   field :title,    :required => true, :default => '(unnamed)'
   field :body
@@ -21,7 +23,7 @@ class PageComponent
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end
-
+    
   # TODO: Remove duplication!
   # TODO:   This code occurs in Page and PageComponent. Move it to a single
   # TODO:   place.
@@ -54,4 +56,17 @@ class PageComponent
       self.page.render_for_html(self.t(I18n.locale,:body))
     end
   end
+
+
+  # Ask our page if removing of components is allowed 
+  alias_method :__original__delete, :delete
+  def delete(options={})
+    if self.page.is_template || self.page.allow_removing_component == true
+      __original__delete(options)
+    else
+      self.errors.add('base', "Removing components is not allowed")
+      false
+    end
+  end
+  
 end

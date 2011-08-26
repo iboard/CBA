@@ -4,6 +4,11 @@ Cba::Application.routes.draw do
 
   # Switch locales
   match 'switch_lcoale/:locale' => "home#set_locale", :as => 'switch_locale'
+  
+  # Switch draft mode
+  match 'draft_mode/:mode' => "home#set_draft_mode", :as => 'draft_mode'
+
+  match 'search' => "search#index", :as => 'searches'
 
   # Comments
   resources :comments, :except => :show
@@ -36,6 +41,8 @@ Cba::Application.routes.draw do
   resources :pages do
     member do
       get :delete_cover_picture
+      get :sort_components
+      post :sort_components
     end
     collection do
       get  :new_article

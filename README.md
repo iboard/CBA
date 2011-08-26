@@ -1,21 +1,15 @@
 CBA - Community Base Application Template
 =========================================
 
-  * [Github](http://github.com/iboard/CBA)
-  * [CBA Website](http://cba.iboard.cc)
-
-Version note
-------------
-
- * This is the API documentation for the [**Rails 3.1 branch**](https://github.com/iboard/CBA/tree/rails31).
- * [**branch master**](https://github.com/iboard/CBA/tree/master) is for Rails 3.0.9 and will not be supported in the future.
+* [Github](http://github.com/iboard/CBA)
+* [CBA Website](http://cba.iboard.cc)
 
 
 Quickstart
 -----------
 
 ```sh
-   curl -o install_cba.rb https://github.com/iboard/CBA/raw/master/install.rb
+   curl -o install_cba.rb https://raw.github.com/iboard/CBA/master/install.rb
    ruby install_cba.rb
 ```
 
@@ -25,6 +19,10 @@ This will install  a fully functional web-application, with user-authentication 
 
 What it is
 ----------
+<<<<<<< HEAD:README.md
+=======
+
+>>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:README.md
 *CBA* is forked from [Rails3-Mongoid-Devise by fortuity](http://github.com/fortuity/rails3-mongoid-devise), extended by Andi Altendorfer with
 
 * OmniAuth
@@ -51,7 +49,10 @@ More about installation
   * See: [Posting 'installation.rb'](http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4d53bb27e779893dd0000007)
   * CBA is in heavy development age, so please read [CBA Blog](http://cba.iboard.cc) from bottom to top. There are some latest news, not mentioned in this README.
 
+<<<<<<< HEAD:README.md
 
+=======
+>>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:README.md
 Layout and Templates
 --------------------
 
@@ -112,6 +113,7 @@ Start all at once with thor-task
 
 You can use `thor application:run_autotests` to start the spork-server and autotest. The shortest way to jump into *continuos testing* 
 
+<<<<<<< HEAD:README.md
 Layout and Templates
 -------------------
 
@@ -119,6 +121,8 @@ Layout and Templates
   * Edit views/layout/application.html or views/layout/'your_name_given_at_install'.html.erb
   * Read [Posting](http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4dbebb9adaf9853b3000001a)
   * Visit [Demo Page](http://cba.iboard.cc/p/pagecomponent_and_pagetemplat$)
+=======
+>>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:README.md
 
 
 License

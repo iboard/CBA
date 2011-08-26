@@ -18,7 +18,7 @@ module ContentItem
     doc.search("//pre[@lang]").each do |pre|
       pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
     end
-    doc.xpath('//body').to_s.html_safe
+    doc.xpath('//body').to_s.gsub(/<\/?body>/,"").html_safe
   end  
   # == ContentItem
   # Can be a 'Page', a 'Posting' or something else you want to be
@@ -43,11 +43,31 @@ module ContentItem
         index :title
         validates_presence_of :title
         validates_uniqueness_of :title
-
+        
+        # ContentItems marked as 'draft' should not be in the default-scope
+        field :is_draft, :type => Boolean, :default => true
+        scope :drafts, lambda { unscoped.where(is_draft: true ) }
+        
+        if self.respond_to?(:is_template)
+          scope :published, lambda { unscoped.where(is_draft: false, is_template: false ) }
+        else
+          scope :published, lambda { unscoped.where(is_draft: false ) }
+        end
+        
         # Will return a truncated version of the title if it exceeds the maximum
         # length of titles used in the menu (or wherever you can't display long titles)
         def short_title
           title.truncate(CONSTANTS['title_max_length'].to_i, :omission => '...')
+        end
+        
+        # Display title with markers for templates and drafts
+        def title_and_flags
+          title_html = self.t(I18n.locale,:title)||self.title
+          if self.respond_to?(:is_template)
+            title_html += "&nbsp;<span class='templage_flag'>#{I18n.translate(:is_a_template_flag)}</span>".html_safe if self.is_template
+          end
+          title_html += "&nbsp;<span class='draft_flag'>#{I18n.translate(:is_a_draft_flag)}</span>".html_safe if self.is_draft
+          title_html.html_safe
         end
 
 
@@ -81,7 +101,7 @@ module ContentItem
           }.gsub( /COMPONENT[\d+]/ ) { |component|
             component_i = component.gsub( /\D/,'' ).to_i
             render_page_component(component_i)
-          }
+          }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
         end
 
         private

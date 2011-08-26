@@ -22,9 +22,9 @@ Spork.prefork do
   require 'capybara/cucumber'
   require 'capybara/session'
 
-  Dir.new("#{Rails.root}/test/factories/").reject {|r| !r.match(/\.rb$/) }.each do |factory|
-    require "#{Rails.root}/test/factories/#{factory}"
-  end
+#  Dir.new("#{Rails.root}/test/factories/").reject {|r| !r.match(/\.rb$/) }.each do |factory|
+#    require "#{Rails.root}/test/factories/#{factory}"
+#  end
 
   require 'factory_girl'
   require 'factory_girl/step_definitions'

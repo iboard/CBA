@@ -3,7 +3,7 @@
 
 # Usage:
 #
-#   curl -o install_cba.rb https://github.com/iboard/CBA/raw/master/install.rb
+#   curl -o install_cba.rb https://raw.github.com/iboard/CBA/master/install.rb
 #   ruby install_cba.rb
 #
 # More info: http://github.com/iboard/CBA/

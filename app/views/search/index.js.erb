@@ -1,0 +1,5 @@
+$('#container_main').html("<%= escape_javascript(
+   raw( sanitize (
+    '<h1>'+t(:search)+'</h1>' +
+    render( 'searchresult', :search => @search )
+  ))) -%>");

@@ -191,7 +191,7 @@ en:
   manage_templates: 'Templates'
   commit: 'Commit'
   submit: 'Submit'
-  html_template_label: "HTML-Template<br/><small>Keywords: TITLE, BODY, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]</small>"
+  html_template_label: "HTML-Template<br/><small>Keywords: TITLE, BODY, PLUSONE, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]</small>"
   name_for_page_template: "Name<br/><small>use prefix 'Component:' for page components</small>"
   page_component: "Component"
   page_template_successfully_updated: Template successfully updated
@@ -230,3 +230,22 @@ en:
   step_two_fill_the_page: 'Step 2 - Fill the template'
   template: 'Template'
   create_new_article: 'Create new article'
+  is_draft_label: 'THIS IS A DRAFT'
+  will_be_shown_to_authors_only: 'If true, this will be displayed for authors and maintainers only'
+  save_as_draft: 'Save as draft'
+  is_draft: 'Draft'
+  show_drafts: 'Show drafts'
+  hide_drafts: 'Hide drafts'
+  is_on: 'on'
+  is_off: 'off'
+  draft_mode_switched_to: 'Draft mode is %{mode}'
+  is_a_template_flag: '(TEMPLATE)'
+  is_a_draft_flag: '(DRAFT)'
+  document_not_found: 'Document not found'
+  derived_from: "Derived from %{title}"
+  use_content_as_placeholder_info: 'Content of this component will be used as placeholders in new articles'
+  done: 'done'
+  did_you_save_changes: 'Are you sure you want to close this page? Did you save all modifications?'
+  scroll_to_top: 'Scroll to top'
+  search: "Search"
+  invalid_search: 'Please provide 3 characters or more'

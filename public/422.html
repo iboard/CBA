@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
-    <title>Ooops - 422 - The change you wanted was rejected</title>
+    <title>OOPS - 422 - Changes rejected</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.png" />
-    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="/assets/application.css">
   </head>
   <body>
-    <div id='overlay' class="ui-widget-content"></div>
     <div id="banner">
-      <h1>Ooops - 422 - The change you wanted was rejected</h1>
+      <h1>OOPS - 422 - Changes rejected</h1>
     </div>
 
+    <div id="session">
+        <ul>
+          <li><a href='/'>Home</a></li>
+        </ul>
+    </div>
+
+    <div class='clear'></div>
     <div id="container">
-      <div style="margin: 0px;">
-         <div id="cse" style="display: hidden; background: #fee;"></div>
-         <div style='text-align: center; margin: 40px; background: #FCD284;
+      <div id='container_main'>
+        <div style='text-align: center; margin: 40px; background: #FCD284;
                      border: 1px solid #ddd; padding: 30px;
                      -moz-border-radius: 5px 5px 5px 5px; 
                      -webkit-border-radius: 5px 5px 5px 5px; 
                     '>
-           <h1>The change you wanted was rejected.</h1>
-           <p>Maybe you tried to change something you didn't have access to.</p>
+           <h1>Your changes was being rejected.</h1>
            <br/>           <br/>           <br/>
          </div>
         <center><a href='/'>Start at the root page again ...</a></center>
         <br/>           <br/>           <br/>
       </div>
 
-      <div id='clear'></div>
+      <div class='clear'></div>
+
     </div>
+
     <div id='copyright'>
-        © 2011 by Andreas Altendorfer %>
+        © 2011 by Andreas Altendorfer
     </div>
+    
+    <div class='clear'></div>
+
   </body>
 </html>

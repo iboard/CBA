@@ -1,3 +1,8 @@
+@mixin horizontal-menu-background {
+  background: lighten($background-banner, 30%);
+}
+
+
 #banner {
   background: $background-banner;
   position: fixed;
@@ -8,7 +13,7 @@
   height: 90px;
   padding-left: 20px;
 
-  
+
   h1 {
     font-family: $font-headline;
     font-size:  ($font-size-default * 1.5);
@@ -36,19 +41,24 @@
   top: 90px;
   left: 0px;
   right: 0px;
-  padding: 5px;
-  margin-top: 0px;
-  padding-top: 10px;
-  height: 17px;
+  padding: 0px;
+  padding-top: 5px;
+  margin: 0px;
+  height: 23px;
   width: 100%;
   border-bottom: 1px solid $color-shadow;
   @include bottom-shadow;
-  @include page-background;
+  @include horizontal-menu-background;
 
-  a {
-    z-index: 3;
-    border: none;
+  .not_selected {
+    a {
+      &:hover {
+        @include button-shape($radius-small);
+        @include gradient-button-hover;
+      }
+    }
   }
+
 
   ul {
     list-style-type: none;
@@ -59,32 +69,94 @@
     margin-left: 5px;
     margin-right: 10px;
 
+    .selected {
+      li {
+        display: inline;
+        margin: 0px;
+        padding: 0px;
+        a {
+          @include button-shape($radius-small);
+          padding: 5px;
+          @include gradient-button-hover;
+        }
+      }
+    }
+
     li {
       display: inline;
       margin: 0px;
-      padding: 5px;
-      padding-left: 0px;
-      padding-right: 0px;
-      border-radius: 5px 5px 0px 0px;
+      padding: 0px;
       a {
+        @include button-shape($radius-small);
         padding: 5px;
+        height: 30px;
+        &:hover {
+          @include gradient-button-hover;
+        }
       }
     }
   }
-
-  ul.selected {
-    li {
-      border: 1px solid darken($button_gradient_start, 50%);
-      border-bottom: none;
-      border-radius: 5px 5px 0px 0px;
-      padding-top: 5px;
-      margin-top: 0px;
-      @include gradient-button-selected;
-    }
-  }
-
 }
 
 .hmenu_with_children {
   display: inline;
+}
+
+#copyright {
+  position: fixed;
+  left: 10px;
+  bottom: 0px;
+  clear: both;
+  margin-top: 5px;
+  text-align: center;
+  color: #444;
+  font-size: 0.5em;
+
+  a {
+    color: #444;
+    text-decoration: none;
+  }
+}
+
+#scroll-position {
+  font-size: 2.5em;
+  position: relative;
+  top: -45px;
+  opacity: 0.75;
+  &:hover {
+    opacity: 1.0;
+    text-decoration: none;
+    border:none;
+  }
+}
+
+#scroll-to-top {
+  @extend #copyright;
+  bottom: 20px;
+  height: 64px;
+  width: 64px;
+  overflow: hidden;
+  left: $sidebar-width/2 - 32;
+  a {
+    height: 64px;
+    width: 64px;
+    display: block;
+    text-decoration: none;
+    &:hover {
+      opacity: 1.0;
+      text-decoration: none;
+      border:none;
+    }
+  }
+  
+  img {
+    @include button-shape($radius-medium);
+  }
+  
+  &:hover {
+    opacity: 1.0;
+    text-decoration: none;
+    border:none;
+  }
+  
 }

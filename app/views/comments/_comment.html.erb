@@ -4,7 +4,7 @@
       <% if user=comment.user %>
         <%= image_tag( user.avatar_url(:thumb), :class => 'without_shadow') %>
       <% else %>
-        <%= image_tag( '../avatars/thumb/missing.png', :class => 'without_shadow') %>
+        <%= image_tag( 'avatars/thumb/missing.png', :class => 'without_shadow') %>
       <% end %>
     </div>
     <div class='comment_content'>

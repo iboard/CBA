@@ -38,12 +38,29 @@ class Blog
     posting
   end
 
+  # find postings with filter
+  #
+  # @param [Hash] options a filter to find postings of this blog e.g. '{ is_draft: true }'
+  # @return [Criteria] Criteria on self.postings.where( _options_ )
+  def scoped_postings(options=nil)
+    return self.postings unless options
+    self.postings.unscoped.where( options )
+  end
+
+  # find pages with filter
+  # @param [Hash] options a filter to find pages of this blog e.g. '{ is_draft: true }'
+  # @return [Criteria] Criteria on self.pages.where( _options_ )
+  def scoped_pages(options=nil)
+    return self.pages unless options
+    self.pages.where( options )
+  end
+
   private
   # ContentItems need to override the abstract method but a Blog didn't
   def content_for_intro
     # TODO: Intro should link to a Page if one is referenced.
   end
-  
+
   # Remove this blog from pages which should not be displayed with this
   # blog
   def remove_from_old_pages
@@ -56,4 +73,5 @@ class Blog
       end
     end
   end
+
 end

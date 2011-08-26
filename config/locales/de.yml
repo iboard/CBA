@@ -388,7 +388,7 @@ de:
   manage_templates: 'Layouts'
   commit: 'Speichern'
   submit: 'Senden'
-  html_template_label: "HTML-Template<br/>Keywords: TITLE, BODY, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]"
+  html_template_label: "HTML-Template<br/>Keywords: TITLE, BODY, PLUSONE, COVERPICTURE, ATTACHMENTS, COMMENTS, COMPONENTS, ATTACHMENT[n], COMPONENT[n]"
   name_for_page_template: "Name<br/><small>Prefix 'Component:' für Seitenkomponenten</small>"
   page_component: "Komponente"
   page_template_successfully_updated: Layout erfolgreich gespeichert
@@ -415,7 +415,6 @@ de:
   new_submenu_for: 'Neues Untermenü für %{parent_name}'
   is_a_template: 'Anhacken wenn diese Seite ein Vorlage sein soll'
   is_template: 'Vorlage?'
-  is_a_template: 'Anhacken wenn diese Seite ein Vorlage sein soll'
   new_article: 'Neuer Artikel'
   css_templates: 'CSS-Vorlagen'
   article_templates: 'Artikel-Vorlagen'
@@ -428,3 +427,22 @@ de:
   step_two_fill_the_page: 'Schritt 2 - Vorlage ausfüllen'
   template: 'Vorlage'
   create_new_article: 'Create new article'
+  is_draft_label: 'DAS IST EIN ENTWURF'
+  will_be_shown_to_authors_only: 'Falls ja, wird dieser Eintrag nur für Autoren und Maintainer angezeigt'
+  is_draft: 'Entwurf'
+  save_as_draft: 'Als Entwurf speichern'
+  show_drafts: 'Entwürfe ein'
+  hide_drafts: 'Entwürfe aus'
+  is_on: 'ein'
+  is_off: 'aus'
+  draft_mode_switched_to: 'Entwürfe wurden %{mode}geschaltet'
+  is_a_template_flag: '(VORLAGE)'
+  is_a_draft_flag: '(ENTWURF)'
+  document_not_found: 'Dokument nicht gefunden'
+  derived_from: "Abgeleitet von %{title}"
+  use_content_as_placeholder_info: 'Inhalte dieser Vorlage werden als Platzhater in neuen Artikeln benutzt.'
+  done: 'Fertig'
+  did_you_save_changes: 'Wollen Sie diese Seite wirklich verlassen? Sind alle Änderungen gespeichert?'
+  scroll_to_top: 'Zum Anfang der Seite'
+  search: 'Suchen'
+  invalid_search: 'Geben sie bitte mindestens 3 Zeichen ein'

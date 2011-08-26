@@ -1,53 +1,56 @@
 <% if defined?(OMNIAUTH_CAMPUS_ID) %>
   <a href="/auth/campus" class="auth_provider">
-    <%= image_tag "campus_64.png", :size => "64x64", :alt => "WWEDU Campus" %>
+    <%= image_tag "campus_sixtyfour.png", :size => "64x64", :alt => "WWEDU Campus" %>
     WWEDU
   </a>
 <% end %>
 
 <% if defined?(OMNIAUTH_TWITTER_KEY) %>
   <a href="/auth/twitter" class="auth_provider">
-    <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+    <%= image_tag "twitter_sixtyfour.png", :size => "64x64", :alt => "Twitter" %>
     Twitter
   </a>
 <% end %>
 
+<% if defined?(OMNIAUTH_GOOGLE) %>
+  <%= link_to(                 
+        image_tag( "google_sixtyfour.png", :size => "64x64", :alt => "Google")+"Google",
+        "/auth/google_apps",
+        :class => "auth_provider"
+        ) -%>
+<% end %>
+
+
 <% if defined?(OMNIAUTH_FACEBOOK_KEY) %>
   <a href="/auth/facebook" class="auth_provider">
-    <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+    <%= image_tag "facebook_sixtyfour.png", :size => "64x64", :alt => "Facebook" %>
     Facebook
   </a>
 <% end %>
-  <!--
-  <a href="/auth/google_apps" class="auth_provider">
-    <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
-    Google
-  </a>
-  -->
 
 <% if defined?(OMNIAUTH_LINKED_IN_KEY) %>
   <a href="/auth/linked_in" class="auth_provider">
-    <%= image_tag "linkedin_64.png", :size => "64x64", :alt => "LinkedIn" %>
+    <%= image_tag "linkedin_sixtyfour.png", :size => "64x64", :alt => "LinkedIn" %>
     LinkedIn
   </a>
 <% end %>
 
 <% if defined?(OMNIAUTH_BASECAMP_ID) %>
   <a href="/auth/thirty_seven_signals" class="auth_provider">
-    <%= image_tag "basecamp_64.png", :size => "64x64", :alt => "Basecamp" %>
+    <%= image_tag "basecamp_sixtyfour.png", :size => "64x64", :alt => "Basecamp" %>
     Basecamp
   </a>
 <% end %>
 
 <% if defined?(OMNIAUTH_GITHUB_ID) %>
   <a href="/auth/github" class="auth_provider">
-    <%= image_tag "github_64.png", :size => "64x64", :alt => "Github" %>
+    <%= image_tag "github_sixtyfour.png", :size => "64x64", :alt => "Github" %>
     Github
   </a>
 <% end %>
 
 <a href="/auth/open_id" class="auth_provider">
-  <%= image_tag "openid_64.png", :size => "64x64", :alt => "OpenID" %>
+  <%= image_tag "openid_sixtyfour.png", :size => "64x64", :alt => "OpenID" %>
   OpenID
 </a>
 

@@ -5,6 +5,8 @@
 
     = errors_for page
     
+    = f.hidden_field :template_id
+    
     %div.field
         = f.label :translations
         %span{ style: 'left-margin: 200px;'}
@@ -68,26 +70,46 @@
     -#
     -# ATTACHMENTS
     -#
-    %div#attachments{ :style=>'clear: right;' }
-        %h3= t(:attachments)
-        %blockquote
+    %div.field            
+        = label_tag :attachments, t(:attachments)
+        %div#attachments
             = f.fields_for :attachments do |builder|
                 = render 'attachments/attachment_fields', :f => builder
             %div#new_asset
             %p= link_to_add_fields(t(:new_attachment).html_safe, f, :attachments)
-
-    %div.insert_attachment
+            %div.insert_attachment
 
     -#
     -# COMPONENTS
     -#
     %div#components
         %h3= t(:page_components)
-        %blockquote
+        %address
+            = link_to_function( t(:collaps_all), "collaps_all('.fields_for_component');") + "  |  " + link_to_function( t(:expand_all), "expand_all('.fields_for_component');")
+            - unless f.object.new_record?
+                =  raw("  |  " + link_to(t(:sort_components), sort_components_page_path(f.object), :remote => true))
+        %blockquote#components
             = f.fields_for :page_components do |builder|
                 = render 'page_components/page_component_fields', :f => builder
             %div#new_component
             %p= link_to_add_fields(t(:new_page_component).html_safe, f, :page_components)
+    - unless f.object.new_record?
+        #component_sort_box
+            %h1= t(:sort_components)
+            %ol#sort_components
+            #sort_components_done= link_to(t(:done), edit_page_path(page), :confirm => t(:did_you_save_changes))
+    .fieldgroup
+        .field
+            = f.label :allow_removing_component
+            = f.check_box :allow_removing_component
+                    
+    .field
+        = f.label :is_draft, t(:save_as_draft)
+        = f.check_box :is_draft
+        = t(:will_be_shown_to_authors_only)
+    
+    .field
+        %h3= t(:saving)
 
     %div.actions
         = f.label :submit, t(:save_changes)

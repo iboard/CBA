@@ -1,12 +1,9 @@
-%li{:class=>'site_menu_entry', :id => "site_menu_#{site_menu.to_param}"}
-  %span{:class => 'handle'}
-    = image_tag 'sortable_vertical.png', :style => 'border: none; box-shadow: none;'
-  %span.name
-    = site_menu.name+" => "
-    = link_to site_menu.target, site_menu.target
-  %br
-  %span{:class => 'site_menu_manage_buttons'}
-    = site_menu_manage_buttons(site_menu)
-  - if site_menu.children.any?
-    %ul
-      = render site_menu.children
+%span.name
+  = site_menu.name+" => "
+  = link_to site_menu.target, site_menu.target
+%br
+%span{:class => 'site_menu_manage_buttons'}
+  = site_menu_manage_buttons(site_menu)
+- if site_menu.children.any?
+  -jsort(site_menu.children,'site_menu_children_of_'+site_menu.id.to_s,"/site_menus/sort_menus") do |item|
+    = render item

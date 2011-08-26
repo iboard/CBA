@@ -8,10 +8,10 @@ class AttachmentTest < ActiveSupport::TestCase
     User.delete_all
     @user = create_valid_user_with_id('4d2ca35a2d19475c51000012')
     assert !@user.nil?, "Can't create valid user"
-    @blog = Blog.create(:title => 'Test blog')
+    @blog = Blog.create(:title => 'Test blog', :is_draft => false)
     @posting = @blog.postings.create(
       :title => 'With Attachments', 
-      :body => 'Lorem', :user => @user
+      :body => 'Lorem', :user => @user, :is_draft => false
     )
   end
 
@@ -22,7 +22,7 @@ class AttachmentTest < ActiveSupport::TestCase
   end
   
   test "A Page should save with an attachment" do
-    @page = Page.new(:title => 'A Page with attachments', :body => 'Lorem')
+    @page = Page.new(:title => 'A Page with attachments', :body => 'Lorem', :is_draft => false)
     @page.attachments.create
     assert @page.save, "Page should save with attachments"
   end

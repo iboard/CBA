@@ -16,6 +16,8 @@ tmp/*
 .sass-cache/**/*
 coverage/*
 coverage/**/*
+test/unit/coverage/*
+test/unit/coverage/**/*
 config/mongoid.yml
 config/application.yml
 config/mailserver_setting.rb
@@ -24,9 +26,14 @@ config/google_analytics.head
 config/google_site_search.html
 config/twitter.*.html
 public/system/**/*
+public/assets
+public/assets/*
+public/assets/**/*
 public/cover_pictures
 public/sitemap.xml
 public/stylesheets/disabled_styles/*
 public/stylesheets/disabled_styles/**/*
 app/views/layouts/disabled_layouts/*
 app/views/layouts/disabled_layouts/**/*
+redcloth/*
+redcloth/**/*

@@ -1,0 +1,11 @@
+#results
+  - if search.result.any?
+    - for hit in search.result
+      - unless hit[0].is_a?(Array)
+        .result
+          %h3
+            = link_to( hit[0].title + " (#{hit[0].class.to_s.humanize})", hit[0])
+            = "[#{'*'*hit[1]}]"
+          = raw hit[0].render_intro
+  - else
+    =  t(:nothing_found)

@@ -1,0 +1,3 @@
+- for component in @page.page_components.order([:position,:asc])
+  %li{:class=>'component_sort_entry', :id => "component_#{component.to_param}"}
+    %span.handle= component.t(I18n.locale,:title)

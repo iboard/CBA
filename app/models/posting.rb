@@ -19,8 +19,9 @@ class Posting
   # Associations  ================================================
   referenced_in         :blog, :inverse_of => :postings
 
-  references_many       :comments, :inverse_of => :commentable
+  references_many       :comments, :inverse_of => :commentable, :as => 'commentable'
   validates_associated  :comments
+
 
   # TODO: Move this definitions to a library-module
   # TODO: and replace this lines with just 'has_attchments'
@@ -29,8 +30,17 @@ class Posting
   accepts_nested_attributes_for :attachments,
                                 :allow_destroy => true
 
+
   # Send notifications
   after_create  :send_notifications
+
+  # Full-text-search
+  include Mongoid::FullTextSearch
+  fulltext_search_in :fulltext, :index_name => 'site_search'
+  def fulltext
+    title + " " + body + " " + comments.map(&:comment).join(" ")
+  end
+
 
   # Render the body with RedCloth
   def render_body(view_context=nil)
@@ -52,5 +62,7 @@ class Posting
       self.blog.id, self.id
     )
   end
+
+
 end
 

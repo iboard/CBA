@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
-    <title>Ooops - 500 - Something went wrong</title>
+    <title>OOPS - 500 - Something went wrong</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.png" />
-    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="stylesheet" href="/assets/application.css">
   </head>
   <body>
-    <div id='overlay' class="ui-widget-content"></div>
     <div id="banner">
-      <h1>Ooops - 500 - Something went wrong</h1>
+      <h1>OOPS - 500 - Something went wrong</h1>
     </div>
 
+    <div id="session">
+        <ul>
+          <li><a href='/'>Home</a></li>
+        </ul>
+    </div>
+
+    <div class='clear'></div>
     <div id="container">
-      <div style="margin: 0px;">
-         <div id="cse" style="display: hidden; background: #fee;"></div>
-         <div style='text-align: center; margin: 40px; background: #7D1108; color: white;
+      <div id='container_main'>
+        <div style='text-align: center; margin: 40px; background: #FCD284;
                      border: 1px solid #ddd; padding: 30px;
                      -moz-border-radius: 5px 5px 5px 5px; 
                      -webkit-border-radius: 5px 5px 5px 5px; 
                     '>
-           <h1>We're sorry, but something went wrong.</h1>
-           <p>We've been notified about this issue and we'll take a look at it shortly.</p>           
+           <h1>Something went wrong.</h1>
+           <p>We're notified and will care about soon.</p>
            <br/>           <br/>           <br/>
          </div>
         <center><a href='/'>Start at the root page again ...</a></center>
         <br/>           <br/>           <br/>
       </div>
 
-      <div id='clear'></div>
+      <div class='clear'></div>
+
     </div>
+
     <div id='copyright'>
-        © 2011 by Andreas Altendorfer %>
+        © 2011 by Andreas Altendorfer
     </div>
+    
+    <div class='clear'></div>
+
   </body>
 </html>
-

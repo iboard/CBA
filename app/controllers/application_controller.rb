@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   # persistent language for this session/user
   before_filter  :set_language_from_cookie
   before_filter  :apply_invitation
+  before_filter  :setup_search
 
   # == Display a flash if CanCan doesn't allow access
   rescue_from CanCan::AccessDenied do |exception|
@@ -28,6 +29,7 @@ class ApplicationController < ActionController::Base
   # Load what every controller may expect to be there
   helper_method :top_pages
   helper_method :root_menu
+  helper_method :draft_mode
 
   # Setup content for buttons on top of page
   helper_method :pivotal_tracker_project
@@ -99,6 +101,24 @@ class ApplicationController < ActionController::Base
   def current_role?(role)
     return false unless current_user
     User::ROLES.index(role.to_sym) <= current_user.roles_mask
+  end
+  
+  def draft_mode
+    return true if session[:draft_mode] && session[:draft_mode] == true
+    false
+  end
+  
+  def change_draft_mode(mode)
+    if current_role?(:author)
+      session[:draft_mode] = (mode && mode == "1")
+    else
+      session[:draft_mode] = false
+    end
+  end
+  
+  def setup_search
+    params[:search] ||= {:search => ""}
+    @search ||= Search.new(params[:search]||{:search => ""})
   end
 
 end

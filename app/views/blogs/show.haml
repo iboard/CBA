@@ -2,16 +2,16 @@
 
 %div
   - if @blog.pages.any?
-    .right_column{style:'margin-top: 40px;'}
-      - for page in @blog.pages
+    .right_column
+      - for page in @blog.pages.where(is_draft: draft_mode)
         = render :partial => 'pages/page_intro', :locals => { :page => page }
         %p.content_seperator
 
-  = raw("<div class='left_column'>" )if @blog.pages.any?
+  = raw("<div class='left_column'>" ) if @blog.pages.any?
 
   = render :partial => '/blogs/blog', :locals => { :blog => @blog}
 
-  %p= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting
+  %p.green-button= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting
 
   %p{style: 'text-align: center;'}= will_paginate @postings
 

@@ -16,6 +16,13 @@
     <%= yield :head %>
     <%= auto_discovery_link_tag(:atom, "/feed") %>
     <%= insert_google_analytics_script if  (Rails.env == 'production') %>
+    <% if APPLICATION_CONFIG['twitter_profile'] %>
+      <link rel="me" type="text/html" href="<%= APPLICATION_CONFIG['twitter_profile'] -%>"/>
+    <% end %>    
+    <% if APPLICATION_CONFIG['google_profile'] %>
+      <link rel="me" type="text/html" href="<%= APPLICATION_CONFIG['google_profile'] -%>"/>
+    <% end %>    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
     <%= csrf_meta_tag %>
   </head>
   <body>
@@ -44,6 +51,9 @@
 
     <% if current_root(self) %>
       <div class='submenu_box'>
+        <div id='searchbox'>
+          <%= render 'search/form' %>
+        </div>
         <ul>
         <%=
             raw(
@@ -55,37 +65,44 @@
         </ul>
       </div>
       <div class='clear'></div>
-    <% end %>
-    <div id="container">
-      <!--
-      <div class='google-search'>
-         %= insert_google_site_search %
+      
+      <div id='scroll-to-top'>
+        <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
+        <span id='scroll-position'></span>
       </div>
-      -->
+      <div id='copyright'>
+        <a href='http://www.pledgie.com/campaigns/15849'><img 
+               alt='Click here to lend your support to: CBA and make a donation at www.pledgie.com !' 
+               src='http://www.pledgie.com/campaigns/15849.png?skin_name=chrome' border='0' /></a>
+        <br />
+           © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
+      </div>
+      
+    <% end %>
+    <div class='main-frame'>      
       <div id='flashes'>
         <% flash.each do |name, msg| %>
           <%= content_tag :div, raw(msg), :id => "flash_#{name}" %>
         <% end %>
+
+        <% if user_signed_in? && current_user.user_notifications.displayed.any? %>
+          <%= render :partial => 'users/notifications', :locals => { :user_notifications => current_user.user_notifications.displayed } %>
+        <% end %>
       </div>
-
-      <% if user_signed_in? && current_user.user_notifications.displayed.any? %>
-        <%= render :partial => 'users/notifications', :locals => { :user_notifications => current_user.user_notifications.displayed } %>
-      <% end %>
-
-      <div id='container_main'>
-         <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
-        <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
-        <%= yield %>
+      <div id="container">
+        <!--
+        <div class='google-search'>
+           %= insert_google_site_search %
+        </div>
+        -->
+        <div id='container_main'>
+          <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
+          <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
+          <%= yield %>
+        </div>
       </div>
-
-      <div class='clear'></div>
-
+      <div class='clear'></div> 
     </div>
-
-    <div id='copyright'>
-        © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
-    </div>
-    
     <div class='clear'></div>
 
   </body>

@@ -43,12 +43,25 @@ class SiteMenusController < ApplicationController
   end
   
   def sort_menus
-    params[:site_menu].each_with_index do |id,idx|
-      m = SiteMenu.find(id)
+    if params[:site_menu].present?
+      update_site_menu_position(params[:site_menu],SiteMenu.roots)
+    else
+      params.each do |key, values|
+        id = key.gsub(/site_menu_children_of_/,"")
+        update_site_menu_position(values,SiteMenu.find(id).children)
+        break
+      end
+    end
+    render :nothing => true
+  end
+  
+  private
+  def update_site_menu_position(sort_params,branch)
+    sort_params.each_with_index do |id,idx|
+      m = branch.detect {|b| b.id.to_s == id}
       m.position = idx
       m.save
     end
-    render :nothing => true
   end
 
 end

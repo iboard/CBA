@@ -1,0 +1,97 @@
+@mixin standard_box {
+	margin: 5px;
+  border: 1px solid #ddd;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  padding: 5px;	
+}
+
+/* TEMPLATES DEFINED IN DATACOLLECTION PageTemplate */
+
+.template_default {
+}
+
+.component_default {
+}
+
+.component_float_left_100 {
+	@include standard_box;
+  float: left;
+  width: 100px;
+}
+
+.component_float_left_200 {
+  @include standard_box;
+  float: left;
+  width: 200px;
+}
+
+.component_float_left_300 {
+	@include standard_box;
+  float: left;
+  width: 300px;
+}
+
+.component_float_left_400 {
+	@include standard_box;
+  float: left;
+  width: 400px;
+}
+
+.component_float_left_500 {
+	@include standard_box;
+  float: left;
+  width: 500px;
+}
+
+
+.component_float_right_100 {
+	@include standard_box;
+  float: right;
+  width: 100px;
+}
+
+.component_float_right_200 {
+	@include standard_box;
+  float: right;
+  width: 200px;
+}
+
+.component_float_right_300 {
+	@include standard_box;
+  float: right;
+  width: 300px;
+}
+
+.component_float_right_400 {
+	@include standard_box;
+  float: right;
+  width: 400px;
+}
+
+.component_float_right_500 {
+	@include standard_box;
+  float: right;
+  width: 500px;
+}
+
+#page_template_list {
+	h1 {
+	  font-size: 0.9em;
+	  text-shadow: none;
+	  color: black;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	}
+
+	address {
+	  font-size: 0.8em;
+	  margin-top: 0px;
+	}
+
+	.page_template {
+	  padding: 5px;
+	  border: 1px solid #ddd;
+	  border-radius: 5px 5px 5px 5px;
+	}
+}

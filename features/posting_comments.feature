@@ -11,8 +11,8 @@ Feature: Comments on postings
       | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
       | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
     And the following blog records
-      | title  | allow_public_comments |
-      | Blog 1 | true                  |
+      | title  | allow_public_comments | is_draft |
+      | Blog 1 | true                  | false    |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
 
   Scenario: When showing a posting, there should be an 'Add-Comment-Button'
@@ -20,6 +20,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"
     And I click on "Create Posting"
     And I click on link "My First Posting"
     Then I should see "Post a comment"
@@ -29,6 +30,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"
     And I click on "Create Posting"
     And I click on link "My First Posting"
     And I fill in "Name" with "Frank Zappa"
@@ -44,6 +46,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"    
     And I click on "Create Posting"
     And I click on link "My First Posting"
     And I fill in "Name" with ""
@@ -58,6 +61,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"    
     And I click on "Create Posting"
     And I click on link "My First Posting"
     And I fill in "Name" with "Frank Zappa"
@@ -72,6 +76,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"    
     And I click on "Create Posting"
     And I click on link "My First Posting"
     And I fill in "Name" with "Frank Zappa"
@@ -85,6 +90,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"    
     And I click on "Create Posting"
     And I click on link "My First Posting"
     And I fill in "Name" with "Frank Zappa"
@@ -106,6 +112,7 @@ Feature: Comments on postings
     And I click on link "Create new posting" within "#container"
     And I fill in "posting_title" with "My First Posting"
     And I fill in "posting_body" with "Lorem ipsum Postingum"
+    And I uncheck "posting_is_draft"    
     And I click on "Create Posting"
     And I click on link "My First Posting"
     And I fill in "Name" with "Frank Zappa"

@@ -14,7 +14,7 @@ if ENV['MONGOHQ_URL']
   ENV['MONGOID_DATABASE'] = mongo_uri.path.gsub('/', '')
 end
 
-require 'mongoid/railtie'
+# require 'mongoid/railtie'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'active_resource/railtie'
@@ -23,20 +23,20 @@ require File.expand_path('../../lib/configuration', __FILE__)
 require File.expand_path('../mailserver_setting', __FILE__)
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
 module Cba
   class Application < Rails::Application
     # Enable the asset pipeline
     config.assets.enabled = true
-    
-    
+
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{Rails.root}/app/workers #{Rails.root}/lib/validators 
+    config.autoload_paths += %W(#{Rails.root}/app/workers #{Rails.root}/lib/validators
       #{Rails.root}/lib/content_items)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
@@ -66,6 +66,10 @@ module Cba
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
-    
+
+    # Configure MongoID (since 2.1.*)
+    Mongoid.configure do |config|
+      config.preload_models = true
+    end
   end
 end

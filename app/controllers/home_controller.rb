@@ -54,5 +54,12 @@ class HomeController < ApplicationController
     target = request.env['HTTP_REFERER'] ? request.env['HTTP_REFERER'] : root_path
     redirect_to target, :notice => t(:language_switched_to, :lang => t("locales.#{params[:locale]}")).html_safe
   end
+  
+  # GET /draft_mode/:mode
+  def set_draft_mode
+    change_draft_mode(params[:mode])
+    target = request.env['HTTP_REFERER'] ? request.env['HTTP_REFERER'] : root_path
+    redirect_to target, :notice => t(:draft_mode_switched_to, :mode => params[:mode] == "1" ? t(:is_on) : t(:is_off)).html_safe
+  end
 
 end

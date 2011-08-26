@@ -6,18 +6,14 @@
     = javascript_include_tag "/javascripts/prototype/effects.js"
     = javascript_include_tag "/javascripts/prototype/dragdrop.js"
     = javascript_include_tag "/javascripts/cropper/cropper.uncompressed.js"
-    = javascript_include_tag "/javascripts/jquery.Jcrop.min.js"
 
-    %script{:type => "text/javascript",
-            :src  => "javascripts/script_#{2 + 7}"}
-
-    %script{:type=>"text/javascript", :charset=>"utf-8"}
-        function onEndCrop( coords, dimensions ) {     |
-            $( 'crop_x' ).value = coords.x1;           |
-            $( 'crop_y' ).value = coords.y1;           |
-            $( 'crop_w' ).value = dimensions.width;    |
-            $( 'crop_h' ).value = dimensions.height;   |
-        }                                              |
+%script{:type=>"text/javascript", :charset=>"utf-8"}
+    function onEndCrop( coords, dimensions ) {     |
+        $( 'crop_x' ).value = coords.x1;           |
+        $( 'crop_y' ).value = coords.y1;           |
+        $( 'crop_w' ).value = dimensions.width;    |
+        $( 'crop_h' ).value = dimensions.height;   |
+    }                                              |
 
 %script{ :type=>"text/javascript", :language=>"javascript"}
     Event.observe( window, 'load', function() {        |
@@ -41,7 +37,7 @@
 
 %div#preview
 
-- form_for @user, :url => {:controller => 'users',:action => 'crop_avatar'} do |f| 
+= form_for @user, :url => {:controller => 'users',:action => 'crop_avatar'} do |f| 
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] 
         = f.hidden_field attribute, :id => attribute
 

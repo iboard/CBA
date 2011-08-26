@@ -24,3 +24,15 @@ Feature: Home
      And I am on the home page
      Then I should see "This is the twitter box"
      Then delete file "config/twitter.test.html"
+
+  Scenario: Link Show drafts should be displayed if draft mode is off
+     Given I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
+     And I am on the home page
+     And draft mode is off
+     Then I should see "Show drafts"
+     
+  Scenario: Link Hide drafts should be displayed if draft mode is on
+     Given I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
+     And I am on the home page
+     And draft mode is on
+     Then I should see "Hide drafts"     

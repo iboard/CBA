@@ -16,5 +16,12 @@ namespace :data do
       menu.save
     end
   end
+  
+  desc "Generate fulltext indeces"
+  task :generate_fulltext_indeces => :environment do
+    [Page,Posting].each do |resource|
+      resource.update_ngram_index
+    end
+  end
 end
     

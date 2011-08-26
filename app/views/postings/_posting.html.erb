@@ -1,33 +1,44 @@
 <!-- TODO: Duplication - Posting Header and Links -->
 <div style='clear: right;'>
-  <h2><%= link_to(posting.title, blog_posting_path(blog,posting)) %></h2>
-  <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
-  <p class='comment_links' style='margin-bottom: 5px;'>
-    <span class='item_link_buttons'>
-      <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
-      <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
-      <%= link_to( t(:destroy), blog_posting_path(blog,posting),
-        :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
-    </span>
-  </p>
-  <address class='<%= posting.created_at > current_user_field(\
-                          :last_sign_in_at,Time::now()-1.hour) ? "new_posting"\
-                          : "old_posting" -%>'
-  >
-          <%= t(:user_wrote_a_comment_at, :user => posting.user.name,
-              :at => distance_of_time_in_words_to_now(posting.created_at)).html_safe %>
-  </address>
-  <%= sanitize(posting.render_intro) %>
-
-  <% if posting.blog.allow_public_comments || (posting.blog.allow_comments && user_signed_in?) %>
-    <p class='posting_comment_links'>
-      { <span class='comments_counter'>
-          <%= t(:num_of_comments, :count => posting.comments.count) %>
-          <% if user_signed_in? && (count=posting.comments.since(current_user.last_sign_in_at).count) %>
-            (<span class='new_comments'><%= t(:new_since_last_visit, :count => count ) %></span>)
-          <% end %>
-        </span> }
-      <br/>
-    </p>
+  <% if can? :edit, posting %>
+    <div class='side-tab' id='side-tab-posting_<%=  posting.id.to_s -%>'>
+      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',500)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
+          <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
+          <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
+          <%= link_to( t(:destroy), blog_posting_path(blog,posting),
+            :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
+        </span>
+      </div>
+    </div>
   <% end %>
+  <div class='side-tab-content'>
+    <h2 
+      onmouseover="showSideTab($('#posting_<%= posting.id.to_s -%>'));"
+      onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',2000);">
+      <%= link_to(posting.title, blog_posting_path(blog,posting)) %>
+    </h2>
+    <%= render :partial => '/postings/cover_picture', :locals => { :posting => posting } %>
+    <address class='<%= posting.created_at > current_user_field(\
+                            :last_sign_in_at,Time::now()-1.hour) ? "new_posting"\
+                            : "old_posting" -%>'
+    >
+            <%= t(:user_wrote_a_comment_at, :user => posting.user.name,
+                :at => distance_of_time_in_words_to_now(posting.created_at)).html_safe %>
+    </address>
+    <%= sanitize(posting.render_intro) %>
+    
+    <% if posting.blog.allow_public_comments || (posting.blog.allow_comments && user_signed_in?) %>
+      <p class='posting_comment_links'>
+        { <span class='comments_counter'>
+            <%= t(:num_of_comments, :count => posting.comments.count) %>
+            <% if user_signed_in? && (count=posting.comments.since(current_user.last_sign_in_at).count) %>
+              (<span class='new_comments'><%= t(:new_since_last_visit, :count => count ) %></span>)
+            <% end %>
+          </span> }
+        <br/>
+      </p>
+    <% end %>
+  </div>
 </div>
+<%= javascript_tag "$('#posting_#{posting.id.to_s}').hide()" -%>

@@ -195,7 +195,7 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
 end
 
 Given /^the following site_menu$/ do |table|
-  SiteMenu.delete_all
+  SiteMenu.unscoped.delete_all
   table.hashes.each do |hash|
 
     level = hash[:name]
@@ -246,23 +246,34 @@ Then /^I should not see class (.+)$/ do |classname|
 end
 
 Given /^the following default pages?$/ do |table|
-  Page.delete_all
+  Page.unscoped.delete_all
   t = PageTemplate.find_or_create_by(name: 'default')
-  t.save
+  t.save!
   table.hashes.each do |hash|
     Factory('page', hash.merge( :page_template_id => t.id ))
   end
 end
 
 Given /^the following (.+) records?$/ do |factory, table|
-  eval "#{factory.camelize}.delete_all"
+  eval "#{factory.camelize}.unscoped.delete_all"
   table.hashes.each do |hash|
     Factory(factory, hash)
   end
 end
 
+
+Given /^only the following page records$/ do |table|
+  Page.unscoped.delete_all
+  table.hashes.each do |hash|
+    p = Page.new( :title => hash[:title], :body => hash[:body], :show_in_menu => false,
+       :is_draft => false, :is_template => false, :page_template_id => nil)
+    p.translate!
+    p.save!
+  end
+end
+
 Given /^no site_menu exists/ do
-  SiteMenu.delete_all
+  SiteMenu.unscoped.delete_all
 end
 
 Given /the default locale/ do
@@ -272,17 +283,21 @@ end
 
 
 Given /the default user set/ do
-  User.delete_all
+  User.unscoped.delete_all
   [
     #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
     #see user.rb model
+    #
+    #  ATTENTION cba makes the first user an admin!
+    #  -> The first user of the following hash must be the admin!
     {
-      :email => 'guest@iboard.cc',
-      :name  => 'guest',
-      :roles_mask => 0,
+      :email => 'admin@iboard.cc',
+      :name  => 'admin',
+      :roles_mask => 5,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
     },
+    # Define NON-ADMINS BELOW
     {
       :email => 'user@iboard.cc',
       :name  => 'testmax',
@@ -317,19 +332,11 @@ Given /the default user set/ do
       :roles_mask => 4,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
-    },
-    {
-      :email => 'admin@iboard.cc',
-      :name  => 'admin',
-      :roles_mask => 5,
-      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-      :confirmed_at => "2010-01-01 00:00:00"
     }
   ].each do |hash|
     Factory('user', hash)
   end
 end
-
 # Make sure not to overwrite your production files!
 # Use Rails.env in your filename eg config/twitter.test.html
 # and config/twitter.#{Rails.env}.html in your production code.
@@ -350,10 +357,11 @@ Given /^I am logged out$/ do
 end
 
 Given /^I am logged in as user "([^"]*)" with password "([^"]*)"$/ do |email, password|
+  visit path_to('sign_out')
   visit path_to('sign_in')
   fill_in('user_email', :with => email)
   fill_in('user_password', :with => password)
-  click_button('user_submit')
+  click_button('Sign in')
   page.should have_content("Signed in successfully.")
 end
 
@@ -392,7 +400,7 @@ Given /^I visit the episode page for user "([^"]*)" and episode "([^"]*)"$/ do |
 end
 
 Given /^no (.*) records?$/ do |table_name|
-  eval "#{table_name.camelize}.delete_all"
+  eval "#{table_name.camelize}.unscoped.delete_all"
 end
 
 Given /^I visit "([^"]*)"$/ do |url|
@@ -420,10 +428,10 @@ Given /^I sign out$/ do
 end
 
 Given /^the following blogs with pages/ do |table|
-  Page.delete_all
+  Page.unscoped.delete_all
   table.hashes.each do |params|
-    blog = Blog.find_or_create_by(title: params[:title])
-    page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false)
+    blog = Blog.find_or_create_by(title: params[:title], is_draft: false)
+    page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false, :is_draft => false)
     blog.pages << page
     blog.save
   end
@@ -436,7 +444,7 @@ end
 
 Given /^the following comment records for page "([^"]*)"$/ do |commentable, table|
   page = Page.where(:title => commentable).first
-  page.comments.delete_all
+  page.comments.unscoped.delete_all
   table.hashes.each do |hash|
     page.comments << Factory('comment', hash)
   end
@@ -444,9 +452,9 @@ Given /^the following comment records for page "([^"]*)"$/ do |commentable, tabl
 end
 
 Given /^the following posting records for blog "([^"]*)" and user "([^"]*)"$/ do |blog, username, table|
-  blog = Blog.where(:title => blog).first
+  blog = Blog.unscoped.where(:title => blog).first
   user = User.where(:name => username).first
-  blog.postings.delete_all
+  blog.postings.unscoped.delete_all
   table.hashes.each do |hash|
     hash[:user_id] = user.id
     blog.postings.create!(hash)
@@ -463,9 +471,9 @@ Given /^the following user_notification records for user "([^"]*)"$/ do |usernam
 end
 
 Given /^the following translated pages/ do |table|
-  Page.delete_all
+  Page.unscoped.delete_all
   table.hashes.each do |hash|
-    p = Page.create( title: hash[:title_en], body: hash[:body_en] )
+    p = Page.create( title: hash[:title_en], body: hash[:body_en], is_draft: false )
     p.translate!
     p.t(:de,:title,hash[:title_de])
     p.t(:de,:body, hash[:body_de])
@@ -475,7 +483,7 @@ end
 
 Given /^the following translated components for page "([^"]*)"$/ do |page_title, table|
   page = Page.where(title: /#{page_title}/).first
-  page.page_components.delete_all
+  page.page_components.unscoped.delete_all
   table.hashes.each do |hash|
     c = page.page_components.create( title: hash[:title_en], body: hash[:body_en] )
     c.translate!
@@ -487,6 +495,20 @@ end
 
 Then /^I should be reading "([^"]*)"$/ do |arg1|
   blog = Blog.where( title: arg1).first
-  current_path.should == blog_path(blog) 
   current_path.should == blog_path(blog)
 end
+
+Given /^draft mode is off$/ do
+  visit draft_mode_path(0)
+end
+
+Given /^draft mode is on$/ do
+  visit draft_mode_path(1)
+end
+
+Given /^I have a clean database$/ do
+  Posting.destroy_all
+  Page.destroy_all
+  Comment.destroy_all
+end
+

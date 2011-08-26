@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 
+OMNIAUTH_OPENID           = true
+OMNIAUTH_GOOGLE           = true
+OMNIAUTH_CAPATH           = "/etc/ssl/certs"
+
 OMNIAUTH_TWITTER_KEY      = 'YOUR_OMNIAUTH_TWITTER_KEY'
 OMNIAUTH_TWITTER_SECRET   = 'YOUR_OMNIAUTH_TWITTER_SECRET'
 

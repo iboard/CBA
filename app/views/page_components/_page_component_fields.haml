@@ -1,18 +1,22 @@
-.fields{ :style=>'margin-top: 10px;' }
-    .field
-        - translations_for_field( f, :title, :text_field, :size => 80 ) do |locale, field|
-            %span{style: 'padding-left: 0;'}
-            = raw(field)
-            %br/
-        %span{ :style => "float: right;" }= link_to_remove_fields( t(:destroy_component), f )
-    .field
-        - translations_for_field( f, :body, :text_area, :rows => 5, :cols => 80 ) do |locale, field|
-            %span{style: 'padding-left: 0;'}
-            = raw(field)
-            %br/
-    .field
-        = f.label :position_and_template
-        = f.text_field :position, :size => 5
-        = f.select(:page_template_id, PageTemplate.only(:id,:name).reject{|r| r.name !~ /^Component/}.map {|t| [t.name, t.id]},
-                   :allow_blank => t(:no_template))
+%h3= link_to_function f.object.title, "toggle_div('fields_for_component_#{f.object.id.to_s}');"
+%div{:id =>  "fields_for_component_#{f.object.id.to_s}", :class => "fields_for_component" }
+    .fields{ :style=>'margin-top: 10px;' }
+        .field
+            - translations_for_field( f, :title, :text_field, :size => 80 ) do |locale, field|
+                %span{style: 'padding-left: 0;'}
+                = raw(field)
+                %br/
+            - if f.object.new_record? || (f.object.page && (f.object.page.allow_removing_component||f.object.page.is_template)) 
+                %span{ :style => "float: right;" }= link_to_remove_fields( t(:destroy_component), f )
+        .field
+            - translations_for_field( f, :body, :text_area, :rows => 5, :cols => 80 ) do |locale, field|
+                %span{style: 'padding-left: 0;'}
+                = raw(field)
+                %br/
+                
+        .field
+            = f.label :position_and_template
+            = f.text_field :position, :size => 5
+            = f.select(:page_template_id, PageTemplate.only(:id,:name).reject{|r| r.name !~ /^Component/}.map {|t| [t.name, t.id]},
+                       :allow_blank => t(:no_template))
 %hr

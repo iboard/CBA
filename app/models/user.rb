@@ -31,6 +31,7 @@ class User
   references_many :invitations, :dependent => :delete
 
   embeds_many :user_notifications
+  has_many    :articles
 
   validates_presence_of   :name
   validates_uniqueness_of :name, :case_sensitive => false

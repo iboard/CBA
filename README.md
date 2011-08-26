@@ -1,14 +1,8 @@
 CBA - Community Base Application Template
 =========================================
 
-  * [Github](http://github.com/iboard/CBA)
-  * [CBA Website](http://cba.iboard.cc)
-
-Version note
-------------
-
- * This is the API documentation for the [**Rails 3.1 branch**](https://github.com/iboard/CBA/tree/rails31).
- * [**branch master**](https://github.com/iboard/CBA/tree/master) is for Rails 3.0.9 and will not be supported in the future.
+* [Github](http://github.com/iboard/CBA)
+* [CBA Website](http://cba.iboard.cc)
 
 
 Quickstart
@@ -112,13 +106,6 @@ Start all at once with thor-task
 
 You can use `thor application:run_autotests` to start the spork-server and autotest. The shortest way to jump into *continuos testing* 
 
-Layout and Templates
--------------------
-
-  * Edit application.css or 'your_name_given_at_install'.css
-  * Edit views/layout/application.html or views/layout/'your_name_given_at_install'.html.erb
-  * Read [Posting](http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4dbebb9adaf9853b3000001a)
-  * Visit [Demo Page](http://cba.iboard.cc/p/pagecomponent_and_pagetemplat$)
 
 
 License

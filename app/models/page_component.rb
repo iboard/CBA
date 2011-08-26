@@ -5,6 +5,8 @@ class PageComponent
   include Mongoid::Document
   cache
   embedded_in :page
+  embedded_in :article
+  
   include Translator
   translate_fields [:title, :body]
   

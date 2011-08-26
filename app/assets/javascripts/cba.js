@@ -321,3 +321,11 @@ function collaps_all(what) {
   divs.hide(250);
 }
 
+$(document).ready(function() {
+  $('#article_page_id').hover(
+      function () {
+
+      }
+  );
+});
+

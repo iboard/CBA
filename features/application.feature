@@ -52,6 +52,7 @@ Feature: Application
     #  Then I should see "TEST WITH RSS FEED"
     #  And I should see "tag:www.example.com"
 
+@focus
   Scenario: Authors should be able to switch to draft-mode
     Given the default user set
     And I am logged out

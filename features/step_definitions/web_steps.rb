@@ -287,7 +287,6 @@ Given /the default user set/ do
   [
     #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
     #see user.rb model
-
     #
     #  ATTENTION cba makes the first user an admin!
     #  -> The first user of the following hash must be the admin!
@@ -300,9 +299,9 @@ Given /the default user set/ do
     },
     # Define NON-ADMINS BELOW
     {
-      :email => 'guest@iboard.cc',
-      :name  => 'guest',
-      :roles_mask => 0,
+      :email => 'author@iboard.cc',
+      :name  => 'Author',
+      :roles_mask => 2,
       :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
       :confirmed_at => "2010-01-01 00:00:00"
     },
@@ -519,5 +518,4 @@ Given /^I have a clean database$/ do
   Page.destroy_all
   Comment.destroy_all
 end
-
 

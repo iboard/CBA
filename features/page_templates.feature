@@ -16,4 +16,4 @@ Feature: PageTemplates
   Scenario: I should see the Template index when clicking 'Templates'
     Given I am on the home page
     And I click on link "Templates" within "#action_buttons"
-    Then I should be on the templates_pages page
+    Then I should be on the page_templates page

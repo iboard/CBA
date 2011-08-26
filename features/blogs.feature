@@ -89,7 +89,7 @@ Feature: Blogs
     Then I should be reading "Blog 1"
 
   Scenario: A blog marked as draft should not be shown on the blogs page
-    Given I am logged in as user "guest@iboard.cc" with password "thisisnotsecret"
+    Given I am logged in as user "user@iboard.cc" with password "thisisnotsecret"
     Given draft mode is off
     And I am on the blogs page
     Then I should not see "A Blog Draft"

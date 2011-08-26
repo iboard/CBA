@@ -299,13 +299,6 @@ Given /the default user set/ do
     },
     # Define NON-ADMINS BELOW
     {
-      :email => 'author@iboard.cc',
-      :name  => 'Author',
-      :roles_mask => 2,
-      :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-      :confirmed_at => "2010-01-01 00:00:00"
-    },
-    {
       :email => 'user@iboard.cc',
       :name  => 'testmax',
       :roles_mask => 1,

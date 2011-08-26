@@ -130,7 +130,6 @@ Feature: Pages
     Then I should see "This is a filled Page Template" within ".page_body"
     And I should see "This is a filled page body" within ".page_body"
 
-@focus_todo
   Scenario: A derived page should save it's template
     Given I am on the new_article page
     Then I should see "Choose a template"
@@ -144,7 +143,6 @@ Feature: Pages
     And I click on link "Derived from Page T" within "#container"
     Then I should be on page path of "Page T"
 
-@focus_todo
   Scenario: Admins should be able to list template pages
     Given I am on the edit page template for "Page T"
     Then I should see "This is a Template"

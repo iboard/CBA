@@ -65,7 +65,7 @@ module NavigationHelpers
       menu_name = $1
       site_menu = SiteMenu.where(:name => menu_name).first
       "/site_menus/#{site_menu.id.to_s}/edit"
-    when /the page_template path/
+    when /the templates page/
       "/pages/templates"
     when /the new_article page/
       "/pages/new_article"

@@ -70,15 +70,14 @@
     -#
     -# ATTACHMENTS
     -#
-    %div#attachments{ :style=>'clear: right;' }
-        %h3= t(:attachments)
-        %blockquote
+    %div.field            
+        = label_tag :attachments, t(:attachments)
+        %div#attachments
             = f.fields_for :attachments do |builder|
                 = render 'attachments/attachment_fields', :f => builder
             %div#new_asset
             %p= link_to_add_fields(t(:new_attachment).html_safe, f, :attachments)
-
-    %div.insert_attachment
+            %div.insert_attachment
 
     -#
     -# COMPONENTS

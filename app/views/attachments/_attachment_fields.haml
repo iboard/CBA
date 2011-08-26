@@ -1,12 +1,10 @@
-.fields{ :style=>'margin-top: 10px;' }
-    .field
-        - if f.object && f.object.file_file_name
-            = f.label( :file_name, raw(label_for_attachment(f)) )                                                             |
-        - else
-            = f.label :file
-
-        %br
-        = f.file_field :file
-        = link_to_remove_fields( t(:destroy_asset), f )
+.attachment.fields
+  - if f.object && f.object.file_file_name
+    .attachment-label= raw(label_for_attachment(f))
+  - else
+    .attachment-label= t(:file)
+  .file-field
+    %span= f.file_field :file
+  = link_to_remove_fields( t(:destroy_asset), f )
         
 

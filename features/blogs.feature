@@ -23,7 +23,6 @@ Feature: Blogs
     And I should see "successfully created"
     And I should see "Blog 3"
     
-@focus
   Scenario: Admin creates an unpublished blog
     Given I am on the blogs page
     And I click on link "Create a new Blog"
@@ -89,7 +88,6 @@ Feature: Blogs
     And I click on link "Blog 1" within "#container_main"
     Then I should be reading "Blog 1"
 
-@focus
   Scenario: A blog marked as draft should not be shown on the blogs page
     Given I am logged in as user "guest@iboard.cc" with password "thisisnotsecret"
     Given draft mode is off

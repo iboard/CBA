@@ -36,7 +36,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.create(params[:blog])
+    @blog = Blog.new(params[:blog])
     if @blog.save
       redirect_to @blog, :notice => t(:blog_successfully_created)
     else

@@ -83,9 +83,9 @@ kill %1
     
     # Patch files
     gsub_file  'config/mongoid.yml', 'APPNAME', appname
-    gsub_file  'config/application.yml', /layout:([ |\t]*)(\S*)$/, "layout: #{layout}"
-    gsub_file  'config/application.yml', /stylesheet_screen:([ |\t]*)(\S*)$/, "stylesheet_screen: #{css}"
-    gsub_file  'config/application.yml', /stylesheet_print:([ |\t]*)(\S*)$/, "stylesheet_print:  #{css}"
+    # not used in 3.1 gsub_file  'config/application.yml', /layout:([ |\t]*)(\S*)$/, "layout: #{layout}"
+    # not used in 3.1 gsub_file  'config/application.yml', /stylesheet_screen:([ |\t]*)(\S*)$/, "stylesheet_screen: #{css}"
+    # not used in 3.1 gsub_file  'config/application.yml', /stylesheet_print:([ |\t]*)(\S*)$/, "stylesheet_print:  #{css}"
     
     # copy files
     unless css.eql? 'application'

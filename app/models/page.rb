@@ -124,19 +124,23 @@ class Page
     rc = self.render_body(view_context)
     rc.gsub(/\[EDIT_COMPONENT_LINK:(\S+)\]/) { |component_id|
       _component_id = component_id.gsub(/\[EDIT_COMPONENT_LINK:/,'').gsub(/\]$/,'')
-      component = self.page_components.find(_component_id)
-      unless block_given?
-        if view_context
-          view_context.link_to(
-            I18n.translate(:edit),
-            view_context.edit_page_page_component_path(self,_component_id),
-            :remote => true, :title => 'Edit component'
-          )
+      if view_context && view_context.can?(:edit, self)
+        component = self.page_components.find(_component_id)
+        unless block_given?
+          if view_context
+            view_context.link_to(
+              I18n.translate(:edit),
+              view_context.edit_page_page_component_path(self,_component_id),
+              :remote => true, :title => 'Edit component'
+            )
+          else
+            "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true'>Edit</a>"
+          end
         else
-          "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true'>Edit</a>"
+          yield(component)
         end
       else
-        yield(component)
+        ""
       end
     }
   end
@@ -159,12 +163,7 @@ class Page
   # TODO:   place.
   def render_with_template
     unless self.page_template && @view_context
-      self.title_and_flags +
-      self.render_cover_picture+
-      self.render_for_html(self.t(I18n.locale,:body))+
-      self.render_components+
-      self.render_buttons
-      self.render_attachments
+      raise "Can't render template if there is no view-context or template"
     else
       self.page_template.render do |template|
         template.gsub(/TITLE/, self.title_and_flags)\

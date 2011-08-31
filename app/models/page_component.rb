@@ -57,21 +57,6 @@ class PageComponent
     else
       rc += self.page.render_for_html(self.t(I18n.locale,:body)||'')
     end
-
-    rc += case self.page.interpreter.to_sym
-    when :markdown
-      "\n[Edit](/pages/#{self.page.to_param}/page_components/#{self.to_param}/edit)\n"
-    when :textile
-      "\n\"Edit\":/pages/#{self.page.to_param}/page_components/#{self.to_param}/edit\n"
-    else
-      if @view_context
-        "<p>"+@view_context.link_to(I18n.translate(:edit), @view_context.edit_page_page_component_path(self.page,self), :remote => true)+"</p>"
-      else
-        "<p>"+
-          "<a href='/pages/#{self.page.to_param}/page_components/#{self.to_param}/edit' data-remote='true', title='Edit'>Edit</a>"+
-        "</p>"
-      end
-    end
     rc += "\n</div>\n"
   end
 

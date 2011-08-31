@@ -29,10 +29,14 @@ module NavigationHelpers
       title = $1 == 'the ' ? $2 : $1
       page = Page.unscoped.where(:title => title).first
       "/pages/#{page.id.to_s}/edit"
-    when /page path of "([^"]*)"/
-      title = $1
+    when /(the )?page path of "([^"]*)"/
+      title = $1 == 'the ' ? $2 : $1
       page = Page.unscoped.where(:title => title).first
-      "/pages/#{page._id}"
+      if page
+        "/pages/#{page.id.to_s}"
+      else
+        "/pages"
+      end
     when /permalink_path of "([^"]*)"/
       title = $1
       page = Page.where(:title => title).first
@@ -69,6 +73,11 @@ module NavigationHelpers
       "/pages/templates"
     when /the new_article page/
       "/pages/new_article"
+    when /the edit first component path for "([^"]*)"/
+      page_title = $1
+      page = Page.where(:title => page_title).first
+      component = page.page_components.first
+      "/pages/#{page.id.to_s}/page_components/#{component.id.to_s}/edit"
     else
       begin
         page_name =~ /the (.*) page/

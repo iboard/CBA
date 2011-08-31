@@ -6,12 +6,12 @@ class PageComponent
   cache
   embedded_in :page
   embedded_in :article
-  
+
   include Translator
   translate_fields [:title, :body]
-  
+
   default_scope lambda { asc(:position) }
-    
+
   field :position, :type => Integer, :default => 9999
   field :title,    :required => true, :default => '(unnamed)'
   field :body
@@ -23,15 +23,17 @@ class PageComponent
   def page_template=(new_template)
     self.page_template_id = new_template.id if new_template
   end
-    
+
   # TODO: Remove duplication!
   # TODO:   This code occurs in Page and PageComponent. Move it to a single
   # TODO:   place.
   def render_body(view_context=nil)
     @view_context = view_context
-    if self.page_template && @view_context
-      self.page_template.render do |template|
-        (template||"TITLE BUTTONS BODY COMPONENTS ATTACHMENTS COMMENTS").gsub(/TITLE/, self.t(I18n.locale,:title))\
+    rc = "\n<div class='page-component' id='page-component-#{self.id.to_s}'>\n"
+    if self.page_template
+      rc += self.page_template.render do |template|
+        (template||"TITLE BUTTONS BODY COMPONENTS ATTACHMENTS COMMENTS")\
+                .gsub(/TITLE/, self.t(I18n.locale,:title))\
                 .gsub(/BODY/,  self.page ? self.page.render_for_html(self.t(I18n.locale,:body)||'') : 'BODY NO PAGE')\
                 .gsub(/COVERPICTURE/, self.page ? self.page.render_cover_picture : 'PICT NO PAGE')\
                 .gsub(/COMPONENTS/, '')\
@@ -53,12 +55,28 @@ class PageComponent
                 }
       end
     else
-      self.page.render_for_html(self.t(I18n.locale,:body))
+      rc += self.page.render_for_html(self.t(I18n.locale,:body)||'')
     end
+
+    rc += case self.page.interpreter.to_sym
+    when :markdown
+      "\n[Edit](/pages/#{self.page.to_param}/page_components/#{self.to_param}/edit)\n"
+    when :textile
+      "\n\"Edit\":/pages/#{self.page.to_param}/page_components/#{self.to_param}/edit\n"
+    else
+      if @view_context
+        "<p>"+@view_context.link_to(I18n.translate(:edit), @view_context.edit_page_page_component_path(self.page,self), :remote => true)+"</p>"
+      else
+        "<p>"+
+          "<a href='/pages/#{self.page.to_param}/page_components/#{self.to_param}/edit' data-remote='true', title='Edit'>Edit</a>"+
+        "</p>"
+      end
+    end
+    rc += "\n</div>\n"
   end
 
 
-  # Ask our page if removing of components is allowed 
+  # Ask our page if removing of components is allowed
   alias_method :__original__delete, :delete
   def delete(options={})
     if self.page.is_template || self.page.allow_removing_component == true
@@ -68,5 +86,5 @@ class PageComponent
       false
     end
   end
-  
+
 end

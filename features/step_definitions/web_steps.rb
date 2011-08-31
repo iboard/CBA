@@ -512,3 +512,15 @@ Given /^I have a clean database$/ do
   Comment.destroy_all
 end
 
+
+Given /^the following components for page "([^"]*)"$/ do |page_title, table|
+  page = Page.where(:title => page_title).first
+  table.hashes.each do |hash|
+    page.page_components.create( :body => hash[:body], :page_template_id =>
+      (
+      hash[:page_template] ? PageTemplate.where(:name => hash[:page_template]).first.id : nil
+      )
+    )
+  end
+  page.save!
+end

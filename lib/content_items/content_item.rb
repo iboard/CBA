@@ -11,7 +11,7 @@ module ContentItem
   # Render :txt as markdown with Redcarpet
   def markdown(txt)
     options = [
-               :hard_wrap, :filter_html, :filter_styles, :autolink, 
+               :hard_wrap, :filter_html, :filter_styles, :autolink,
                :no_intraemphasis, :fenced_code, :gh_blockcode
               ]
     doc = Nokogiri::HTML(Redcarpet.new(txt, *options).to_html)
@@ -19,7 +19,7 @@ module ContentItem
       pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
     end
     doc.xpath('//body').to_s.gsub(/<\/?body>/,"").html_safe
-  end  
+  end
   # == ContentItem
   # Can be a 'Page', a 'Posting' or something else you want to be
   # * Commentable
@@ -43,23 +43,23 @@ module ContentItem
         index :title
         validates_presence_of :title
         validates_uniqueness_of :title
-        
+
         # ContentItems marked as 'draft' should not be in the default-scope
         field :is_draft, :type => Boolean, :default => true
         scope :drafts, lambda { unscoped.where(is_draft: true ) }
-        
+
         if self.respond_to?(:is_template)
           scope :published, lambda { unscoped.where(is_draft: false, is_template: false ) }
         else
           scope :published, lambda { unscoped.where(is_draft: false ) }
         end
-        
+
         # Will return a truncated version of the title if it exceeds the maximum
         # length of titles used in the menu (or wherever you can't display long titles)
         def short_title
           title.truncate(CONSTANTS['title_max_length'].to_i, :omission => '...')
         end
-        
+
         # Display title with markers for templates and drafts
         def title_and_flags
           title_html = self.t(I18n.locale,:title)||self.title
@@ -108,7 +108,7 @@ module ContentItem
         def content_for_intro
           raise "ABSTRACT_METHOD_CALLED - Overwrite content_for_intro"
         end
-        
+
         def render_attachment(idx)
           idx ||= 1
           idx -= 1
@@ -125,7 +125,7 @@ module ContentItem
             end
           end
         end
-        
+
         def render_component(idx)
           "RENDER COMPONENT NOT IMPLEMENTED FOR #{self.class.to_s}"
         end

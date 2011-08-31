@@ -6,6 +6,7 @@ Factory.define :page do |p|
    p.allow_public_comments true
    p.allow_removing_component true
    p.is_draft              false
+   p.interpreter           :markdown
 end
 
 Factory.define :page_with_default_template, :class => Page do |p|
@@ -16,7 +17,8 @@ Factory.define :page_with_default_template, :class => Page do |p|
   p.allow_public_comments true
   p.allow_removing_component true
   p.is_draft              false
-  p.page_template         PageTemplate.find_or_create_by(:name => 'default')
+  p.interpreter           :markdown
+  p.page_template         PageTemplate.find_or_create_by(:name => 'default', :html_template => "TITLE BODY COMPONENTS COMMENTS BUTTONS")
 end
 
 

@@ -24,15 +24,9 @@ class PageComponentTest < ActiveSupport::TestCase
 
 
   test "Page should render all page_components" do
-    page = Page.first || Factory.create(:page, :title => 'Testpage', :body => 'Main Body of page')
-    page.page_components.delete_all
-    page.page_components.build(:title => 'Component One', :position => 1)
-    page.page_components.build(:title => 'Component Two', :position => 2)
-    page.save!
-    page.reload
-    assert page.render_body =~ /Main Body of page/, 'Main Body should be in render'
-    assert page.render_body =~ /Component One/, 'Component One should be in render'
-    assert page.render_body =~ /Component Two/, 'Component Two should be in render'
+    pending
+    # Since we use links to page-component edit, render_body couldn't work
+    # without a view-context. This functionality is tested with cucumber, tho.
   end
 
   test "Page component should be translatable" do

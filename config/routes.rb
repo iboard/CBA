@@ -50,7 +50,7 @@ Cba::Application.routes.draw do
       get  :templates
     end
     resources :comments
-    resources :components
+    resources :page_components
   end
 
   # PAGE TEMPLATES

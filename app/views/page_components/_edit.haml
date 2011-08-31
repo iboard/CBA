@@ -1,0 +1,3 @@
+= form_for [@page,@page_component], :remote => true do |f|
+  = render 'page_component_fields', :f => f
+  = f.submit t(:update_page_component)

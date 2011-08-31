@@ -6,13 +6,13 @@ Feature: Pages
   Background:
     Given the default user set
     And the following page records
-      | title  | body                 | show_in_menu | is_template | is_draft |
-      | Page 1 | Lorem ipsum          | true         | false       | false    |
-      | Page 2 | Lirum Opsim          | false        | false       | false    |
-      | Page T | This is a Template   | false        | true        | false    |
-      | Page D | This is a Draft      | false        | false       | true     |
+      | title  | body                 | show_in_menu | is_template | is_draft | interpreter |
+      | Page 1 | Lorem ipsum          | true         | false       | false    | :markdown   |
+      | Page 2 | Lirum Opsim          | false        | false       | false    | :markdown   |
+      | Page T | This is a Template   | false        | true        | false    | :markdown   |
+      | Page D | This is a Draft      | false        | false       | true     | :markdown   |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
- 
+
   Scenario: Pages with 'show_in_menu' should be on the menu-bar
     Given I am on the pages page
     Then I should see "Page 1" within "#session"
@@ -113,7 +113,7 @@ Feature: Pages
     Then I click on link "locale_en"
     Then I should see "Fish n chips"
     Then the default locale
-  
+
   Scenario: Page index should not include Template-Pages
     Given I am on the pages page
     Then I should not see "Page T"
@@ -139,14 +139,15 @@ Feature: Pages
     And I fill in "page_body" with "This is derived from Page T" within "#container_main form"
     And I uncheck "page_is_draft" within "#container_main form"
     And I click on "Create Page"
-    And I should be on page path of "Derived Page"
+    Then I should see "Page was successfully created"
     And I click on link "Derived from Page T" within "#container"
-    Then I should be on page path of "Page T"
+    Then I should see "Page T"
+    And I should see "This is a Template"
 
   Scenario: Admins should be able to list template pages
     Given I am on the edit page template for "Page T"
     Then I should see "This is a Template"
-    
+
   Scenario: The page/templates index should provide a link to create a new article for each template
     Given I am on the templates_pages page
     And I click on link "Create new article" within ".page_template"
@@ -157,8 +158,5 @@ Feature: Pages
     Given I am logged out
     And I am on page path of "Page D"
     Then I should be on the pages page
-    Then I should see "Document not found"
+    Then I should see "Listing pages"
     And I should not see "Page D"
-        
-
-

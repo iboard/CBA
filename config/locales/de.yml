@@ -446,3 +446,5 @@ de:
   scroll_to_top: 'Zum Anfang der Seite'
   search: 'Suchen'
   invalid_search: 'Geben sie bitte mindestens 3 Zeichen ein'
+  update_page_component: 'Änderungen speichern'
+  page_component_successfully_updated: 'Änderungen wurden gespeichert'

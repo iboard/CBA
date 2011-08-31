@@ -63,9 +63,15 @@ class Page
     end
   end
 
+  # Set the template by name
+  # @param[String] new_template the name of the new template
+  def template_by_name=(new_template)
+    self.template_id = PageTemplate.where(:name => new_template).first.id
+  end
+
   # @return [Boolean] true if this page is derived from another page and the original page still exists!
   def derived?
-    return self.template != nil
+    return self.template_id != nil && self.template != nil
   end
 
   default_scope lambda { where( is_template: false) }
@@ -104,11 +110,7 @@ class Page
     unless (@view_context && self.page_template)
       parts = [self.title_and_flags, self.t(I18n.locale,:body),"\nPLUSONE"]
       self.page_components.each do |component|
-        parts << ( [ (component.t(I18n.locale,:title)||''),
-                             ("-"*component.t(I18n.locale,:title).length),
-                             "\n"+(component.t(I18n.locale,:body) || '')
-                           ].join("\n")
-                         )
+        parts << [component.render_body(nil)]
       end
       rc=render_for_html( parts.join("\n") )
     else
@@ -134,46 +136,51 @@ class Page
   # TODO:   This code occurs in Page and PageComponent. Move it to a single
   # TODO:   place.
   def render_with_template
-    self.page_template.render do |template|
-      template.gsub(/TITLE/, self.title_and_flags)\
-              .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
-              .gsub(/COMPONENTS/, render_components )\
-              .gsub(/COVERPICTURE/, render_cover_picture)\
-              .gsub(/COMMENTS/, render_comments)\
-              .gsub(/BUTTONS/, render_buttons)\
-              .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
-              .gsub(/ATTACHMENTS/, render_attachments)\
-              .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
-                attachment_number.gsub! /\D/,''
-                if c= self.attachments[attachment_number.to_i-1]
-                  if c.file_content_type =~ /image/
-                    @view_context.image_tag c.file.url(:medium)
-                  elsif
-                    @view_context.link_to( c.file_file_name, c.file.url )
+    unless self.page_template && @view_context
+      self.title_and_flags +
+      self.render_cover_picture+
+      self.render_for_html(self.t(I18n.locale,:body))+
+      self.render_components+
+      self.render_buttons
+      self.render_attachments
+    else
+      self.page_template.render do |template|
+        template.gsub(/TITLE/, self.title_and_flags)\
+                .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
+                .gsub(/COMPONENTS/, render_components )\
+                .gsub(/COVERPICTURE/, render_cover_picture)\
+                .gsub(/COMMENTS/, render_comments)\
+                .gsub(/BUTTONS/, render_buttons)\
+                .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
+                .gsub(/ATTACHMENTS/, render_attachments)\
+                .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
+                  attachment_number.gsub! /\D/,''
+                  if c= self.attachments[attachment_number.to_i-1] && @view_context
+                    if c.file_content_type =~ /image/
+                      @view_context.image_tag c.file.url(:medium)
+                    elsif
+                      @view_context.link_to( c.file_file_name, c.file.url )
+                    end
+                  else
+                    "ATTACHMENT #{attachment_number} NOT FOUND"
                   end
-                else
-                  "ATTACHMENT #{attachment_number} NOT FOUND"
+                }\
+                .gsub(/COMPONENT\[(\d)\]/) do |component_number|
+                  component_number.gsub! /\D/,''
+                   c = self.components.where(:position => component_number.to_i-1).first
+                   if c
+                     rc = c.render_body(@view_context)
+                   else
+                     "COMPONENT #{component_number} NOT FOUND"
+                   end
                 end
-              }\
-              .gsub(/COMPONENT\[(\d)\]/) do |component_number|
-                component_number.gsub! /\D/,''
-                 c = self.components.where(:position => component_number.to_i-1).first
-                 if c
-                   c.render_body
-                 else
-                   "COMPONENT #{component_number} NOT FOUND"
-                 end
-              end
+      end
     end
   end
 
   def render_components
-    self.page_components.asc(:title).map do |component|
-      if @view_context
-        component.render_body(@view_context)
-      else
-        component.body || ''
-      end
+    self.page_components.asc(:position).map do |component|
+      component.render_body(@view_context)
     end.join("\n")
   end
 

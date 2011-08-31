@@ -107,16 +107,38 @@ class Page
   # Render the body with RedCloth or Discount
   def render_body(view_context=nil)
     @view_context = view_context unless view_context.nil?
-    unless (@view_context && self.page_template)
+    unless self.page_template
       parts = [self.title_and_flags, self.t(I18n.locale,:body),"\nPLUSONE"]
       self.page_components.each do |component|
-        parts << [component.render_body(nil)]
+        parts << [component.render_body(view_context)]
       end
       rc=render_for_html( parts.join("\n") )
     else
       rc=render_with_template
     end
     rc
+  end
+
+
+  def page_with_edit_component_buttons(view_context, &block )
+    rc = self.render_body(view_context)
+    rc.gsub(/\[EDIT_COMPONENT_LINK:(\S+)\]/) { |component_id|
+      _component_id = component_id.gsub(/\[EDIT_COMPONENT_LINK:/,'').gsub(/\]$/,'')
+      component = self.page_components.find(_component_id)
+      unless block_given?
+        if view_context
+          view_context.link_to(
+            I18n.translate(:edit),
+            view_context.edit_page_page_component_path(self,_component_id),
+            :remote => true, :title => 'Edit component'
+          )
+        else
+          "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true'>Edit</a>"
+        end
+      else
+        yield(component)
+      end
+    }
   end
 
   # Same as short_title but will append a $-sign instead of '...'
@@ -165,7 +187,7 @@ class Page
                     "ATTACHMENT #{attachment_number} NOT FOUND"
                   end
                 }\
-                .gsub(/COMPONENT\[(\d)\]/) do |component_number|
+                .gsub(/COMPONENT\[(\d)\]/) { |component_number|
                   component_number.gsub! /\D/,''
                    c = self.components.where(:position => component_number.to_i-1).first
                    if c
@@ -173,7 +195,7 @@ class Page
                    else
                      "COMPONENT #{component_number} NOT FOUND"
                    end
-                end
+                }
       end
     end
   end
@@ -211,5 +233,6 @@ class Page
   def render_buttons
     @view_context.render :partial => "pages/buttons", :locals => { :page => self }
   end
+
 
 end

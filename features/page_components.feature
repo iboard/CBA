@@ -60,6 +60,7 @@ Feature: PageComponents
       | title_en   | body_en      | title_de | body_de      |
       | C1         | Component 1  | K1       | Komponente 1 |
     And I am on the page path of "Page 2"
+    Then show me the page
     And I click on link "Edit" within ".page-component"
     Then I should be on the edit first component path for "Page 2"
     And I fill in "page_component_body" with "Page 2 component 1 modified"

@@ -177,9 +177,9 @@ class Page
                 .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
                   attachment_number.gsub! /\D/,''
                   if c= self.attachments[attachment_number.to_i-1] && @view_context
-                    if c.file_content_type =~ /image/
+                    if c.file_content_type =~ /image/ && @view_context
                       @view_context.image_tag c.file.url(:medium)
-                    elsif
+                    elsif @view_context
                       @view_context.link_to( c.file_file_name, c.file.url )
                     end
                   else

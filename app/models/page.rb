@@ -222,7 +222,7 @@ class Page
   end
 
   def render_cover_picture
-    if self.cover_picture_exists? && self.cover_picture.url(:medium)
+    if self.cover_picture_exists? && self.cover_picture.url(:medium) && @view_context
       @view_context.image_tag self.cover_picture.url(:medium)
     else
       ""
@@ -230,7 +230,9 @@ class Page
   end
 
   def render_buttons
-    @view_context.render :partial => "pages/buttons", :locals => { :page => self }
+    if @view_context
+      @view_context.render :partial => "pages/buttons", :locals => { :page => self }
+    end
   end
 
 

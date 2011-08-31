@@ -1,1 +1,2 @@
-= page_component.render_body(self)
+= page_component.render_body(self) do |component|
+  %p= link_to t(:edit), edit_page_page_component_path(page_component.page,page_component)

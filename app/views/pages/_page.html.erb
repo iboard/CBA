@@ -13,8 +13,11 @@
 
 <!-- BODY -->
 <div id='page_<%= page.id -%>' class='page_body'>
-  <%= sanitize(raw(page.render_body(self))).html_safe %>
-  <p><g:plusone size="small"></g:plusone></p>
+  <%= raw( page.page_with_edit_component_buttons( self )  { |component|
+    "<p>"+
+      link_to(t(:edit), edit_page_page_component_path(page,component), :remote => true)+
+    "</p>" })
+  -%>
 </div>
 
 <!-- ATTACHMENTS -->

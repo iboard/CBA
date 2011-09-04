@@ -14,9 +14,9 @@ $sidebar-width: 180px;
 /* Colors */
 $color-base: #888;
 $color-text: darken($color-base,80%);
-$color-paper: lighten($color-base,25%);
-$box-background: lighten($color-base,25%);
-$color-header: darken($color-text,25%);
+$color-paper: lighten($color-base,35%);
+$box-background: lighten($color-base,35%);
+$color-header: darken($color-base,25%);
 $color-shadow: darken($color-base,50%);
 $color-border: $color-shadow;
 $color-link: lighten($color-text,10%);
@@ -62,7 +62,7 @@ $form-width: 600px;
       left bottom,
       color-stop(0.95, lighten($color, $percent1)),
       color-stop(0.0, lighten($color, $percent2))
-  ) repeat-x;	
+  ) repeat-x;
 }
 
 @mixin button-shape($radius) {
@@ -116,7 +116,7 @@ $form-width: 600px;
       color-stop(0.95, $button-gradient-start-hover  ),
       color-stop(0.0, $button-gradient-stop-hover    )
   ) repeat-x;
-  background: $button-gradient-stop-hover -moz-linear-gradient(0% 100% 90deg, $button-gradient-start-hover, $button-gradient-stop-hover);  
+  background: $button-gradient-stop-hover -moz-linear-gradient(0% 100% 90deg, $button-gradient-start-hover, $button-gradient-stop-hover);
   @include button-shape($radius-small);
 }
 
@@ -133,7 +133,7 @@ $form-width: 600px;
 }
 
 @mixin bottom-shadow {
-  box-shadow: 0px 2px 2px $color-shadow; 
+  box-shadow: 0px 2px 2px $color-shadow;
 }
 
 @mixin box-shadow {
@@ -206,11 +206,11 @@ $form-width: 600px;
 }
 
 html {
-	height: 100%;
+  height: 100%;
 }
 
 body {
-	height: 100%;
+  height: 100%;
   margin: 0px;
   padding: 0px;
   min-width: $body-width;

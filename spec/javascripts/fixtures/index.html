@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>CBA:  Community Base Application Welcome</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <meta name='Language' content='English, en' />
+    <meta name='Author' content='Andreas Altendorfer' />
+    <meta name='publisher' content='Andreas Altendorfer' />
+    <meta name='robots' content='index, follow, noarchive' />
+    <meta name='distribution' content='global' />
+    <meta name='page-topic' content='RAILS, Programming, Mac OS X, iOS, Web-Development' />
+    <meta name='description' content='Community Base Application | A RAILS Application Template, based on MongoID, Devise, CanCan, OmniAuth, jQuery' />
+    <meta name='keywords' content='RAILS, CBA, Application Template, devise, cancan, omniAuth, Programming, Mac OS X, iOS, Web-Development' />
+    <meta name='revisit-after' content='2 days' />
+    <meta http-equiv='reply-to' content='hostmaster@iboard.cc' />
+    
+    <link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/assets/application.js" type="text/javascript"></script>
+    <!-- prototype-lib will be loaded only when needed -->
+    
+    <script src="/assets/endless_page.js" type="text/javascript"></script>
+    <link href="/feed" rel="alternate" title="ATOM" type="application/atom+xml" />
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20332868-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+      <link rel="me" type="text/html" href="http://twitter.com/#!/Nickendell"/>
+      <link rel="me" type="text/html" href="http://www.google.com/profiles/iboard.cc"/>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="md5BIWeVYepcwJYT7npiF7upn69807q9ADhwH4S5IPw=" name="csrf-token" />
+  </head>
+  <body>
+      <div id='action_buttons'>
+          <a href="http://www.pivotaltracker.com/projects/203457" target="ext_tools">PivotalTracker</a>
+<a href="http://github.com/iboard/CBA" target="ext_tools">Github</a>
+<a href="/pages/new">Create a new Page</a>
+<a href="/blogs/new">Create a new Blog</a>
+<a href="/pages/templates">Templates</a>
+<a href="/site_menus">Menus</a>
+<a href="http://twitter.com/Nickendell" target="ext_tools">@Twitter</a>
+<a href="/draft_mode/1">Show drafts</a>
+
+      </div>
+    <div id='overlay' class="ui-widget-content"></div>
+    <div id="banner">
+      <h1>Community Base Application</h1><address>A RAILS Application Template, based on MongoID, Devise, CanCan, OmniAuth, jQuery</address>
+
+    </div>
+
+    <div id="session">
+        <ul>
+          <li id='menu_Home'><ul class='selected'>
+<li><a href="/" class="hmenu_current">Home</a></li>
+</ul>
+</li>
+<li id='menu_FollowMe'><ul class='not_selected'>
+<li><a href="/p/follow_me" class="hmenu">FollowMe</a></li>
+</ul>
+</li>
+<li id='menu_Admin'><ul class='not_selected'>
+<li><a href="/registrations" class="hmenu">Admin</a></li>
+</ul>
+</li>
+
+        </ul>
+        <ul style='float: right;'>
+            <li>
+  <em><a href="/profile/4e213d31daf985776e00000e" class="hmenu">Andreas Altendorfer</a></em>
+  </li>
+
+            <li>
+    <a href="/notifications" class="hmenu" title="System notifications">(i)</a>
+  </li>
+  <li>
+    <a href="/users/sign_out" class="hmenu">Sign out</a>
+  </li>
+
+          <li class='first_language_selector'>&nbsp;</li>
+  <li class='language_selector'>
+      <strong>English</strong>
+  <li>
+  <li class='language_selector'>
+      <a href="/switch_lcoale/de" id="locale_de">Deutsch</a>
+  <li>
+
+        </ul>
+    </div>
+
+
+      <div class='submenu_box'>
+        <div id='searchbox'>
+          <form accept-charset="UTF-8" action="/search" class="new_search" id="new_search" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="md5BIWeVYepcwJYT7npiF7upn69807q9ADhwH4S5IPw=" /></div>
+<input id="searchfield" name="search[search]" placeholder="Search" size="30" type="text" value="" />
+
+</form>
+
+        </div>
+        <ul>
+        <li><div class='hmenu_current'><a href="/">Home</a></div><ul></li><li><a href="/p/readme">README</a><ul></li><li><a href="http://dav.iboard.cc/doc/cba/_index.html">RDOC</a></li><li><a href="/p/freedom">License</a></li><li><a href="/p/links">Links</a></li></ul><li><a href="/blogs">Blogs</a><ul></li><li><a href="/blogs/4d456adae7798923b100000a">News</a></li><li><a href="/blogs/4d4dd674e7798975f900000e">Recommend.</a></li><li><a href="/blogs/4d57d86de779892552000008">Neues</a></li></ul><li><a href="/users/edit">Your Profile</a></li></ul>
+        </ul>
+      </div>
+      <div class='clear'></div>
+      
+      <div id='scroll-to-top'>
+        <a href="#" title="Scroll to top"><img alt="Arrow_up_small" src="/assets/arrow_up_small.png" /></a>
+        <span id='scroll-position'></span>
+      </div>
+      <div id='copyright'>
+        <a href='http://www.pledgie.com/campaigns/15849'><img 
+               alt='Click here to lend your support to: CBA and make a donation at www.pledgie.com !' 
+               src='http://www.pledgie.com/campaigns/15849.png?skin_name=chrome' border='0' /></a>
+        <br />
+           © 2011 by <a href="http://altendorfer.at/about">Andreas Altendorfer</a>
+      </div>
+      
+    <div class='main-frame'>      
+      <div id='flashes'>
+
+      </div>
+      <div id="container">
+        <!--
+        <div class='google-search'>
+           %= insert_google_site_search %
+        </div>
+        -->
+        <div id='container_main'>
+          <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
+          
+          
+<div>
+<div class='right_column'>
+<div class='page_intro'>
+  <div class='cover_picture' id='cover_picture_4d39d1422d19473017000007' style='float:right;margin-left: 10px'>
+      <a href="#" onclick="image_popup('/system/cover_pictures/4d39d1422d19473017000007/popup/IMG_0091.jpg?1295697706'); return false;"><img alt="Img_0091" src="/system/cover_pictures/4d39d1422d19473017000007/thumb/IMG_0091.jpg?1295697706" /></a>
+  </div>
+
+<h1><a href="/pages/4d39d1422d19473017000007">README</a></h1>
+<p>CBA - Community Base Application Template <a href="http://github.com/iboard/CBA">Github</a></p>
+<p>
+<span class='item_link_buttons'>
+<a href="/p/readme">Read</a>
+<a href="/pages/4d39d1422d19473017000007/edit">Edit</a>
+<a href="/pages/4d39d1422d19473017000007" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+7 comments
+</span>
+</p>
+</div>
+
+<p class='content_seperator'></p>
+<div class='page_intro'>
+  <div class='cover_picture' id='cover_picture_4d6903e3daf98519be000019' style='float:right;margin-left: 10px'>
+      <a href="#" onclick="image_popup('/system/cover_pictures/4d6903e3daf98519be000019/popup/vcard.andreas.altendorfer.png?1298729453'); return false;"><img alt="Vcard.andreas.altendorfer" src="/system/cover_pictures/4d6903e3daf98519be000019/thumb/vcard.andreas.altendorfer.png?1298729453" /></a>
+  </div>
+
+<h1><a href="/pages/4d6903e3daf98519be000019">Follow Me</a></h1>
+<p>Follow me ... <a href="http://altendorfer.at">Andi's Blog</a> | <a href="https://plus.google.com/u/0/116071098827301487282">+iboard.cc</a> |  <a href="http://twitter.com/Nickendell">@nickendell</a></p>
+<p>
+<span class='item_link_buttons'>
+<a href="/p/follow_me">Read</a>
+<a href="/pages/4d6903e3daf98519be000019/edit">Edit</a>
+<a href="/pages/4d6903e3daf98519be000019" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+No comments yet
+</span>
+</p>
+</div>
+
+<p class='content_seperator'></p>
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 6000,
+  width: 310,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#333333',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#000000',
+      color: '#ffffff',
+      links: '#3c98d6'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: true,
+    live: true,
+    hashtags: true,
+    timestamp: true,
+    avatars: false,
+    behavior: 'all'
+  }
+}).render().setUser('nickendell').start();
+</script>
+
+</div>
+<p style='clear: left;'></p>
+<div class='left_column' id='postings'>
+<a href="/blogs/4d456adae7798923b100000a/postings/new" class="green_button">Create new posting</a>
+<div class='pagination_box'><div class="pagination"><span class="previous_page disabled">&#8592; Previous</span> <em>1</em> <a rel="next" href="/?page=2&amp;search%5Bsearch%5D=">2</a> <a href="/?page=3&amp;search%5Bsearch%5D=">3</a> <a href="/?page=4&amp;search%5Bsearch%5D=">4</a> <a href="/?page=5&amp;search%5Bsearch%5D=">5</a> <a href="/?page=6&amp;search%5Bsearch%5D=">6</a> <a href="/?page=7&amp;search%5Bsearch%5D=">7</a> <a href="/?page=8&amp;search%5Bsearch%5D=">8</a> <a href="/?page=9&amp;search%5Bsearch%5D=">9</a> <span class="gap">&hellip;</span> <a href="/?page=12&amp;search%5Bsearch%5D=">12</a> <a href="/?page=13&amp;search%5Bsearch%5D=">13</a> <a class="next_page" rel="next" href="/?page=2&amp;search%5Bsearch%5D=">Next &#8594;</a></div></div>
+<div style='clear: right;'></div>
+<!-- TODO: Duplication - Posting Header and Links -->
+<div style='clear: right;'>
+    <div class='side-tab' id='side-tab-posting_4e634c6fdaf9855e1200003b'>
+      <div class='comment-links'  id='posting_4e634c6fdaf9855e1200003b' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_4e634c6fdaf9855e1200003b',500)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e634c6fdaf9855e1200003b" class="read_blog_posting">Read</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e634c6fdaf9855e1200003b/edit">Edit</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e634c6fdaf9855e1200003b" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+        </span>
+      </div>
+    </div>
+  <div class='side-tab-content'>
+    <h2 
+      onmouseover="showSideTab($('#posting_4e634c6fdaf9855e1200003b'));"
+      onmouseout="hideWithDelay('posting_4e634c6fdaf9855e1200003b',2000);">
+      <a href="/blogs/4d456adae7798923b100000a/postings/4e634c6fdaf9855e1200003b">Testing with Jasmine</a>
+    </h2>
+      <div class='cover_picture' id='posting_cover_picture_4e634c6fdaf9855e1200003b' style=''>
+      <a href="#" onclick="image_popup('/system/cover_pictures/4e634c6fdaf9855e1200003b/popup/jasmine_logo.png?1315130479'); return false;"><img alt="Jasmine_logo" src="/system/cover_pictures/4e634c6fdaf9855e1200003b/thumb/jasmine_logo.png?1315130479" /></a>
+  </div>
+
+    <address class='new_posting'
+    >
+            <strong>Andreas Altendorfer</strong>, about 2 hours ago
+    </address>
+    <p>If you pull this <a href="https://github.com/iboard/CBA/commit/d3cf8aff04bb309ebd5640cf3fe0a538cc6ff5de">CBA commit</a> you'll find a version prepared to start with <a href="http://pivotal.github.com/jasmine/">Jasmine</a>.</p>
+    
+      <p class='posting_comment_links'>
+        { <span class='comments_counter'>
+            One comment
+              (<span class='new_comments'>One new since your last visit</span>)
+          </span> }
+        <br/>
+      </p>
+  </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$('#posting_4e634c6fdaf9855e1200003b').hide()
+//]]>
+</script>
+<p style='clear: left;'></p>
+<div style='clear: right;'></div>
+<!-- TODO: Duplication - Posting Header and Links -->
+<div style='clear: right;'>
+    <div class='side-tab' id='side-tab-posting_4e5f0e4ddaf9854e3a000049'>
+      <div class='comment-links'  id='posting_4e5f0e4ddaf9854e3a000049' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_4e5f0e4ddaf9854e3a000049',500)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e5f0e4ddaf9854e3a000049" class="read_blog_posting">Read</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e5f0e4ddaf9854e3a000049/edit">Edit</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e5f0e4ddaf9854e3a000049" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+        </span>
+      </div>
+    </div>
+  <div class='side-tab-content'>
+    <h2 
+      onmouseover="showSideTab($('#posting_4e5f0e4ddaf9854e3a000049'));"
+      onmouseout="hideWithDelay('posting_4e5f0e4ddaf9854e3a000049',2000);">
+      <a href="/blogs/4d456adae7798923b100000a/postings/4e5f0e4ddaf9854e3a000049">Mr. Birthday</a>
+    </h2>
+      <div class='cover_picture' id='posting_cover_picture_4e5f0e4ddaf9854e3a000049' style=''>
+      <a href="#" onclick="image_popup('/system/cover_pictures/4e5f0e4ddaf9854e3a000049/popup/mrgeburtstag.png?1314852428'); return false;"><img alt="Mrgeburtstag" src="/system/cover_pictures/4e5f0e4ddaf9854e3a000049/thumb/mrgeburtstag.png?1314852428" /></a>
+  </div>
+
+    <address class='new_posting'
+    >
+            <strong>Andreas Altendorfer</strong>, 3 days ago
+    </address>
+    <p>Yesterday, Aug 31th, was my 47th birthday. I got a lot of love and nice presents. One of it was <em>Rails 3.1 release</em></p>
+    
+      <p class='posting_comment_links'>
+        { <span class='comments_counter'>
+            One comment
+              (<span class='new_comments'>One new since your last visit</span>)
+          </span> }
+        <br/>
+      </p>
+  </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$('#posting_4e5f0e4ddaf9854e3a000049').hide()
+//]]>
+</script>
+<p style='clear: left;'></p>
+<div style='clear: right;'></div>
+<!-- TODO: Duplication - Posting Header and Links -->
+<div style='clear: right;'>
+    <div class='side-tab' id='side-tab-posting_4e57a4c5daf9853e7700000b'>
+      <div class='comment-links'  id='posting_4e57a4c5daf9853e7700000b' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_4e57a4c5daf9853e7700000b',500)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e57a4c5daf9853e7700000b" class="read_blog_posting">Read</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e57a4c5daf9853e7700000b/edit">Edit</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e57a4c5daf9853e7700000b" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+        </span>
+      </div>
+    </div>
+  <div class='side-tab-content'>
+    <h2 
+      onmouseover="showSideTab($('#posting_4e57a4c5daf9853e7700000b'));"
+      onmouseout="hideWithDelay('posting_4e57a4c5daf9853e7700000b',2000);">
+      <a href="/blogs/4d456adae7798923b100000a/postings/4e57a4c5daf9853e7700000b">Branch rails31 merged into master</a>
+    </h2>
+      <div class='cover_picture' id='posting_cover_picture_4e57a4c5daf9853e7700000b' style=''>
+      <a href="#" onclick="image_popup('/system/cover_pictures/4e57a4c5daf9853e7700000b/popup/pool.jpg?1314366657'); return false;"><img alt="Pool" src="/system/cover_pictures/4e57a4c5daf9853e7700000b/thumb/pool.jpg?1314366657" /></a>
+  </div>
+
+    <address class='new_posting'
+    >
+            <strong>Andreas Altendorfer</strong>, 9 days ago
+    </address>
+    <p>CBA's branch <em>rails31</em> is deprecated from now on. It is merged into <a href="https://github.com/iboard/CBA"><em>master</em></a>.</p>
+    
+      <p class='posting_comment_links'>
+        { <span class='comments_counter'>
+            No comments yet
+              (<span class='new_comments'></span>)
+          </span> }
+        <br/>
+      </p>
+  </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$('#posting_4e57a4c5daf9853e7700000b').hide()
+//]]>
+</script>
+<p style='clear: left;'></p>
+<div style='clear: right;'></div>
+<!-- TODO: Duplication - Posting Header and Links -->
+<div style='clear: right;'>
+    <div class='side-tab' id='side-tab-posting_4e4df203daf9853951000005'>
+      <div class='comment-links'  id='posting_4e4df203daf9853951000005' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_4e4df203daf9853951000005',500)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e4df203daf9853951000005" class="read_blog_posting">Read</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e4df203daf9853951000005/edit">Edit</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e4df203daf9853951000005" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+        </span>
+      </div>
+    </div>
+  <div class='side-tab-content'>
+    <h2 
+      onmouseover="showSideTab($('#posting_4e4df203daf9853951000005'));"
+      onmouseout="hideWithDelay('posting_4e4df203daf9853951000005',2000);">
+      <a href="/blogs/4d456adae7798923b100000a/postings/4e4df203daf9853951000005">HTML5 File Upload Progress Bar</a>
+    </h2>
+    
+    <address class='new_posting'
+    >
+            <strong>Andreas Altendorfer</strong>, 16 days ago
+    </address>
+    <p>I wrote a new gem to display a progress bar while uploading files. It works works with Rails 3.1 and HTML5 browsers.</p>
+    
+      <p class='posting_comment_links'>
+        { <span class='comments_counter'>
+            No comments yet
+              (<span class='new_comments'></span>)
+          </span> }
+        <br/>
+      </p>
+  </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$('#posting_4e4df203daf9853951000005').hide()
+//]]>
+</script>
+<p style='clear: left;'></p>
+<div style='clear: right;'></div>
+<!-- TODO: Duplication - Posting Header and Links -->
+<div style='clear: right;'>
+    <div class='side-tab' id='side-tab-posting_4e431660daf9850a40000f79'>
+      <div class='comment-links'  id='posting_4e431660daf9850a40000f79' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_4e431660daf9850a40000f79',500)">
+        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e431660daf9850a40000f79" class="read_blog_posting">Read</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e431660daf9850a40000f79/edit">Edit</a>
+          <a href="/blogs/4d456adae7798923b100000a/postings/4e431660daf9850a40000f79" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+        </span>
+      </div>
+    </div>
+  <div class='side-tab-content'>
+    <h2 
+      onmouseover="showSideTab($('#posting_4e431660daf9850a40000f79'));"
+      onmouseout="hideWithDelay('posting_4e431660daf9850a40000f79',2000);">
+      <a href="/blogs/4d456adae7798923b100000a/postings/4e431660daf9850a40000f79">Sort using drag-n-drop</a>
+    </h2>
+      <div class='cover_picture' id='posting_cover_picture_4e431660daf9850a40000f79' style=''>
+      <a href="#" onclick="image_popup('/system/cover_pictures/4e431660daf9850a40000f79/popup/Screen%20Shot%202011-08-11%20at%2001.34.41.png?1313019488'); return false;"><img alt="Screen%20shot%202011-08-11%20at%2001.34.41" src="/system/cover_pictures/4e431660daf9850a40000f79/thumb/Screen%20Shot%202011-08-11%20at%2001.34.41.png?1313019488" /></a>
+  </div>
+
+    <address class='old_posting'
+    >
+            <strong>Andreas Altendorfer</strong>, 25 days ago
+    </address>
+    <p>Today I proudly announce my first public gem at <a href="https://rubygems.org/gems/jsort">Gemcutter.org</a></p>
+    
+      <p class='posting_comment_links'>
+        { <span class='comments_counter'>
+            No comments yet
+              (<span class='new_comments'></span>)
+          </span> }
+        <br/>
+      </p>
+  </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$('#posting_4e431660daf9850a40000f79').hide()
+//]]>
+</script>
+<p style='clear: left;'></p>
+<p class='load_more' id='load_more'>
+<a href="#" id="load_more_link" onclick="insert_load_button( 'load_more','Loading …','/?page=2');return false;; return false;">Show more …</a>
+</p>
+
+<div class='pagination_box'><div class="pagination"><span class="previous_page disabled">&#8592; Previous</span> <em>1</em> <a rel="next" href="/?page=2&amp;search%5Bsearch%5D=">2</a> <a href="/?page=3&amp;search%5Bsearch%5D=">3</a> <a href="/?page=4&amp;search%5Bsearch%5D=">4</a> <a href="/?page=5&amp;search%5Bsearch%5D=">5</a> <a href="/?page=6&amp;search%5Bsearch%5D=">6</a> <a href="/?page=7&amp;search%5Bsearch%5D=">7</a> <a href="/?page=8&amp;search%5Bsearch%5D=">8</a> <a href="/?page=9&amp;search%5Bsearch%5D=">9</a> <span class="gap">&hellip;</span> <a href="/?page=12&amp;search%5Bsearch%5D=">12</a> <a href="/?page=13&amp;search%5Bsearch%5D=">13</a> <a class="next_page" rel="next" href="/?page=2&amp;search%5Bsearch%5D=">Next &#8594;</a></div></div>
+</div>
+<p style='clear: right;'></p>
+</div>
+<div style='clear: both;'></div>
+
+        </div>
+      </div>
+      <div class='clear'></div> 
+    </div>
+    <div class='clear'></div>
+
+  </body>
+</html>

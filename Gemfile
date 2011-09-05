@@ -50,30 +50,17 @@ gem 'albino'
 gem "nokogiri", "1.4.6"
 
 
-# Javascript Testing
+# Testing
 group :development, :test do
   gem 'jasmine', '1.0.2.1'
-  gem 'headless', '0.1.0'
-end
-
-# Bundle gems for development
-group :development do
-  gem "nifty-generators"
-  gem "rails-erd"
-  gem 'rdoc'
-  gem 'unicorn'
-  gem 'yard'
-end
-
-# Bundle gems for testing
-group :test do
+  gem 'headless', '0.1.0'  
+  gem 'rspec', '2.6.0'
+  gem 'rspec-rails', '2.6.1'
   gem 'json_pure'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec', '2.6.0'
-  gem 'rspec-rails', '2.6.1'
   gem 'spork', '0.9.0.rc9'
   gem 'spork-testunit'
   gem 'launchy'
@@ -85,6 +72,13 @@ group :test do
   gem 'autotest-growl'
   gem "mocha"
   gem "gherkin"
-  gem 'syntax'
+  gem 'syntax' 
+  gem "nifty-generators"
+  gem "rails-erd"
+  gem 'rdoc'
+  gem 'unicorn'
+  gem 'yard'
 end
+
+
 

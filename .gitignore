@@ -1,5 +1,6 @@
 .bundle
 .yardoc
+.rspec
 .yardoc/**/*
 Gemfile.lock
 db/*.sqlite3

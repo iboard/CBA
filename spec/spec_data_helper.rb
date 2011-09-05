@@ -1,16 +1,34 @@
+# == SpecDataHelper
+# 
+# Configured in 'spec_helper.rb' - config.include SpecDataHelper
+# Functions we use in all specs to create test-data
+#
 module SpecDataHelper
-
-
-  def self.cleanup_database
-    puts "# Cleaning Posting database"
-    Posting.unscoped.delete_all
-    puts "# Cleaning Blogs database"
-    Blog.unscoped.delete_all
-    puts "# Drop user database"
-    User.unscoped.delete_all
+  
+  # Drop all documents of collections we'll test
+  def cleanup_database
+    begin
+      Posting.unscoped.delete_all
+      Blog.unscoped.delete_all
+      User.unscoped.delete_all
+    rescue => e
+      puts "*** ERROR CLEANING UP DATABASE -- #{e.inspect}"
+    end
   end
-
-  def self.create_default_userset
+  
+  # Create the default user set.
+  # Admin is created first because the first user will have admin-role instantly.
+  # Then create users with other roles.
+  # To use the default userset
+  #     log_in_as "_role_@iboard.cc", "thisisnotsecret"
+  # Where '_role_' can be one of:
+  #   * admin@iboard.cc
+  #   * user@iboard.cc
+  #   * author@iboard.cc
+  #   * moderator@iboard.cc
+  #   * maintainer@iboard.cc
+  #   * staff@iboard.cc
+  def create_default_userset
     User.unscoped.delete_all
     [
       #ROLES = [:guest, :confirmed_user, :author, :moderator, :maintainer, :admin]
@@ -65,31 +83,39 @@ module SpecDataHelper
       User.create(hash)
     end
   end
-
-
-  def self.create_posting_for(email,attributes={})
+  
+  # Create a valid and visible posting for user with _email_
+  # If blog 'News' doesn't exist, it will be created.
+  # @param [String] email - use one of 'default_user_set'
+  # @return [Posting]
+  def create_posting_for(email,attributes={})
     user = User.where( :email => email).first
     attributes.merge! :user_id => user.id
     blog = Blog.first || Blog.create!(:title => 'News')
     posting = blog.postings.create(attributes)
     unless posting.valid?
-      puts "#  New Posting has errors #{posting.errors.inspect}"
+      puts "\n#  New Posting has errors #{posting.errors.inspect}\n"
     end
     posting.save!
     blog.save!
     posting
   end
-
-  def self.with_user user_email, &block
+  
+  # Do something (the block) with the user-object.
+  # @param [String] email - use one of 'default_user_set'
+  def with_user user_email, &block
     user = User.where(:email => user_email).first
     yield(user)
   end
   
-  def self.log_in_as(user_email)
+  # Login
+  # @params [String] user_email, use one of default_user_set
+  # @params [String] password, is always hardcoded as 'thisisnotsecret'
+  def log_in_as(user_email,password)
     with_user(user_email) do |user|
         visit "/users/sign_in"
         fill_in("Email", :with => user.email)
-        fill_in("Password", :with => 'thisisnotsecret')
+        fill_in("Password", :with => password)
         click_button("Sign in")
     end
   end

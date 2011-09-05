@@ -1,10 +1,10 @@
 # == SpecDataHelper
-# 
+#
 # Configured in 'spec_helper.rb' - config.include SpecDataHelper
 # Functions we use in all specs to create test-data
 #
 module SpecDataHelper
-  
+
   # Drop all documents of collections we'll test
   def cleanup_database
     begin
@@ -15,19 +15,19 @@ module SpecDataHelper
       puts "*** ERROR CLEANING UP DATABASE -- #{e.inspect}"
     end
   end
-  
+
   # Create the default user set.
   # Admin is created first because the first user will have admin-role instantly.
   # Then create users with other roles.
   # To use the default userset
   #     log_in_as "_role_@iboard.cc", "thisisnotsecret"
   # Where '_role_' can be one of:
-  #   * admin@iboard.cc
-  #   * user@iboard.cc
-  #   * author@iboard.cc
-  #   * moderator@iboard.cc
-  #   * maintainer@iboard.cc
-  #   * staff@iboard.cc
+  # * admin@iboard.cc
+  # * user@iboard.cc
+  # * author@iboard.cc
+  # * moderator@iboard.cc
+  # * maintainer@iboard.cc
+  # * staff@iboard.cc
   def create_default_userset
     User.unscoped.delete_all
     [
@@ -83,7 +83,7 @@ module SpecDataHelper
       User.create(hash)
     end
   end
-  
+
   # Create a valid and visible posting for user with _email_
   # If blog 'News' doesn't exist, it will be created.
   # @param [String] email - use one of 'default_user_set'
@@ -100,17 +100,17 @@ module SpecDataHelper
     blog.save!
     posting
   end
-  
+
   # Do something (the block) with the user-object.
   # @param [String] email - use one of 'default_user_set'
   def with_user user_email, &block
     user = User.where(:email => user_email).first
     yield(user)
   end
-  
+
   # Login
-  # @params [String] user_email, use one of default_user_set
-  # @params [String] password, is always hardcoded as 'thisisnotsecret'
+  # @param [String] user_email, use one of default_user_set
+  # @param [String] password, is always hardcoded as 'thisisnotsecret'
   def log_in_as(user_email,password)
     with_user(user_email) do |user|
         visit "/users/sign_in"

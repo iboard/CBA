@@ -10,12 +10,7 @@ describe "Test postings / homepage as an admin" do
         :title => 'My first posting',
         :body  => 'This is my very first posting',
         :is_draft => false)
-      SpecDataHelper::with_user "admin@iboard.cc" do |user|
-        visit "/users/sign_in"
-        fill_in("Email", :with => user.email)
-        fill_in("Password", :with => 'thisisnotsecret')
-        click_button("Sign in")
-      end
+      SpecDataHelper::log_in_as "admin@iboard.cc"
       visit root_path
       page.should have_content("My first posting")
       begin

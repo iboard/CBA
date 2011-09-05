@@ -84,5 +84,13 @@ module SpecDataHelper
     user = User.where(:email => user_email).first
     yield(user)
   end
-
+  
+  def self.log_in_as(user_email)
+    with_user(user_email) do |user|
+        visit "/users/sign_in"
+        fill_in("Email", :with => user.email)
+        fill_in("Password", :with => 'thisisnotsecret')
+        click_button("Sign in")
+    end
+  end
 end

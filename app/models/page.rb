@@ -131,10 +131,10 @@ class Page
             view_context.link_to(
               I18n.translate(:edit),
               view_context.edit_page_page_component_path(self,_component_id),
-              :remote => true, :title => 'Edit component'
+              :remote => true, :title => I18n.translate(:edit_component)
             )
           else
-            "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true'>Edit</a>"
+            "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true'>#{I18n.translate(:edit)}</a>"
           end
         else
           yield(component)

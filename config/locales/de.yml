@@ -275,6 +275,7 @@ de:
   comment_deleted: 'Kommentar erfolgreich gelöscht'
   comment_successfully_updated: 'Kommentar erfolgreich geändert'
   edit_comment: 'Kommentar bearbeiten'
+  edit_component: 'Komponente bearbeiten'
   signed_in_successfully: "Erfolgreich angemeldet."
   authentication_successful: "Erfolgreich authentifiziert."
   signed_in_successfully: "Erfolgreich angemeldet"

@@ -57,7 +57,7 @@ class Deploy < Thor
     target = options[:target] ? options[:target] : "root@dav.iboard.cc:/var/www/dav/doc/cba/"
     source = options[:source] ? options[:source] : "doc/*"
     ssh    = options[:ssh] ? '-e ssh' : ''
-    `rm -rf doc/*; yardoc --protected --title "CBA API Documantation" Gemfile app/**/*rb lib/**/*rb; rsync --delete -avz #{ssh} #{source} #{target}`
+    `rm -rf doc/*; yardoc --protected --title "CBA API Documantation" Gemfile app/**/*rb lib/**/*rb spec/*rb spec/support/*rb; rsync --delete -avz #{ssh} #{source} #{target}`
   end
   
   

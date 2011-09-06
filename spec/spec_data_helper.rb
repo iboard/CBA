@@ -5,10 +5,6 @@
 #
 module SpecDataHelper
 
-  def at_exit
-    puts "*** EXIT TESTS ****"
-  end
-
   # Drop all documents of collections we'll test
   def cleanup_database
     begin

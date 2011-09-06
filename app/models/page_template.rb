@@ -9,7 +9,7 @@ class PageTemplate
   validates_presence_of :name
   validates_uniqueness_of :name
   index :name, :unique => true
-  field :html_template, :required => true, :default => '<h1>TITLE</h1>BUTTONS COVERPICTURE<br/>BODY<hr>COMPONENTS<hr>COMMENTS'
+  field :html_template, :required => true, :default => '<h1>TITLE</h1>BUTTONS COVERPICTURE<br/>BODY<hr><div id="page_page_components">COMPONENTS</div><hr>COMMENTS'
   field :css_class, :required => true, :default => 'default'
 
   scope :page_templates,  any_of({name: /^Page/}, {name: /default/})

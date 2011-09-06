@@ -80,6 +80,7 @@ en:
   comment_deleted: 'Comment successfully deleted'
   comment_successfully_updated: 'Comment successfully updated'
   edit_comment: 'Edit comment'
+  edit_component: 'Edit component'
   signed_in_successfully: "Signed in successfully."
   authentication_successful: "Authentication successful."
   signed_in_successfully: "Signed in successfully."

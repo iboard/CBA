@@ -5,12 +5,18 @@
 #
 module SpecDataHelper
 
+  def at_exit
+    puts "*** EXIT TESTS ****"
+  end
+
   # Drop all documents of collections we'll test
   def cleanup_database
     begin
       Posting.unscoped.delete_all
       Blog.unscoped.delete_all
       User.unscoped.delete_all
+      PageTemplate.delete_all
+      Page.delete_all
     rescue => e
       puts "*** ERROR CLEANING UP DATABASE -- #{e.inspect}"
     end
@@ -118,5 +124,28 @@ module SpecDataHelper
         fill_in("Password", :with => password)
         click_button("Sign in")
     end
+  end
+
+  # Create a default PageTemplate
+  def create_default_page_template
+    PageTemplate.create(:name => 'default')
+  end
+
+  # Create a page with one component
+  # @param [Hash] options, The page attributes plus :page_component => {attributes}
+  # @return [Page], the created page
+  def create_page_with_component( options )
+    component = options[:page_component]
+    template = create_default_page_template
+    component.merge! :page_template_id => template.id
+    options.delete(:page_component)
+    options.merge! :page_template_id => template.id
+    page = Page.new(options)
+    unless page.valid?
+      puts "***** PAGE INVALID IN #{__FILE__}:#{__LINE__} - #{page.errors.inspect} *****"
+    end
+    page.page_components.create(component)
+    page.save!
+    page
   end
 end

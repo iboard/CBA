@@ -2,8 +2,8 @@
   $('#page-component-<%= @page_component.id.to_s -%>').html('<%= 
       escape_javascript( 
         raw(@page_component.render_body(self) { |component|
-          "<p>" + 
-            link_to(t(:edit), edit_page_page_component_path(@page_component.page,@page_component), :remote => true)+
+          "<p class=\'page-component-edit\'>" + 
+            link_to(t(:edit), edit_page_page_component_path(@page_component.page,@page_component),:remote => true)+
           "</p>"
         } ) ) -%>');
   $('#overlay').fadeTo(0.0,250).hide();

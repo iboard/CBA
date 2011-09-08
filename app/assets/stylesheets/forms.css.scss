@@ -17,6 +17,8 @@ $field-width: $form-width / 3 * 2;
   
   form {
     
+    margin-bottom: 10px;
+    
     input[type="text"].number-field {
       width: 100px;
     }

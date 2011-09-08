@@ -132,6 +132,7 @@
         content: "\25B6";
 }
 
+.link:before,
 .read:before,
 .reference:before
 {
@@ -144,7 +145,8 @@
 }
 
 .tiny {
-  font: bold 0.6em/1.1em $font-buttons;
+  font: normal 10px/10px $font-buttons;
+  height: 10px;
 }
 
 .side-tab-button 

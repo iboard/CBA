@@ -21,7 +21,7 @@
   </div>
   <div class='field'><%= f.label :use_gravatar %>
     <%= f.check_box :use_gravatar %>
-    <%= link_to 'Gravatar?', "http://gravatar.com", :target => :blank %>
+    <%= link_button 'Gravatar?', "button link tiny", "http://gravatar.com", :target => :blank %>
     <small><%= @user.email.downcase%></small>
   </div>
 
@@ -60,7 +60,7 @@
     <%= f.password_field :current_password %>
     <address><i>(we need your current password to confirm your changes)</i></address></div>
   <% end %>
-  <div class='field'><%= f.submit "Update" %></div>
+  <div class='field'><%= f.submit "Update", :class => "button save" %></div>
 <% end %>
 
 <h3>Cancel my account</h3>

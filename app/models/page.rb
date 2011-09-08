@@ -112,7 +112,7 @@ class Page
       self.page_components.each do |component|
         parts << [component.render_body(view_context)]
       end
-      rc=render_for_html( parts.join("\n") )
+      rc=self.render_for_html( parts.join("\n") )
     else
       rc=render_with_template
     end
@@ -174,6 +174,17 @@ class Page
                 .gsub(/COMMENTS/, render_comments)\
                 .gsub(/BUTTONS/, render_buttons)\
                 .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
+                .gsub(/YOUTUBE(_PLAYLIST)?:([\s|\d|\-|_])+/) { |tag|
+                  args = tag.split(":")
+                  case args[0]
+                  when 'YOUTUBE'
+                    args.inspect + embed_youtube_video(args[1])
+                  when 'YOUTUBE_PLAYLIST'
+                    args.inspect + embed_youtube_playlist(args[1])
+                  else
+                    "ARGUMENT ERROR: " + args.inspect
+                  end
+                }
                 .gsub(/ATTACHMENTS/, render_attachments)\
                 .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
                   attachment_number.gsub! /\D/,''

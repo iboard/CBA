@@ -65,12 +65,19 @@
         @include container-right-box;
         @include right-bottom-border;
         border-radius: 0px 0px 0px $radius-small;
+        
         .page_intro {
+          font-size: 0.8em;
+          
           h1 {
             font-size: 1.5em;
+            padding: 0px;
+            margin: 0px;
           }
           p {
-            font-size: 1.0em;
+            margin: 0px;
+            margin-bottom: 3px;
+            padding: 0px;
           }
         }
       }

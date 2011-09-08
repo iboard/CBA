@@ -15,6 +15,8 @@ class Application < Thor
     system "rake test:functionals | grep tests.*assertions.*failures"
     puts "\nRUNNING CUCUMBER"
     system "bundle exec cucumber | grep '[scenarios|steps]'"
+    puts "\nRUNNING RSPEC"
+    system "bundle exec rake spec:requests | grep -i examples"
   end
 
   desc "jasmine [--skip] [--dont_start]", "precompile assets and run jasmine. skip asset compile. don't start jasmine"
@@ -41,7 +43,8 @@ class Application < Thor
     puts "RUNNING AUTOTESTS WITH SPORK"
     script = "#!/bin/bash
 export AUTOFEATURE=true
-bundle exec spork > log/spork.log 2>&1 &
+bundle exec spork cucumber > log/spork.log 2>&1 &
+bundle exec spork RSpec   >> log/spork.log 2>&1 &
 echo -n 'Spork server started - waiting to allow start up '
 for i in 9 8 7 6 5 4 3 2 1
 do
@@ -53,6 +56,7 @@ echo 'Start continuos testing'
 bundle exec autotest
 echo 'Autotest ended. Now stopping spork-server'
 kill %1
+kill %2
 "
     sfile = File::new("tmp/autotest.sh",'w')
     sfile << script

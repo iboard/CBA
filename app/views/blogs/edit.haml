@@ -1,0 +1,9 @@
+- title t(:editing_blog)
+
+
+= render :partial => 'form', :locals => {:blog => @blog}
+
+%field
+  =label_tag t(:navigation)
+  = link_button t(:read_blog), "button small", @blog
+  = link_button t(:blog_index),"button back small", blogs_path

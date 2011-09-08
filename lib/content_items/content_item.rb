@@ -101,6 +101,16 @@ module ContentItem
           }.gsub( /COMPONENT[\d+]/ ) { |component|
             component_i = component.gsub( /\D/,'' ).to_i
             render_page_component(component_i)
+          }.gsub(/YOUTUBE(_PLAYLIST)?:([a-z|A-Z|0-9|\\-|_]+)/) { |tag|
+            args = tag.split(':')
+            case args[0]
+            when 'YOUTUBE'
+              embed_youtube_video(args[1])
+            when 'YOUTUBE_PLAYLIST'
+              embed_youtube_playlist(args[1])
+            else
+              "ARGUMENT ERROR: " + args.inspect
+            end
           }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
         end
 
@@ -116,7 +126,7 @@ module ContentItem
             attachment = self.attachments[idx]
             if attachment
               if attachment.file_content_type =~ /image/
-                @context_view.image_tag attachment.file.url(:medium)
+                @context_view.image_tag( attachment.file.url(:medium) )
               else
                 @context_view.link_to attachment.file_file_name attachment.file.original
               end
@@ -128,6 +138,18 @@ module ContentItem
 
         def render_component(idx)
           "RENDER COMPONENT NOT IMPLEMENTED FOR #{self.class.to_s}"
+        end
+
+        def embed_youtube_playlist(youtube_tag)
+          "<iframe width='560' height='345' src='http://www.youtube.com/p/" +
+            youtube_tag +
+          "?version=3&amp;hl=en_US' frameborder='0' allowfullscreen=''></iframe>"
+        end
+
+        def embed_youtube_video(youtube_tag)
+          "<iframe width='420' height='345' src='http://www.youtube.com/embed/"+
+            youtube_tag +
+            "' frameborder='0' allowfullscreen=''></iframe>"
         end
       EOV
     end

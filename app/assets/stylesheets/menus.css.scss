@@ -70,3 +70,14 @@
 
   }
 }
+
+#site_menus {
+  li {
+    .site_menu_manage_buttons {
+      display: inline;
+      padding-left: 10px;
+    }
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

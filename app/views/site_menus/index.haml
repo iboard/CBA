@@ -1,6 +1,6 @@
 - title t(:manage_site_menus)     
 
-%p= link_to t(:add_new_menu), new_site_menu_path, :class => 'green_button'
+%p= link_to t(:add_new_menu), new_site_menu_path, :class => 'button add'
   
 - jsort(@site_menus,'site_menu',"/site_menus/sort_menus") do |item|
-  = render item
+    = render item

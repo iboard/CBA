@@ -45,7 +45,12 @@ class Posting
   # Render the body with RedCloth
   def render_body(view_context=nil)
     @view_context ||= view_context
-    render_for_html(self.body)
+    if @view_context
+      @view_context.concat render_for_html(self.body).html_safe
+      return ""
+    else
+      render_for_html(self.body).html_safe
+    end
   end
 
   private ################################################## private ####

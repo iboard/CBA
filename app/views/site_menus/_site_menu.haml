@@ -1,9 +1,10 @@
 %span.name
-  = site_menu.name+" => "
+  %b= site_menu.name+" => "
   = link_to site_menu.target, site_menu.target
 %br
 %span{:class => 'site_menu_manage_buttons'}
   = site_menu_manage_buttons(site_menu)
+%br
 - if site_menu.children.any?
   -jsort(site_menu.children,'site_menu_children_of_'+site_menu.id.to_s,"/site_menus/sort_menus") do |item|
     = render item

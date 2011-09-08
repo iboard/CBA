@@ -15,7 +15,8 @@
             :locals => { :posting => posting, :format => :thumb }
           )
     -%><br/>
-    <%= link_button( t(:delete_picture), "button delete tiny", delete_cover_picture_blog_posting_path(posting.blog,posting), :remote => true,
+      <%= link_to( t(:delete_picture), delete_cover_picture_blog_posting_path(posting.blog,posting), :remote => true,
+        :class =>  "button delete small",
         :confirm => t(:are_you_sure), :id => 'delete_cover_picture_link') unless posting.new_record? %>
   </div>
 
@@ -59,6 +60,6 @@
 
   <div class="actions">
     <%= f.label :submit, t(:save_changes) %>
-    <%= f.submit %>
+    <%= f.submit :class => "button save" %>
   </div>
 <% end %>

@@ -6,7 +6,7 @@
     %div{:class=>'comment', :id=>'comment_'+comment.id.to_s}
       - if group == 1
         %h2
-          = link_to comment.commentable.title, commentable_show_path(comment.commentable)
+          = link_button comment.commentable.title, "button link", commentable_show_path(comment.commentable)
           %small
             (
             = comment.commentable.class.to_s.humanize
@@ -28,4 +28,4 @@
         - else
           = ContentItem::markdown(comment.comment||'')
       %p
-        = link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure) ) if can?( :destroy, comment )
+        = link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure), :class => 'button delete small' ) if can?( :destroy, comment )

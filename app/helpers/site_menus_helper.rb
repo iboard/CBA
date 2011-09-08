@@ -108,9 +108,11 @@ module SiteMenusHelper # :nodoc:
   end
 
   def site_menu_manage_buttons(menu)
-    link_to( t(:edit), edit_site_menu_path(menu) ) + " | " +
-    link_to( t(:delete), menu, :method => :delete, :confirm => t(:are_you_sure)) + " | " +
-    link_to( t(:add_submenu_item), new_site_menu_path(:parent => menu.to_param))
+    ("<span style='height: 10px; vertical-align: middle;'>" +
+    link_to( t(:edit), edit_site_menu_path(menu), :class => 'button edit tiny' ) + sc(:nbsp) +
+    link_to( t(:delete), menu, :method => :delete, :confirm => t(:are_you_sure), :class => 'button delete tiny') + sc(:nbsp) +
+    link_to( t(:add_submenu_item), new_site_menu_path(:parent => menu.to_param), :class => 'button add tiny') +
+    "</span>").html_safe
   end
   
 end

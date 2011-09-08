@@ -252,3 +252,4 @@ en:
   invalid_search: 'Please provide 3 characters or more'
   update_page_component: 'Update component'
   page_component_successfully_updated: 'Page component successfully updated'
+  navigation: 'Navigation'

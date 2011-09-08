@@ -15,7 +15,8 @@
         )
     -%>
     <%= f.file_field :cover_picture %>
-    <%= link_button( t(:delete_picture), "button delete small", delete_cover_picture_blog_path(blog), :remote => true,
+    <%= link_to( t(:delete_picture),  delete_cover_picture_blog_path(blog), :remote => true,
+        :class => "button delete small",
         :confirm => t(:are_you_sure)) unless blog.new_record? %>
   </div>
 
@@ -55,6 +56,6 @@
 
   <div class="actions">
     <%= f.label :submit, t(:save_changes) %>
-    <%= f.submit %>
+    <%= f.submit :class => 'button save' %>
   </div>
 <% end %>

@@ -10,7 +10,7 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.submit t(:change_my_password) %></p>
+  <p><%= f.submit t(:change_my_password), :class => "button save" %></p>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

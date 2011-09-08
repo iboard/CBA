@@ -1,4 +1,5 @@
 $('#overlay').html("<div style='text-align:left;padding: 20px;'><div style='float:right; width: 30px;>"+
-  insert_close_popup_link('#overlay')+"</div><%=
-  escape_javascript( render 'edit', :page_component => @page_component )
--%></div>").show().fadeTo(1.0,250);
+  insert_close_popup_link('#overlay')+"</div><h1>Edit Page Component...</h1>"+
+  "<%= escape_javascript( render 'edit', :page_component => @page_component ) -%>"+
+  "</div>"
+).show().fadeTo(1.0,250);

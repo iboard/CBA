@@ -2,10 +2,12 @@
 
 
 %div
-  = will_paginate @blogs
+  -if @blogs.total_pages > 1
+    .pagination_box= will_paginate @blogs
 
   - @blogs.each do |blog|
     = render :partial => 'blog_intro', :locals => { :blog => blog }
     %p.content_seperator
-    
-  = will_paginate @blogs
+  
+  -if @blogs.total_pages > 1
+    .pagination_box= will_paginate @blogs

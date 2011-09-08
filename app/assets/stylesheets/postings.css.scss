@@ -1,9 +1,9 @@
 $side-tab-width: $sidebar-width - 20;
-$side-tab-height: 25px;
+$side-tab-height: 50px;
 
 .side-tab {
   margin-left: -1 * ($side-tab-width + 21);
-  margin-top: $side-tab-height;
+  margin-top: $side-tab-height / 2;
   float: left;
   width: $side-tab-width;
   min-width: $side-tab-width;
@@ -13,10 +13,9 @@ $side-tab-height: 25px;
     overflow: hidden;
     z-index: 10;
     height: $side-tab-height;
-    text-align: right;
-    width: $side-tab-width - 20;
     background: $hud-background;
-    padding: 10px;
+    margin: 0px;
+    padding-left: 5px;
     width: $side-tab-width -5;
     @include button-shape($radius-small);
     border-radius: $radius-small 0 0 $radius-small;

@@ -1,7 +1,7 @@
 #container { 
   #container_main {
-    .pagination {
-  
+    .pagination_box {
+      clear: both;
       @include clear-borders;  
       @include button-shape($radius-small);
       background: darken(#f1f1f1, 5%);
@@ -9,41 +9,44 @@
       text-align: center;
       padding: 1em;
       cursor: default;
-      
-      a, span {    
-        @include clear-borders;
-        padding: 0.2em 0.3em;
-        text-decoration: none;
-      }
-      
-      .disabled {
-        color: #aaaaaa;
-      }
-      
-      .current, em {    
-        @include clear-borders;
-        font-style: normal;
-        font-weight: bold;
-        background-color: darken(#f1f1f1, 20);
-        display: inline-block;
-        width: 1.4em;
-        height: 1.4em;
-        line-height: 1.5;
-        -moz-border-radius: 1em;
-        -webkit-border-radius: 1em;
-        border-radius: 1em;
-        text-shadow: rgba(white, .8) 1px 1px 1px;
-      }
-      
-      a {  
-        @include clear-borders;
-        text-decoration: none;
-        color: black;
-        &:hover, &:focus {
+      .pagination {
+        height: 20px;
+        
+        a, span {    
           @include clear-borders;
-          text-decoration: underline;
+          padding: 0.2em 0.3em;
+          text-decoration: none;
         }
-      
+        
+        .disabled {
+          color: #aaaaaa;
+        }
+        
+        .current, em {    
+          @include clear-borders;
+          font-style: normal;
+          font-weight: bold;
+          background-color: darken(#f1f1f1, 20);
+          display: inline-block;
+          width: 1.4em;
+          height: 1.4em;
+          line-height: 1.5;
+          -moz-border-radius: 1em;
+          -webkit-border-radius: 1em;
+          border-radius: 1em;
+          text-shadow: rgba(white, .8) 1px 1px 1px;
+        }
+        
+        a {  
+          @include clear-borders;
+          text-decoration: none;
+          color: black;
+          &:hover, &:focus {
+            @include clear-borders;
+            text-decoration: underline;
+          }
+        
+        }
       }
     }
   }

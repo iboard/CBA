@@ -4,9 +4,9 @@
   - title @page.title_and_flags, false
 
   = raw( @page.page_with_edit_component_buttons( self )  { |component|                      |
-    "<p>" + link_to(t(:edit), edit_page_page_component_path(@page,component), :remote => true)+"</p>"  |
+    "<p>" + link_button(t(:edit), 'button edit tiny', edit_page_page_component_path(@page,component), :remote => true)+"</p>"  |
     })                                                                                      |
 
 - if @page.derived? && current_role?(:admin)
-  %p= link_to t(:derived_from, :title => @page.template.title), @page.template
+  %p= link_button t(:derived_from,:title => @page.template.title),  "button reference small", @page.template
 

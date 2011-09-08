@@ -1,4 +1,4 @@
 .item_link_buttons
     -if can? :manage, page
-        = link_to t(:edit), edit_page_path(page)
-    = link_to t(:pages_index), pages_path
+        = link_button t(:edit), "button edit small", edit_page_path(page)
+    = link_button t(:pages_index), "button back small", pages_path

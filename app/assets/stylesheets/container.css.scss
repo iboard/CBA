@@ -40,12 +40,16 @@
       
     /* id container_main beginning */
     #container_main {
-      
-      
-      a {
+
+      .posting p a,
+      .blog p a,
+      .comment p a,
+      .component_body a,
+      .page_body a {
         border-bottom: 1px dotted $color-link;
         &:hover { border-bottom: 1px solid $color-link; }
       }
+            
     
       #postings.left_column p {
         line-height: 150%;
@@ -131,7 +135,7 @@
   	}
   	/* end of class authentication */
   
-  	.auth_provider img, .auth_provider, a {
+  	.auth_provider img, .auth_provider {
   	  padding: 0px;
   	  -moz-box-shadow:     none;
   	  -webkit-box-shadow:  none;
@@ -248,11 +252,7 @@
   	  padding: 0px;
   	}
   	
-  	.item_link_buttons {
-  	  padding: 0px;
-  	  -moz-border-radius: 2px;
-  	  -webkit-border-radius: 2px;
-  	}
+  	.item_link_buttons {}
   
   	.content_seperator {
   	  height: 2px;

@@ -15,7 +15,7 @@
 <div id='page_<%= page.id -%>' class='page_body'>
   <%= raw( page.page_with_edit_component_buttons( self )  { |component|
     "<p>"+
-      link_to(t(:edit), edit_page_page_component_path(page,component), :remote => true)+
+      link_button(t(:edit),"button edit small", edit_page_page_component_path(page,component), :remote => true)+
     "</p>" })
   -%>
 </div>

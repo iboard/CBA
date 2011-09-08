@@ -16,6 +16,12 @@ $field-width: $form-width / 3 * 2;
   }
   
   form {
+    
+    input[type="text"].number-field {
+      width: 100px;
+    }
+    
+    
     .field {
       #attachments {
         margin-left: $label-width;
@@ -24,7 +30,7 @@ $field-width: $form-width / 3 * 2;
         input[type="file"] {
           width: $field-width - 80px;
         }
-        
+            
         a {
           background: none;
           color: $color-text;

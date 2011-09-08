@@ -53,5 +53,10 @@ module LayoutHelper
   def w3c_url(url)
     url.gsub(' ', '%20')
   end
+  
+  # Links as buttons
+  def link_button( label_txt, button_options, *args )
+    link_to label_txt, *args, :class => button_options
+  end
 
 end

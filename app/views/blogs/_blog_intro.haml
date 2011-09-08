@@ -12,8 +12,8 @@
 %address{ :style=>'width: 400px; font-style: normal;' }
     %span.item_link_buttons{:id => blog.title.underscore.downcase }
         - if can? :manage, blog
-            = link_to t(:edit), edit_blog_path(blog)
-            = link_to t(:destroy), blog,:confirm => t(:are_you_sure),:method => :delete
+            = link_button t(:edit), "button edit tiny", edit_blog_path(blog)
+            = link_to t(:destroy), blog,:confirm => t(:are_you_sure),:method => :delete, :class => 'button delete tiny'
 
 = ContentItem::markdown(blog.synopsis) if blog.synopsis
 

@@ -27,9 +27,9 @@
     %div.field
         = f.label :show_in_menu
         = f.check_box :show_in_menu
-        = t(:show_in_menu)
+        = t(:show_in_menu)+". "
         = t(:at_position) + ": "
-        = f.text_field :menu_order, :size => 5, :placeholder => t(:last_position)
+        = f.text_field :menu_order, :size => 5, :placeholder => t(:last_position), :class => 'number-field'
         
     %div.field
         = f.label :page_template_id, t(:page_template)

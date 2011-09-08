@@ -3,6 +3,6 @@
       <%= link_to_function( image_tag( w3c_url(attachment.file.url(:icon)) ),
              "image_popup('#{attachment.file.url(:popup)}')") %>
   <% else %>
-    <%= link_to attachment.file.original_filename, attachment.file.url() -%>
+    <%= link_button attachment.file.original_filename, "button download small", attachment.file.url() -%>
   <% end %>
 </li>

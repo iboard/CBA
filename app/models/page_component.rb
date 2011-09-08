@@ -82,7 +82,7 @@ class PageComponent
                 if c.file_content_type =~ /image/
                   view_context.image_tag( c.file.url(:medium) )
                 else
-                  view_context.link_to( c.file_file_name, c.file.url )
+                  view_context.link_button( c.file_file_name, "button download small", c.file.url )
                 end
               else
                 "ATTACHMENT #{idx} NOT FOUND"

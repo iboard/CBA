@@ -11,15 +11,15 @@
 
   = render :partial => '/blogs/blog', :locals => { :blog => @blog}
 
-  %p.green-button= link_to( t(:create_new_posting), new_blog_posting_path(@blog), :class => :green_button ) if can? :create, Posting
-
-  %p{style: 'text-align: center;'}= will_paginate @postings
+  -if @postings.total_pages > 1
+    .pagination_box= will_paginate @postings
 
   #postings{ style: 'clear: right;'}
     - @postings.each do |posting|
       = render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog }
     = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
 
-  %p{style: 'text-align: center;'}= will_paginate @postings
+  -if @postings.total_pages > 1
+    .pagination_box= will_paginate @postings
 
   = raw("</div><div style='clear: both'></div>") if @blog.pages.any?

@@ -12,18 +12,20 @@
           <%= t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous',
               :at => distance_of_time_in_words_to_now(comment.created_at)).html_safe %>
       
-          <%= link_to( comment.time_left_to_edit > 0 ? \
+          <%= link_button( comment.time_left_to_edit > 0 ? \
                        t(:edit_for_another_count_minutes,:count => comment.time_left_to_edit) :\
-                       t(:edit),
+                       t(:edit), "button edit tiny",
                 edit_comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
                 :remote => true ) if can?( :manage, comment, session[:comments] )
           %>
       
          <%= raw link_to( t(:destroy),
-                comment_path(comment, (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
+                comment_path(comment,
+                 (commentable.class.to_s.underscore.downcase+"_id").to_sym => commentable.id.to_s ),
                 :method => :delete,
                 :remote => true,
-                :confirm => t(:are_you_sure)
+                :confirm => t(:are_you_sure),
+                :class =>  "button delete tiny"
                 ).gsub("rel=\"nofollow\"","") if can?( :destroy, session[:comments] )
           %>
       </address>

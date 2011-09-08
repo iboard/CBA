@@ -1,2 +1,5 @@
-%p.item_link_buttons= link_to sc(:pl,:nbsp)+t(:blog_index), blogs_path
+.right 
+  = link_button( t(:create_new_posting), "button add", new_blog_posting_path(@blog) ) if can? :create, Posting
+  = link_button sc(:pl,:nbsp)+t(:blog_index), "button back", blogs_path
+%div{:style => 'clear: both'}
 = render :partial => '/blogs/blog_intro', :locals => { :blog => blog }

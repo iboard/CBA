@@ -128,13 +128,14 @@ class Page
         component = self.page_components.find(_component_id)
         unless block_given?
           if view_context
-            view_context.link_to(
+            view_context.link_button(
               I18n.translate(:edit),
+              "button edit small",
               view_context.edit_page_page_component_path(self,_component_id),
               :remote => true, :title => I18n.translate(:edit_component)
             )
           else
-            "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true'>#{I18n.translate(:edit)}</a>"
+            "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true' class='button edit tiny'>#{I18n.translate(:edit)}</a>"
           end
         else
           yield(component)
@@ -180,7 +181,7 @@ class Page
                     if c.file_content_type =~ /image/ && @view_context
                       @view_context.image_tag c.file.url(:medium)
                     elsif @view_context
-                      @view_context.link_to( c.file_file_name, c.file.url )
+                      @view_context.link_button( c.file_file_name, "button download small", c.file.url )
                     end
                   else
                     "ATTACHMENT #{attachment_number} NOT FOUND"

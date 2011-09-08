@@ -1,2 +1,2 @@
 = page_component.render_body(self) do |component|
-  %p{:class => 'page-component-edit'}= link_to t(:edit), edit_page_page_component_path(page_component.page,page_component)
+  %p{:class => 'page-component-edit'}= link_button t(:edit), "button edit tiny", edit_page_page_component_path(page_component.page,page_component)

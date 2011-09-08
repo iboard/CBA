@@ -12,9 +12,9 @@
           t(:in_blog, :blog => link_to(@posting.blog.title,@posting.blog) ).html_safe -%>
           <% if can? :manage, @posting %>
             <p class='item_link_buttons'>
-                <%= link_to(t(:edit), edit_blog_posting_path(@posting.blog,@posting)) %>
+                <%= link_button(t(:edit), "button edit small", edit_blog_posting_path(@posting.blog,@posting)) %>
                 <%= link_to(t(:destroy), blog_posting_path(@posting.blog,@posting),
-                      :confirm => t(:are_you_sure), :method => :delete) %>
+                      :confirm => t(:are_you_sure), :method => :delete, :class => "button delete small") %>
             </p>
           <% end %>
   </address>
@@ -32,7 +32,10 @@
     </ul>
   <% end %>
 
-  <p style='clear: right;'><%= link_to(t(:back_to_blog, :blog => @posting.blog.short_title), @posting.blog) %></p>
+  <p style='clear: right;'><%= link_button(
+     t(:back_to_blog, :blog => @posting.blog.short_title),"button back small",
+      @posting.blog) %>
+  </p>
 
   <% if @posting.comments.any? %>
     <!-- COMMENTS -->

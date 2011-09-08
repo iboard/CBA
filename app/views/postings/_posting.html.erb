@@ -2,12 +2,17 @@
 <div style='clear: right;'>
   <% if can? :edit, posting %>
     <div class='side-tab' id='side-tab-posting_<%=  posting.id.to_s -%>'>
-      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' style='margin-bottom: 5px;' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',500)">
-        <span class='item_link_buttons' onmouseover="cancelSideTabTimeouts()" >
-          <%= link_to t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting' %>
-          <%= link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
-          <%= link_to( t(:destroy), blog_posting_path(blog,posting),
-            :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting %>
+      <div class='comment-links'  id='posting_<%= posting.id.to_s -%>' onmouseover="cancelSideTabTimeouts()" onmouseout="hideWithDelay('posting_<%= posting.id.to_s -%>',500)">
+        <span class='item_link_buttons' style='display: inline' onmouseover="cancelSideTabTimeouts()" >
+          <%= link_button( t(:read),    "button read side-tab-button", blog_posting_path(blog,posting)) %>
+          <br/>
+          <%= link_button( t(:edit),    "button edit side-tab-button", edit_blog_posting_path(blog,posting)) if can? :edit, posting %>
+          <br/>
+          <%= link_to( t(:destroy),     
+            blog_posting_path(blog,posting),
+            :confirm => t(:are_you_sure), :method => :delete,
+            :class => "button delete side-tab-button"
+            ) if can? :manage, posting %>
         </span>
       </div>
     </div>

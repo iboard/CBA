@@ -4,9 +4,9 @@
     .side-tab{:id => "side-tab-posting_#{posting.id.to_s}"}
       .comment-links{:style=>'margin-bottom: 5px;',:id => "posting_#{posting.id.to_s}"}
         .item_link_buttons{:onmouseover=>"cancelSideTabTimeouts()"}
-          = link_to( t(:read), blog_posting_path(blog,posting), :class => 'read_blog_posting')
-          = link_to( t(:edit), edit_blog_posting_path(blog,posting)) if can? :edit, posting
-          = link_to( t(:destroy), blog_posting_path(blog,posting), :confirm => t(:are_you_sure), :method => :delete) if can? :manage, posting
+          = link_to( t(:read), blog_posting_path(blog,posting), :class => 'button read side-tab-button')
+          = link_to( t(:edit), edit_blog_posting_path(blog,posting), :class => 'button edit side-tab-button') if can? :edit, posting
+          = link_to( t(:destroy), blog_posting_path(blog,posting), :confirm => t(:are_you_sure), :method => :delete,  :class => 'button delete side-tab-button') if can? :manage, posting
   .side-tab-content
     %h2{ :onmouseover => "showSideTab($('#posting_#{posting.id.to_s}'))", :onmouseout => "hideWithDelay('posting_#{posting.id.to_s}',500)"}= link_to(posting.title, blog_posting_path(blog,posting))
     - if posting.is_draft

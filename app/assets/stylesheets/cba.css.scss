@@ -1,5 +1,5 @@
 /* -*- encoding : utf-8 -*- */
-/**** Version Juli 21, 2011    */
+/**** Version September 7, 2011   */
 
 
 @import "constants.css.scss";
@@ -222,19 +222,6 @@ input {
   float: right;
 }
 
-#container .blog_intro img,
-#container .cover_picture img,
-#container #posting .cover_picture img,
-#container #postings .cover_picture img {
-  float: right;
-  padding: 0px;
-  margin-right: 10px;
-  margin-top: 30px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  border: none;
-}
-
 .posting_comment_links {
   font-size: 0.7em;
   line-height: 150%;
@@ -258,29 +245,6 @@ input {
  padding: 0px;
 }
 
-.item_link_buttons a {
-  display: inline;
-  text-decoration: none;
-  color: #444;
-  background: #EAECEE;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border: 1px solid #DDDFE2;
-  font-size: 0.8em;
-}
-
-#container
-a.green_button {
-  display: inline;
-  text-decoration: none;
-  color: white;
-  margin: 0px;
-  padding: 5px;
-  background: #1B5412;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  font-size: 0.75em;
-}
 
 a.green_button:hover,
 .item_link_buttons a:hover {
@@ -421,4 +385,4 @@ li.load_more {
 @import "search.css.scss";
 @import "will_paginate.css.scss";
 @import "forms.css.scss";
-
+@import "css3buttons.css.scss";

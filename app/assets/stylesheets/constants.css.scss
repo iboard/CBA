@@ -213,6 +213,15 @@ $form-width: 600px;
   line-height: $line-height-default;
 }
 
+@mixin standard-link {
+  border: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  text-decoration: underline;
+}
+
 .column-wrapper {
   margin: 0px;
   padding: 0px;
@@ -235,3 +244,4 @@ body {
   color: #333;
   @include page-background;
 }
+

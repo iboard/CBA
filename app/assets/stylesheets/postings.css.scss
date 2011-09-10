@@ -27,4 +27,17 @@ $side-tab-height: 50px;
 
 .side-tab-content {
  overflow: visible;
+ p {
+   a {
+     @include standard-link;
+   }
+ }
+}
+
+#posting {
+  #posting_body {
+    a {
+      @include standard-link;
+    }
+  }
 }

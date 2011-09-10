@@ -8,5 +8,6 @@
     })                                                                                      |
 
 - if @page.derived? && current_role?(:admin)
-  %p= link_button t(:derived_from,:title => @page.template.title),  "button reference small", @page.template
+  - content_for :resource_actions do
+    = link_button t(:derived_from,:title => @page.template.title),  "button reference", @page.template
 

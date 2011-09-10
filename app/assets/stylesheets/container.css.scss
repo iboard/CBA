@@ -55,16 +55,19 @@
         line-height: 150%;
       }
   
+      .right-column,
       .right_column {
         margin-right: -20px;
-        margin-top: -20px;
+        margin-top: -5px;
+        margin-right: -15px;
         width: 310px;
         min-width: 310px;
         float: right;
         padding: 10px;
+        padding-top: 15px;
         @include container-right-box;
-        @include right-bottom-border;
-        border-radius: 0px 0px 0px $radius-small;
+        @include default-box-border;
+        border-radius: $radius-small $radius-small $radius-small $radius-small;
         
         .page_intro {
           font-size: 0.8em;
@@ -91,55 +94,56 @@
     /* end of id container_main */
   
   	.authentications {
-  	  margin-bottom: 30px;
-  	}
-  
-    /* class authentication beginning */
-  	.authentication {
-  	  float: left;
-  	  background-color: #EEE;
-  	  border: solid 1px #999;
-  	  padding: 5px 10px;
-  	  -moz-border-radius: 5px;
-  	  -webkit-border-radius: 5px;
-  	  position: relative;
-  	  margin-right: 10px;
-  	
-  		.remove {
-  		  text-decoration: none;
-  		  position: absolute;
-  		  top: 3px;
-  		  right: 3px;
-  		  color: #333;
-  		  padding: 2px 4px;
-  		}
-  
-  		.remove:hover {
-  		  color: #FFF;
-  		  background-color: #777;
-  		  -moz-border-radius: 5px;
-  		  -webkit-border-radius: 5px;
-  		}
-  		
-  		img {
-  		  border: none;
-  		  padding: 0px;
-  		  float: left;
-  		}
-  		
-  		.provider, .uid {
-  		  margin-left: 38px;
-  		  margin-right: 20px;
-  		}
-  
-  		.provider {
-  		  font-weight: bold;
-  		}
-  
-  		.uid {
-  		  color: #666;
-  		}
-  	}
+  	  margin-bottom: 30px;  
+      /* class authentication beginning */
+  	  .authentication {
+  	    float: left;
+  	    background-color: #EEE;
+  	    border: solid 1px #999;
+  	    padding: 5px 10px;
+  	    -moz-border-radius: 5px;
+  	    -webkit-border-radius: 5px;
+  	    position: relative;
+  	    margin-right: 10px;
+  	  
+  	  	.remove {
+  	  	  text-decoration: none;
+  	  	  position: absolute;
+  	  	  top: 3px;
+  	  	  right: 3px;
+  	  	  color: #333;
+  	  	  padding: 2px 4px;
+  	  	}
+      
+  	  	.remove:hover {
+  	  	  color: #FFF;
+  	  	  background-color: #777;
+  	  	  -moz-border-radius: 5px;
+  	  	  -webkit-border-radius: 5px;
+  	  	}
+  	  	
+  	  	img {
+  	  	  border: none;
+  	  	  box-shadow: none;
+  	  	  padding: 0px;
+  	  	  float: left;
+  	  	  margin: 0px 0px 0px 0px;
+  	  	}
+  	  	
+  	  	.provider, .uid {
+  	  	  margin-left: 38px;
+  	  	  margin-right: 20px;
+  	  	}
+      
+  	  	.provider {
+  	  	  font-weight: bold;
+  	  	}
+      
+  	  	.uid {
+  	  	  color: #666;
+  	  	}
+  	  }
+	  }
   	/* end of class authentication */
   
   	.auth_provider img, .auth_provider {
@@ -257,6 +261,7 @@
   	  box-shadow: 5px 5px 3px #888;
   	  border: none;
   	  padding: 0px;
+  	  margin: 5px;
   	}
   	
   	.item_link_buttons {}

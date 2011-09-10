@@ -12,7 +12,10 @@
      <%= f.check_box :remember_me %> <%= t(:stay_logged_in)%></div>
   <% end -%>
 
-  <div class='field'><%= f.submit t(:sign_in), :class => "button save" %></div>
+  <div class='field'>
+    <%= f.label :sign_in, sc(:nbsp).html_safe %>
+    <%= f.submit t(:sign_in), :class => "button save" %>
+  </div>
 <% end %>
 
 <h2><%= t(:or_user_omni_auth) -%></h2>

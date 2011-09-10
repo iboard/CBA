@@ -58,5 +58,15 @@ module LayoutHelper
   def link_button( label_txt, button_options, *args )
     link_to label_txt, *args, :class => button_options
   end
+  
+  # render a pagination box if resource has items
+  # @param [Array] paginations the slected Items to display
+  def render_pagination_box paginations
+    if paginations.total_pages > 1
+      haml_tag(".pagination_box") do
+        concat(will_paginate(paginations))
+      end
+    end
+  end
 
 end

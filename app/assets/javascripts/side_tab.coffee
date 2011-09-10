@@ -13,7 +13,7 @@ hideLinks = ->
   $(".comment-links").hide()
   cancelSideTabTimeouts()
   
-hideSideTabs = ->
+self.hideSideTabs = ->
   $(".side-tab").hide()
   
 focusChanged = (new_focus) ->

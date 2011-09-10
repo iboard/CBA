@@ -1,5 +1,9 @@
 - title t(:edit_role_for_user, :user => @user.name )
 
+- content_for :resource_actions do
+    = link_to t(:list_registrations), registrations_path, :class => 'button back'
+
+
 - if @user.avatar
     = image_tag @user.avatar_url(:thumb), :style=>'float: right;'
 
@@ -8,5 +12,6 @@
     = render :partial => 'registrations/role', 
              :locals => { :user => @user, :f => f, 
                           :partial_title => "<h2>#{t('userlist.role')}</h2>".html_safe }
-    %p= f.submit
-    %p= link_to t(:list_registrations), registrations_path
+    .field
+        = f.label :submit, sc(:nbsp).html_safe
+        = f.submit :class => 'button save'

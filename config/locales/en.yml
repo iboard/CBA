@@ -23,6 +23,7 @@ en:
   role_label_maintainer: "Can do everything but system-configuration"
   role_label_admin: "Can do everything"
   edit_resource_named: "Edit %{resource} '%{name}'"
+  edit_authentication_providers: 'Edit authentication providers'
   save_changes: "Save changes"
   crop_avatar: "Crop avatar image"
   user_successfully_updated: 'User successfully updated'

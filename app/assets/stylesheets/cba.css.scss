@@ -112,19 +112,16 @@ input {
     width: 64px;
     height: 64px;
   }
+
+  ul {
+    list-style-type: none;
+    margin-left: -40px;
+    clear: both;
+    li {
+    }
+  }
 }
 
-.user_detail {
-  list-style-type: none;
-  margin-left: 100px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-.user_detail li {
-  margin: 5px;
-  padding: 5px;
-}
 
 .admin {
   background: #E1B6B9;

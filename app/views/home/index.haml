@@ -1,7 +1,12 @@
 - title APPLICATION_CONFIG['name'] + " " + t(:welcome), false
 = javascript 'endless_page'
 
-%div
+- if can?( :create, Posting ) && @blog
+    - content_for :resource_actions do
+        %p= link_button( t(:create_new_posting), "button add right", new_blog_posting_path(@blog))
+
+.column-wrapper
+
     - if (p=Page.top_pages.where(is_draft: draft_mode)).any?
         %div.right_column
             - for page in p
@@ -12,14 +17,14 @@
         %p{:style=>'clear: left;'}
         
         %div#postings.left_column
-            %p= link_button( t(:create_new_posting), "button add right", new_blog_posting_path(@blog)) if can? :create, Posting
-            .pagination_box= will_paginate @postings
+            - render_pagination_box @postings
             - for posting in @postings
                 %div{:style=>'clear: right;'}
                 = render :partial =>  posting, :locals => { :blog => @blog }
                 %p{:style=>'clear: left;'}  
             = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => root_path }
-            .pagination_box= will_paginate @postings  
+            - render_pagination_box @postings
+
         %p{:style=>'clear: right;'}
     
-%div{:style=>'clear: both;'}
+    .clear

@@ -236,6 +236,7 @@ de:
   welcome: 'Willkommen'
   list_registrations: 'Alle Registrationen'
   or_user_omni_auth: 'Oder einen Authentifizierungs-Provider benutzen'
+  edit_authentication_providers: 'Authentifizierungs-Provider bearbeiten'
   sign_in: 'Anmelden'
   authentications: 'Authentifizierungen'
   back_to: 'Zurück zu'

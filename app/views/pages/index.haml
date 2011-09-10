@@ -1,0 +1,13 @@
+- title t(:listing_pages), false
+
+- if can? Page, :create
+  - content_for :resource_actions do
+    = link_to t(:new_page), new_page_path, :class => 'button add'
+
+- render_pagination_box @pages
+
+- @pages.each do |page|
+  = render :partial => 'page_intro', :locals => { :page => page }
+  %p.content_seperator
+
+- render_pagination_box @pages

@@ -57,6 +57,7 @@ bundle exec autotest
 echo 'Autotest ended. Now stopping spork-server'
 kill %1
 kill %2
+echo 'Spork stopped'
 "
     sfile = File::new("tmp/autotest.sh",'w')
     sfile << script

@@ -1,7 +1,9 @@
 - title t('userlist.title')
 = javascript 'endless_page'
 
-%div.top_right_box= t(:registered_users_count, :count => @user_count) 
+- content_for :resource_actions do
+    %div{:style => 'margin-right: 15px;'}
+        .button= t(:registered_users_count, :count => @user_count) 
 
 .pagination_box= will_paginate @users
 

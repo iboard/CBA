@@ -90,6 +90,15 @@
         <% end %>
       </div>
       <div id="container">
+        
+        <% if content_for? :resource_actions %>
+          <div id='resource-actions'>
+            <%= yield( :resource_actions) %>
+          </div>
+          <div class='clear'></div>
+        <% end %>
+        
+        
         <!--
         <div class='google-search'>
            %= insert_google_site_search %

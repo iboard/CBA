@@ -151,6 +151,16 @@ $form-width: 600px;
   border-bottom: 1px solid $color-border;
 }
 
+@mixin top-right-bottom-border {
+  @include right-bottom-border;
+  border-top: 1px solid $color-border;
+}
+
+@mixin default-box-border {
+  @include top-right-bottom-border;
+  border-right: 1px solid $color-border;
+}
+
 @mixin input-border {
   border-radius: 10px 10px 10px 10px;
 }
@@ -202,6 +212,13 @@ $form-width: 600px;
   font-size: $font-size-default;
   line-height: $line-height-default;
 }
+
+.column-wrapper {
+  margin: 0px;
+  padding: 0px;
+  height: auto;
+}
+
 * {
   @include default-font-settings;
 }

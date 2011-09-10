@@ -38,6 +38,12 @@
     </div>
   <% end %>
 
+  <div class='field'>
+    <%= f.label :submit %>
+    <%= f.submit "Update", :class => "button save" %>
+  </div>
+  
+
   <h2><%= t(:or_user_omni_auth) -%></h2>
   <%= render '/authentications/authentications' %>
   <h3><%= t(:your_associated_accounts) %></h3>
@@ -48,23 +54,30 @@
       <%= render(:partial => '/authentications/authentication', :locals => {:authentication => a}) %>
     <% end %>
     <div class='clear'></div>
-    <%= sc(:pr,:nbsp)+link_button( t(:edit),"button edit small", authentications_path(@user) )%>
+    <div class='field'>
+        <%= f.label :edit %>
+        <%= link_button( t(:edit_authentication_providers),"button edit small", authentications_path(@user) )%>
+    </div>
   <% end %>
 
   <div class='clear'></div>
 
-
-  <h2><%= t(:save_changes) -%></h2>
   <% if @user.authentications.empty? %>
-    <div class='field'><%= f.label :current_password %>
-    <%= f.password_field :current_password %>
-    <address><i>(we need your current password to confirm your changes)</i></address></div>
+    <div class='field'>
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password %>
+      <address><i>(we need your current password to confirm your changes)</i></address></div>
   <% end %>
-  <div class='field'><%= f.submit "Update", :class => "button save" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class='field'>
+    <%= label_tag :unhappy? %>
+    <%= link_to t(:cancel_my_account), registration_path(resource_name), 
+          :confirm => t(:sure?), :method => :delete,
+          :class => "button delete small" %>
+</div>
 
-<div class='field'>Unhappy? <%= link_button t(:cancel_my_account), "button delete small", registration_path(resource_name), :confirm => t(:sure?), :method => :delete %>.</div>
+<% content_for :resource_actions do %>
+   <%= link_button( t(:back), "button back", :back) %>
+<% end %>
 
-<p><%= sc(:pr,:nbsp) + link_button( t(:back), "button back small", :back) %></p>

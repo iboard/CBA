@@ -164,9 +164,18 @@
 }
 
 #resource-actions {
-  display: block-inline;
+  display: block;
   float: right;
   margin: 0px;
   margin-right: -15px;
   margin-bottom: 10px;
+  p {
+    margin: 0px;
+  }
+  * {
+    width: 288px;
+  }
+  margin-top: 5px; 
+  padding-top: 0px;
+  padding: 0px;
 }

@@ -32,9 +32,12 @@
     </ul>
   <% end %>
 
-  <p style='clear: right;'><%= link_button(
-     t(:back_to_blog, :blog => @posting.blog.short_title),"button back small",
-      @posting.blog) %>
+  <p style='clear: right;'>
+    <% content_for :resource_actions do %>
+      <%= link_button(
+       t(:back_to_blog, :blog => @posting.blog.short_title),"button back",
+        @posting.blog) %>
+    <% end %>
   </p>
 
   <% if @posting.comments.any? %>

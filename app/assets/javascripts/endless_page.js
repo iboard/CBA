@@ -37,11 +37,11 @@ function controllToTopLink() {
 }
 
 function nearBottomOfPage() {
-  return scrollDistanceFromBottom() < 150;
+  return scrollDistanceFromBottom() < 250;
 }
 
 function scrollDistanceFromBottom(argument) {
-  return pageHeight() - (window.pageYOffset + self.innerHeight);
+  return pageHeight() - (window.pageYOffset + window.innerHeight);
 }
 
 function pageHeight() {

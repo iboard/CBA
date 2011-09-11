@@ -10,5 +10,5 @@
     = f.text_area :html_template, :rows => 10, :cols => 80
   .field{style: 'clear: left; padding-top: 20px;'}
     = f.label :submit
-    = f.submit t(:commit)
+    = f.submit t(:commit), :class => 'button save'
 %p= link_to t(:page_templates), page_templates_path

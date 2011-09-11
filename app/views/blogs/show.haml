@@ -17,7 +17,6 @@
       = render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog }
     = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
 
-  -if @postings.total_pages > 1
-    .pagination_box= will_paginate @postings
+  - render_pagination_box @postings
 
   = raw("</div><div style='clear: both'></div>") if @blog.pages.any?

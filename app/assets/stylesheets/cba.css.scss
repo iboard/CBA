@@ -27,7 +27,7 @@ a {
     padding: 0px;
   }
   &:hover {
-    border-bottom: 1px solid $color-link;
+    text-decoration: underline;
   }
 }
 

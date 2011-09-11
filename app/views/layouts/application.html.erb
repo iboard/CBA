@@ -108,6 +108,7 @@
           <!-- google_search div id="cse" style="display: hidden; background: #fee;"></div -->
           <%= content_tag(:h1,:id => 'title') do yield(:title) end if show_title? %>
           <%= yield %>
+          <div class='clear'></div> 
         </div>
       </div>
       <div class='clear'></div> 

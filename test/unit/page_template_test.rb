@@ -34,6 +34,13 @@ class PageTemplateTest < ActiveSupport::TestCase
     pending
     # Is tested with cucumber since render needs a view_context
   end
+  
+  test "Page template should render with highligting" do
+    template = PageTemplate.first
+    template.html_template = "```ruby\nputs \"Hello World\"\n```"
+    result = ContentItem::markdown(template.html_template)
+    assert result.include?('<span class="s2">"Hello World"</span>'), 'puts should get highlighted but got ' + result.inspect + "\n DID YOU FORGET TO sudo easy_install pygments ?"
+  end
 
   test "Page template should not be deleted if in use" do
     template = PageTemplate.first

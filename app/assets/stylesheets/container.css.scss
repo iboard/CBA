@@ -6,19 +6,26 @@
 
 
 #flashes {
+  position: fixed;
+  left: 181px;
+  top: 35px;
+  z-index: 101;
   margin: 0px;
   margin-top: -10px;
   margin-bottom: 5px;
-  width: 1000px;
+  width: 975px;
   background: none;
+  height: 40px;
   #flash_notice {
     @include flash-box;
+    border: 4px solid #eee;
     background: $notice-background;
     color: $notice-text;
   }  
   #flash_error, 
   #flash_alert {
     @include flash-box;
+    border: 4px solid #eee;
     background: $alert-background;
     color: $alert-text;
   }
@@ -27,16 +34,19 @@
 .main-frame {
   width: 1000px;
   position: absolute;
-  top: 120px;
+  top: 119px;
   left: 180px;
   background: lighten($color-paper,18%);
   border: 1px solid $color-border;
   box-shadow: 3px 3px 3px $color-shadow;
   border-radius: 0px 0px 3px 3px;
+  overflow: auto;
+  padding-bottom: 10px;
   
   #container {
     padding: 20px 20px;
     padding-top: 10px;
+    overflow: visible;
       
     /* id container_main beginning */
     #container_main {
@@ -46,7 +56,7 @@
       .comment p a,
       .component_body a,
       .page_body a {
-        border-bottom: 1px dotted $color-link;
+        text-decoration: underline;
         &:hover { border-bottom: 1px solid $color-link; }
       }
             
@@ -57,12 +67,11 @@
   
       .right-column,
       .right_column {
-        margin-right: -20px;
-        margin-top: -5px;
-        margin-right: -15px;
-        width: 310px;
-        min-width: 310px;
-        float: right;
+        position: relative;
+        top: 0px;
+        left: 645px;
+        width: 305px;
+        min-width: 305px;
         padding: 10px;
         padding-top: 15px;
         @include container-right-box;
@@ -88,9 +97,10 @@
       .left_column {
         position: absolute;
         top: 10px;
-        left: 15px;
+        left: 20px;
         width: 600px;
-        float: left;
+        height: auto;
+        overflow: visible ;
       }
       
     }
@@ -167,6 +177,13 @@
   		  border: none;
   		  padding: 0px;
   		  display: block;
+  		}
+  		
+  		a {
+  		  border: none;
+  		  &:hover {
+    		  text-decoration: underline;  		    
+  		  };
   		}
   	}
   	

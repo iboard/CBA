@@ -9,8 +9,6 @@
     .page_template
       %h1= page.title
       %address
-        = link_to t(:edit), edit_page_path(page)
-        |
-        = link_to t(:delete), page, :method => :delete, :confirm => t(:are_you_sure)
-        |
-        = link_to t(:create_new_article), create_new_article_pages_path(:page => {:template_id => page.id.to_s}), :method => :post
+        = link_to t(:edit), edit_page_path(page), :class => 'button edit small'
+        = link_to t(:delete), page, :method => :delete, :confirm => t(:are_you_sure), :class => 'delete edit small'
+        = link_to t(:create_new_article), create_new_article_pages_path(:page => {:template_id => page.id.to_s}), :method => :post, :class => 'button add small'

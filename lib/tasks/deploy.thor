@@ -1,7 +1,7 @@
 class Deploy < Thor
 
   desc "production [--force]", "git pull on the server and restart"
-  method_options :force => :boolean  
+  method_options :force => :boolean
   def production
     puts "THE APPLICATION IS GOING TO BE UPDATED ON THE SERVER"
     puts "===================================================="
@@ -39,8 +39,7 @@ class Deploy < Thor
       puts "Aborted. Nothing happend (Yes is case-sensitive here ;-)"
     end
   end
-  
-  
+    
   desc "restart [--worker_only]", "kill 'rake jobs:work' and 'touch tmp/restart.txt'"
   method_options :worker_only => :boolean
   def restart

@@ -24,6 +24,7 @@
     margin-top: 25px;
     margin-bottom: 5px;
     @include content-item-box;
+    border-color: lighten($color-shadow,75%);
     padding: 10px;
     font-size: 0.8em;
 
@@ -31,7 +32,6 @@
       margin-top: 5px;
       width: 64px;
       height: 64px;
-      border: 1px solid #ddd;
       padding: 0px;
       margin-right: 10px;
       float: left;

@@ -17,7 +17,7 @@ class Assets < Thor
       run "# rake assets:precompile"
       run "
         cd public/assets
-        ln -s ../../app/assets/images/*
+        ln -s ../../app/assets/images/* ./*
         ln -s sortable_vertical-*.png sortable_vertical.png
         cd -
         cd public/assets/avatars

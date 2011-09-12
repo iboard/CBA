@@ -41,7 +41,7 @@ function nearBottomOfPage() {
 }
 
 function scrollDistanceFromBottom(argument) {
-  return pageHeight() - (window.pageYOffset + window.innerHeight);
+  return pageHeight() - (window.pageYOffset + self.innerHeight);
 }
 
 function pageHeight() {

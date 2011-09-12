@@ -69,11 +69,12 @@
       .right_column {
         position: relative;
         top: 0px;
-        left: 645px;
-        width: 305px;
-        min-width: 305px;
+        left: 15px;
+        width: 310px;
+        min-width: 310px;
         padding: 10px;
         padding-top: 15px;
+        float: right;
         @include container-right-box;
         @include default-box-border;
         border-radius: $radius-small $radius-small $radius-small $radius-small;
@@ -95,12 +96,9 @@
       }
      
       .left_column {
-        position: absolute;
-        top: 10px;
-        left: 20px;
+        float: left;
         width: 600px;
         height: auto;
-        overflow: visible ;
       }
       
     }

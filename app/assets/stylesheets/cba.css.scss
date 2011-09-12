@@ -173,13 +173,11 @@ input {
 }
 
 .top_right_box {
-  position: relative;
-  right: -10px;
-  top: -40px;
   border: 1px solid #ddd;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   width: 300px;
+  clear: right;
   float: right;
   padding: 10px;
   background: #eee;

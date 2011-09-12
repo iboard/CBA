@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+
+<% if content_for? :resource_actions %>
+   <% content_for :right_column_top do %>
+     <div id='resource-actions'>
+       <%= yield( :resource_actions) %>
+     </div>
+   <% end %>
+<% end %>
+
 <html lang='<%= I18n.locale.to_s -%>'>
   <head>
     <title><%=
@@ -90,14 +99,19 @@
         <% end %>
       </div>
       <div id="container">
-        
-        <% if content_for? :resource_actions %>
-          <div id='resource-actions'>
-            <%= yield( :resource_actions) %>
+              
+        <% if content_for?( :right_column) || content_for?(:right_column_top) %>
+          <div id='right-column'>
+            <% if content_for?(:right_column_top) %>
+              <div id='right-column-top'>
+                <%= yield(:right_column_top)    %>
+              </div>
+            <% end %>
+            <div id='right-column-bottom'>
+              <%= yield(:right_column) if content_for?(:right_column) %>
+            </div>
           </div>
-          <div class='clear'></div>
         <% end %>
-        
         
         <!--
         <div class='google-search'>

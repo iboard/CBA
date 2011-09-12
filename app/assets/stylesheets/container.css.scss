@@ -1,6 +1,6 @@
 @mixin flash-box {
   padding: 5px 8px;
-  margin: 10px 0px;  
+  margin: 10px 0px;
   border-bottom: solid 1px $color-border;
 }
 
@@ -21,8 +21,8 @@
     border: 4px solid #eee;
     background: $notice-background;
     color: $notice-text;
-  }  
-  #flash_error, 
+  }
+  #flash_error,
   #flash_alert {
     @include flash-box;
     border: 4px solid #eee;
@@ -42,12 +42,59 @@
   border-radius: 0px 0px 3px 3px;
   overflow: auto;
   padding-bottom: 10px;
-  
+
   #container {
     padding: 20px 20px;
     padding-top: 10px;
     overflow: visible;
+
+    #right-column {
+      float: right;
+      width: 320px;
+      max-width: 320px;
+      padding-left: 20px;
       
+      #right-column-top {
+        background: yellow;
+      }
+      
+      #right-column-bottom {
+        background: green;
+      }
+
+      .sidebar-right {
+        width: 300px;
+        min-width: 300px;
+        padding: 10px;
+        padding-top: 15px;
+        margin-top: 10px;
+        @include container-right-box;
+        @include default-box-border;
+        border-radius: $radius-small $radius-small $radius-small $radius-small;
+      }
+      
+
+      .page_intro {
+        width: 300px;
+        max-width: 300px;
+        font-size: 0.8em;
+
+        h1 {
+          font-size: 1.5em;
+          padding: 0px;
+          margin: 0px;
+        }
+        p {
+          margin: 0px;
+          margin-bottom: 3px;
+          padding: 0px;
+        }
+      }
+
+    }
+
+
+
     /* id container_main beginning */
     #container_main {
 
@@ -59,246 +106,216 @@
         text-decoration: underline;
         &:hover { border-bottom: 1px solid $color-link; }
       }
-            
-    
+
+
       #postings.left_column p {
         line-height: 150%;
       }
-  
-      .right-column,
-      .right_column {
-        position: relative;
-        top: 0px;
-        left: 15px;
-        width: 310px;
-        min-width: 310px;
-        padding: 10px;
-        padding-top: 15px;
-        float: right;
-        @include container-right-box;
-        @include default-box-border;
-        border-radius: $radius-small $radius-small $radius-small $radius-small;
-        
-        .page_intro {
-          font-size: 0.8em;
-          
-          h1 {
-            font-size: 1.5em;
-            padding: 0px;
-            margin: 0px;
-          }
-          p {
-            margin: 0px;
-            margin-bottom: 3px;
-            padding: 0px;
-          }
-        }
-      }
-     
+
       .left_column {
         float: left;
         width: 600px;
         height: auto;
       }
-      
+
     }
     /* end of id container_main */
-  
-  	.authentications {
-  	  margin-bottom: 30px;  
+
+    .authentications {
+      margin-bottom: 30px;
       /* class authentication beginning */
-  	  .authentication {
-  	    float: left;
-  	    background-color: #EEE;
-  	    border: solid 1px #999;
-  	    padding: 5px 10px;
-  	    -moz-border-radius: 5px;
-  	    -webkit-border-radius: 5px;
-  	    position: relative;
-  	    margin-right: 10px;
-  	  
-  	  	.remove {
-  	  	  text-decoration: none;
-  	  	  position: absolute;
-  	  	  top: 3px;
-  	  	  right: 3px;
-  	  	  color: #333;
-  	  	  padding: 2px 4px;
-  	  	}
-      
-  	  	.remove:hover {
-  	  	  color: #FFF;
-  	  	  background-color: #777;
-  	  	  -moz-border-radius: 5px;
-  	  	  -webkit-border-radius: 5px;
-  	  	}
-  	  	
-  	  	img {
-  	  	  border: none;
-  	  	  box-shadow: none;
-  	  	  padding: 0px;
-  	  	  float: left;
-  	  	  margin: 0px 0px 0px 0px;
-  	  	}
-  	  	
-  	  	.provider, .uid {
-  	  	  margin-left: 38px;
-  	  	  margin-right: 20px;
-  	  	}
-      
-  	  	.provider {
-  	  	  font-weight: bold;
-  	  	}
-      
-  	  	.uid {
-  	  	  color: #666;
-  	  	}
-  	  }
-	  }
-  	/* end of class authentication */
-  
-  	.auth_provider img, .auth_provider {
-  	  padding: 0px;
-  	  -moz-box-shadow:     none;
-  	  -webkit-box-shadow:  none;
-  	  box-shadow: none;
-  	}
-  
-  	.auth_provider {
-  	  float: left;
-  	  text-decoration: none;
-  	  margin-right: 20px;
-  	  text-align: center;
-  	  margin-bottom: 10px;
-  		
-  		img {
-  		  border: none;
-  		  padding: 0px;
-  		  display: block;
-  		}
-  		
-  		a {
-  		  border: none;
-  		  &:hover {
-    		  text-decoration: underline;  		    
-  		  };
-  		}
-  	}
-  	
-  	#posting {
-  	}
-  
-  	h1 {
-  	  text-shadow: 2px 1px 2px #888;
-  	  font-size: 1.5em;
-  	  margin: 0px;
-  	  margin-top: 10px;
-  	  margin-bottom: 5px;
-  	  color: $color-header;
-  	}
-  	
-  	h2,h3,h4,h5 {
-  	  color: $color-header;
-  	}
-  
-  	blockquote {
-  	  margin: 5px;
-  	  margin-left: 0px;
-  	  margin-bottom: 20px;
-  	  border: 2px #ddd solid;
-  	  overflow: auto;
-  	  background: #eee;
-  	  padding: 5px;
-  	  padding-left: 10px;
-  	  padding-right: 10px;
-  	  font-size: 0.9em;
-  	  -moz-border-radius: 5px;
-  	  -webkit-border-radius: 5px;
-  	}
-  
+      .authentication {
+        float: left;
+        background-color: #EEE;
+        border: solid 1px #999;
+        padding: 5px 10px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        position: relative;
+        margin-right: 10px;
+
+        .remove {
+          text-decoration: none;
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          color: #333;
+          padding: 2px 4px;
+        }
+
+        .remove:hover {
+          color: #FFF;
+          background-color: #777;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+        }
+
+        img {
+          border: none;
+          box-shadow: none;
+          padding: 0px;
+          float: left;
+          margin: 0px 0px 0px 0px;
+        }
+
+        .provider, .uid {
+          margin-left: 38px;
+          margin-right: 20px;
+        }
+
+        .provider {
+          font-weight: bold;
+        }
+
+        .uid {
+          color: #666;
+        }
+      }
+    }
+    /* end of class authentication */
+
+    .auth_provider img, .auth_provider {
+      padding: 0px;
+      -moz-box-shadow:     none;
+      -webkit-box-shadow:  none;
+      box-shadow: none;
+    }
+
+    .auth_provider {
+      float: left;
+      text-decoration: none;
+      margin-right: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+
+      img {
+        border: none;
+        padding: 0px;
+        display: block;
+      }
+
+      a {
+        border: none;
+        &:hover {
+          text-decoration: underline;
+        };
+      }
+    }
+
+    #posting {
+    }
+
+    h1 {
+      text-shadow: 2px 1px 2px #888;
+      font-size: 1.5em;
+      margin: 0px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: $color-header;
+    }
+
+    h2,h3,h4,h5 {
+      color: $color-header;
+    }
+
+    blockquote {
+      margin: 5px;
+      margin-left: 0px;
+      margin-bottom: 20px;
+      border: 2px #ddd solid;
+      overflow: auto;
+      background: #eee;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 0.9em;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+    }
+
     /* id postings beginning */
-  	#postings {
+    #postings {
       h2 {
         margin: 0px;
         text-shadow: 2px 1px 2px #888;
         margin-top: 25px;
         font-size: 1.8em;
-      	
-      	a {
-      	  color: #383838;
-      	  text-decoration: none;
-      	  border: none;
-     
-      		&:hover {
-      		  color: #CCC;
-      		  background: none;
-      		  text-decoration: none;
-      		  border: none;
-      		}
-      	}
+
+        a {
+          color: #383838;
+          text-decoration: none;
+          border: none;
+
+          &:hover {
+            color: #CCC;
+            background: none;
+            text-decoration: none;
+            border: none;
+          }
+        }
       }
-  		
-  		address {
-  		  font-size: 0.7em;
-  		  margin: 0px;
-  		  margin-bottom: 20px;
-  		}
-  
-  		address.new_posting {
-  		  color: #1C5A98;
-  		}
-  
-  		address.old_posting {
-  		  color: #B3B3B3;
-  		}
-  
-  		p a, p {
-  		  font-family: Verdana, Arial, Helvetica, sans-seriv;
-  		  margin: 0px;
-  		  margin-bottom: 5px;
-  		}
+
+      address {
+        font-size: 0.7em;
+        margin: 0px;
+        margin-bottom: 20px;
+      }
+
+      address.new_posting {
+        color: #1C5A98;
+      }
+
+      address.old_posting {
+        color: #B3B3B3;
+      }
+
+      p a, p {
+        font-family: Verdana, Arial, Helvetica, sans-seriv;
+        margin: 0px;
+        margin-bottom: 5px;
+      }
     }
-  	/* end of id postings */
-  	
-  	.omniauth_mini_icons {
-  	  margin: 0px;
-  	  padding: 0px;
-  	  width: 32px;
-  	  height: 32px;
-  	  border: none;
-  	  -moz-box-shadow: none;
-  	  -webkit-box-shadow: none;
-  	  box-shadow: none;
-  	}
-  	
-  	img {
-  	  -moz-border-radius: 5px 5px 5px 5px;
-  	  -webkit-border-radius: 5px 5px 5px 5px;
-  	  -moz-box-shadow: 5px 5px 3px #888;
-  	  -webkit-box-shadow: 5px 5px 3px #888;
-  	  box-shadow: 5px 5px 3px #888;
-  	  border: none;
-  	  padding: 0px;
-  	  margin: 5px;
-  	}
-  	
-  	.item_link_buttons {}
-  
-  	.content_seperator {
-  	  height: 2px;
-  	  clear: both;
-  	  margin-top: 10px;
-  	  margin-bottom: 10px;
-  	  background: #FdFeFF -webkit-gradient(
-  	    linear,
-  	    left top,
-  	    left bottom,
-  	    color-stop(1.0,  #FdFeFF),
-  	    color-stop(0.80, #E6E6E6)
-  	  ) repeat-x;
-  	  background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
-  	  -webkit-box-shadow: 4px 4px 4px #ddd;
-  	  -moz-box-shadow: 4px 4px 4px #ddd;
-  	}
+    /* end of id postings */
+
+    .omniauth_mini_icons {
+      margin: 0px;
+      padding: 0px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    img {
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      -moz-box-shadow: 5px 5px 3px #888;
+      -webkit-box-shadow: 5px 5px 3px #888;
+      box-shadow: 5px 5px 3px #888;
+      border: none;
+      padding: 0px;
+      margin: 5px;
+    }
+
+    .item_link_buttons {}
+
+    .content_seperator {
+      height: 2px;
+      clear: both;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background: #FdFeFF -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(1.0,  #FdFeFF),
+        color-stop(0.80, #E6E6E6)
+      ) repeat-x;
+      background: #FdFeFF -moz-linear-gradient(100% 8% 270deg, #FdFeFF, #E6E6E6);
+      -webkit-box-shadow: 4px 4px 4px #ddd;
+      -moz-box-shadow: 4px 4px 4px #ddd;
+    }
   }
 }

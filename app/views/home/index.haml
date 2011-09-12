@@ -3,12 +3,12 @@
 
 - if can?( :create, Posting ) && @blog
     - content_for :resource_actions do
-        %p= link_button( t(:create_new_posting), "button add right", new_blog_posting_path(@blog))
+        %p= link_button( t(:create_new_posting), "button add", new_blog_posting_path(@blog))
 
 .column-wrapper
 
     - if (p=Page.top_pages.where(is_draft: draft_mode)).any?
-        %div.right_column
+        - content_for :right_column do
             - for page in p
                 = render :partial => 'pages/page_intro', :locals => { :page => page }
                 %p.content_seperator

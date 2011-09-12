@@ -163,19 +163,25 @@
   width: 150px;
 }
 
-#resource-actions {
+#container #right-column #right-column-top #resource-actions {
   display: block;
-  float: right;
-  margin: 0px;
-  margin-right: -15px;
-  margin-bottom: 10px;
+  min-height: 35px;
+  margin-left: 0px;
+  width: 318px;
+  padding-left: 0px;
   p {
     margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
-  * {
-    width: 288px;
+  a {
+    width: 280px;
   }
-  margin-top: 5px; 
-  padding-top: 0px;
-  padding: 0px;
 }

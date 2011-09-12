@@ -2,10 +2,11 @@
 
 %div
   - if @blog.pages.any?
-    .right_column
-      - for page in @blog.pages.where(is_draft: draft_mode)
-        = render :partial => 'pages/page_intro', :locals => { :page => page }
-        %p.content_seperator
+    - content_for :right_column do
+      .sidebar-right
+        - for page in @blog.pages.where(is_draft: draft_mode)
+          = render :partial => 'pages/page_intro', :locals => { :page => page }
+          %p.content_seperator
 
   .left_column
     = render :partial => '/blogs/blog', :locals => { :blog => @blog}

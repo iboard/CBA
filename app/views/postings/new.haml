@@ -1,0 +1,7 @@
+- title @blog.title + ": " + t(:new_posting)
+
+= render :partial => 'form', :locals => { :blog => @blog, :posting => @posting }
+.clear
+
+- content_for :resource_actions do 
+  %p= link_button t(:cancel), "button cancel", @blog

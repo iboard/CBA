@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'simplecov', '>= 0.4.0', :require => false, :group => :test
+gem 'simplecov', :require => false, :group => :test #, '>= 0.4.0'
 
 gem "rails", "~> 3.1.0" # prev was rc8
 

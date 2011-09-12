@@ -17,7 +17,7 @@
     
 
     <meta content="authenticity_token" name="csrf-param" />
-<meta content="69f0d3b88f2c3bc6eb26ab59f72bae77de80fcf3" name="csrf-token" />
+<meta content="3f83185fdc839a6158a116123310083355f70862" name="csrf-token" />
 
     <link href="https://a248.e.akamai.net/assets.github.com/stylesheets/bundle_github.css?615dc4415914822f1692ffeb95691446f898bde0" media="screen" rel="stylesheet" type="text/css" />
     
@@ -119,12 +119,12 @@
         
         <li>
           
-            <a href="/iboard/CBA/toggle_watch" class="minibutton btn-watch watch-button" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '69f0d3b88f2c3bc6eb26ab59f72bae77de80fcf3'); f.appendChild(s);f.submit();return false;"><span><span class="icon"></span>Watch</span></a>
+            <a href="/iboard/CBA/toggle_watch" class="minibutton btn-watch watch-button" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '3f83185fdc839a6158a116123310083355f70862'); f.appendChild(s);f.submit();return false;"><span><span class="icon"></span>Watch</span></a>
           
         </li>
         
           
-            <li><a href="/iboard/CBA/fork" class="minibutton btn-fork fork-button" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '69f0d3b88f2c3bc6eb26ab59f72bae77de80fcf3'); f.appendChild(s);f.submit();return false;"><span><span class="icon"></span>Fork</span></a></li>
+            <li><a href="/iboard/CBA/fork" class="minibutton btn-fork fork-button" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '3f83185fdc839a6158a116123310083355f70862'); f.appendChild(s);f.submit();return false;"><span><span class="icon"></span>Fork</span></a></li>
           
 
           
@@ -239,7 +239,7 @@
       </div>
 
       <div id="repository_description_edit" style="display:none;" class="inline-edit">
-        <form action="/iboard/CBA/admin/update" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="69f0d3b88f2c3bc6eb26ab59f72bae77de80fcf3" /></div>
+        <form action="/iboard/CBA/admin/update" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="3f83185fdc839a6158a116123310083355f70862" /></div>
           <input type="hidden" name="field" value="repository_description">
           <input type="text" class="textfield" name="value" value="Community Base Application Template">
           <div class="form-actions">
@@ -254,7 +254,7 @@
       </div>
 
       <div id="repository_homepage_edit" style="display:none;" class="inline-edit">
-        <form action="/iboard/CBA/admin/update" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="69f0d3b88f2c3bc6eb26ab59f72bae77de80fcf3" /></div>
+        <form action="/iboard/CBA/admin/update" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="3f83185fdc839a6158a116123310083355f70862" /></div>
           <input type="hidden" name="field" value="repository_homepage">
           <input type="text" class="textfield" name="value" value="http://cba.iboard.cc">
           <div class="form-actions">
@@ -276,8 +276,8 @@
     
   </ul>
   <input type="text" spellcheck="false" class="url-field" />
-        <span style="display:none" id="clippy_1231" class="url-box-clippy"></span>
-      <span id="clippy_tooltip_clippy_1231" class="clippy-tooltip tooltipped" title="copy to clipboard">
+        <span style="display:none" id="clippy_3719" class="url-box-clippy"></span>
+      <span id="clippy_tooltip_clippy_3719" class="clippy-tooltip tooltipped" title="copy to clipboard">
       <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
               width="14"
               height="14"
@@ -287,7 +287,7 @@
       <param name="allowScriptAccess" value="always" />
       <param name="quality" value="high" />
       <param name="scale" value="noscale" />
-      <param NAME="FlashVars" value="id=clippy_1231&amp;copied=&amp;copyto=">
+      <param NAME="FlashVars" value="id=clippy_3719&amp;copied=&amp;copyto=">
       <param name="bgcolor" value="#FFFFFF">
       <param name="wmode" value="opaque">
       <embed src="https://a248.e.akamai.net/assets.github.com/flash/clippy.swf?v5"
@@ -298,7 +298,7 @@
              allowScriptAccess="always"
              type="application/x-shockwave-flash"
              pluginspage="http://www.macromedia.com/go/getflashplayer"
-             FlashVars="id=clippy_1231&amp;copied=&amp;copyto="
+             FlashVars="id=clippy_3719&amp;copied=&amp;copyto="
              bgcolor="#FFFFFF"
              wmode="opaque"
       />
@@ -548,7 +548,7 @@
               </ul>
               
 
-              <p>&copy; 2011 <span id="_rrt" title="0.11076s from fe6.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
+              <p>&copy; 2011 <span id="_rrt" title="0.05946s from fe5.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
             </div><!-- /#legal or /#legal_ie-->
 
           
@@ -855,7 +855,7 @@ I think you should use an
     
     
     
-    <script type="text/javascript">(function(){var d=document;var e=d.createElement("script");e.async=true;e.src="https://d1ros97qkrwjf5.cloudfront.net/16/eum/rum.js";e.type="text/javascript";var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(e,s);})();NREUMQ.push(["nrf2","beacon-1.newrelic.com","2f94e4d8c2",64799,"dw1bEBZcX1RWRhoSFFEHGhcMXEQ=",0.0,107,new Date().getTime()])</script>
+    <script type="text/javascript">(function(){var d=document;var e=d.createElement("script");e.async=true;e.src="https://d1ros97qkrwjf5.cloudfront.net/16/eum/rum.js";e.type="text/javascript";var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(e,s);})();NREUMQ.push(["nrf2","beacon-1.newrelic.com","2f94e4d8c2",64799,"dw1bEBZcX1RWRhoSFFEHGhcMXEQ=",0,55,new Date().getTime()])</script>
   </body>
 </html>
 

@@ -2,7 +2,7 @@
 %p= t(:use_css_templates_for)
 %p= link_to t(:article_templates), templates_pages_path, :class => 'button reference'
 %p= t(:use_new_article)
+
 - content_for :resource_actions do
-  = link_to( t(:new_article_from_template), new_article_pages_path, :class => 'button add')
-  %br
-  = link_to( t(:new_page_template), new_page_template_path, :class => 'button add' )
+  %p= link_to( t(:new_article_from_template), new_article_pages_path, :class => 'button add')
+  %p= link_to( t(:new_page_template), new_page_template_path, :class => 'button add' )

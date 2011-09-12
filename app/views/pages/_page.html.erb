@@ -25,4 +25,4 @@
 
 
 <!-- COMMENTS -->
-<%= render :partial => 'comments', :locals => {:page => page} %>
+<%= render( :partial => 'comments', :locals => {:page => page} ) if page.comments.any? %>

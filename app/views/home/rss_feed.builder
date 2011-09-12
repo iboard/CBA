@@ -1,15 +1,13 @@
 atom_feed(:url => feed_path) do |feed|
    feed.title(APPLICATION_CONFIG['rss_title'])
-
    feed.updated(Time.now) #@feed_items.first ? @feed_items.first.updated_at : Time.now.utc )
    for item in @feed_items
      feed.entry(item.object, :url => item.url) do |entry|
        entry.title(item.title)
+      content = ""
        if item.object.respond_to?(:render_body)
-         if item.object.is_a?(Page)
-           content = item.object.render_body(nil)
-         else
-           content = item.object.render_body(self)
+         with_format self, 'html' do
+           content = item.object.render_body(self).gsub( /\[EDIT_COMPONENT_LINK:([^\]]*)\]/,"" )
          end
        else
          content = sanitize(simple_format(item.body))

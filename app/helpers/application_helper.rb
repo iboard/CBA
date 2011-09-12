@@ -105,4 +105,11 @@ module ApplicationHelper
     current_user ? (current_user.roles_mask||0) : 0
   end
   
+  def with_format(view, format, &block)
+    old_formats = view.formats
+    view.formats = [:html]
+    yield
+    view.formats = old_formats
+  end
+  
 end

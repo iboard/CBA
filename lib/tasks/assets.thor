@@ -16,16 +16,19 @@ class Assets < Thor
       run "# rake assets:clean"
       run "# rake assets:precompile"
       run "
+        olddir = `pwd`
         cd public/assets
-        ln -s ../../app/assets/images/* ./*
+        ln -s ../../app/assets/images/* ./
         ln -s sortable_vertical-*.png sortable_vertical.png
         cd -
         cd public/assets/avatars
         for i in icon medium preview thumb
         do
+          cd $i
           ln -s missing*.png missing.png
+          cd -
         done
-        cd -
+        cd $olddir
       "
     else
       puts "ASSAMBLE ASSETS WORKS IN PRODUCTION MODE ONLY"

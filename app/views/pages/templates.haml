@@ -1,7 +1,7 @@
 - title t(:article_templates)
 
-%div
-  .right_box{style: 'text-align: left'}
+- content_for :right_column do
+  .sidebar-right
     = render '/home/menu/page_template_menu'
 
 #page_template_list{ style: "overflow: hidden" }
@@ -10,5 +10,5 @@
       %h1= page.title
       %address
         = link_to t(:edit), edit_page_path(page), :class => 'button edit small'
-        = link_to t(:delete), page, :method => :delete, :confirm => t(:are_you_sure), :class => 'delete edit small'
+        = link_to t(:delete), page, :method => :delete, :confirm => t(:are_you_sure), :class => 'button delete small'
         = link_to t(:create_new_article), create_new_article_pages_path(:page => {:template_id => page.id.to_s}), :method => :post, :class => 'button add small'

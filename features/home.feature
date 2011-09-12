@@ -42,3 +42,4 @@ Feature: Home
     Then I should see "TESTFEED"
     And I should see "A Twitter page"
     And I should see "Lorem Twittum"
+      

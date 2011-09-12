@@ -38,7 +38,7 @@ class PageTemplate
 
   def render(&block)
     "<div class='#{self.css_class}'>" +
-      yield( self.html_template )     +
+      yield( self.html_template)     +
     "</div>"
   end
 

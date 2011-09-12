@@ -36,3 +36,9 @@ Feature: Home
      And I am on the home page
      And draft mode is on
      Then I should see "Hide drafts"     
+     
+  Scenario: Get latest content as RSS-Feed
+    Given I am on the rss feed
+    Then I should see "TESTFEED"
+    And I should see "A Twitter page"
+    And I should see "Lorem Twittum"

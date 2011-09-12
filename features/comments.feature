@@ -7,12 +7,7 @@ Feature: Comments
 #             0         1               2        3            4           5
 
   Background:
-    Given the following user records
-      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 5          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | user@iboard.cc   | testmax   | 1          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | staff@iboard.cc  | staff     | 4          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    Given the default user set
     And the following page records
       | title  | body                 | show_in_menu | allow_public_comments | allow_comments | is_draft |
       | Page 1 | Lorem ipsum          | true         | true                  | ture           | false    |
@@ -56,6 +51,7 @@ Feature: Comments
     And I click on "Post comment"
     And I click on link "Comments" within "#session"
     Then I should see "A stupid comment"
+    Then show me the page
     And I should see "Posted from 127.0.0.1"
 
   Scenario: No comments if page.allow_comments is false

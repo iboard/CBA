@@ -46,12 +46,6 @@ Feature: Application
     And I should see "Create a new Page"
     And I should see "Create a new Blog"
     
-  Scenario: Get latest content as RSS-Feed
-    pending
-    #  Given I am on the rss feed
-    #  Then I should see "TEST WITH RSS FEED"
-    #  And I should see "tag:www.example.com"
-
   Scenario: Authors should be able to switch to draft-mode
     Given the default user set
     And I am logged out

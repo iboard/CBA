@@ -2,7 +2,7 @@
   <!-- COMMENTS -->
   <%= content_tag :div, :id => 'comments' do %>
     <h5><%= t(:number_of_comments, :count => page.comments.count)%></h5>
-    <%= render :partial => page.comments, :locals => { :commentable => page, :path_components => [page]} %>
+    <%= render  page.comments, :locals => { :commentable => page, :path_components => [page]} %>
   <% end %>
 <% end %>
 
@@ -14,7 +14,7 @@
                                              :name => current_user_field(:name,''),
                                              :email => current_user_field(:email, '')
                                           )] do |f| %>
-      <%= render :partial => 'comments/comment_fields',
+      <%= render :partial => 'comments/comment_fields.html.erb',
                  :locals => { :f => f,
                               :commentable => page,
                               :comment => comment

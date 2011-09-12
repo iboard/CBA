@@ -6,17 +6,18 @@
       - for page in @blog.pages.where(is_draft: draft_mode)
         = render :partial => 'pages/page_intro', :locals => { :page => page }
         %p.content_seperator
-    = raw("<div class='left_column'>" )
 
-  = render :partial => '/blogs/blog', :locals => { :blog => @blog}
-
-  - render_pagination_box @postings
-  
-  #postings{ style: 'clear: right;'}
-    - @postings.each do |posting|
-      = render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog }
-    = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
-
-  - render_pagination_box @postings
-
-  = raw("</div><div style='clear: both'></div>") if @blog.pages.any?
+  .left_column
+    = render :partial => '/blogs/blog', :locals => { :blog => @blog}
+    
+    - render_pagination_box @postings
+    
+    #postings{ style: 'clear: right;'}
+      - @postings.each do |posting|
+        = render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog }
+      = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
+    
+    - render_pagination_box @postings
+    
+    .clear
+  .clear

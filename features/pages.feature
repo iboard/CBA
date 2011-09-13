@@ -5,7 +5,7 @@ Feature: Pages
 
   Background:
     Given the default user set
-    And the following page records
+    And the following default pages
       | title  | body                 | show_in_menu | is_template | is_draft | interpreter |
       | Page 1 | Lorem ipsum          | true         | false       | false    | :markdown   |
       | Page 2 | Lirum Opsim          | false        | false       | false    | :markdown   |
@@ -127,8 +127,8 @@ Feature: Pages
     And I fill in "page_body" with "This is a filled page body" within "#container_main form"
     And I uncheck "page_is_draft" within "#container_main form"
     And I click on "Create Page"
-    Then I should see "This is a filled Page Template" within ".page_body"
-    And I should see "This is a filled page body" within ".page_body"
+    Then I should see "This is a filled Page Template" within ".default"
+    And I should see "This is a filled page body" within ".default"
 
   Scenario: A derived page should save it's template
     Given I am on the new_article page

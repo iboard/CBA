@@ -32,8 +32,6 @@ Feature: Blogs
     Then I should be on the blog path of "Blog 3"
     And I should see "successfully created"
     And I should see "Blog 3"
-  
-
 
   Scenario: It should not be able to save a blog with no title
     Given I am on the blogs page
@@ -65,6 +63,38 @@ Feature: Blogs
     And I click on link "Edit" within "#page_blog"
     Then I should see "Pages shown on side bar"
     And I should see "PageOne"
+    
+
+  Scenario: BUGFIX Removing a page from a blog should not delete the page!
+    Given the following blogs with pages
+      | title    | page_name | page_body                  | is_draft |
+      | PageBlog | PageOne   | A wonderful body           | false    |
+      | PageBlog | PageTwo   | This page should be there  | false    |
+    And I am on the blog path of "PageBlog"
+    Then I should see "A wonderful body"
+    And I should see "This page should be there"
+    And I click on link "Edit" within ".item_link_buttons"
+    And I uncheck "blog_page_tokens_"
+    And I click on "Update Blog"
+    And I am on the pages page
+    Then I should see "PageTwo"
+    And I should see "PageOne"
+  
+  Scenario: BUGFIX A removed page should not be shown with a blog
+    Given the following blogs with pages
+      | title    | page_name | page_body                  | is_draft |
+      | PageBlog | PageOne   | A wonderful body           | false    |
+      | PageBlog | PageTwo   | This page should be there  | false    |
+    And I am on the blog path of "PageBlog"
+    Then I should see "A wonderful body"
+    And I should see "This page should be there"
+    And I click on link "Edit" within ".item_link_buttons"
+    And I uncheck "blog_page_tokens_"
+    And I click on "Update Blog"
+    And I am on the blog path of "PageBlog"
+    Then I should see "PageTwo"
+    And I should not see "PageOne"
+    
 
   Scenario: Blog index should show summary
     Given I am on the blogs page

@@ -13,7 +13,6 @@ Feature: Comments on pages
  
   Scenario: When showing a page, there should be an 'Add-Comment-Button'
     Given I am on the page path of "Page 1"
-    Then show me the page
     Then I should see "Post a comment"
     
   Scenario: When I fill in a comment and press commit I should see my comment

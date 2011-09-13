@@ -1,3 +1,10 @@
+.comment {
+  @include content-item-box;
+  border-color: lighten($color-shadow,75%);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 
 .comment_content {
   margin-left: 74px;

@@ -8,7 +8,7 @@ Feature: Comments
 
   Background:
     Given the default user set
-    And the following page records
+    And the following default pages
       | title  | body                 | show_in_menu | allow_public_comments | allow_comments | is_draft |
       | Page 1 | Lorem ipsum          | true         | true                  | ture           | false    |
       | Page 2 | Lirum Opsim          | false        | true                  | true           | false    |
@@ -62,7 +62,7 @@ Feature: Comments
     Then I should not see "Post a comment"
 
   Scenario: Allow comments if page.allow_comments is true
-    Given the following page records
+    Given the following default pages
       | title         | body                 | allow_public_comments | allow_comments | is_draft |
       | Commentable   | Lorum Upsim          | true                  | true           | false    |
     And I am on the page path of "Commentable"

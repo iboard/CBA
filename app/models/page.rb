@@ -102,7 +102,7 @@ class Page
     self.page_template_id = new_template.id if new_template
   end
 
-  has_and_belongs_to_many :blogs
+  has_and_belongs_to_many :blogs, dependent: :nullify
 
   # Render the body with RedCloth or Discount
   def render_body(view_context=nil)
@@ -221,7 +221,7 @@ class Page
     if @view_context
       @view_context.render( :partial => 'pages/comments', :locals => {:page => self} )
     else
-      ""
+      "ERROR: NO VIEW TO RENDER COMMENT IN #{__FILE__}:#{__LINE__}"
     end
   end
 

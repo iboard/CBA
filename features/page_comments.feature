@@ -5,14 +5,15 @@ Feature: Comments on pages
   
   Background:
     Given the default user set
-    And the following page records
-      | title  | body                 | show_in_menu | allow_public_comments |
-      | Page 1 | Lorem ipsum          | true         | true                  |
-      | Page 2 | Lirum Opsim          | false        | true                  |
+    And the following default pages
+      | title  | body                 | show_in_menu | allow_public_comments | allow_comments |
+      | Page 1 | Lorem ipsum          | true         | true                  | true           |
+      | Page 2 | Lirum Opsim          | false        | true                  | true           |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
  
   Scenario: When showing a page, there should be an 'Add-Comment-Button'
     Given I am on the page path of "Page 1"
+    Then show me the page
     Then I should see "Post a comment"
     
   Scenario: When I fill in a comment and press commit I should see my comment

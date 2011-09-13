@@ -13,7 +13,7 @@
 default_template = PageTemplate.find_or_create_by(name: 'default')
 default_template.css_class = 'template_default'
 default_template.html_template = "<h2>TITLE</h2>"  +
-  "<div style='float: right; "   +
+  "<div style='clear: right; float: right; "   +
   "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>"           +
   "<div class='page_body'>BODY</div>"                           +

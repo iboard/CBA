@@ -1,12 +1,15 @@
-$side-tab-width: $sidebar-width - 20;
-$side-tab-height: 50px;
+$side-tab-width: $sidebar-width - 15;
+$side-tab-height: 95px;
 
 .side-tab {
+  padding: 0px;
+  padding-top: 5px;
   margin-left: -1 * ($side-tab-width + 21);
-  margin-top: $side-tab-height / 2;
+  margin-top: $side-tab-height / 2 - 60;
   float: left;
   width: $side-tab-width;
   min-width: $side-tab-width;
+  max-width: $side-tab-width;
   height: $side-tab-height;
   
   .comment-links {
@@ -15,8 +18,10 @@ $side-tab-height: 50px;
     height: $side-tab-height;
     background: $hud-background;
     margin: 0px;
+    padding: 0px;
+    padding-top: 5px;
     padding-left: 5px;
-    width: $side-tab-width -5;
+    width: $side-tab-width - 5;
     @include button-shape($radius-small);
     border-radius: $radius-small 0 0 $radius-small;
     border: 1px solid $color-shadow;

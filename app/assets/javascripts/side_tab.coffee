@@ -41,7 +41,7 @@ this.showSideTab = (what) ->
       id = what.attr('id')
       $("#side-tab-#{id}").show()
       style = what.attr('style')
-      unless style.match /display: block/    
+      unless style.match /display: block/
         what.show('slide', {direction: 'right', class: 'comment-links'},250)
         
     

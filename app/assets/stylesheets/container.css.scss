@@ -40,7 +40,7 @@
   border: 1px solid $color-border;
   box-shadow: 3px 3px 3px $color-shadow;
   border-radius: 0px 0px 3px 3px;
-  overflow: auto;
+  overflow: visible;
   padding-bottom: 10px;
 
   #container {
@@ -297,7 +297,9 @@
       margin: 5px;
     }
 
-    .item_link_buttons {}
+    .item_link_buttons {
+      
+    }
 
     .content_seperator {
       height: 2px;

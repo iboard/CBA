@@ -59,6 +59,7 @@ this.hideSideTab = (what) ->
 # INITIALIZE
 $(document).ready ->
   if $(".comment-links")
+    hideSideTabs()
     $(".comment-links").hide()
   
   

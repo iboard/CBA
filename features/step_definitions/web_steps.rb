@@ -148,6 +148,11 @@ Then /^(?:|I )should not see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, se
   end
 end
 
+Then /^I should have a valid feed\-format$/ do
+  pending
+end
+
+
 Then /^the "([^"]*)" field(?: within "([^"]*)")? should contain "([^"]*)"$/ do |field, selector, value|
   with_scope(selector) do
     field = find_field(field)
@@ -244,6 +249,7 @@ end
 Then /^I should not see class (.+)$/ do |classname|
   assert !page.has_content?('class="'+classname+"'")
 end
+
 
 Given /^the following default pages?$/ do |table|
   Page.unscoped.delete_all

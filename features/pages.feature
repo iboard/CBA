@@ -98,10 +98,9 @@ Feature: Pages
     And I fill in "Comment" with "Lorem Commentum gscheit daherred"
     And I click on "Post comment"
     And I am on the feed page
-    Then I should see "Lorem ipsum"
+    Then I should see "Lorem Commentum gscheit daherred"
     And I should see "Page 1"
     And I should see "Frank Zappa"
-    And I should see "Commentum"
 
   Scenario: Page title and body should be translated
     Given the following translated pages

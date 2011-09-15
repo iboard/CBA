@@ -163,51 +163,12 @@ class Page
   # TODO:   This code occurs in Page and PageComponent. Move it to a single
   # TODO:   place.
   def render_with_template
-    unless self.page_template && @view_context
-      raise "Can't render template if there is no view-context or template"
-    else
+    if self.page_template
       self.page_template.render do |template|
-        template.gsub(/TITLE/, self.title_and_flags)\
-                .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
-                .gsub(/COMPONENTS/, render_components )\
-                .gsub(/COVERPICTURE/, render_cover_picture)\
-                .gsub(/COMMENTS/, render_comments)\
-                .gsub(/BUTTONS/, render_buttons)\
-                .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
-                .gsub(/YOUTUBE(_PLAYLIST)?:([\s|\d|\-|_])+/) { |tag|
-                  args = tag.split(":")
-                  case args[0]
-                  when 'YOUTUBE'
-                    args.inspect + embed_youtube_video(args[1])
-                  when 'YOUTUBE_PLAYLIST'
-                    args.inspect + embed_youtube_playlist(args[1])
-                  else
-                    "ARGUMENT ERROR: " + args.inspect
-                  end
-                }
-                .gsub(/ATTACHMENTS/, render_attachments)\
-                .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
-                  attachment_number.gsub! /\D/,''
-                  if c= self.attachments[attachment_number.to_i-1] && @view_context
-                    if c.file_content_type =~ /image/ && @view_context
-                      @view_context.image_tag c.file.url(:medium)
-                    elsif @view_context
-                      @view_context.link_button( c.file_file_name, "button download small", c.file.url )
-                    end
-                  else
-                    "ATTACHMENT #{attachment_number} NOT FOUND"
-                  end
-                }\
-                .gsub(/COMPONENT\[(\d)\]/) { |component_number|
-                  component_number.gsub! /\D/,''
-                   c = self.components.where(:position => component_number.to_i-1).first
-                   if c
-                     rc = c.render_body(@view_context)
-                   else
-                     "COMPONENT #{component_number} NOT FOUND"
-                   end
-                }
+        fill_in_placeholders(template)
       end
+    else
+      fill_in_placeholders("<h1>TITLE</h1><div>BODY</div><div>COMMENTS</div>")
     end
   end
 
@@ -245,6 +206,51 @@ class Page
     if @view_context
       @view_context.render :partial => "pages/buttons", :locals => { :page => self }
     end
+  end
+
+  private
+  def fill_in_placeholders(template)
+    template.gsub(/TITLE/, self.title_and_flags)\
+            .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
+            .gsub(/COMPONENTS/, render_components )\
+            .gsub(/COVERPICTURE/, render_cover_picture)\
+            .gsub(/COMMENTS/, render_comments)\
+            .gsub(/BUTTONS/, render_buttons)\
+            .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
+            .gsub(/YOUTUBE(_PLAYLIST)?:([\s|\d|\-|_])+/) { |tag|
+              args = tag.split(":")
+              case args[0]
+              when 'YOUTUBE'
+                args.inspect + embed_youtube_video(args[1])
+              when 'YOUTUBE_PLAYLIST'
+                args.inspect + embed_youtube_playlist(args[1])
+              else
+                "ARGUMENT ERROR: " + args.inspect
+              end
+            }
+            .gsub(/ATTACHMENTS/, render_attachments)\
+            .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
+              attachment_number.gsub! /\D/,''
+              if c= self.attachments[attachment_number.to_i-1] && @view_context
+                if c.file_content_type =~ /image/ && @view_context
+                  @view_context.image_tag c.file.url(:medium)
+                elsif @view_context
+                  @view_context.link_button( c.file_file_name, "button download small", c.file.url )
+                end
+              else
+                "ATTACHMENT #{attachment_number} NOT FOUND"
+              end
+            }\
+            .gsub(/COMPONENT\[(\d)\]/) { |component_number|
+              component_number.gsub! /\D/,''
+               c = self.components.where(:position => component_number.to_i-1).first
+               if c
+                 rc = c.render_body(@view_context)
+               else
+                 "COMPONENT #{component_number} NOT FOUND"
+               end
+            }
+
   end
 
 

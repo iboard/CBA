@@ -148,9 +148,6 @@ Then /^(?:|I )should not see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, se
   end
 end
 
-Then /^I should have a valid feed\-format$/ do
-  pending
-end
 
 
 Then /^the "([^"]*)" field(?: within "([^"]*)")? should contain "([^"]*)"$/ do |field, selector, value|
@@ -531,4 +528,9 @@ Given /^the following components for page "([^"]*)"$/ do |page_title, table|
     )
   end
   page.save!
+end
+
+Then /^I should see a valid rss\-feed containing "([^"]*)"$/ do |arg1|
+  assert_match( /http:\/\/www.w3.org\/2005\/Atom/, page.html)
+  assert_match( /<content type=\"html\">&lt;p&gt;/, page.html)
 end

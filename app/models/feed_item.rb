@@ -15,7 +15,7 @@ class FeedItem
   # @param [Time] updated_at:
   # @param [Object] Object any object. Appreciate if responds to :name.
   def initialize(title, body, updated_at, url, object)
-    @title,@body,@updated_at,@url,@object = title, escape_feed_body(body), updated_at, url, object
+    @title,@body,@updated_at,@url,@object = title, body, updated_at, url, object
   end
 
   # The name of the object if object respond to :name
@@ -35,8 +35,4 @@ class FeedItem
     object.send(method_sym,*arguments)
   end
 
-  private
-  def escape_feed_body(input)
-    input.gsub(/<br>/i, "<br/>")
-  end
 end

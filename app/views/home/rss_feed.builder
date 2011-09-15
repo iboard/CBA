@@ -4,22 +4,22 @@ atom_feed(:url => feed_path) do |feed|
    for item in @feed_items
      feed.entry(item.object, :url => item.url) do |entry|
        entry.title(item.title)
-       content = ""
-       if item.object.respond_to?(:render_body)
-         with_format self, 'html' do
-           content = item.object.render_body(self).gsub( /\[EDIT_COMPONENT_LINK:([^\]]*)\]/,"" )
+       begin
+         content = ""
+         if item.object.respond_to?(:render_body)
+           with_format self, 'html' do
+             content = item.object.render_body(nil).gsub( /\[EDIT_COMPONENT_LINK:([^\]]*)\]/,"" )
+           end
+         else
+           content = sanitize(simple_format(item.body))
          end
-       else
-         content = sanitize(simple_format(item.body))
+         if defined? item.object.cover_picture
+           content += image_tag item.object.cover_picture.url(:medium)
+         end
+       rescue => e
+         content = e.inspect
        end
-       if defined? item.object.cover_picture
-         content += image_tag item.object.cover_picture.url(:medium)
-       end
-       Rails.logger.error( "\nPREPARE #{content.inspect}")
-       _content = content.gsub(/\<br\>/i, "<br />").
-                          gsub(/&lt;br&gt;/, "&lt;br /&gt;")
-       Rails.logger.error( "\nESCAPED #{_content.inspect}")
-       entry.content( _content, :type => :html )
+       entry.content( content, :type => :html )
        entry.updated item.updated_at
        entry.author(item.name||'-')
      end

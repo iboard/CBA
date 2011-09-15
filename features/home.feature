@@ -43,7 +43,7 @@ Feature: Home
     And I should see "A Twitter page"
     And I should see "Lorem Twittum"
     
-  Scenario: BUGFIX: Safari can't display "<br>" but needs "<br/>" in body
+  Scenario: BUGFIX: do not concat to view for builder
     Given the following blogs with pages
       | title    | page_name | page_body                  | is_draft |
       | PageBlog | PageOne   | A wonderful body           | false    |
@@ -53,6 +53,5 @@ Feature: Home
       | Posting one   | lorem ipsum with <p>some<br></p> html | false    |
       | Posting Draft | A Posting Draft | true     |
     And I am on the rss feed
-    Then I should see "TESTFEED"
-    And I should have a valid feed-format
+    Then I should see a valid rss-feed containing "&lt;p&gt;lorem ipsum with some html&lt;p&gt;"
     

@@ -18,7 +18,7 @@ atom_feed(:url => feed_path) do |feed|
        Rails.logger.error( "\nPREPARE #{content.inspect}")
        _content = content.gsub(/\<br\>/i, "<br />").
                           gsub(/&lt;br&gt;/, "&lt;br /&gt;")
-       Rails.logger.error( "\nESCAPED #{content.inspect}")
+       Rails.logger.error( "\nESCAPED #{_content.inspect}")
        entry.content( _content, :type => :html )
        entry.updated item.updated_at
        entry.author(item.name||'-')

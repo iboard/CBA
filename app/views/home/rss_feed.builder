@@ -15,7 +15,7 @@ atom_feed(:url => feed_path) do |feed|
        if defined? item.object.cover_picture
          content += image_tag item.object.cover_picture.url(:medium)
        end
-       entry.content( content.gsub(/<br>/i, '<br\/>'), :type => :html)
+       entry.content( content.gsub(/<br>/i, '<br/>').gsub(/&lt;br&gt;/"&lt;br/&gt;"), :type => :html)
        entry.updated item.updated_at
        entry.author(item.name||'-')
      end

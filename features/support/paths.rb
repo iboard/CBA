@@ -64,7 +64,7 @@ module NavigationHelpers
       posting=Posting.where(:title=> $1).first
       "/postings/#{posting.id}"
     when /feed/
-      "/feed.atom"
+      "/feed"
     when /edit site_menu page for menu "([^"]*)"/
       menu_name = $1
       site_menu = SiteMenu.where(:name => menu_name).first

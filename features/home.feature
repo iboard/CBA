@@ -37,9 +37,22 @@ Feature: Home
      And draft mode is on
      Then I should see "Hide drafts"     
      
-  Scenario: Get latest content as RSS-Feed
+  Scenario: Get empty RSS-Feed
     Given I am on the rss feed
     Then I should see "TESTFEED"
     And I should see "A Twitter page"
     And I should see "Lorem Twittum"
-      
+    
+  Scenario: BUGFIX: Safari can't display "<br>" but needs "<br/>" in body
+    Given the following blogs with pages
+      | title    | page_name | page_body                  | is_draft |
+      | PageBlog | PageOne   | A wonderful body           | false    |
+      | PageBlog | PageTwo   | This page should be there  | false    |
+    And the following posting records for blog "PageBlog" and user "admin"
+      | title         | body                                  | is_draft |
+      | Posting one   | lorem ipsum with <p>some<br></p> html | false    |
+      | Posting Draft | A Posting Draft | true     |
+    And I am on the rss feed
+    Then I should see "TESTFEED"
+    And I should have a valid feed-format
+    

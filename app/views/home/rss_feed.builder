@@ -15,7 +15,11 @@ atom_feed(:url => feed_path) do |feed|
        if defined? item.object.cover_picture
          content += image_tag item.object.cover_picture.url(:medium)
        end
-       entry.content( content.gsub(/<br>/i, "<br/>").gsub("&lt;br&gt;", "&lt;br/&gt;"), :type => :html)
+       Rails.logger.error( "\nPREPARE #{content.inspect}")
+       _content = content.gsub(/<br>/i, "<br />").
+                          gsub(/&lt;br&gt;/, "&lt;br /&gt;")
+       Rails.logger.error( "\nESCAPED #{content.inspect}")
+       entry.content( _content, :type => :html )
        entry.updated item.updated_at
        entry.author(item.name||'-')
      end

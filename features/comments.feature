@@ -51,7 +51,6 @@ Feature: Comments
     And I click on "Post comment"
     And I click on link "Comments" within "#session"
     Then I should see "A stupid comment"
-    Then show me the page
     And I should see "Posted from 127.0.0.1"
 
   Scenario: No comments if page.allow_comments is false

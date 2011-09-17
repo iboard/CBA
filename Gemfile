@@ -78,6 +78,8 @@ group :development, :test do
   gem 'rdoc'
   gem 'unicorn'
   gem 'yard'
+  gem 'rails3-generators'
+  gem "haml-rails"
 end
 
 

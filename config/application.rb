@@ -36,8 +36,10 @@ module Cba
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{Rails.root}/app/workers #{Rails.root}/lib/validators
-      #{Rails.root}/lib/content_items)
+    config.autoload_paths += %W(#{Rails.root}/app/workers 
+                                #{Rails.root}/lib/validators
+                                #{Rails.root}/lib/content_items
+                              )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -58,7 +60,10 @@ module Cba
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     config.generators do |g|
-      g.orm             :mongoid
+      g.orm                 :mongoid
+      g.template_engine     :haml
+      g.test_framework      :rspec
+      g.fixture_replacement :factory_girl 
     end
 
     # Configure the default encoding used in templates for Ruby 1.9.

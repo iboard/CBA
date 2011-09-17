@@ -28,8 +28,14 @@ class Ability
 
         # Users with role
         if user.role?(:guest)
-            can :read, [Page, Blog, Posting]
-            can :create, Comment
+          can :read, [Page, Blog, Posting] do |resource|
+            if resource.respond_to? :is_draft
+              resource.is_draft != true
+            else
+              true
+            end
+          end
+          can :create, Comment
         end
         if user.role?(:confirmed_user)
           can :create, Invitation
@@ -48,7 +54,13 @@ class Ability
       end
 
       # Anybody
-      can :read, [Page, Blog, Posting]
+      can :read, [Page, Blog, Posting] do |resource|
+        if resource.respond_to? :is_draft
+          resource.is_draft != true
+        else
+          true
+        end
+      end
       can :create, Comment
       can :read, Comment do |comment|
         comment && !comment.new_record?

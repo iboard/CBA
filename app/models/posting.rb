@@ -41,6 +41,8 @@ class Posting
     title + " " + body + " " + comments.map(&:comment).join(" ")
   end
 
+  scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
+
 
   # Render the body with RedCloth
   def render_body(view_context=nil)

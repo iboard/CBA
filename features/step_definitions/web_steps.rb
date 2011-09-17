@@ -435,7 +435,8 @@ Given /^the following blogs with pages/ do |table|
   t = PageTemplate.find_or_create_by(name: 'default')
   table.hashes.each do |params|
     blog = Blog.find_or_create_by(title: params[:title], is_draft: false)
-    page = Page.create(:title => params[:page_name], :body => params[:page_body], :show_in_menu => false, :is_draft => false)
+    page = Page.create(:title => params[:page_name], :body => params[:page_body],
+      :show_in_menu => false, :is_draft => params[:is_draft] || false)
     page.template = t
     blog.pages << page
     blog.save

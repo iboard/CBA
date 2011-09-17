@@ -42,6 +42,9 @@ class Page
     ].join(' ')
   end
 
+  scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
+
+
 
   # If this page is derived from a Page(Template) this method returns the
   # template-page

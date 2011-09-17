@@ -4,12 +4,7 @@ Feature: Postings
   I want create, edit, delete, and comment postings
 
   Background:
-    Given the following user records
-      | email            | name      | roles_mask | password         | password_confirmation | confirmed_at         |
-      | admin@iboard.cc  | admin     | 31         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | user@iboard.cc   | testmax   | 27         | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | guest@iboard.cc  | guest     | 0          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
-      | staff@iboard.cc  | staff     | 2          | thisisnotsecret  | thisisnotsecret       | 2010-01-01 00:00:00  |
+    Given the default user set
     And the following blog records
       | title  | is_draft |
       | Blog 1 | false    |
@@ -21,6 +16,36 @@ Feature: Postings
     Given I am on the blogs page
     And I should see "Blog 1"
     And I should see "Blog 2"
+
+  Scenario: No-author should not see drafts
+    Given the following posting records for blog "News" and user "admin"
+      | title      | body                                           | is_draft |
+      | Direct Post| The posting should load the blog it belongs to | false    |
+      | Draft Post | This should not be visible to non-authors      | true     |
+    And I am logged out
+    And I am on the blog path of "News"
+    Then I should not see "Draft Post"
+
+  Scenario: Unpriviledge user should not visit posting directly
+    Given the following posting records for blog "News" and user "admin"
+      | title      | body                                           | is_draft |
+      | Direct Post| The posting should load the blog it belongs to | false    |
+      | Draft Post | This should not be visible to non-authors      | true     |
+    And I am logged out
+    And I am on the posting page of "Draft Post"
+    Then I should see "You are not authorized to access this page"
+    And I should not see "This should not be visible to non-authors"
+
+  Scenario: Unpriviledged users should not see draft postings in blog view
+    Given the following posting records for blog "News" and user "admin"
+      | title      | body                                           | is_draft |
+      | Direct Post| The posting should load the blog it belongs to | false    |
+      | Draft Post | This should not be visible to non-authors      | true     |
+    And I am logged out
+    And I am on the blog path of "News"
+    Then I should see "Direct Post"
+    And I should not see "Draft Post"
+    And I should not see "This should not be visible to non-authors"
 
   Scenario: On a Blog page I want create a new posting
     Given I am on the blog path of "Blog 1"
@@ -117,3 +142,5 @@ Feature: Postings
     And I am on the feed page
     Then I should see "Direct Post"
     And I should see "The posting should load the blog it belongs to"
+
+

@@ -12,7 +12,7 @@
 #
 default_template = PageTemplate.find_or_create_by(name: 'default')
 default_template.css_class = 'template_default'
-default_template.html_template = "<h2>TITLE</h2>"  +
+default_template.html_template = "<h1>TITLE</h1>"  +
   "<div style='clear: right; float: right; "   +
   "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>"           +
@@ -24,7 +24,7 @@ default_template.save!
 
 default_template = PageTemplate.find_or_create_by(name: 'Page: Hidden attachments')
 default_template.css_class = 'template_default'
-default_template.html_template = "<h2>TITLE</h2>"  +
+default_template.html_template = "<h1>TITLE</h1>"  +
   "<div style='float: right; "   +
   "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>"           +
@@ -36,7 +36,7 @@ default_template.save!
 
 default_template = PageTemplate.find_or_create_by(name: 'Page: without coverpicture')
 default_template.css_class = 'template_default'
-default_template.html_template = "<h2>TITLE</h2>"     +
+default_template.html_template = "<h1>TITLE</h1>"     +
   "<address class='inline_buttons'>BUTTONS</address>" +
   "<div class='page_body'>BODY</div>"                 +
   "<div class='page_body'>ATTACHMENTS</div>"          +
@@ -82,7 +82,7 @@ default_template.save!
 
 default_template = PageTemplate.find_or_create_by(name: 'Page: Attachment one as picture')
 default_template.css_class = 'template_default'
-default_template.html_template = "<h2>TITLE</h2>"     +
+default_template.html_template = "<h1>TITLE</h1>"     +
   "<div style='float: left; margin-right: 10px; margin-bottom: 10px;'>ATTACHMENT[0]</div>" +
   "<address class='inline_buttons'>BUTTONS</address>" +
   "<div class='page_body'>BODY</div>"                 +
@@ -97,7 +97,7 @@ default_template.save!
 #
 default_component = PageTemplate.find_or_create_by(name: 'Component: default')
 default_component.css_class = 'component_default'
-default_component.html_template = "<h2>TITLE</h2>"   +
+default_component.html_template = "<h1>TITLE</h1>"   +
   "<div class='component_body'>BODY</div>"
 default_component.save!
 

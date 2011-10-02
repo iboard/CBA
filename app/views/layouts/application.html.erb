@@ -42,6 +42,10 @@
       </div>
     <% end %>
     <div id='overlay' class="ui-widget-content"></div>
+    <div id='scroll-to-top'>
+      <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
+      <span id='scroll-position'></span>
+    </div>
     <div id="banner">
       <%= render :partial => '/layouts/banner' %>
     </div>
@@ -75,10 +79,6 @@
       </div>
       <div class='clear'></div>
       
-      <div id='scroll-to-top'>
-        <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
-        <span id='scroll-position'></span>
-      </div>
       <div id='copyright'>
         <a href='http://www.pledgie.com/campaigns/15849'><img 
                alt='Click here to lend your support to: CBA and make a donation at www.pledgie.com !' 

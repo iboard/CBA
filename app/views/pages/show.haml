@@ -1,13 +1,14 @@
-- if @page.page_template.nil?
-  = render :partial => 'page', :locals => {:page => @page }
-- else
-  - title @page.title_and_flags, false
-
-  = raw( @page.page_with_edit_component_buttons( self )  { |component|                      |
-    "<p>" + link_button(t(:edit), 'button edit tiny', edit_page_page_component_path(@page,component), :remote => true)+"</p>"  |
-    })                                                                                      |
-
-- if @page.derived? && current_role?(:admin)
-  - content_for :resource_actions do
-    = link_button t(:derived_from,:title => @page.template.title),  "button reference", @page.template
+#article
+  - if @page.page_template.nil?
+    = render :partial => 'page', :locals => {:page => @page }
+  - else
+    - title @page.title_and_flags, false
+  
+    = raw( @page.page_with_edit_component_buttons( self )  { |component|                      |
+      "<p>" + link_button(t(:edit), 'button edit tiny', edit_page_page_component_path(@page,component), :remote => true)+"</p>"  |
+      })                                                                                      |
+  
+  - if @page.derived? && current_role?(:admin)
+    - content_for :resource_actions do
+      = link_button t(:derived_from,:title => @page.template.title),  "button reference", @page.template
 

@@ -120,12 +120,10 @@
 }
 
 #scroll-position {
-  font-size: 2.5em;
   position: relative;
-  top: -45px;
-  opacity: 0.75;
+  font-size: 1em;
+  top: -12px;
   &:hover {
-    opacity: 1.0;
     text-decoration: none;
     border:none;
   }
@@ -133,15 +131,17 @@
 
 #scroll-to-top {
   @extend #copyright;
-  bottom: 40px;
-  height: 64px;
-  width: 64px;
+  top: 55px;
+  height: 32px;
+  width: 32px;
   overflow: hidden;
-  left: $sidebar-width/2 - 32;
+  left: ($body-width / 2) - 16 + $sidebar-width;
+  z-index: 250;
+  text-align: center;
   a {
-    height: 64px;
-    width: 64px;
-    display: block;
+    margin-left: -16px;
+    margin-top: -8px;
+    display: inline-block;
     text-decoration: none;
     &:hover {
       opacity: 1.0;
@@ -150,8 +150,19 @@
     }
   }
   
+  @include button-shape($radius-medium);
+  background-color: lighten($color-shadow, 50%);
+  border-radius: $radius-medium $radius-medium 0 0;
+  
   img {
+    opacity: 0.8;
     @include button-shape($radius-medium);
+    border-radius: $radius-medium $radius-medium 0 0;
+    background-color: lighten($color-shadow, 50%);
+    margin-top: 9px;
+    margin-left: 17px;
+    height: 30px;
+    width: 30px;
   }
   
   &:hover {

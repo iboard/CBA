@@ -125,7 +125,7 @@ class ApplicationController < ActionController::Base
   
   def setup_asset_host
     if request.host.present?
-      unless request.port == 80
+      unless request.port == 80 || request.port == 443
         ActionController::Base.asset_host = request.host_with_port
       else
         ActionController::Base.asset_host = request.host

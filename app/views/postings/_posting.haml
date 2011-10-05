@@ -1,30 +1,12 @@
 -# - TODO: Duplication - Posting Header and Links
-%div{:style=>'clear: right;'}
-  - if can? :edit, posting
-    .side-tab{:id => "side-tab-posting_#{posting.id.to_s}"}
-      .comment-links{ :id=> "posting_#{posting.id.to_s}", :onmouseover=> "cancelSideTabTimeouts()", :onmouseout => "hideWithDelay('posting_#{posting.id.to_s}',500)"}
-        %span{ :class=>"item_link_buttons", :style=>"display: inline", :onmouseover=>"cancelSideTabTimeouts()" }
-          = link_button( t(:read), "button read side-tab-button", blog_posting_path(blog,posting))
-          %br
-          = link_button( t(:edit), "button edit side-tab-button", edit_blog_posting_path(blog,posting)) if can? :edit, posting
-          %br
-          = link_to( t(:destroy), blog_posting_path(blog,posting), :confirm => t(:are_you_sure), :method => :delete, :class => "button delete side-tab-button") if can? :manage, posting
-  .side-tab-content
-    %h2{ :onmouseover=> "showSideTab($('#posting_#{posting.id.to_s}'));", :onmouseout=>"hideWithDelay('posting_#{posting.id.to_s}',2000);"}
-      = link_to(posting.title, blog_posting_path(blog,posting))
-    = render :partial => '/postings/cover_picture', :locals => { :posting => posting }
-    %address{ :class => "#{posting.created_at > current_user_field( :last_sign_in_at,Time::now()-1.hour) ? 'new_posting' : 'old_posting'}"}
-      = t(:user_wrote_a_comment_at, :user => posting.user.name, :at => distance_of_time_in_words_to_now(posting.created_at)).html_safe
-    = sanitize(posting.render_intro)
-    
-    - if posting.blog.allow_public_comments || (posting.blog.allow_comments && user_signed_in?)
-      %p{ :class => 'posting_comment_links'}
-        {
-        %span{ :class=> 'comments_counter'}
-          = t(:num_of_comments, :count => posting.comments.count)
-          - if user_signed_in? && (count=posting.comments.since(current_user.last_sign_in_at).count)
-            %span{ :class=>'new_comments'}
-              = t(:new_since_last_visit, :count => count)
-        }
-        %br
+- present posting do |presenter|
+  %div{:style=>'clear: right;'}
+    - if can? :edit, posting
+      = presenter.edit_buttons
+    .side-tab-content
+      = presenter.title
+      = render :partial => '/postings/cover_picture', :locals => { :posting => posting }
+      = presenter.user_and_time
+      = sanitize(posting.render_intro)
+      = presenter.comment_links
 = javascript_tag "$('#posting_#{posting.id.to_s}').hide()"

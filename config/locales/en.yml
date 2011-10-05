@@ -254,3 +254,4 @@ en:
   update_page_component: 'Update component'
   page_component_successfully_updated: 'Page component successfully updated'
   navigation: 'Navigation'
+  orphanded_comment: 'Orphanded comment'

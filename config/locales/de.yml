@@ -451,3 +451,4 @@ de:
   update_page_component: 'Änderungen speichern'
   page_component_successfully_updated: 'Änderungen wurden gespeichert'
   navigation: 'Navigation'
+  orphanded_comment: 'Verwaister Kommentar'

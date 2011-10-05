@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   end
   alias current_user? is_current_user?
 
-  private
+private
 
   # Top Pages are shown in the top-menu
   def top_pages
@@ -133,6 +133,11 @@ class ApplicationController < ActionController::Base
     else
       ActionController::Base.asset_host = DEFAULT_URL
     end
+  end
+  
+  def present(object, klass=nil)
+    klass ||= "#{object.class}Presenter".constantize
+    klass.new(view_context, object)
   end
 
 end

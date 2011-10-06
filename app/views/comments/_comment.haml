@@ -1,0 +1,13 @@
+- unless comment.new_record?
+  - present comment do |presenter|
+    %div{:id => "comment_#{comment.id.to_s}", :class => 'comment'}
+      .comment_avatar= presenter.avatar
+      .comment_content
+        %address{ :class => presenter.comment_class }
+          = presenter.user_and_time
+          %br
+          = presenter.link_to_edit
+          = presenter.link_to_destroy
+        %div{ :id => "comment_comment_#{comment.id.to_s}"}
+          = presenter.render_comment
+        .clear

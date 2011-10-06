@@ -3,35 +3,10 @@
 = comments[0].count.to_s + " / " + comments[1].count.to_s
 - for group in [0,1] # 0 => orphaned, 1 => with commentable
   -for comment in comments[group]
-    %div{:class=>'comment', :id=>'comment_'+comment.id.to_s}
-      - if group == 1
-        %h2
-          = link_button comment.commentable.title, "button link", commentable_show_path(comment.commentable)
-          %small
-            (
-            = comment.commentable.class.to_s.humanize
-            )
-      - else
-        = t(:orphanded_comment)
-
-      %p
-        - if user=comment.user
-          = image_tag( user.avatar_url(:thumb), :class => 'without_shadow')
-        - else
-          = image_tag( 'avatars/thumb/missing.png', :class => 'without_shadow')
-
-        %strong
-          = t(:user_wrote_a_comment_at, :user => comment.name || 'Anonymous',:at => distance_of_time_in_words_to_now(comment.created_at)   ).html_safe
-          (
-          = comment.created_at
-          , 
-          = t(:posted_from_ip, :ip => (comment.from_ip || "n/a") )
-          )
-  
-      %p
-        - if comment.commentable
-          = comment.commentable.render_for_html(comment.comment||'').html_safe
-        - else
-          = ContentItem::markdown(comment.comment||'')
-      %p
-        = link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure), :class => 'button delete small' ) if can?( :destroy, comment )
+    - present comment do |presenter|
+      %div{:class=>'comment', :id=>'comment_'+comment.id.to_s}
+        %p=  presenter.avatar
+        %h2= presenter.title_and_link(group)
+        %strong= presenter.user_time_and_ip
+        %p= presenter.render_comment
+        %p= link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure), :class => 'button delete small' ) if can?( :destroy, comment )

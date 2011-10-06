@@ -1,0 +1,12 @@
+-# - TODO: Duplication - Posting Header and Links
+- present posting do |presenter|
+  %div{:style=>'clear: right;'}
+    - if can? :edit, posting
+      = presenter.edit_buttons
+    .side-tab-content
+      = presenter.title
+      = render :partial => '/postings/cover_picture', :locals => { :posting => posting }
+      = presenter.user_and_time
+      = sanitize(posting.render_intro)
+      = presenter.comment_links
+= javascript_tag "$('#posting_#{posting.id.to_s}').hide()"

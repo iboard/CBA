@@ -358,12 +358,6 @@ li.load_more {
   font-size: 0.75em;
 }
 
-.without_shadow {
-  box-shadow: none;
-  width: 64px;
-  height: 64px;
-}
-
 /* Load new definitions and overwrite previous ones */
 @import "errors.css.scss";
 @import "banner_and_session.css.scss";
@@ -380,3 +374,13 @@ li.load_more {
 @import "will_paginate.css.scss";
 @import "forms.css.scss";
 @import "css3buttons.css.scss";
+
+.main-frame #container img.without-shadow,
+.main-frame #container img.without_shadow,
+.without-shadow,
+.without_shadow {
+  -webkit-box-shadow: 0 0 0 white;
+  box-shadow: 0 0 0 white;
+  width: 48px;
+  height: 48px;
+}

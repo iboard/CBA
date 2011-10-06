@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   end
   alias current_user? is_current_user?
 
-  private
+private
 
   # Top Pages are shown in the top-menu
   def top_pages
@@ -125,7 +125,7 @@ class ApplicationController < ActionController::Base
   
   def setup_asset_host
     if request.host.present?
-      unless request.port == 80
+      unless request.port == 80 || request.port == 443
         ActionController::Base.asset_host = request.host_with_port
       else
         ActionController::Base.asset_host = request.host
@@ -133,6 +133,11 @@ class ApplicationController < ActionController::Base
     else
       ActionController::Base.asset_host = DEFAULT_URL
     end
+  end
+  
+  def present(object, klass=nil)
+    klass ||= "#{object.class}Presenter".constantize
+    klass.new(view_context, object)
   end
 
 end

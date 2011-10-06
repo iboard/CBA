@@ -36,6 +36,7 @@ module ContentItem
       class_eval <<-EOV
         include Mongoid::Document
         include Mongoid::Timestamps
+        include Mongoid::Taggable
         include CoverPicture
 
         # ContentItems should have an unique title

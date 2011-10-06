@@ -5,7 +5,7 @@ class Posting
   include ContentItem
   acts_as_content_item
   has_cover_picture
-
+  
   # Fields ======================================================
   referenced_in         :user, :inverse_of => :postings
   field                 :user_id

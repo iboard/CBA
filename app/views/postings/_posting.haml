@@ -5,8 +5,10 @@
       = presenter.edit_buttons
     .side-tab-content
       = presenter.title
+      = presenter.tags
       = render :partial => '/postings/cover_picture', :locals => { :posting => posting }
       = presenter.user_and_time
       = sanitize(posting.render_intro)
       = presenter.comment_links
+      = presenter.read_more
 = javascript_tag "$('#posting_#{posting.id.to_s}').hide()"

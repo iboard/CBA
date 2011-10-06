@@ -9,6 +9,7 @@
           = link_to( t(:destroy), blog_posting_path(blog,posting), :confirm => t(:are_you_sure), :method => :delete,  :class => 'button delete side-tab-button') if can? :manage, posting
   .side-tab-content
     %h2{ :onmouseover => "showSideTab($('#posting_#{posting.id.to_s}'))", :onmouseout => "hideWithDelay('posting_#{posting.id.to_s}',500)"}= link_to(posting.title, blog_posting_path(blog,posting))
+    .tags= posting.tags
     - if posting.is_draft
       %p= t(:is_draft_label)
     = render :partial => '/postings/cover_picture', :locals => { :posting => posting }  

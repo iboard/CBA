@@ -12,6 +12,9 @@ Cba::Application.routes.draw do
 
   # Comments
   resources :comments, :except => :show
+  
+  # Tags
+  match '/tag/:tag' => "home#tags", :as => 'tags'
 
   # SiteMenu
   resources :site_menus do

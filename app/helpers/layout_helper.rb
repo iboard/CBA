@@ -69,5 +69,14 @@ module LayoutHelper
       end
     end
   end
+  
+  # render a tag-cloud
+  def tag_cloud
+    Posting.tags_with_weight.map { |tag,weight|
+      content_tag :span, :class => "tag-weight-#{weight.to_s.gsub('.','-')}" do
+        link_to "#{tag}", tags_path(tag)
+      end
+    }.join(" ").html_safe
+  end
 
 end

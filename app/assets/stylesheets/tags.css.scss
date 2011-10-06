@@ -1,0 +1,51 @@
+#tagcloud {
+  @include standard-box;
+  background: white;
+  
+  .tag-weight-1-0 {
+    font-size: 0.6em;
+  }
+  
+  .tag-weight-2-0 {
+    font-size: 0.8em;
+  }
+  
+  .tag-weight-3-0 {
+    font-size: 1.0em;
+  }
+  
+  .tag-weight-4-0 {
+    font-size: 1.2em;
+  }
+  
+  .tag-weight-5-0 {
+    font-size: 1.4em;
+  }
+
+  .tag-weight-6-0 {
+    font-size: 1.6em;
+  }
+  
+  .tag-weight-7-0 {
+    font-size: 1.8em;
+  }
+
+  .tag-weight-8-0 {
+    font-size: 2em;
+  }
+  
+  a {
+    width: auto;
+    padding: 5px;
+  }
+}
+
+#tagged_postings {
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 0px;
+  }
+  address.new_posting {
+    font-size: 0.8em;
+  }
+}

@@ -61,5 +61,10 @@ class HomeController < ApplicationController
     target = request.env['HTTP_REFERER'] ? request.env['HTTP_REFERER'] : root_path
     redirect_to target, :notice => t(:draft_mode_switched_to, :mode => params[:mode] == "1" ? t(:is_on) : t(:is_off)).html_safe
   end
+  
+  # GET /tag/:tag
+  def tags
+    @postings = Posting.tagged_with(params[:tag])
+  end
 
 end

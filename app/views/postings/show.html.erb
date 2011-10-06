@@ -4,6 +4,7 @@
         :posting => @posting, :format => :medium
       } %>
 
+  <div class='tags'><%= @posting.tags -%></div>
   <address class='<%= @posting.created_at > current_user_field(\
                           :last_sign_in_at,Time::now()-1.hour) ? "new_comment"\
                           : "old_comment" -%>'>

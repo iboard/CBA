@@ -48,5 +48,19 @@ class PostingPresenter < BasePresenter
       end
     end
   end
+  
+  def tags
+    content_tag( :div, :class => 'tags') do
+      posting.tags_array.map { |tag|
+        link_to tag, tags_path(tag)
+      }.join(", ").html_safe
+    end
+  end
+  
+  def read_more
+    if posting.body.paragraphs.count > 1
+      link_to I18n.translate(:read_more), posting
+    end
+  end
 
 end

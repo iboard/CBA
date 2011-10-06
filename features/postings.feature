@@ -143,4 +143,16 @@ Feature: Postings
     Then I should see "Direct Post"
     And I should see "The posting should load the blog it belongs to"
 
-
+  Scenario: A Posting should store tags
+    Given the following posting records for blog "Blog 1" and user "admin"
+      | title       | body        | is_draft |
+      | Posting one | lorem ipsum | false    |
+    And I am on the blog path of "Blog 1"
+    And I click on link "Posting one"
+    And I click on link "Edit"
+    And I fill in "posting_tags" with "Testing, Tags"
+    And I click on "Update Posting"
+    And I click on link "Posting one"
+    Then I should see "Testing" within ".tags"
+    And I should see "Tags" within ".tags"
+    

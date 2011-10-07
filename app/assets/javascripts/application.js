@@ -10,4 +10,5 @@
 //= require jquery_ujs
 //= require jsort_sortable
 //= require progress_upload_field
+//= require autocomplete
 //= require_tree .

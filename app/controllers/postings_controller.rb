@@ -2,12 +2,21 @@
 
 class PostingsController < ApplicationController
 
-  before_filter :unscope_drafts_for_authors
-  before_filter :set_blog_id_if_missing
-  load_and_authorize_resource :blog
-  load_and_authorize_resource :posting
+  before_filter :unscope_drafts_for_authors, except: [:tags]
+  before_filter :set_blog_id_if_missing,     except: [:tags]
+  load_and_authorize_resource :blog,         except: [:tags]
+  load_and_authorize_resource :posting,      except: [:tags]
 
   def index
+  end
+  
+  def tags
+    respond_to do |format|
+      format.json { 
+        render :json => Posting.tags.reject{|t| t !~ /#{params[:q]}/i}
+                        .map{|tag| [:id =>tag, :name => tag]}.flatten
+      }
+    end
   end
 
   def show

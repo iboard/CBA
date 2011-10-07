@@ -27,8 +27,14 @@
   
   <div class="field">
     <%= f.label :tags %>
-    <%= f.text_field :tags, :size => 80 %>
+    <%= f.text_field :tags, :size => 80, "data-pre" => posting.tags_array.map{ |t| {id: t, name: t} }.to_json %>
   </div>
+  
+  <div class="field">
+    <%= f.label :new_tag %>
+    <%= f.text_field :new_tag, :size => 80, :placeholder => t(:enter_new_tag) %>
+  </div>
+  
 
   <div class="field">
     <%= f.label :interpreter %>

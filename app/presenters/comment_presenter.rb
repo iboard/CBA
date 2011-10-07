@@ -4,13 +4,14 @@ class CommentPresenter < BasePresenter
   
   def title_and_link(group=1)
     if group == 1
-      link_button comment.commentable.title, "button link", 
-                  commentable_show_path(comment.commentable)
-      content_tag :small do
+      link_to( comment.commentable.title,  commentable_show_path(comment.commentable) ) +
+      content_tag( :small ) do
         " (" + comment.commentable.class.to_s.humanize + ")"
       end
     else
-      I18n.translate(:orphanded_comment).html_safe
+      content_tag( :small, :style => 'font-size: 0.7em;' ) do
+        I18n.translate(:orphanded_comment).html_safe
+      end
     end
   end
   

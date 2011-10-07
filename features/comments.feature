@@ -52,6 +52,7 @@ Feature: Comments
     And I click on link "Comments" within "#session"
     Then I should see "A stupid comment"
     And I should see "Posted from 127.0.0.1"
+    And I should see "Page 1" within ".comment"
 
   Scenario: No comments if page.allow_comments is false
     Given the following page records

@@ -6,7 +6,7 @@
     - present comment do |presenter|
       %div{:class=>'comment', :id=>'comment_'+comment.id.to_s}
         %p=  presenter.avatar
-        %h2= presenter.title_and_link(group)
+        %h1= presenter.title_and_link(group)
         %strong= presenter.user_time_and_ip
         %p= presenter.render_comment
         %p= link_to( t(:destroy), comment, :method => :delete, :remote => true, :confirm => t(:are_you_sure), :class => 'button delete small' ) if can?( :destroy, comment )

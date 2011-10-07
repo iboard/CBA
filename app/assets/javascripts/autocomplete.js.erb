@@ -1,0 +1,10 @@
+$(function() {
+  $("#posting_tags").tokenInput("/postings/tags.json", { 
+    crossDomain: false,
+    prePopulate: $("#posting_tags").data("pre"),
+    theme: "facebook",
+    hintText: "search existing tag / bestehenden Tag suchen",
+    preventDuplicates: true,
+    tokenValue: 'name'
+  });
+});

@@ -256,3 +256,5 @@ en:
   navigation: 'Navigation'
   orphanded_comment: 'Orphanded comment'
   read_more: 'Read more ...'
+  enter_new_tag: 'Enter a new tag here, only if no existing tag fits'
+  tag_hint: 'Please use singular and all lower-case'

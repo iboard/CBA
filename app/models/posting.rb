@@ -54,6 +54,16 @@ class Posting
       render_for_html(self.body).html_safe
     end
   end
+  
+  def new_tag
+  end
+  
+  def new_tag=(new_tag)
+    unless new_tag.blank?
+      self.tags_array += [new_tag]
+      self.tags_array.uniq!
+    end
+  end
 
   private ################################################## private ####
 

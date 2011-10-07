@@ -52,8 +52,8 @@ class PostingPresenter < BasePresenter
   def tags
     content_tag( :div, :class => 'tags') do
       posting.tags_array.map { |tag|
-        link_to tag, tags_path(tag)
-      }.join(", ").html_safe
+        link_to( tag, tags_path(tag)) unless tag.blank?
+      }.compact.join(", ").html_safe
     end
   end
   

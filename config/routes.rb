@@ -35,7 +35,11 @@ Cba::Application.routes.draw do
       resources :comments
     end
   end
-  resources :postings, :only => [:show]
+  resources :postings, only: [:show] do
+    collection do
+      get :tags
+    end
+  end
 
   match 'feed' => "home#rss_feed", :as => 'feed'
 

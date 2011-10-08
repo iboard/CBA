@@ -258,3 +258,5 @@ en:
   read_more: 'Read more ...'
   enter_new_tag: 'Enter a new tag here, only if no existing tag fits'
   tag_hint: 'Please use singular and all lower-case'
+  new_user_notification: 'New User Notification'
+  message_successfully_sent: 'Message successfully sent.'

@@ -4,7 +4,8 @@
 class UserNotification
   include Mongoid::Document
   include Mongoid::Timestamps
-  cache
+
+  after_create :deliver_message
 
   embedded_in :user
 
@@ -14,4 +15,24 @@ class UserNotification
   scope  :displayed, where(:hidden.ne => true)
   scope  :hidden,    where(:hidden => true)
 
+
+  # virtual attributes
+  def user_tokens
+  end
+  
+  def user_tokens=(new_value)
+    unless new_value.blank?
+      @recipients = User.any_in(email: new_value.split(",")).all
+    else
+      @recipients = User.all
+    end
+  end
+  
+private
+  def deliver_message
+    return unless @recipients
+    @recipients.each do |usr|
+      usr.user_notifications.create(self.attributes) unless usr == self.user
+    end
+  end
 end

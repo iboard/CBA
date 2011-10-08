@@ -455,3 +455,5 @@ de:
   read_more: 'Mehr lesen ...'
   enter_new_tag: 'Bitte nur wenn kein vorhandener Tag passt!'
   tag_hint: 'Bitte Einzahl verwenden und alles klein schreiben'
+  new_user_notification: 'Neue Systemnachricht'
+  message_successfully_sent: 'Nachricht wurde versandt'

@@ -1,0 +1,12 @@
+= form_for @user_notification do |f|
+  .field
+    =f.label :user_tokens, t(:recipients)
+    =f.text_field :user_tokens
+    
+  .field
+    =f.label :message
+    =f.text_area :message
+    
+  .field
+    =f.label :submit
+    =f.submit t(:submit)

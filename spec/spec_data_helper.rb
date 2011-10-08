@@ -42,47 +42,45 @@ module SpecDataHelper
         :email => 'admin@iboard.cc',
         :name  => 'admin',
         :roles_mask => 5,
-        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-        :confirmed_at => "2010-01-01 00:00:00"
+        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret'
       },
       # Define NON-ADMINS BELOW
       {
         :email => 'user@iboard.cc',
         :name  => 'testmax',
         :roles_mask => 1,
-        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-        :confirmed_at => "2010-01-01 00:00:00"
+        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret'
       },
       {
         :email => 'author@iboard.cc',
         :name  => 'Author',
         :roles_mask => 2,
-        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-        :confirmed_at => "2010-01-01 00:00:00"
+        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret'
       },
       {
         :email => 'moderator@iboard.cc',
         :name  => 'Moderator',
         :roles_mask => 3,
-        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-        :confirmed_at => "2010-01-01 00:00:00"
+        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret'
       },
       {
         :email => 'maintainer@iboard.cc',
         :name  => 'maintainer',
         :roles_mask => 4,
-        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-        :confirmed_at => "2010-01-01 00:00:00"
+        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret'
       },
       {
         :email => 'staff@iboard.cc',
         :name  => 'staff',
         :roles_mask => 4,
-        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret',
-        :confirmed_at => "2010-01-01 00:00:00"
+        :password => 'thisisnotsecret', :password_confirmation => 'thisisnotsecret'
       }
     ].each do |hash|
-      User.create(hash)
+      user = User.create(hash)
+      user.confirm!
+      user.save!
+      user.reload
+      raise "NOT CONFIRMED!" unless user.confirmed?
     end
   end
 
@@ -120,6 +118,11 @@ module SpecDataHelper
         fill_in("Password", :with => password)
         click_button("Sign in")
     end
+  end
+  
+  # Log out
+  def log_out
+    click_link("Sign out")
   end
 
   # Create a default PageTemplate

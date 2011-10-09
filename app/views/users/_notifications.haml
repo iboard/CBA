@@ -4,7 +4,7 @@
       - for notification in user_notifications
         %li{ :id=> "noification_#{notification.created_at.to_i}" }
           %strong= notification.created_at.to_s(:short)+": "
-          = notification.message
+          = ContentItem::markdown(notification.message)
           %br
           - unless notification.hidden
             = link_to t(:hide), hide_notification_path(notification.created_at.to_i)

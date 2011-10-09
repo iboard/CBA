@@ -64,7 +64,7 @@ class HomeController < ApplicationController
   
   # GET /tag/:tag
   def tags
-    @postings = Posting.tagged_with(params[:tag]).desc(:updated_at)
+    @postings = Posting.tagged_with(params[:tag]).order([:created_at, :desc])
   end
 
 end

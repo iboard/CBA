@@ -87,7 +87,11 @@ Cba::Application.routes.draw do
   resources :authentications, :only => [:index,:create,:destroy]
   match '/auth/failure' => 'authentications#auth_failure'
 
-  resources :user_notifications
+  resources :user_notifications do
+    collection do
+      get :emails
+    end
+  end
 
   # ROOT
   root :to => 'home#index'

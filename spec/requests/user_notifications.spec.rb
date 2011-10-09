@@ -26,7 +26,7 @@ describe "User notificatons:" do
 
     it "should deliver to all users" do
       visit new_user_notification_path
-      fill_in "user_notification_user_tokens", with: ""
+      fill_in "user_notification_recipient", with: ""
       fill_in "user_notification_message", with: "Hello User"
       click_button "Submit"
       page.should have_content "Message successfully sent"
@@ -40,7 +40,7 @@ describe "User notificatons:" do
     
     it "should deliver to special users" do
       visit new_user_notification_path
-      fill_in "user_notification_user_tokens", with: "user@iboard.cc,maintainer@iboard.cc"
+      fill_in "user_notification_recipient", with: "user@iboard.cc,maintainer@iboard.cc"
       fill_in "user_notification_message", with: "Hello U2"
       click_button "Submit"
       page.should have_content "Message successfully sent"

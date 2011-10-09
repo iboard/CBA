@@ -17,10 +17,10 @@ class UserNotification
 
 
   # virtual attributes
-  def user_tokens
+  def recipients
   end
   
-  def user_tokens=(new_value)
+  def recipients=(new_value)
     unless new_value.blank?
       @recipients = User.any_in(email: new_value.split(",")).all
     else

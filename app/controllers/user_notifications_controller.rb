@@ -13,5 +13,21 @@ class UserNotificationsController < ApplicationController
       render :new
     end
   end
+  
+  def emails
+    respond_to do |format|
+       format.json { 
+         render :json => User.any_of({ name: /#{params[:q]}/i }, { email: /#{params[:q]}/i })
+                             .only(:email,:name)
+                             .map{ |user| 
+                               [
+                                 :id =>user.email, 
+                                 :name => user.name + " (#{user.email})"
+                               ]
+                              }
+                             .flatten
+       }
+     end
+  end
 
 end

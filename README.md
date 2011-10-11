@@ -19,7 +19,10 @@ This will install  a fully functional web-application, with user-authentication 
 
 What it is
 ----------
+<<<<<<< HEAD:README.md
+=======
 
+>>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:README.md
 *CBA* is forked from [Rails3-Mongoid-Devise by fortuity](http://github.com/fortuity/rails3-mongoid-devise), extended by Andi Altendorfer with
 
 * OmniAuth
@@ -46,6 +49,10 @@ More about installation
   * See: [Posting 'installation.rb'](http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4d53bb27e779893dd0000007)
   * CBA is in heavy development age, so please read [CBA Blog](http://cba.iboard.cc) from bottom to top. There are some latest news, not mentioned in this README.
 
+<<<<<<< HEAD:README.md
+
+=======
+>>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:README.md
 Layout and Templates
 --------------------
 
@@ -106,6 +113,16 @@ Start all at once with thor-task
 
 You can use `thor application:run_autotests` to start the spork-server and autotest. The shortest way to jump into *continuos testing* 
 
+<<<<<<< HEAD:README.md
+Layout and Templates
+-------------------
+
+  * Edit application.css or 'your_name_given_at_install'.css
+  * Edit views/layout/application.html or views/layout/'your_name_given_at_install'.html.erb
+  * Read [Posting](http://cba.iboard.cc/blogs/4d456adae7798923b100000a/postings/4dbebb9adaf9853b3000001a)
+  * Visit [Demo Page](http://cba.iboard.cc/p/pagecomponent_and_pagetemplat$)
+=======
+>>>>>>> 04447e1fc1e40f1dd814096408cba0987d9b0804:README.md
 
 
 License

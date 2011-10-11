@@ -1,6 +1,6 @@
 <!-- REVIEW: Should this view be splitted up in partials? -->
 <% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
-
+<div class='clear'></div>
 <% if @user.avatar %>
   <%= image_tag @user.avatar_url(:thumb), :style=>'float: right;' %>
 <% end %>

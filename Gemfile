@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'simplecov', :require => false, :group => :test #, '>= 0.4.0'
 
-gem "rails", "~> 3.1.0" # prev was rc8
+gem "rails" #, "~> 3.1.0" # prev was rc8
 
 # Rails 3.1 - Asset Pipeline
 group :assets do
@@ -17,11 +17,11 @@ group :assets do
 end
 
 # Bundle gems needed for Mongoid
-gem "mongoid", "2.1.6" #  :path => "/Users/aa/Development/R31/mongoid-1" #"2.1.6"
+gem "mongoid", "~> 2.3.0" #"2.1.6" #  :path => "/Users/aa/Development/R31/mongoid-1" #"2.1.6"
 gem "bson_ext"  #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
-gem "devise", :git => 'git://github.com/iboard/devise.git' #:path => "/Users/aa/Development/R31/devise" #'1.2.rc2' #, "~>1.4.0" # ,"1.1.7"
+gem "devise" #, :git => 'git://github.com/iboard/devise.git' #:path => "/Users/aa/Development/R31/devise" #'1.2.rc2' #, "~>1.4.0" # ,"1.1.7"
 gem "cancan"
 gem "omniauth", "0.2.6"
 
@@ -53,7 +53,7 @@ gem "nokogiri", "1.4.6"
 
 # Testing
 group :development, :test do
-  gem 'jasmine', '1.0.2.1'
+  gem 'jasmine' #, '1.0.2.1'
   gem 'headless', '0.1.0'  
   gem 'rspec', '2.6.0'
   gem 'rspec-rails', '2.6.1'

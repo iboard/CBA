@@ -14,7 +14,7 @@ atom_feed(:url => feed_path) do |feed|
            content = sanitize(simple_format(item.body))
          end
          if defined? item.object.cover_picture
-           content += image_tag item.object.cover_picture.url(:medium)
+           content +=  image_tag(item.object.cover_picture.url(:medium))
          end
        rescue => e
          content = e.inspect

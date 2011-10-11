@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
   # Use a layout-file defined in application.yml
   layout APPLICATION_CONFIG['layout'] ? APPLICATION_CONFIG['layout'].to_s.strip : 'application'  
 
-  before_filter :setup_asset_host
-
   # persistent language for this session/user
   before_filter  :set_language_from_cookie
   before_filter  :apply_invitation
@@ -122,19 +120,7 @@ private
     params[:search] ||= {:search => ""}
     @search ||= Search.new(params[:search]||{:search => ""})
   end
-  
-  def setup_asset_host
-    if request.host.present?
-      unless request.port == 80 || request.port == 443
-        ActionController::Base.asset_host = request.host_with_port
-      else
-        ActionController::Base.asset_host = request.host
-      end
-    else
-      ActionController::Base.asset_host = DEFAULT_URL
-    end
-  end
-  
+    
   def present(object, klass=nil)
     klass ||= "#{object.class}Presenter".constantize
     klass.new(view_context, object)

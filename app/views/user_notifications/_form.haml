@@ -1,11 +1,14 @@
 = form_for @user_notification do |f|
+
+  = errors_for(@user_notification)
+  
   .field
-    =f.label :recipients, t(:recipients)
+    =f.label :recipients, t(:recipients), placeholder: t(:search_by_mail_or_name)
     =f.text_field :recipients
     
   .field
-    =f.label :message
-    =f.text_area :message
+    =f.label(:message)
+    =f.text_area :message, placeholder: t(:you_may_use_markdown)
     
   .field
     =f.label :submit

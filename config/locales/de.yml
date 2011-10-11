@@ -459,3 +459,5 @@ de:
   message_successfully_sent: 'Nachricht wurde versandt'
   delivered_to: 'Zugestellt an:'
   all_users: 'Alle (%{count}) Benutzer'
+  you_may_use_markdown: 'Markdown kann hier benutzt werden'
+  search_by_mail_or_name: 'Suche nach Name oder E-Mail-Adresse'

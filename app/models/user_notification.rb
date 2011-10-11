@@ -22,7 +22,7 @@ class UserNotification
   
   def recipients=(new_value)
     unless new_value.blank?
-      @recipients = User.any_in(email: new_value.split(",")).all
+      @recipients = User.any_in(email: new_value.split(",").map(&:strip)).all
     else
       @recipients = User.all
     end
@@ -31,8 +31,16 @@ class UserNotification
 private
   def deliver_message
     return unless @recipients
-    @recipients.each do |usr|
-      usr.user_notifications.create(self.attributes) unless usr == self.user
+    self.message += "\n----\n" + I18n.translate(:delivered_to)
+    if( all_users = (@recipients.count == User.count))
+      self.message += I18n.translate(:all_users, count: @recipients.count)
     end
+    @recipients.each do |usr|
+      usr.user_notifications.create(self.attributes).save unless usr == self.user
+      self.message += "\n *" + usr.name + " (#{usr.email})" unless all_users == true
+      usr.save
+    end
+    self.save!
+    self.user.save!
   end
 end

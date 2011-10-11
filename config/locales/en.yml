@@ -260,3 +260,5 @@ en:
   tag_hint: 'Please use singular and all lower-case'
   new_user_notification: 'New User Notification'
   message_successfully_sent: 'Message successfully sent.'
+  delivered_to: 'Delivered to:'
+  all_users: 'All  (%{count}) users'

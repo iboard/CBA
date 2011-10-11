@@ -457,3 +457,5 @@ de:
   tag_hint: 'Bitte Einzahl verwenden und alles klein schreiben'
   new_user_notification: 'Neue Systemnachricht'
   message_successfully_sent: 'Nachricht wurde versandt'
+  delivered_to: 'Zugestellt an:'
+  all_users: 'Alle (%{count}) Benutzer'

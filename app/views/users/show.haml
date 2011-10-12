@@ -20,7 +20,6 @@
     %ul
         %li
             - if current_user && current_user.location[:lat].present? && current_user.location[:lng].present?
-                %span{:id => 'user-location-token'}= current_user.location_token
                 %br
                 %div{:id => 'users-location-map'}= t(:loading)
             - else

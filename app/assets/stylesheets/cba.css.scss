@@ -376,9 +376,11 @@ li.load_more {
 @import "forms.css.scss";
 @import "css3buttons.css.scss";
 @import "tags.css.scss";
+@import "user.css.scss";
 
 .main-frame #container img.without-shadow,
 .main-frame #container img.without_shadow,
+.no-shadow,
 .without-shadow,
 .without_shadow {
   -webkit-box-shadow: 0 0 0 white;

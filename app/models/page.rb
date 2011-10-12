@@ -199,7 +199,7 @@ class Page
 
   def render_cover_picture
     if self.cover_picture_exists? && self.cover_picture.url(:medium) && @view_context
-      @view_context.image_tag self.cover_picture.url(:medium)
+      @view_context.image_tag self.cover_picture.url(:medium), :class => "img-with-shadow"
     else
       ""
     end

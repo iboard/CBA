@@ -461,3 +461,6 @@ de:
   all_users: 'Alle (%{count}) Benutzer'
   you_may_use_markdown: 'Markdown kann hier benutzt werden'
   search_by_mail_or_name: 'Suche nach Name oder E-Mail-Adresse'
+  location_label: 'Ort (lat,long)'
+  no_location_given: 'Keine Ortsangabe gespeichert'
+  your_location: 'Heimatort'

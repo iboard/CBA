@@ -2,6 +2,9 @@
 
 OMNIAUTH_OPENID           = true
 OMNIAUTH_GOOGLE           = true
+
+GOOGLE_PLACE_API_KEY      = 'YOUR_API_KEY_HERE'
+
 OMNIAUTH_CAPATH           = "/etc/ssl/certs"
 
 OMNIAUTH_TWITTER_KEY      = 'YOUR_OMNIAUTH_TWITTER_KEY'

@@ -32,6 +32,8 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'mongoid-tree', :require => 'mongoid/tree'
 gem 'mongoid_fulltext'
 gem 'mongoid_taggable'
+gem 'mongoid_spacial' # For GeoIndex
+
 
 # Bundle gems for views
 gem "haml"

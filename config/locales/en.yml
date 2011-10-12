@@ -264,3 +264,6 @@ en:
   all_users: 'All  (%{count}) users'
   you_may_use_markdown: 'You may use Markdown here'
   search_by_mail_or_name: 'Search by name or mail-address'
+  location_label: 'Location (lat,long)'
+  no_location_given: 'No location stored'
+  your_location: 'Your location'

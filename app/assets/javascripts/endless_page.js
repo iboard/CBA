@@ -60,6 +60,7 @@ function onTop() {
 }
 
 $(document).ready( function() {
+  $(".pagination_box:first").hide();
   $('#scroll-to-top').hide();
   controllToTopLink();
   checkScroll();

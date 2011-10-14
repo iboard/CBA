@@ -2,6 +2,10 @@
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  display: block;
+  float: right;
+  margin: 0px;
+  padding: 0px;
 }
 
 .user-location {
@@ -12,5 +16,8 @@
 }
 
 #location-preview {
+  display: block;
   float: right;
+  margin: 0px;
+  padding: 0px;
 }

@@ -44,34 +44,37 @@ this.loadUserLocation = (target,lnglat) ->
   userMarker = new google.maps.Marker(marker)
 
 jQuery ->
-  $('#user_location_token').keyup ->
-    previewLocation()
   $('#address').keyup ->
     searchLocation()
-    
-previewLocation = ->
-  pos = $("#user_location_token").val()
-  $('#location-preview').html("Loading..." + pos)
-  lng = pos.split(",")[0]
-  lat = pos.split(",")[1]
-  if lng != "" && lat != ""
-    loadUserLocation('location-preview', pos)
-  
-  
+      
 # Update Map when searching for address or place
 geocoder = null
 map = null
 $(document).ready ->
   if $('#location-preview')
     geocoder = new google.maps.Geocoder();
-    userPosition = new google.maps.LatLng(0.0,0.0)
+    pos = $("#user_location_token").val()
+    unless pos == ""
+      lat = parseFloat(pos.split(",")[0])
+      lng = parseFloat(pos.split(",")[1])
+      initial_zoom = 10
+    else
+      lat = 0.0
+      lng = 0.0
+      initial_zoom = 0
+    userPosition = new google.maps.LatLng(lat,lng)
     myOptions = {
-      zoom: 0,
+      zoom: initial_zoom,
       center: userPosition
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById("location-preview"), myOptions)
     $("#location-preview").height(200).width(200)
+    unless pos == ""
+      marker = new google.maps.Marker({
+          map: map,
+          position: userPosition
+      })
   
 searchLocation = ->
   search_term = $('#address').val()

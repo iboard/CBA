@@ -159,7 +159,7 @@ class User
   end
 
   def location_token=(str)
-    coordinates = str.split(",").map! { |a| a.strip }
+    coordinates = str.split(",").map! { |a| a.strip.gsub(/\(|\)/,'') }
     self.location = {
       lat: coordinates[0].to_f,
       lng: coordinates[1].to_f

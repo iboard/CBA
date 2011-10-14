@@ -464,3 +464,4 @@ de:
   location_label: 'Ort (lat,long)'
   no_location_given: 'Keine Ortsangabe gespeichert'
   your_location: 'Heimatort'
+  location_preview: 'Vorschau'

@@ -267,3 +267,4 @@ en:
   location_label: 'Location (lat,long)'
   no_location_given: 'No location stored'
   your_location: 'Your location'
+  location_preview: 'Preview'

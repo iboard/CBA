@@ -1,4 +1,8 @@
 <!-- REVIEW: Should this view be splitted up in partials? -->
+<% content_for :head do %>
+  <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false" -%>
+<% end %>
+
 <% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
 <div class='clear'></div>
 <% if @user.avatar %>
@@ -39,10 +43,17 @@
   <% end %>
   
   <div class='field'>
+    <div id='location-preview'>
+      &nbsp;
+    </div>
     <%= f.label :location_token, t(:location_label) %>
     <%= f.text_field :location_token %>
   </div>
-  
+
+  <div class='field'>
+    <%= f.label :search_by_address, t(:search_by_address) %>
+    <%= text_field_tag "address" %>
+  </div>
 
   <div class='field'>
     <%= f.label :submit %>

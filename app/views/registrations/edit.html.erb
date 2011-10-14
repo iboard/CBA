@@ -54,6 +54,14 @@
     <%= f.label :search_by_address, t(:search_by_address) %>
     <%= text_field_tag "address" %>
   </div>
+  
+  <% if @user.authentications.empty? %>
+    <div class='field'>
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password %>
+      <address><i>(we need your current password to confirm your changes)</i></address></div>
+  <% end %>
+  
 
   <div class='field'>
     <%= f.label :submit %>
@@ -79,12 +87,6 @@
 
   <div class='clear'></div>
 
-  <% if @user.authentications.empty? %>
-    <div class='field'>
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password %>
-      <address><i>(we need your current password to confirm your changes)</i></address></div>
-  <% end %>
 <% end %>
 
 <div class='field'>

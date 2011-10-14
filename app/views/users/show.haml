@@ -8,27 +8,41 @@
        image_tag( w3c_url(@user.avatar_url(:thumb)), :class => "img-with-shadow" ),        |
        "image_popup('#{w3c_url(@user.avatar_url(:popup))}')") |
 
-%div User: #{@user.name}
+%div{:style => 'clear: right'}
+    %p 
+        User: 
+        %b= @user.name
+    %p 
+        Mail: 
+        %b= @user.email
 
-- if user_signed_in?
-    %h3= t(:your_account)
+- if user_signed_in? && @user == current_user
+    - if current_user && current_user.location[:lat].present? && current_user.location[:lng].present?
+        %p
+            = t(:your_location)+": "
+            %span{:id => 'user-location-token'}= current_user.location_token
+        %div{:id => 'users-location-map'}= t(:loading)
+    %h3{:style => 'margin-top: 60px;'}= t(:your_account)
     %ul
         %li
             - if current_user == @user || current_user.role?(:admin  )
                 = link_to t(:edit_profile), edit_registration_path(@user)
-    %h3= t(:your_location)
-    %ul
-        %li
-            - if current_user && current_user.location[:lat].present? && current_user.location[:lng].present?
-                %span{:id => 'user-location-token'}= current_user.location_token
-                %br
-                %div{:id => 'users-location-map'}= t(:loading)
-            - else
-                = t(:no_location_given)
+            
                 
     %strong= t(:invite_user)
     %ul
         %li
             = link_to t(:send_invitaiton), new_user_invitation_path(current_user),
                 :id => 'invitation_link'
+- else
+    - if @user.location[:lat].present? && @user.location[:lng].present?
+        = t(:location)+": "
+        %span{:id => 'user-location-token'}= @user.location_token
+        %br
+        %div{:id => 'users-location-map'}= t(:loading)
+        
+- if current_user.role?(:maintainer)
+    %h3{:style=>'clear: both'} Details
+    %ul
+        = render 'user_detail', :user => @user
 

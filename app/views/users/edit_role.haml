@@ -3,6 +3,7 @@
 - content_for :resource_actions do
     = link_to t(:list_registrations), registrations_path, :class => 'button back'
 
+%div{:style => 'clear: right'}
 
 - if @user.avatar
     = image_tag @user.avatar_url(:thumb), :style=>'float: right;'

@@ -6,6 +6,16 @@
   float: right;
   margin: 0px;
   padding: 0px;
+  
+  img {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    display: block;
+    float: right;
+    margin: 0px;
+    padding: 0px;    
+  }
 }
 
 .user-location {

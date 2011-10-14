@@ -1,3 +1,8 @@
+- unless user.location_token.blank?
+    .user-location{:id => user.id.to_s}
+        = user.location_token
+        = javascript_tag "loadUserLocation('#{user.id.to_s}','#{user.location_token}');"
+
 = link_to_function( image_tag( w3c_url(user.avatar_url(:thumb) )), "image_popup('#{w3c_url(user.avatar_url(:popup))}')")
 
 %div{ :style => 'display: block-inline; margin-left: 140px;'}

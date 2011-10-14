@@ -1,4 +1,6 @@
 - title t('userlist.title'),false 
+- content_for :head do
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false"
 = javascript 'endless_page'
 
 .pagination_box= will_paginate @users

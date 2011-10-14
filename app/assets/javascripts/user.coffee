@@ -78,7 +78,7 @@ $(document).ready ->
   
 searchLocation = ->
   search_term = $('#address').val()
-  if search_term.length < 10
+  if search_term.length < 3
     # don't start searching if term is short
   else
     $('#user_location_token').val(search_term)
@@ -86,7 +86,9 @@ searchLocation = ->
       if status == google.maps.GeocoderStatus.OK
         if results.length > 0
           map.setCenter(results[0].geometry.location)
-          map.setZoom( 16 - results.length )
+          _z = 16 - results.length
+          _z = 0 if _z < 0
+          map.setZoom( _z )
           marker = new google.maps.Marker({
               map: map,
               position: results[0].geometry.location

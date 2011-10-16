@@ -5,9 +5,6 @@
 
 <% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
 <div class='clear'></div>
-<% if @user.avatar %>
-  <%= image_tag @user.avatar_url(:thumb), :style=>'float: right;' %>
-<% end %>
 
 <div class='field'>
   <%= label_tag :role, t(:role) %>
@@ -19,7 +16,12 @@
   <%= devise_error_messages! %>
   <div class='field'><%= f.label :name %><%= f.text_field :name %></div>
   <div class='field'><%= f.label :email %><%= f.text_field :email %></div>
-  <div class='field'><%= f.label :avatar,t(:upload_avatar) %><%= f.file_field :avatar %></div>
+  <div class='field'><%= f.label :avatar,t(:upload_avatar) %>
+    <% if @user.avatar %>
+      <%= image_tag @user.avatar_url(:thumb) %>
+    <% end %>
+    <%= f.file_field :avatar %>
+  </div>
   <div class='field'><%= f.label :clear_avatar, t(:or_clear_avatar) %>
     <%= f.check_box :clear_avatar %> <%= t(:clear_avatar)%>
   </div>

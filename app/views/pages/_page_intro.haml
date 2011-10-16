@@ -9,7 +9,7 @@
       = link_button t(:edit), "button tiny", edit_page_path(page)
       = link_to( t(:destroy), page, :class => "button tiny", :confirm => t(:are_you_sure), :method => :delete)
 
-  = sanitize(page.render_intro).html_safe
+  = sanitize(page.render_intro(false)).html_safe
   %p.small
     = t(:num_of_comments, :count => page.comments.count )
     - if user_signed_in? && (count=page.comments.since(current_user_field(:last_sign_in_at,0)).count) > 0

@@ -158,8 +158,12 @@ class Page
 
   private
   # Render the intro (which is the first paragraph of the body)
-  def content_for_intro
-    render_for_html((t(I18n.locale,:body)||self.body).paragraphs[0])
+  def content_for_intro(interpret=false)
+    if interpret
+      render_for_html((t(I18n.locale,:body)||self.body).paragraphs[0])
+    else
+      (t(I18n.locale,:body)||self.body).paragraphs[0]
+    end
   end
 
   # TODO: Remove duplication!

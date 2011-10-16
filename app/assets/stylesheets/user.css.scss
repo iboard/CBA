@@ -30,3 +30,13 @@
   margin: 0px;
   padding: 0px;
 }
+
+.user-list-user {
+  clear: right;
+  @include button-shape(10px);
+  @include default-box-border;
+  border-color: lighten($color-shadow, 50%);
+  padding: 10px;
+  margin-bottom: 5px;
+}
+

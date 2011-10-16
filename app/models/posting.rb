@@ -44,7 +44,7 @@ class Posting
   scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
 
 
-  # Render the body with RedCloth
+  # Render the body
   def render_body(view_context=nil)
     @view_context ||= view_context
     if @view_context
@@ -68,8 +68,12 @@ class Posting
   private ################################################## private ####
 
   # Render the intro (which is the first paragraph of the body)
-  def content_for_intro
-    render_for_html(body.paragraphs[0])
+  def content_for_intro(interpret=true)
+    if interpret
+      render_for_html(body.paragraphs[0])
+    else
+      body.paragraphs[0]
+    end
   end
 
   # Send a notification to admins when a new posting was created

@@ -12,7 +12,7 @@
   
 %div#userlist
     - for user in @users
-        %div{ :style=>'clear: right;'}= render user 
+        = render user 
         %p{ :style=>'clear: left;' }
 
     = render :partial => '/home/load_more', :locals => { :resources => @users, :path => registrations_path }

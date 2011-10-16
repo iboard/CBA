@@ -3,12 +3,15 @@
   
 - title t("userlist.user_profile", :name => @user.name )
 
-- if @user.avatar
-    %div{ :style => 'float: right;' }=  link_to_function(     |
-       image_tag( w3c_url(@user.avatar_url(:thumb)), :class => "img-with-shadow" ),        |
-       "image_popup('#{w3c_url(@user.avatar_url(:popup))}')") |
-
 %div{:style => 'clear: right'}
+
+    %div{:id => 'users-location-map'}
+
+    - if @user.avatar
+        %div=  link_to_function(     |
+           image_tag( w3c_url(@user.avatar_url(:thumb)), :class => "img-with-shadow" ),        |
+           "image_popup('#{w3c_url(@user.avatar_url(:popup))}')") |
+
     %p 
         User: 
         %b= @user.name
@@ -21,7 +24,6 @@
         %p
             = t(:your_location)+": "
             %span{:id => 'user-location-token'}= current_user.location_token
-        %div{:id => 'users-location-map'}= t(:loading)
     %h3{:style => 'margin-top: 60px;'}= t(:your_account)
     %ul
         %li
@@ -39,7 +41,6 @@
         = t(:location)+": "
         %span{:id => 'user-location-token'}= @user.location_token
         %br
-        %div{:id => 'users-location-map'}= t(:loading)
         
 - if current_user.role?(:maintainer)
     %h3{:style=>'clear: both'} Details

@@ -88,15 +88,15 @@ module ContentItem
           short_title_for_url.txt_to_url
         end
 
-        def render_intro
-          content_for_intro
+        def render_intro(interpret=true)
+          content_for_intro(interpret)
         end
 
         def render_for_html(txt)
           self.interpreter ||= :markdown
           case self.interpreter.to_sym
           when :markdown
-            markdown(txt)
+            markdown(txt).html_safe
           when :textile
             RedCloth.new(txt).to_html
           when :simple_text
@@ -121,7 +121,7 @@ module ContentItem
             else
               "ARGUMENT ERROR: " + args.inspect
             end
-          }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
+          }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>').html_safe
         end
 
         private

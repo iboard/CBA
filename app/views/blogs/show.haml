@@ -15,7 +15,7 @@
     
     #postings{ style: 'clear: right;'}
       - @postings.each do |posting|
-        = render :partial => '/blogs/posting_header', :locals => { :posting => posting, :blog => @blog }
+        = render :partial => '/postings/posting', :locals => { :posting => posting, :blog => @blog }
       = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
     
     - render_pagination_box @postings

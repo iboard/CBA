@@ -62,7 +62,7 @@ class PageComponent
    if block_given?
      rc += yield(self)
    else
-     rc += "<p>[EDIT_COMPONENT_LINK:#{self.id.to_s}]</p>"
+     rc += "<p>[EDIT_COMPONENT_LINK:#{self.id.to_s}]</p>".html_safe
    end
   end
 

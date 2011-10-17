@@ -108,14 +108,14 @@ class Page
   has_and_belongs_to_many :blogs, dependent: :nullify
 
   # Render the body with RedCloth or Discount
-  def render_body(view_context=nil)
+  def render_body(view_context=nil,interpret=false)
     @view_context = view_context unless view_context.nil?
     unless self.page_template
       parts = [self.title_and_flags, self.t(I18n.locale,:body),"\nPLUSONE"]
       self.page_components.each do |component|
         parts << [component.render_body(view_context)]
       end
-      rc=self.render_for_html( parts.join("\n") )
+      rc=self.render_for_html( parts.join("\n"))
     else
       rc=render_with_template
     end
@@ -124,7 +124,7 @@ class Page
 
 
   def page_with_edit_component_buttons(view_context, &block )
-    rc = self.render_body(view_context)
+    rc = self.render_body(view_context,false)
     rc.gsub(/\[EDIT_COMPONENT_LINK:(\S+)\]/) { |component_id|
       _component_id = component_id.gsub(/\[EDIT_COMPONENT_LINK:/,'').gsub(/\]$/,'')
       if view_context && view_context.can?(:edit, self)
@@ -179,7 +179,7 @@ class Page
     end
   end
 
-  def render_components
+  def render_components(interpret=true)
     self.page_components.asc(:position).map do |component|
       component.render_body(@view_context)
     end.join("\n")

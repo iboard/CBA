@@ -51,7 +51,7 @@ jQuery ->
 geocoder = null
 map = null
 $(document).ready ->
-  if $('#location-preview')
+  if $('#location-preview').html()
     geocoder = new google.maps.Geocoder();
     pos = $("#user_location_token").val()
     unless pos == ""

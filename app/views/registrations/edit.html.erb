@@ -1,8 +1,4 @@
 <!-- REVIEW: Should this view be splitted up in partials? -->
-<% content_for :head do %>
-  <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false" -%>
-<% end %>
-
 <% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
 <div class='clear'></div>
 

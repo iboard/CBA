@@ -52,4 +52,26 @@ describe "Interpreter" do
     page.should have_link "wonderful body"
   end  
   
+  it "should interpret LOCATION and PLACES tags with google-maps" do
+    @page.body = "A [LOCATION:48.2165,14.2618] and a [PLACE:Technisches Museum, Wien]"
+    @page.save!
+    visit page_path(@page)
+    page.should have_link "48.2165,14.2618"
+    page.should have_link "Technisches Museum, Wien"
+  end
+  
+  it "should open a google-map in overlay", :js => true do 
+    @page.body = "A [LOCATION:48.2165,14.2618] and a [PLACE:Technisches Museum, Wien]"
+    @page.save!
+    visit page_path(@page)
+    click_link "48.2165,14.2618"
+    sleep 1
+    page.find('#label').should have_content "48.2165,14.2618"
+    page.find("#map").should have_content "Google"
+    page.find('#map-container').click_link "close"
+    assert page.find('#overlay').visible? == false, "Overlay sould close"
+  end
+  
+  
+  
 end

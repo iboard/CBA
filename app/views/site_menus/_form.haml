@@ -18,6 +18,9 @@
         = f.label :position
         = f.text_field :position, :size => 3
     .field
+        = f.label :role_needed
+        = f.select :role_needed, User::ROLES.map { |role| [t(role), User::ROLES.index(role)]}, :prompt => t(:select_public)
+    .field
         = f.label :submit, sc(:nbsp)
         = f.submit
 

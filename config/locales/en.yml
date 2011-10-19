@@ -269,3 +269,4 @@ en:
   your_location: 'Your location'
   location_preview: 'Preview'
   resend_confirmation_instructions: 'Resend Confirmation Instructions'
+  select_public: '-- public --'

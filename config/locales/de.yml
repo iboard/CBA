@@ -466,3 +466,4 @@ de:
   your_location: 'Heimatort'
   location_preview: 'Vorschau'
   resend_confirmation_instructions: 'Anmeldeinstruktionen erneut zustellen'
+  select_public: '-- öffentlich --'

@@ -72,6 +72,15 @@ describe "Interpreter" do
     assert page.find('#overlay').visible? == false, "Overlay sould close"
   end
   
+  it "map in overlay should provide a link to google-maps", :js => true do
+    @page.body = "A [LOCATION:48.2165,14.2618] and a [PLACE:Technisches Museum, Wien]"
+    @page.save!
+    visit page_path(@page)
+    click_link "Technisches Museum, Wien"
+    sleep 1
+    page.should have_link "Google maps..."
+  end
+  
   
   
 end

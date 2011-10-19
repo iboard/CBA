@@ -12,7 +12,7 @@ map = null
 overlayContent = null
 initializeOverlay = ->
   overlayContent = "<div id='map-container'><h1 id='label'></h1><div id='map'></div>"+
-                   "<a href='#' onclick='$(\"#overlay\").hide();return false;'>close</a></div>"
+                   "<br/><a href='#' class='button close' onclick='$(\"#overlay\").hide();return false;'>close</a></div>"
   $("#overlay").html( overlayContent ).fadeTo(1.0,500)
   unless geocoder
     geocoder = new google.maps.Geocoder()
@@ -34,6 +34,7 @@ openMapForLocation = (pos) ->
   center_pos = new google.maps.LatLng(lat,lng)
   map.setCenter(center_pos)
   marker = new google.maps.Marker({ map: map, position: center_pos })  
+  insertLinkToGoogleMaps(center_pos)
   
 openMapForPlace = (place) ->
   initializeOverlay()
@@ -48,4 +49,9 @@ openMapForPlace = (place) ->
         marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
-        })  
+        })
+        insertLinkToGoogleMaps(results[0].geometry.location)
+
+insertLinkToGoogleMaps = (position) ->
+  url = "http://maps.google.com/?ll=" + position.lat()+","+position.lng()
+  $('#map-container a').after( "&nbsp;<a href='" + url + "' target='_blank' class='button open'>Google maps...</a>")

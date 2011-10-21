@@ -72,13 +72,17 @@ Cba::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => 'registrations' }
   resources :users, :only => [:show,:destroy] do
-    resources :invitations
+    resources :invitations    
+    resources :user_groups
     member do
       get :crop_avatar
       put :crop_avatar
       get :edit_role
       put :update_role
       get :details
+    end
+    collection do
+      get :autocomplete_ids
     end
   end
 

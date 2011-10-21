@@ -26,6 +26,8 @@
         %li
             - if current_user == @user || current_user.role?(:admin  )
                 = link_to t(:edit_profile), edit_registration_path(@user)
+        %li
+            = link_to t(:your_groups), user_user_groups_path(@user)
             
                 
     %strong= t(:invite_user)

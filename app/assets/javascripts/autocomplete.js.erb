@@ -18,3 +18,14 @@ $(function() {
     tokenValue: 'name'
   });
 });
+
+$(function() {
+  $("#user_group_member_tokens").tokenInput("/users/autocomplete_ids.json", {
+    crossDomain: false,
+    theme: "facebook",
+    prePopulate: $("#user_group_member_tokens").data("pre"),
+    hintText: "Search users",
+    preventDuplicates: true,
+    tokenValue: 'id'
+  });
+});

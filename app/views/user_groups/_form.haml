@@ -1,0 +1,15 @@
+= form_for [@user, @user_group] do |f|
+
+  = errors_for @user_group
+    
+  .field
+    = f.label :name
+    = f.text_field :name
+  
+  .field
+    = f.label :member_tokens
+    = f.text_field :member_tokens, "data-pre" => @user_group.id_and_name.to_json 
+  
+  .field
+    = f.label :submit, sc(:nbsp)
+    = f.submit

@@ -97,7 +97,24 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  def autocomplete_ids
+    redirect_to root_path, alert: t(:access_denied) unless current_user
+    respond_to do |format|
+       format.json { 
+         render :json => User.any_of({ name: /#{params[:q]}/i }, { email: /#{params[:q]}/i })
+                             .only(:id,:name)
+                             .map{ |user| 
+                               [
+                                 :id   => user.id.to_s, 
+                                 :name => user.name + " (#{user.email})"
+                               ]
+                              }
+                             .flatten
+       }
+     end
+  end
+
+private
   def is_in_crop_mode?
     params[:user] &&
     params[:user][:crop_x] && params[:user][:crop_y] &&

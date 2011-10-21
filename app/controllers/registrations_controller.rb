@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
       render_with_scope :edit
     end
   end
-
+  
   private
 
   def build_resource(*args)

@@ -1,0 +1,8 @@
+-title t(:user_groups_of, username: @user.name)
+
+%usergroups
+  - if @user.user_groups.any?
+    = render @user.user_groups
+  - else
+    .nothing-found= t(:no_user_group_found)
+  %p= link_to t(:add_user_group), new_user_user_group_path(@user), :class => 'button add'

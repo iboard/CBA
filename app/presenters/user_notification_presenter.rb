@@ -12,7 +12,7 @@ class UserNotificationPresenter < BasePresenter
   
   def message_with_buttons
     content_tag :div do
-      ContentItem::markdown(user_notification.message)
+      ContentItem::markdown(user_notification.message) +
       buttons
     end
   end

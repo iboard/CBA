@@ -3,7 +3,7 @@ class UserNotificationPresenter < BasePresenter
   presents :user_notification
   
   def head
-    content_tag :h3 do 
+    content_tag :h3, class: "#{user_notification.hidden ? 'marked-read' : 'marked-unread'}" do 
       link_to (user_notification.created_at.to_s(:short)+": "+ 
                user_notification.message.paragraphs.first + " ..."
               ), '#'

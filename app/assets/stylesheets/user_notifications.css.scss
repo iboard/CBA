@@ -20,3 +20,11 @@
  @include user-notification-list;
 }
 
+.marked-read * {
+   @include user-notification-list;
+}
+
+.marked-unread * {
+  @include user-notification-list;
+  background: #A2ADC5;  
+}

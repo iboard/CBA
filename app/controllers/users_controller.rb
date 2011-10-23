@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   end
 
   def notifications
-    @notifications = current_user.user_notifications.hidden
+    @notifications = current_user.user_notifications.unscoped.desc(:created_at)
   end
 
   def details

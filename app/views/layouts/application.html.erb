@@ -103,7 +103,11 @@
         <% end %>
 
         <% if user_signed_in? && current_user.user_notifications.displayed.any? %>
-          <%= render :partial => 'users/notifications', :locals => { :user_notifications => current_user.user_notifications.displayed } %>
+          <% unless params[:controller] == 'user_notifications' || session[:hide_notifications] == true -%>
+            <%= content_tag :div, :id => 'user_notifications' do %>
+              <%= render :partial => 'users/notifications',:locals => {:user_notifications => current_user.user_notifications.displayed } %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
       <div id="container">

@@ -1,27 +1,13 @@
-- unless user.location_token.blank?
-    .user-location{:id => user.id.to_s}
-        = user.location_token
-        = javascript_tag "loadUserLocation('#{user.id.to_s}','#{user.location_token}');"
-
-= link_to_function( image_tag( w3c_url(user.avatar_url(:thumb) )), "image_popup('#{w3c_url(user.avatar_url(:popup))}')")
-
-%div{ :style => 'display: block-inline; margin-left: 140px;'}
-    %p
-        %b= link_to user.name, user
-        - if user == current_user
-            %br= link_button((t(:you)+sc(:nbsp,:pr,:nbsp)+t(:edit)).html_safe,"button edit small", edit_registration_path(user))
-
-    - if user_signed_in? && current_user.role?(:maintainer)
-        %small{ :id=>"user_roles_#{user.name}"}
-            = user.role.to_s.humanize
-            = t(:last_login_at,:time => distance_of_time_in_words(Time.now(),user.last_sign_in_at||Time.at(0)))
-            - if user.authentications.any?
-                = user.authentications.map { |a| image_tag("/images/#{a.provider}_thirtytwo.png",:class => 'omniauth_mini_icons') }.join().html_safe
-        %ul{ :id=>"user_detail_link_#{user.name.underscore}",:style=>'clear: both;' }
-            %li
-                = link_to t("userlist.detail"), details_user_path(user), :class => 'button spark small', :remote => true
-                = link_to t(:edit_role), edit_role_user_path(user), :class => 'button edit small'
-                = link_to t(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete, :class => 'button delete small'
-            %li{ :class=>'user_detail admin', :id => "user_information_#{ user.id.to_s }", :style => 'display: none; margin-top: 20px' }
-
-
+- present user do |presenter|
+  .user
+    = presenter.location
+    = presenter.avatar
+    %h3
+      = link_to user.name, user
+      - if user == current_user
+        %br= link_button((t(:you)+sc(:nbsp,:pr,:nbsp)+t(:edit)).html_safe,"button edit small", edit_registration_path(user))
+    %div
+      = presenter.header
+      = presenter.summary
+      = presenter.admin_buttons
+    .clear

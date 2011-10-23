@@ -8,6 +8,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min
 //= require jsort_sortable
 //= require progress_upload_field
 //= require autocomplete

@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     respond_to do |format|
        format.json { 
          render :json => User.any_of({ name: /#{params[:q]}/i }, { email: /#{params[:q]}/i })
-                             .only(:id,:name)
+                             .only(:id,:name,:email)
                              .map{ |user| 
                                [
                                  :id   => user.id.to_s, 

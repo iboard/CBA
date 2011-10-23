@@ -1,3 +1,18 @@
+.user {
+  clear: both;
+  @include standard-box;
+  padding: 20px;
+  padding-left: 20px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+  
+  .avatar img {
+    margin-top: 0px;
+    @include clipboard-shape(5px);
+    @include clipboard-box-shadow;
+  }
+}
+
 #users-location-map  {
   box-shadow: none;
   -webkit-box-shadow: none;
@@ -12,7 +27,9 @@
   float: right;
   width: 150px;
   height: 150px;
+  margin-top: 20px;
   background: #eee;
+  @include box-shadow;
   img {
     box-shadow: none;
     -webkit-box-shadow: none;

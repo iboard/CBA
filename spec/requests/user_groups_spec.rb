@@ -73,6 +73,7 @@ describe "User groups:" do
     page.should have_content "testmax"
     page.find('a', text: 'Delete').click()
     page.driver.browser.switch_to.alert.accept
+    sleep 1
     page.should have_content "User group successfully deleted"
     page.should have_no_content "Friends"
     page.should have_no_content "testmax"

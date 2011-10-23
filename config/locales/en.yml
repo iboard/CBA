@@ -278,3 +278,5 @@ en:
   user_group_successfully_updated: 'User group successfully updated'
   edit_user_group: 'Edit user group'
   your_groups: 'Your groups'
+  mark_read: 'Mark as read'
+  mark_unread: 'Mark as unread'

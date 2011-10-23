@@ -74,11 +74,17 @@
 
 #site_menus {
   li {
+    @include default-box-border; 
+    @include button-shape(5px);
+    padding: 5px;
+    font-size: 1.2em;
+    display: inline block;
     .site_menu_manage_buttons {
-      display: inline;
+      display: inline block;
       padding-left: 10px;
+      margin-left: 10px;
     }
     margin-top: 5px;
     margin-bottom: 5px;
-  }
+  } 
 }

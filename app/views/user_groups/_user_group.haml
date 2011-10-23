@@ -1,5 +1,8 @@
 %usergroup
-  %h2= user_group.name
-  = link_to t(:delete), user_user_group_path(user_group.user,user_group), method: :delete, confirm: t(:are_you_sure), :class => 'button delete right small'
-  = link_to t(:edit), edit_user_user_group_path(user_group.user,user_group), :class => 'button delete right small'
-  %blockquote= user_group.member_names
+  %blockquote
+    %h2= user_group.name
+    = user_group.member_names
+    %p
+      = link_to t(:edit), edit_user_user_group_path(user_group.user,user_group), :class => 'button delete small'
+      = link_to t(:delete), user_user_group_path(user_group.user,user_group), method: :delete, confirm: t(:are_you_sure), :class => 'button delete small'
+  

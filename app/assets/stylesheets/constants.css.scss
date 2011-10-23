@@ -72,6 +72,14 @@ $form-width: 600px;
   -webkit-border-radius: $radius;
 }
 
+@mixin clipboard-shape($radius) {
+  border-radius: 0 0 $radius $radius;
+  -moz-border-radius: 0 0 $radius $radius;
+  -webkit-border-radius: 0 0 $radius $radius;
+}
+
+
+
 @mixin button-background($color) {
   background: $color;
   border: 1px solid $color-border;
@@ -139,6 +147,10 @@ $form-width: 600px;
 
 @mixin box-shadow {
   box-shadow: 3px 3px 3px $color-shadow;
+}
+
+@mixin clipboard-box-shadow {
+  box-shadow: none
 }
 
 @mixin container-right-box {

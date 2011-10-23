@@ -1,0 +1,22 @@
+@mixin user-notification-list {
+  ul {
+      li {
+      list-style-type: none;
+      padding: 10px;
+      margin-left: -40px;
+      margin-bottom: 10px;
+      @include button-shape(5px);
+      @include default-box-border;    
+    }
+  }
+  
+}
+ 
+#user_notifications {
+ @include user-notification-list; 
+}
+
+.user-notifications {
+ @include user-notification-list;
+}
+

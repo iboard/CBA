@@ -47,7 +47,7 @@ Feature: User Roles
 
   Scenario: Display the user roles mask when I click 'edit user roles'
     Given I am on registrations page
-    And I click on link "Detail" within "#user_detail_link_testmax"
+    And I click on link "Detail"
     And I click on link "Edit role"
     Then I should see "Edit role of user "
     And I should see "testmax"
@@ -75,7 +75,7 @@ Feature: User Roles
 
   Scenario: Admin should be able to cancel any account
     Given I am on registrations page
-    And I click on link "Detail" within "#user_detail_link_testmax"
+    And I click on link "Detail"
     And I click on link "Cancel this account"
     Then I should be on registrations page
     And I should see "User successfully deleted"

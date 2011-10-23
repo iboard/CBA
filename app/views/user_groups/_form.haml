@@ -1,15 +1,20 @@
-= form_for [@user, @user_group] do |f|
+- content_for :resource_actions do
+  = link_to t(:your_groups), user_user_groups_path(@user), :class => 'button back '
 
-  = errors_for @user_group
+%div{:style=>'margin-top: 20px;'}
+  = form_for [@user, @user_group] do |f|
+  
+    = errors_for @user_group
+      
+    .field
+      = f.label :name
+      = f.text_field :name
     
-  .field
-    = f.label :name
-    = f.text_field :name
-  
-  .field
-    = f.label :member_tokens
-    = f.text_field :member_tokens, "data-pre" => @user_group.id_and_name.to_json 
-  
-  .field
-    = f.label :submit, sc(:nbsp)
-    = f.submit
+    .field
+      = f.label :member_tokens
+      = f.text_field :member_tokens, "data-pre" => @user_group.id_and_name.to_json 
+    
+    .field
+      = f.label :submit, sc(:nbsp)
+      = f.submit :class => 'button save'
+      = f.submit :cancel, :class => 'button save'

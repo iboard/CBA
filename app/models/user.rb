@@ -88,7 +88,13 @@ class User
   end
 
   def new_avatar?
-    avatar.updated_at && ((Time::now() - Time::at(self.avatar.updated_at)) < 1.minute)
+    if avatar.updated_at && ((Time::now() - Time::at(self.avatar.updated_at)) < 1.minute)
+      self.use_gravatar = false
+      save
+      true
+    else
+      false
+    end
   end
 
   def admin?

@@ -475,3 +475,5 @@ de:
   user_group_successfully_updated: 'Änderungen wurden gespeichert'
   edit_user_group: 'Benutzergruppe bearbeiten'
   your_groups: 'Deine Gruppen'
+  mark_read: 'Als gelesen markieren'
+  mark_unread: 'Als ungelesen markieren'

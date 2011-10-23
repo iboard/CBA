@@ -2,6 +2,7 @@
 
 %p= t(:you_have_count_notifications, :count => @notifications.count ) 
 
-- if @notifications.any?
-    = render :partial => 'users/notifications', :locals => { :user_notifications => @notifications }
+#user-notification-list
+  - if @notifications.any?
+    = render :partial => 'users/notifications', :locals => {:user_notifications => @notifications}
 

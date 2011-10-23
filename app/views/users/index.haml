@@ -10,7 +10,7 @@
     .tiny
         = t(:registered_users_count, :count => @user_count) 
   
-%div#userlist
+%div#user-list
     - for user in @users
         = render user 
         %p{ :style=>'clear: left;' }

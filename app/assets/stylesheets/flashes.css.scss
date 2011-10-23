@@ -1,0 +1,20 @@
+.alert  {
+  color: #7D1108;
+  padding: 0 .7em;
+}
+
+.alert-label {
+}
+
+#flashes {
+  margin-left:  20px;
+  margin-top:   20px;
+  margin-right: 20px;
+  #flash_notice {
+    padding-left: 20px;
+  }
+  #flash_error,
+  #flash_alert {
+    padding-left: 20px;
+  }
+}

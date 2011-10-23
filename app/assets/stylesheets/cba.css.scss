@@ -323,29 +323,6 @@ li.load_more {
 .language_selector {
 }
 
-#user_notifications {
-  margin-top: 10px;
-  padding: 0px;
-
-  ul {
-    list-style: none;
-    margin-left: 0px;
-    padding-left: 0px;
-    li {
-      border: 1px solid #ddd;
-      -moz-border-radius: 5px 5px 5px 5px;
-      -webkit-border-radius: 5px 5px 5px 5px;
-      background: #F5EC4B;
-      color: black;
-      font-size: 0.8em;
-      margin-top: 5px;
-      margin-top: 10px;
-      margin-left: 5px;
-      padding: 10px;
-    }
-  }
-}
-
 #site-menus-list {
   list-style: none;
 }
@@ -362,6 +339,7 @@ li.load_more {
 /* Load new definitions and overwrite previous ones */
 @import "errors.css.scss";
 @import "banner_and_session.css.scss";
+@import "user_notifications.css.scss";
 @import "menus.css.scss";
 @import "container.css.scss";
 @import "googlesearch.css.scss";
@@ -378,6 +356,8 @@ li.load_more {
 @import "tags.css.scss";
 @import "user.css.scss";
 @import "maps.css.scss";
+@import "flashes.css.scss";
+@import "widgets.css.scss";
 
 .main-frame #container img.without-shadow,
 .main-frame #container img.without_shadow,

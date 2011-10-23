@@ -14,7 +14,11 @@ I highly recommend to use [RVM](https://rvm.beginrescueend.com/)!
 Requirements for CBA:
 
   * A running MongoDB Server
-  * A rvm gemset for Rails Rails 3.1.0
+  * A rvm gemset for Rails Rails 3.1.0/3.1.1
+  
+**This README is a bit outdated**
+
+This README needs to be reviewed. If something will not work as documented here, don't hesitate to contact me at @nickendell or andreas@altendorfer.at
 
 
 ```sh

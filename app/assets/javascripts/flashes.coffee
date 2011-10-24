@@ -12,5 +12,7 @@ $(document).ready ->
       <strong>Alert</strong>: ' + msg_alert + '</p></div>'
   ).addClass('ui-state-error ui-corner-all')
   
-  t1 = setTimeout("$('#flashes').hide(750);",7000)
+  if ($('#flash_alert').html() != '' ||  $('#flash_notice').html() != '')
+    t1 = setTimeout("$('#flash_notice').hide(750);",7000)
+    t2 = setTimeout("$('#flash_alert').hide(750);",7000)
 

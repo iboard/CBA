@@ -46,9 +46,9 @@ class UserPresenter < BasePresenter
   def admin_buttons
     if user_signed_in? && current_user.role?(:maintainer)
       content_tag( :p,
-        link_to( I18n.translate("userlist.detail"), details_user_path(user), :class => 'button spark small', :remote => true) +
-        link_to( I18n.translate(:edit_role), edit_role_user_path(user), :class => 'button edit small') +
-        link_to( I18n.translate(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete, :class => 'button delete small')
+        ui_button( 'details', I18n.translate("userlist.detail"), details_user_path(user), :remote => true) +
+        ui_button( 'edit', I18n.translate(:edit_role), edit_role_user_path(user)) +
+        ui_button( 'cancel', I18n.translate(:cancel_this_account), user_path(user), :confirm => t(:sure?), :method => :delete)
       ) +
       content_tag( :div, 
         :class=>'user_detail admin', 

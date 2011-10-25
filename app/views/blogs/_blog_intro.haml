@@ -6,14 +6,14 @@
 - if blog.cover_picture_exists?
     = render :partial => '/blogs/cover_picture',          |
              :locals => { :blog => blog,                  |
-               :format => :thumb,                         |
-               :style => 'float:right;margin-left: 10px'} |
+             :format => :thumb,                           |
+             :style => 'float:right;margin-left: 10px'}   |
 
 %address{ :style=>'width: 400px; font-style: normal;' }
     %span.item_link_buttons{:id => blog.title.underscore.downcase }
         - if can? :manage, blog
-            = link_button t(:edit), "button edit tiny", edit_blog_path(blog)
-            = link_to t(:destroy), blog,:confirm => t(:are_you_sure),:method => :delete, :class => 'button delete tiny'
+            = ui_button 'edit',  t(:edit), edit_blog_path(blog)
+            = ui_button 'destroy', t(:destroy), blog,:confirm => t(:are_you_sure),:method => :delete
 
 = ContentItem::markdown(blog.synopsis) if blog.synopsis
 

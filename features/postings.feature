@@ -106,11 +106,11 @@ Feature: Postings
     And I click on link "My First Posting"
     And I click on link "Blog 1" within "#posting"
     Then I should be on the blog path of "Blog 1"
-    And I should see "Edit" within "#postings"
-    And I should see "Delete" within "#postings"
+    And page should have "#edit-link"
+    And page should have "#destroy-link"
     And I click on link "My First Posting"
-    And I should see "Edit" within "#posting"
-    And I should see "Delete" within "#posting"
+    And I should see "Edit"
+    And I should see "Delete"
 
   Scenario: A Posting should be commentable
     Given the following posting records for blog "Blog 1" and user "admin"

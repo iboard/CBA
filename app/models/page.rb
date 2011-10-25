@@ -131,9 +131,8 @@ class Page
         component = self.page_components.find(_component_id)
         unless block_given?
           if view_context
-            view_context.link_button(
+            view_context.ui_button( 'edit',
               I18n.translate(:edit),
-              "button edit small",
               view_context.edit_page_page_component_path(self,_component_id),
               :remote => true, :title => I18n.translate(:edit_component)
             )

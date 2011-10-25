@@ -1,8 +1,9 @@
-%p= link_to t(:css_templates), page_templates_path, :class => 'button reference'
+%h3= t(:templates)
+%p= ui_button 'folder-collapsed',  t(:css_templates), page_templates_path
 %p= t(:use_css_templates_for)
-%p= link_to t(:article_templates), templates_pages_path, :class => 'button reference'
+%p= ui_button 'folder-collapsed', t(:article_templates), templates_pages_path
 %p= t(:use_new_article)
 
 - content_for :resource_actions do
-  %p= link_to( t(:new_article_from_template), new_article_pages_path, :class => 'button add')
-  %p= link_to( t(:new_page_template), new_page_template_path, :class => 'button add' )
+  %p= ui_button( 'add', t(:new_article_from_template), new_article_pages_path, :add_class => 'green')
+  %p= ui_button( 'add', t(:new_page_template), new_page_template_path, :add_class => 'green')

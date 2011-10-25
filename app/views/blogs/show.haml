@@ -1,3 +1,7 @@
+- content_for :resource_actions do
+  = ui_button 'back', t(:blog_index), blogs_path
+  = ui_button('add', t(:create_new_posting), new_blog_posting_path(@blog), :add_class =>'green' ) if can? :create, Posting
+  
 - javascript 'endless_page'
 
 %div

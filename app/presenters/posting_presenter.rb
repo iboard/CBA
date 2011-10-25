@@ -10,10 +10,10 @@ class PostingPresenter < BasePresenter
                            :style=>"display: inline", 
                            :onmouseover=>"cancelSideTabTimeouts()" do
           [
-            link_button( I18n.translate(:read), "button read side-tab-button", blog_posting_path(posting.blog,posting)),
-            (can?(:edit, posting) ? link_button( I18n.translate(:edit), "button edit side-tab-button", edit_blog_posting_path(posting.blog,posting)) : nil),
-            (can?(:manage, posting) ? link_to( I18n.translate(:destroy), blog_posting_path(posting.blog,posting), :confirm => I18n.translate(:are_you_sure), :method => :delete, :class => "button delete side-tab-button") : nil)
-          ].compact.join("<br/>").html_safe
+            ui_button('read', "", blog_posting_path(posting.blog,posting), :id => "read-link"),
+            (can?(:edit, posting) ? ui_button( 'edit', "", edit_blog_posting_path(posting.blog,posting),:id=>'edit-link') : nil),
+            (can?(:manage, posting) ? ui_button( 'destroy', "", blog_posting_path(posting.blog,posting), :confirm => I18n.translate(:are_you_sure), :method => :delete, :id =>'destroy-link') : nil)
+          ].compact.join(sc(:nbsp)).html_safe
         end
       end
     end
@@ -59,7 +59,7 @@ class PostingPresenter < BasePresenter
   
   def read_more
     if posting.body.paragraphs.count > 1
-      link_to I18n.translate(:read_more), posting
+      ui_button 'read', I18n.translate(:read_more), posting
     end
   end
 

@@ -185,3 +185,54 @@
     width: 280px;
   }
 }
+
+
+/* jquery ui-buttons */
+
+#resource-actions p {
+  width: 318px;
+}
+
+#resource-actions  a.ui-button {
+  min-width: 308px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+a.ui-button.green {
+  background: #8EBE01;
+  text-shadow: none 0px 0px 0px;
+}
+
+.ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0px;
+}
+
+.ui-button {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  text-align: left;
+}
+
+.button-label {
+  display: inline-block;
+  vertical-align: middle;
+  text-shadow: rgba(white, .8) 1px 1px 1px;
+  font-size: 0.8em;
+  padding-top: 0px;
+  padding-left: 3px;
+  padding-bottom: 2px;
+}
+
+.green .button-label {
+  text-shadow: none;
+}
+
+.ui-form-button {
+  @extend .ui-widget;
+  @extend .ui-button;
+  @extend .ui-state-default;
+  @extend .ui-corner-all;
+}

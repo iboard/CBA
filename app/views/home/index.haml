@@ -3,7 +3,7 @@
 
 - if can?( :create, Posting ) && @blog
     - content_for :resource_actions do
-        %p= link_button( t(:create_new_posting), "button add", new_blog_posting_path(@blog))
+        %p= ui_button('add', t(:create_new_posting), new_blog_posting_path(@blog), :add_class => 'green')
 
 .column-wrapper
 

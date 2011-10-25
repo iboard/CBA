@@ -1,6 +1,6 @@
 .item_link_buttons
     -if can? :manage, page
-        = link_button t(:edit), "button edit small", edit_page_path(page)
+        = ui_button 'edit', t(:edit), edit_page_path(page)
    
 - content_for :resource_actions do   
-    = link_button t(:pages_index), "button back", pages_path
+    = ui_button 'back', t(:pages_index), pages_path

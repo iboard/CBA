@@ -2,7 +2,7 @@
 
 - if can? :create, Blog
   - content_for :resource_actions do
-    %p= link_button( t(:create_new_blog), "button add", new_blog_path)
+    %p= ui_button( 'add', t(:create_new_blog), new_blog_path, :add_class => 'green')
 
 
 %div

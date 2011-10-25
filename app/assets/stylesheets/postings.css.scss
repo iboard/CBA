@@ -1,16 +1,17 @@
 $side-tab-width: $sidebar-width - 15;
-$side-tab-height: 95px;
+$side-tab-height: 38px;
 
 .side-tab {
   padding: 0px;
   padding-top: 5px;
   margin-left: -1 * ($side-tab-width + 21);
-  margin-top: $side-tab-height / 2 - 60;
+  margin-top: $side-tab-height / 2 - 30;
   float: left;
   width: $side-tab-width;
   min-width: $side-tab-width;
   max-width: $side-tab-width;
   height: $side-tab-height;
+  text-align: center;
   
   .comment-links {
     overflow: hidden;

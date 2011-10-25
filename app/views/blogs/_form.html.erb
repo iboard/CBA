@@ -15,8 +15,10 @@
         )
     -%>
     <%= f.file_field :cover_picture %>
-    <%= link_to( t(:delete_picture),  delete_cover_picture_blog_path(blog), :remote => true,
-        :class => "button delete small",
+  </div>
+  <div class='field'>
+    <%= f.label sc(:nbsp) %>
+    <%= ui_button( 'delete', t(:delete_picture),  delete_cover_picture_blog_path(blog), :remote => true,
         :confirm => t(:are_you_sure)) unless blog.new_record? %>
   </div>
 

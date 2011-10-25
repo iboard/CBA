@@ -1,4 +1,10 @@
-$('#user_information_<%= @user.id.to_s -%>').html(insert_close_link("user_information_<%= @user.id.to_s -%>")+'<%=
+$('#user_information_<%= @user.id.to_s -%>').html('<%=
   escape_javascript( render :partial => "user_detail", :locals => {:user => @user} )
--%>').slideDown(500);
+-%>').show().dialog({
+  width: '800px', position: 'center', 
+  closeText: 'Close', 
+  title: '<%= @user.name -%>',
+  dialogClass: 'notice',
+  buttons: { "Ok": function() { $(this).dialog("close"); } } 
+});
 

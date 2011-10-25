@@ -25,13 +25,11 @@ class UserNotificationPresenter < BasePresenter
   
   def buttons
     unless user_notification.hidden
-      link_to( I18n.translate(:mark_read), 
-        hide_notification_path(user_notification.created_at.to_i), 
-        :class => 'button small')
+      ui_button( 'mark-read', I18n.translate(:mark_read), 
+        hide_notification_path(user_notification.created_at.to_i))
     else
-      link_to( I18n.translate(:mark_unread), 
-        show_notification_path(user_notification.created_at.to_i), 
-        :class => 'button small')
+      ui_button( 'mark-unread', I18n.translate(:mark_unread), 
+        show_notification_path(user_notification.created_at.to_i))
     end
   end
 

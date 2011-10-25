@@ -13,9 +13,9 @@
           t(:in_blog, :blog => link_to(@posting.blog.title,@posting.blog) ).html_safe -%>
           <% if can? :manage, @posting %>
             <p class='item_link_buttons'>
-                <%= link_button(t(:edit), "button edit small", edit_blog_posting_path(@posting.blog,@posting)) %>
-                <%= link_to(t(:destroy), blog_posting_path(@posting.blog,@posting),
-                      :confirm => t(:are_you_sure), :method => :delete, :class => "button delete small") %>
+                <%= ui_button('edit', t(:edit), edit_blog_posting_path(@posting.blog,@posting)) %>
+                <%= ui_button('delete', t(:destroy), blog_posting_path(@posting.blog,@posting),
+                      :confirm => t(:are_you_sure), :method => :delete) %>
             </p>
           <% end %>
   </address>
@@ -35,9 +35,7 @@
 
   <p style='clear: right;'>
     <% content_for :resource_actions do %>
-      <%= link_button(
-       t(:back_to_blog, :blog => @posting.blog.short_title),"button back",
-        @posting.blog) %>
+      <%= ui_button( 'back', t(:back_to_blog, :blog => @posting.blog.short_title), @posting.blog) %>
     <% end %>
   </p>
 

@@ -535,3 +535,7 @@ Then /^I should see a valid rss\-feed containing "([^"]*)"$/ do |arg1|
   assert_match( /http:\/\/www.w3.org\/2005\/Atom/, page.html)
   assert_match( /<content type=\"html\">&lt;p&gt;/, page.html)
 end
+
+Then /^page should have "([^"]*)"$/ do |arg1|
+  assert page.has_selector?( arg1 ), "Did not find #{arg1}"
+end

@@ -80,5 +80,51 @@ module LayoutHelper
       end
     }.compact.join(" ").html_safe
   end
+  
+  # render jquery-ui-buttons
+  def ui_button(icon,label_text,url,options={})
+    class_names = 'ui-button ui-widget ui-state-default ui-corner-all'
+    if options[:add_class]
+      class_names += " " + options[:add_class]
+      options.delete(:add_class)
+    end                
+    options.merge!( class:  class_names,
+                    style: 'padding: 5px; padding-top: 2px; padding-bottom: 3px; text-align: left;'   )
+    options.merge!( title: I18n.translate(icon.to_sym)) if label_text.blank?
+    link_to( icon_and_text(label_text,icon), url, options ).html_safe
+  end
+  
+private
+  def icon_and_text(text, icon)
+    rc = ""
+    rc = icon ? content_tag( :span, 
+                 :style => 'display: inline-block; width: 16px; height: 16px;', 
+                 :class => "ui-icon ui-icon-#{map_icon(icon)}") {} : ''
+    rc +=  content_tag(:span, :class => 'button-label') { text }
+    rc.html_safe
+  end
+  
+  def map_icon(shortcut)
+    case shortcut
+    when 'read', 'read-link'
+      'circle-triangle-e'
+    when 'edit'
+      'pencil'
+    when 'destroy', 'delete'
+      'trash'
+    when 'add', 'plus'
+      'circle-plus'
+    when 'back'
+      'circle-arrow-w'
+    when 'mark-read'
+      'mail-open'
+    when 'mark-unread'
+      'mail-closed'
+    when 'details', 'zoom'
+      'zoomin'
+    else
+      shortcut
+    end
+  end
 
 end

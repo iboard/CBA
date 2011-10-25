@@ -5,7 +5,7 @@
     %h3
       = link_to user.name, user
       - if user == current_user
-        %br= link_button((t(:you)+sc(:nbsp,:pr,:nbsp)+t(:edit)).html_safe,"button edit small", edit_registration_path(user))
+        %br= ui_button('edit', (t(:you)+sc(:nbsp,:pr,:nbsp)+t(:edit)).html_safe, edit_registration_path(user))
     %div
       = presenter.header
       = presenter.summary

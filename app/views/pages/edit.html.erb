@@ -3,6 +3,6 @@
 <%= render :partial => 'form', :locals => { :page => @page } %>
 
 <% content_for :resource_actions do %>
-  <%= link_button t(:show),"button read", @page %>
-  <%= link_button t(:listing_pages),'button back', pages_path %>
+  <%= ui_button 'read', t(:show), @page %>
+  <%= ui_button 'back', t(:listing_pages), pages_path %>
 <% end %>

@@ -6,8 +6,8 @@
   %p
     = ui_button('read', t(:read), "/p/#{page.link_to_title}")
     - if can? :manage, page
-      = ui_button('edit', t(:edit), edit_page_path(page))
-      = ui_button('destroy', t(:destroy), page, :confirm => t(:are_you_sure), :method => :delete)
+      = ui_button('edit', '', edit_page_path(page), :title => t(:edit))
+      = ui_button('destroy','', page, :confirm => t(:are_you_sure), :method => :delete, :title =>  t(:destroy))
 
   = sanitize(page.render_intro(true)).html_safe
   %p.small

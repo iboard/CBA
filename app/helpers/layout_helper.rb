@@ -107,13 +107,13 @@ private
   def map_icon(shortcut)
     case shortcut
     when 'read', 'read-link'
-      'circle-triangle-e'
+      'newwin'
     when 'edit'
       'pencil'
     when 'destroy', 'delete'
       'trash'
     when 'add', 'plus'
-      'circle-plus'
+      'plusthick'
     when 'back'
       'circle-arrow-w'
     when 'mark-read'

@@ -25,6 +25,9 @@ class Ability
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
+        can [:manage], UserNotification do |notification|
+          notification.user == user
+        end
 
         # Users with role
         if user.role?(:guest)

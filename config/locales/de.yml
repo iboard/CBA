@@ -363,6 +363,7 @@ de:
   notification_successfully_hidden: 'Die Nachricht wird nun verborgen. Unter <a href=/notifications>Benachrichtigungen</a> werden alle Nachrichten angezeigt.'
   user_notifications: 'Systemnachrichten'
   notification_successfully_shown: 'Die Nachricht wird wieder angezeigt'
+  notification_successfully_deleted: 'Die Nachricht wurde gelöscht'
   show_again: 'Wieder anzeigen'
   notifications: Nachrichten
   you_have_count_notifications:

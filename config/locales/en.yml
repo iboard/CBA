@@ -166,6 +166,7 @@ en:
   hide: hide
   notification_successfully_hidden: 'Notification hidden. Visit <a href=/notifications>notifications</a> to show hidden notifications again'
   notification_successfully_shown: 'Notification not hidden anymore.'
+  notification_successfully_deleted: 'Notification successfully deleted'
   user_notifications: System notifications
   show_again: display again
   notifications: 'Notifications'

@@ -1,6 +1,6 @@
 class UserNotificationsController < ApplicationController
 
-  load_and_authorize_resource
+  load_and_authorize_resource  except: [:destroy]
   
   def new
     @user_notification = current_user.user_notifications.build()
@@ -12,6 +12,15 @@ class UserNotificationsController < ApplicationController
     else
       render :new
     end
+  end
+  
+  def destroy
+    @user = User.find(params[:user_id])
+    @user_notification = @user.user_notifications.find(params[:id])
+    authorize! :manage, @user_notification
+    @user_notification.delete
+    @user.save
+    redirect_to notifications_path, notice: t(:notification_successfully_deleted)
   end
   
   def emails

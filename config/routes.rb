@@ -74,6 +74,7 @@ Cba::Application.routes.draw do
   resources :users, :only => [:show,:destroy] do
     resources :invitations    
     resources :user_groups
+    resources :user_notifications
     member do
       get :crop_avatar
       put :crop_avatar

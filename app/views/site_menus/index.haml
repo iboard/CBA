@@ -2,7 +2,7 @@
 
 - content_for :resource_actions do
     %div{:style => 'margin-right: 15px;'}
-        = link_to t(:add_new_menu), new_site_menu_path, :class => 'button add'
+        = ui_button 'add', t(:add_new_menu), new_site_menu_path, :add_class => 'green'
   
 - jsort(@site_menus,'site_menu',"/site_menus/sort_menus") do |item|
     = render item

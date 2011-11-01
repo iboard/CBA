@@ -1,0 +1,6 @@
+This is a file to upload as an attachment to postings and pages.
+Once the file got uploaded you should test to see this content
+after downloading it again.
+
+  ... music is the best. Frank Zappa.
+  

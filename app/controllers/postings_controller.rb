@@ -7,12 +7,14 @@ class PostingsController < ApplicationController
   load_and_authorize_resource :blog,         except: [:tags]
   load_and_authorize_resource :posting,      except: [:tags]
 
+
+
   def index
   end
-  
+
   def tags
     respond_to do |format|
-      format.json { 
+      format.json {
         render :json => Posting.tags.reject{|t| t !~ /#{params[:q]}/i}
                         .map{|tag| [:id =>tag, :name => tag]}.flatten
       }
@@ -39,6 +41,9 @@ class PostingsController < ApplicationController
 
   def update
     if @posting.update_attributes(params[:posting])
+      @posting.attachments.each do |att|
+        att.save!
+      end
       redirect_to @blog, :notice => t(:posting_successfully_updated)
     else
       render :edit
@@ -63,12 +68,12 @@ class PostingsController < ApplicationController
       params[:blog_id] = @blog.to_param
     end
   end
-  
+
   # For update and destroy we want to include drafts, so change the default_scope
   def unscope_drafts_for_authors
     if current_role?(:author) && session[:draft_mode] && session[:draft_mode] == true
       Posting.default_scope()
     end
   end
-  
+
 end

@@ -4,7 +4,7 @@
 
   %h1= link_to page.title_and_flags, page
   %p
-    = ui_button('read', t(:read), "/p/#{page.link_to_title}")
+    = ui_button('read', '', "/p/#{page.link_to_title}")
     - if can? :manage, page
       = ui_button('edit', '', edit_page_path(page), :title => t(:edit))
       = ui_button('destroy','', page, :confirm => t(:are_you_sure), :method => :delete, :title =>  t(:destroy))

@@ -60,12 +60,12 @@ module ApplicationHelper
     fields  = f.fields_for(association,new_object, :child_index=>"new_#{association}") do |builder|
       render(association.to_s.pluralize+"/"+association.to_s.singularize + "_fields", :f => builder)
     end
-    link_to_function(name,"add_fields(this,\"#{association}\", \"#{escape_javascript(fields)}\")", :class => 'button add small')
+    ui_link_to_function('add',name,"add_fields(this,\"#{association}\", \"#{escape_javascript(fields)}\")")
   end
 
   # Remove an attached file
   def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + "&nbsp;".html_safe + link_to_function(name,"remove_fields(this)", :class => "button delete small")
+    f.hidden_field(:_destroy) + "&nbsp;".html_safe + ui_link_to_function('delete',name,"remove_fields(this)")
   end
 
   # Check if paginate is on last page

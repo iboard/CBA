@@ -23,11 +23,21 @@ $field-width: $form-width / 3 * 2;
       width: 100px;
     }
     
+    #attachments {
+      blockquote {
+          margin-left: 200px;
+          width: 380px;
+      }
+      h3 {
+        display: inline;
+      }
+    }
     
     .field {
       #attachments {
         margin-left: $label-width;
         display: block;
+        
         
         input[type="file"] {
           width: $field-width - 80px;

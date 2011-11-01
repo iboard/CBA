@@ -7,8 +7,8 @@ class Attachment
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
-  cache
-
+  
+  
   has_mongoid_attached_file :file,
                             :styles => lambda { |attachment|
                               if attachment.instance_read(:content_type) =~ /image/
@@ -28,6 +28,7 @@ class Attachment
     :less_than=>CONSTANTS['max_size_of_attachments_in_mb'].to_i.megabytes,
     :if => Proc.new { |uploaded| !uploaded.file_file_name.blank? }
 
-  embedded_in :content_item, :inverse_of => :attachments
-
+  
+  embedded_in :content_item, :inverse_of => :attachments, :polymorphic => true
+    
 end

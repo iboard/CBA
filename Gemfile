@@ -26,7 +26,8 @@ gem "cancan"
 gem "omniauth", "0.2.6"
 
 # Bundle gem needed for paperclip and attachments
-gem "mongoid-paperclip", :require => "mongoid_paperclip"
+# gem "paperclip" dependency of mongoid-paperclip
+gem "mongoid-paperclip", :require => 'mongoid_paperclip'
 
 # MongoID Extensions and extras
 gem 'mongoid-tree', :require => 'mongoid/tree'

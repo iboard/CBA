@@ -83,6 +83,19 @@ module LayoutHelper
   
   # render jquery-ui-buttons
   def ui_button(icon,label_text,url,options={})
+    setup_button(icon,label_text,options)
+    link_to( icon_and_text(label_text,icon), url, options ).html_safe
+  end
+
+  # render button for link_to_function
+  def ui_link_to_function(icon,label_text,function_call,options={})
+    setup_button(icon,label_text,options)
+    link_to_function(icon_and_text(label_text,icon),function_call,options).html_safe
+  end
+
+private
+
+  def setup_button(icon,label_text,options)
     class_names = 'ui-button ui-widget ui-state-default ui-corner-all'
     if options[:add_class]
       class_names += " " + options[:add_class]
@@ -91,10 +104,8 @@ module LayoutHelper
     options.merge!( class:  class_names,
                     style: 'padding: 5px; padding-top: 2px; padding-bottom: 3px; text-align: left;'   )
     options.merge!( title: I18n.translate(icon.to_sym)) if label_text.blank?
-    link_to( icon_and_text(label_text,icon), url, options ).html_safe
   end
-  
-private
+
   def icon_and_text(text, icon)
     rc = ""
     rc = icon ? content_tag( :span, 
@@ -103,7 +114,7 @@ private
     rc +=  content_tag(:span, :class => 'button-label') { text }
     rc.html_safe
   end
-  
+
   def map_icon(shortcut)
     case shortcut
     when 'read', 'read-link'
@@ -122,9 +133,30 @@ private
       'mail-closed'
     when 'details', 'zoom'
       'zoomin'
+    when 'sort'
+      'arrowthick-2-n-s'
+    when 'table'
+      'calculator'
+    when 'pdf'
+      'document'
+    when 'video'
+      'video'
+    when 'expand'
+      'folder-open'
+    when 'collapse'
+      'folder-collapsed'
+    when 'attachment'
+      'bookmark'
+    when 'todo'
+      'signal-diag'
+    when 'question'
+      'help'
+    when 'assets'
+      'suitcase'
     else
       shortcut
     end
   end
+
 
 end

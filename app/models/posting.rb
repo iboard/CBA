@@ -29,6 +29,8 @@ class Posting
   validates_associated  :attachments
   accepts_nested_attributes_for :attachments,
                                 :allow_destroy => true
+                                
+
 
 
   # Send notifications
@@ -65,7 +67,8 @@ class Posting
     end
   end
 
-  private ################################################## private ####
+
+private ################################################## private ####
 
   # Render the intro (which is the first paragraph of the body)
   def content_for_intro(interpret=true)

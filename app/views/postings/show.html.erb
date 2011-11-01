@@ -1,4 +1,5 @@
 <% title @posting.title %>
+
 <div id='posting'>
   <%= render :partial => '/postings/cover_picture', :locals => {
         :posting => @posting, :format => :medium
@@ -8,9 +9,10 @@
   <address class='<%= @posting.created_at > current_user_field(\
                           :last_sign_in_at,Time::now()-1.hour) ? "new_comment"\
                           : "old_comment" -%>'>
-          <%= t(:user_wrote_a_comment_at, :user => @posting.user.name,
-              :at => distance_of_time_in_words_to_now(@posting.created_at)   ).html_safe+
-          t(:in_blog, :blog => link_to(@posting.blog.title,@posting.blog) ).html_safe -%>
+          <%= I18n.translate(:user_wrote_a_comment_at, :user => @posting.user.name,
+              :at => distance_of_time_in_words_to_now(@posting.created_at)   ).html_safe 
+          -%>
+          <%= I18n.translate(:in_blog, :blog => link_to(@posting.blog.attributes['title'],@posting.blog) ).html_safe -%>
           <% if can? :manage, @posting %>
             <p class='item_link_buttons'>
                 <%= ui_button('edit', t(:edit), edit_blog_posting_path(@posting.blog,@posting)) %>

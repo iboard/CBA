@@ -27,6 +27,9 @@ config/omniauth_settings.rb
 config/google_analytics.head
 config/google_site_search.html
 config/twitter.*.html
+system/**/*
+system/*
+system
 public/system/**/*
 public/assets
 public/assets/*

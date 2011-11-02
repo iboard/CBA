@@ -15,7 +15,7 @@ describe "Attachments for postings, pages, content_items:" do
     #user = User.first
     #log_in_as "admin@iboard.cc", "thisisnotsecret"
     #put( "/blogs/#{@blog.id.to_s}/postings/#{@posting.id.to_s}",
-    #  "attachment_attributes][0][file]" =>  
+    #  "attachment_attributes[0][file]" =>  
     #  fixture_file_upload("#{Rails.root}/spec/fixtures/FileUploadText.txt", "text/plain") )
     #visit blog_posting_path(@blog,@posting)
     #click_link "Edit"

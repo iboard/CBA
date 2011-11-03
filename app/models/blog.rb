@@ -14,14 +14,12 @@ class Blog
   field :allow_public_comments, :type => Boolean, :default => true
   field :synopsis
 
-
-
   # REVIEW: Why postings are referenced and not embedded?
   references_many :postings, :dependent => :delete
   validates_associated :postings
 
   has_and_belongs_to_many :pages, :dependent => :nullify # This pages will be displayed in blog:show
-
+  
   # page_tokens are page::object_ids of the pages which should be
   # displayed on the sidebar of this blog.
   def page_tokens=(tokens)
@@ -48,7 +46,7 @@ class Blog
     return self.postings unless options
     self.postings.unscoped.where( options )
   end
-
+  
   # find pages with filter
   # @param [Hash] options a filter to find pages of this blog e.g. '{ is_draft: true }'
   # @return [Criteria] Criteria on self.pages.where( _options_ )

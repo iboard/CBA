@@ -8,14 +8,18 @@ describe "Blog" do
     @blog  = Blog.create(title: 'News', is_draft: false, is_template: false)
   end
       
-  it "should render links with markup" do
+  it "should render links with markup", :js => true do
     @blog.postings.delete_all
     posting = @blog.postings.create(
                       title: 'My first posting', 
                       body: 'Lorem ipsum [CBA Blog](http://cba.iboard.cc) dolorem', 
                       user_id:  User.first.id,
                       is_draft: false)
-    visit blog_path(@blog.id.to_s)
+    posting.save!
+    @blog.save!
+    puts "POSTING-> #{@blog.postings.public.all.count}"
+    visit blog_path(@blog)
+    sleep(4)
     page.should have_link('CBA Blog')
   end
 

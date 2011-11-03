@@ -30,5 +30,19 @@ describe "Postings should provide some helper methods" do
       assert (0..8).to_a.include?(weight), "Tag weight should be an integer between 0~8 but is #{weight}"
     end
   end
+  
+  it "should be visible for addressee only" do
+    recipient_1 = User.where(name: 'testmax').first
+    recipient_2 = User.where(name: 'Moderator').first
+    no_recipient = User.where(name: 'maintainer').first
+    @posting = @blog.postings.create(
+      title: 'For testmax only', body: 'Lorem', :user_id => User.first.id,
+      recipient_ids: [recipient_1.id,recipient_2.id]
+    )
+    assert @posting.has_recipient?(recipient_1), "testmax should be a recipient of this posting"
+    assert @posting.has_recipient?(recipient_2), "moderator should be a recipient of this posting"
+    assert !@posting.has_recipient?(no_recipient), "maintainer should not be a recipient of this posting"
+  end
+  
 
 end

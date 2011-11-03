@@ -8,7 +8,13 @@ class HomeController < ApplicationController
   def index
     @blog = Blog.where(:title => t(:news)).first
     if @blog
-      @postings = @blog.postings.excludes(is_draft: true).desc(:created_at).paginate(
+      @postings = Posting.desc(:created_at).excludes(is_draft: true)
+      unless current_user
+        @postings = @postings.public
+      else
+        @postings = @postings.addressed_to(current_user.id)
+      end
+      @postings = @postings.paginate(
         :page => params[:page],
         :per_page => CONSTANTS['paginate_postings_per_page'].to_i
       )

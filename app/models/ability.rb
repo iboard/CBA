@@ -25,13 +25,18 @@ class Ability
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
+        
         can [:manage], UserNotification do |notification|
           notification.user == user
+        end
+        
+        can :read, Posting do |posting|
+          posting.is_draft != true && posting.recipient_ids.include?(user.id)
         end
 
         # Users with role
         if user.role?(:guest)
-          can :read, [Page, Blog, Posting] do |resource|
+          can :read, [Page, Blog] do |resource|
             if resource.respond_to? :is_draft
               resource.is_draft != true
             else
@@ -57,7 +62,12 @@ class Ability
       end
 
       # Anybody
-      can :read, [Page, Blog, Posting] do |resource|
+      can :read, Posting do |posting|
+        posting.is_draft != true && posting.recipient_ids.empty?
+      end
+
+      
+      can :read, [Page, Blog] do |resource|
         if resource.respond_to? :is_draft
           resource.is_draft != true
         else

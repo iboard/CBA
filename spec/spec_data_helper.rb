@@ -91,10 +91,10 @@ module SpecDataHelper
   def create_posting_for(email,attributes={})
     user = User.where( :email => email).first
     attributes.merge! :user_id => user.id
-    blog = Blog.first || Blog.create!(:title => 'News')
+    blog = Blog.first || Blog.create!(title: 'News', is_draft: false)
     posting = blog.postings.create(attributes)
     unless posting.valid?
-      puts "\n#  New Posting has errors #{posting.errors.inspect}\n"
+      assert false, "#  New Posting has errors #{posting.errors.inspect}\n"
     end
     posting.save!
     blog.save!

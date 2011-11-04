@@ -25,6 +25,11 @@ class Blog
                                 {:user_role.lte => role},
                                 {:user_role => nil } 
                               )}
+                              
+  scope :public, any_of( 
+                   {:user_role => 0},
+                   {:user_role => nil} 
+                 )
   
   
   # page_tokens are page::object_ids of the pages which should be

@@ -6,9 +6,9 @@ class HomeController < ApplicationController
 
   # Display the top pages on the home-page
   def index
-    @blog = Blog.where(:title => t(:news)).first
+    @blog = Blog.public.where(:title => t(:news) ).first
     if @blog
-      @postings = Posting.desc(:created_at).excludes(is_draft: true)
+      @postings = @blog.postings.desc(:created_at).excludes(is_draft: true)
       unless current_user
         @postings = @postings.public
       else
@@ -33,7 +33,7 @@ class HomeController < ApplicationController
   def rss_feed
     @feed_items = []
 
-    Blog.all.each do |blog|
+    Blog.public.each do |blog|
       blog.postings.rss_items.desc(:updated_at).each do |posting|
         @feed_items << FeedItem.new(posting.title, posting.body, posting.updated_at, posting_url(posting), posting)
         posting.comments.each do |comment|

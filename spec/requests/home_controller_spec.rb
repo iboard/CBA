@@ -98,6 +98,7 @@ describe "HomeController:" do
       it "should not list private postings for tag PrivPost" do
         visit tag_path('PrivPost')
         page.should have_no_content "A Private Posting"
+      end
     end
   end
 

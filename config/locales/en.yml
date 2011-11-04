@@ -281,3 +281,5 @@ en:
   your_groups: 'Your groups'
   mark_read: 'Mark as read'
   mark_unread: 'Mark as unread'
+  necessary_role: 'Necessary user role'
+  document_not_found_or_authorized: 'Document not found or access restricted'

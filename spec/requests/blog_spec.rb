@@ -17,7 +17,6 @@ describe "Blog" do
                       is_draft: false)
     posting.save!
     @blog.save!
-    puts "POSTING-> #{@blog.postings.public.all.count}"
     visit blog_path(@blog)
     sleep(4)
     page.should have_link('CBA Blog')
@@ -35,6 +34,18 @@ describe "Blog" do
     click_link "My first posting"
     page.should have_content "Second Paragraph"
   end
+  
+  it "should be hidden if user-role doesn't match" do
+    restricted_blog = Blog.create(title: 'Restricted', is_draft: false, is_template: false, user_role: 1)
+    posting = restricted_blog.postings.create(
+                      title: 'My secret posting', 
+                      body: 'not for the public', 
+                      user_id:  User.first.id,
+                      is_draft: false)
+    visit blog_path(restricted_blog)
+    page.should have_content "404 - Content not found"
+  end
+  
 
 
 end

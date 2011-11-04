@@ -478,3 +478,5 @@ de:
   your_groups: 'Deine Gruppen'
   mark_read: 'Als gelesen markieren'
   mark_unread: 'Als ungelesen markieren'
+  necessary_role: 'Notwendige Benutzergruppe'
+  document_not_found_or_authorized: 'Dokument wurde nicht gefunden oder ist geschützt'

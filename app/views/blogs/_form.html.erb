@@ -23,6 +23,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :user_role, t(:necessary_role) %>
+    <%= f.select :user_role, options_for_user_role %>
+  </div>
+
+  <div class="field">
     <%= f.label :allow_comments %>
     <%= f.check_box :allow_comments %><%= t(:allow_comments) %>
   </div>

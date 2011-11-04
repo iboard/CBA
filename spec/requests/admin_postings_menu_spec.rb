@@ -10,8 +10,6 @@ describe "Test postings / homepage as an admin" do
         :title => 'My first posting',
         :body  => 'This is my very first posting',
         :is_draft => false)
-      puts "POSTING - #{posting.inspect}"  
-      puts "BLOG    - #{posting.blog.inspect}"
       posting.save!
       log_in_as "admin@iboard.cc", 'thisisnotsecret'
       visit root_path

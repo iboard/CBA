@@ -9,8 +9,13 @@
 # 'menu_order asc'. This pages will be displayed as a 'main-menu'
 # (see views/home/menu/)
 
+class Error404 < StandardError; end
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  
+  rescue_from Error404, :with => :render_404
+  
 
   # Use a layout-file defined in application.yml
   layout APPLICATION_CONFIG['layout'] ? APPLICATION_CONFIG['layout'].to_s.strip : 'application'  
@@ -23,6 +28,10 @@ class ApplicationController < ActionController::Base
   # == Display a flash if CanCan doesn't allow access
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message
+    if Rails.env == 'test'
+      debug_msg = exception.subject.attributes.map {|k,v| "K=#{k} V=#{v.inspect.upcase}"}.join(", ") 
+      flash[:alert] += "(Action: #{exception.action.inspect}, Subject: #{exception.subject.class.to_s} #{debug_msg})"
+    end
     redirect_to root_url
   end
 
@@ -37,6 +46,7 @@ class ApplicationController < ActionController::Base
   helper_method :twitter_name
   helper_method :twitter_link
   helper_method :current_role?
+  helper_method :current_role
 
 
   def is_current_user? usr
@@ -103,6 +113,12 @@ private
     User::ROLES.index(role.to_sym) <= current_user.roles_mask
   end
   
+  # Return the role of the current_user 
+  def current_role
+    current_user ? (current_user.roles_mask||0) : 0
+  end
+    
+  
   def draft_mode
     return true if session[:draft_mode] && session[:draft_mode] == true
     false
@@ -124,6 +140,14 @@ private
   def present(object, klass=nil)
     klass ||= "#{object.class}Presenter".constantize
     klass.new(view_context, object)
+  end
+  
+  def render_404  
+    respond_to do |format|  
+      format.html { render :file => "#{Rails.root}/public/404.html", :status => '404 Not Found' }  
+      format.xml  { render :nothing => true, :status => '404 Not Found' }  
+    end  
+    true  
   end
 
 end

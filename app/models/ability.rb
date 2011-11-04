@@ -30,18 +30,17 @@ class Ability
           notification.user == user
         end
         
-        can :read, Posting do |posting|
-          posting.is_draft != true && posting.recipient_ids.include?(user.id)
-        end
-
         # Users with role
         if user.role?(:guest)
           can :read, [Page, Blog] do |resource|
-            if resource.respond_to? :is_draft
+            rc = if resource.respond_to? :is_draft
               resource.is_draft != true
             else
               true
             end
+            authority = resource.is_a?(Blog) ? resource : resource.blog 
+            rc = false if authority.user_role && authority.user_role > user.role_mask
+            rc
           end
           can :create, Comment
         end
@@ -63,10 +62,8 @@ class Ability
 
       # Anybody
       can :read, Posting do |posting|
-        posting.is_draft != true && posting.recipient_ids.empty?
+        posting.is_draft != true && posting.recipient_ids.empty? && posting.blog.public?
       end
-
-      
       can :read, [Page, Blog] do |resource|
         if resource.respond_to? :is_draft
           resource.is_draft != true

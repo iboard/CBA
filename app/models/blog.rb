@@ -13,12 +13,19 @@ class Blog
   field :allow_comments,        :type => Boolean, :default => true
   field :allow_public_comments, :type => Boolean, :default => true
   field :synopsis
+  field :user_role,             :type => Integer, :default => 0
 
   # REVIEW: Why postings are referenced and not embedded?
   references_many :postings, :dependent => :delete
   validates_associated :postings
 
   has_and_belongs_to_many :pages, :dependent => :nullify # This pages will be displayed in blog:show
+  
+  scope :for_role, ->(role) { any_of( 
+                                {:user_role.lte => role},
+                                {:user_role => nil } 
+                              )}
+  
   
   # page_tokens are page::object_ids of the pages which should be
   # displayed on the sidebar of this blog.
@@ -54,8 +61,13 @@ class Blog
     return self.pages unless options
     self.pages.where( options )
   end
+  
+  # @return [Boolean] true if user_role is not defined or eql 0
+  def public?
+    self.user_role == nil || self.user_role == 0
+  end  
 
-  private
+private
   # ContentItems need to override the abstract method but a Blog didn't
   def content_for_intro
     # TODO: Intro should link to a Page if one is referenced.

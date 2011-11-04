@@ -70,7 +70,8 @@ class HomeController < ApplicationController
   
   # GET /tag/:tag
   def tags
-    @postings = Posting.tagged_with(params[:tag]).order([:created_at, :desc])
+    blog_ids = Blog.for_role(current_role).only(:id).map(&:id)
+    @postings ||= Posting.any_in( blog_id: blog_ids).tagged_with(params[:tag]).order([:created_at, :desc])
   end
 
 end

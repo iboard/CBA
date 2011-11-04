@@ -74,8 +74,10 @@ module LayoutHelper
   def tag_cloud
     ContentItem::normalized_tags_with_weight(Posting).map { |tag,weight|
       unless tag.blank?
-        content_tag :span, :class => "tag-weight-#{weight.to_s.gsub('.','-')}" do
-          link_to( "#{tag}", tags_path(tag))
+        if accessible_postings(tag,current_role).any?
+          content_tag :span, :class => "tag-weight-#{weight.to_s.gsub('.','-')}" do
+            link_to( "#{tag}", tags_path(tag))
+          end
         end
       end
     }.compact.join(" ").html_safe
@@ -158,5 +160,9 @@ private
     end
   end
 
+  def accessible_postings(tag,role)
+    blog_ids = Blog.for_role(role).only(:id).map(&:id)
+    Posting.any_in(blog_id: blog_ids).tagged_with(tag)
+  end
 
 end

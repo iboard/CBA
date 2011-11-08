@@ -47,12 +47,10 @@
       </div>
     <% end %>
     <div id='overlay' class="ui-widget-content"></div>
-    <% unless params[:controller].present? && params[:controller] != 'site_menus_controller'%>
-      <div id='scroll-to-top'>
-        <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
-        <span id='scroll-position'></span>
-      </div>
-    <% end %>
+    <div id='scroll-to-top'>
+      <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
+      <span id='scroll-position'></span>
+    </div>
     <div id="banner">
       <%= render :partial => '/layouts/banner' %>
     </div>

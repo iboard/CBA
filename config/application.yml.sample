@@ -1,111 +1,111 @@
 development:
   application:
-    name:              Your Application Name
-    rss_title:         Application Name for RSS-Feeds
-    title_prefix:      'HTML-Title-Prefix:'
+    name:              "<h1>CBA-Development Environment</h1>"
+    rss_title:         "iBoard.cc (DEVELOPMENT)"
+    title_prefix:      'iBoard.cc (dev): '
     stylesheet_screen: application
     stylesheet_print:  application
-    layout:            application
-    copyright:         Your copyright
-    copyright_url:     http://www.your.site
-    meta_description:  'CBA Template Application'
-    registration_from: 'noreply@your.site'
-    admin_notification_address: 'admin@your.domain'
-    registration_from: 'test@application.tt'
-    slogan:            'unfuzzy development (env=dev)'
+    layout: application
+    copyright:         Andreas Altendorfer
+    copyright_url:     http://altendorfer.at
+    meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
+    registration_from: 'development+cba@iboard.cc'
+    admin_notification_address: 'andi@iboard.cc'
+    slogan:            '<address>unfuzzy development (env=development)</address>'
     pivotal_tracker_project: 'http://www.pivotaltracker.com/projects/203457'
-    github_project: 'http://github.com/iboard/CBA'
+    github_project:    'http://github.com/iboard/CBA'
     twitter_name: '@Twitter'
-    twitter_link: 'http://twitter.com/nickendell'
+    twitter_link: 'http://twitter.com/nickendell'  
+    google_profile: 'http://www.google.com/profiles/iboard.cc'
+    twitter_profile: 'http://twitter.com/#!/Nickendell'
   constants:
-    max_time_to_edit_new_comments: 2
+    max_time_to_edit_new_comments: 5
     rss_feed_cache_time:           1.minute
     paginate_postings_per_page:    2
+    paginate_users_per_page:       2
     paginate_episodes_per_page:    2
-    num_postings_on_welcome_page:  2
     postings_on_homepage:          6
-    sleep_in_delayed_jobs_worker:  10
-    paginate_users_per_page:       2    
+    num_postings_on_welcome_page:  2
     rating_range:                  (1..5)
     paginate_ratings_per_page:     2
     paginate_blog_entries_per_page: 2
     delay_new_posting_notifications: 9
-    sleep_in_delayed_jobs_worke:   5
+    sleep_in_delayed_jobs_worker:   5
     title_max_length: 30
+    delay_comment_notifications:   0
     max_size_of_attachments_in_mb: 1
+
 test:
   application:
     name:              TESTAPPLICATION
     rss_title:         TESTFEED
     title_prefix:      'iBoard.cc (test): '    
     stylesheet_screen: application
-    stylesheet_print:  application
-    layout:            application
+    stylesheet_print : application
+    layout: application
     copyright:         Andreas Altendorfer
     copyright_url:     http://altendorfer.at
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
-    admin_notification_address: 'admin@your.domain'
-    registration_from: 'test@application.tt'
     admin_notification_address: 'test@application.tt'
     registration_from: 'test@application.tt'
     slogan:            'unfuzzy development (env=test)'
     pivotal_tracker_project: 'http://www.pivotaltracker.com/projects/203457'
     github_project: 'http://github.com/iboard/CBA'
     twitter_name: '@Twitter'
-    twitter_link: 'http://twitter.com/nickendell'    
+    twitter_link: 'http://twitter.com/nickendell'       
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           0
     paginate_postings_per_page:    6
-    paginate_episodes_per_page:    6
-    paginate_users_per_page:       6    
-    num_postings_on_welcome_page:  6
-    sleep_in_delayed_jobs_worker:  1
+    paginate_users_per_page:       6
     postings_on_homepage:          6
+    paginate_episodes_per_page:    6
+    num_postings_on_welcome_page:  6
     rating_range:                  (1..5)
     paginate_ratings_per_page:     20
     paginate_blog_entries_per_page: 20
     delay_new_posting_notifications: 9
-    sleep_in_delayed_jobs_worke:   1
+    sleep_in_delayed_jobs_worker:   1
     title_max_length: 30
-    max_size_of_attachments_in_mb: 1
+    delay_comment_notifications:   1    
+    max_size_of_attachments_in_mb: 1          
 production:
   application:
     name:              iBoard.cc
     rss_title:         'iBoard.cc - Musik, Benzin und Kuchen'
     title_prefix:      'iBoard.cc: '
     stylesheet_screen: application
-    stylesheet_print:  application
-    layout:            application
+    stylesheet_print : application
+    layout: application
     copyright:         Andreas Altendorfer
     copyright_url:     http://altendorfer.at
     meta_description:  'Author: Andreas Altendorfer, iboard.cc, IT-Veteran, Developer, Musik Benzin und Kuchen'
-    registration_from: 'noreply@your.site'
-    admin_notification_address: 'admin@your.domain'
+    admin_notification_address: 'andi@iboard.cc'
     registration_from: 'test@application.tt'
-    slogan:            'unfuzzy development that makes fun'
+    slogan:            'unfuzzy development (env=production)'
     pivotal_tracker_project: 'http://www.pivotaltracker.com/projects/203457'
-    github_project: 'http://github.com/iboard/CBA'
+    github_project:    'http://github.com/iboard/CBA'
     twitter_name: '@Twitter'
     twitter_link: 'http://twitter.com/nickendell'    
   constants:
     max_time_to_edit_new_comments: 15    
     rss_feed_cache_time:           10.minutes
     paginate_postings_per_page:    6
-    paginate_episodes_per_page:    6
     paginate_users_per_page:       6    
-    num_postings_on_welcome_page:  6
+    paginate_episodes_per_page:    6
     postings_on_homepage:          6
-    sleep_in_delayed_jobs_worker:  60
+    num_postings_on_welcome_page:  6
     rating_range:                  (1..5)
     paginate_ratings_per_page:     20
     paginate_blog_entries_per_page: 20
     delay_new_posting_notifications: 900
-    sleep_in_delayed_jobs_worke:   59
-    title_max_length: 30
+    sleep_in_delayed_jobs_worker:  59
+    title_max_length:              30
+    delay_comment_notifications:   1
     max_size_of_attachments_in_mb: 1
     
-deploy:
-  production_server: 'your.server.cc'
-  production_user:   'user_at_server'
-  production_path:   'path/to/Rails.root'
+    
+#deploy:
+#  production_server: 'cba.iboard.cc'
+#  production_user:   'rails'
+#  production_path:   'app/cba'

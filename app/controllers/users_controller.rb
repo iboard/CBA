@@ -113,6 +113,22 @@ class UsersController < ApplicationController
        }
      end
   end
+  
+  def my_group_ids
+    redirect_to root_path, alert: t(:access_denied) unless current_user
+    respond_to do |format|
+       format.json { 
+         render :json => current_user.user_groups
+                             .map{ |group| 
+                               [
+                                 :id   => group.id.to_s, 
+                                 :name => group.name
+                               ]
+                              }
+                             .flatten
+       }
+     end
+  end
 
 private
   def is_in_crop_mode?

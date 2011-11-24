@@ -25,11 +25,12 @@ class Ability
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
-        
+
         can [:manage], UserNotification do |notification|
           notification.user == user
         end
-        
+
+
         # Users with role
         if user.role?(:guest)
           can :read, [Page, Blog] do |resource|
@@ -38,8 +39,8 @@ class Ability
             else
               true
             end
-            authority = resource.is_a?(Blog) ? resource : resource.blog 
-            rc = false if authority.user_role && authority.user_role > user.role_mask
+            authority = resource.is_a?(Blog) ? resource : resource.blog
+            rc = false if authority.user_role && authority.user_role > user.roles_mask
             rc
           end
           can :create, Comment
@@ -62,8 +63,13 @@ class Ability
 
       # Anybody
       can :read, Posting do |posting|
-        posting.is_draft != true && posting.recipient_ids.empty? && posting.blog.public?
+        access = (posting.is_draft != true) && posting.blog.public? && posting.recipient_ids.empty?
+        unless (access == true || user.new_record?)
+          access = posting.recipient_ids.include?(user.id)
+        end
+        access
       end
+      
       can :read, [Page, Blog] do |resource|
         if resource.respond_to? :is_draft
           resource.is_draft != true
@@ -78,7 +84,6 @@ class Ability
       can :manage, Comment do |comment,session_comments|
         unless comment.new_record?
           # give 15mins to edit new comments
-          Rails.logger.info(" COMMENTS #{session_comments.inspect}")
           expire = comment.updated_at+CONSTANTS['max_time_to_edit_new_comments'].to_i.minutes
           begin
             session_comments.detect { |c| c[0].eql?(comment.id.to_s) } &&  (Time.now < expire)

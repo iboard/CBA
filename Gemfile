@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'simplecov', :require => false, :group => :test #, '>= 0.4.0'
 
-gem "rails" #, "~> 3.1.0" # prev was rc8
+gem "rails" #, "3.1.2" #, "~> 3.1.0" # prev was rc8
 
 # Rails 3.1 - Asset Pipeline
 group :assets do

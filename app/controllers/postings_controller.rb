@@ -7,8 +7,6 @@ class PostingsController < ApplicationController
   load_and_authorize_resource :blog,         except: [:tags]
   load_and_authorize_resource :posting,      except: [:tags]
 
-
-
   def index
   end
 
@@ -35,10 +33,7 @@ class PostingsController < ApplicationController
       render :new
     end
   end
-
-  def edit
-  end
-
+  
   def update
     if @posting.update_attributes(params[:posting])
       @posting.attachments.each do |att|

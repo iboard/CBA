@@ -17,6 +17,7 @@ group :assets do
 end
 
 # Bundle gems needed for Mongoid
+gem "mongo", "1.4.0"
 gem "mongoid", "~> 2.3.0" #"2.1.6" #  :path => "/Users/aa/Development/R31/mongoid-1" #"2.1.6"
 gem "bson_ext"  #, "1.1.5"
 

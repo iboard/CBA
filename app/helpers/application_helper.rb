@@ -119,4 +119,17 @@ module ApplicationHelper
     presenter
   end
 
+  def sidebar_partial_exists?
+    ['haml', 'html', 'html.erb'].each do |ext|
+      return true if File::exist?(
+        File::join( Rails.root, "app", "views", controller_name.underscore, "_sidebar_left.#{ext}")
+      )
+    end
+    false
+  end
+  
+  def current_view_sidebar_left_path
+    path = "/#{controller_name.underscore}/sidebar_left"
+  end
+  
 end

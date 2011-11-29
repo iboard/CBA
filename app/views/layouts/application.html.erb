@@ -66,8 +66,11 @@
         </ul>
     </div>
 
-
-    <% if current_root(self) %>
+    <% if sidebar_partial_exists? %>
+      <%= content_tag :div, class: 'submenu_box' do %>
+        <%= render current_view_sidebar_left_path %>
+      <% end %>
+    <% elsif current_root(self) %>
       <div class='submenu_box'>
         <div id='searchbox'>
           <%= render 'search/form' %>

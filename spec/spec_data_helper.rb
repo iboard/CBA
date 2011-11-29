@@ -147,4 +147,28 @@ module SpecDataHelper
     page.save!
     page
   end
+  
+  # Create the first "News-Blog and yield the given block with the new item"
+  # if no block given return the new item
+  def create_news_blog_with_postings(&block)
+    news_blog = Blog.find_or_create_by( title: 'News' )
+    unless block_given?
+      return news_blog
+    end
+    yield(news_blog)
+  end
+  
+  # @params [String] path - the path of the file
+  # @params [String] content - the content for the file
+  # @return [Boolean] true if file was created before otherwise false
+  def create_file_if_not_exists(path, content="")
+    file_exists = File.exists?(path)
+    unless file_exists
+      f = File.open(path,"w")
+      f << content
+      f.close
+      file_exists = true
+    end
+    file_exists
+  end
 end

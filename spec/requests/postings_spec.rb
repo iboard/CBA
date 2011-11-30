@@ -63,6 +63,20 @@ describe "Postings:" do
       visit blog_path(@blog)
       page.should have_no_content "Limited"
     end
+    
+    
+    it "should interpret when rendering with a view-context", js: true do
+      @blog.postings.first.tap do |posting|
+        posting.body = "AN IMAGE  ATTACHMENT:1 AND A VIDEO ATTACHMENT:2"
+        posting.recipient_ids = []
+        posting.recipient_ids = []
+        posting.save
+      end
+      @blog.save
+      visit posting_path(@blog.postings.first)
+      page.should have_content "ATTACHMENT 0 NOT FOUND"
+      page.should have_content "ATTACHMENT 1 NOT FOUND"
+    end
 
   end
 

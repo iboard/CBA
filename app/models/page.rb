@@ -85,7 +85,7 @@ class Page
   validates_associated       :comments
 
   # TODO: Move this definitions to a library-module
-  # TODO: and replace this lines with just 'has_attchments'
+  # TODO: and replace this lines with just 'has_attchments
   embeds_many :attachments
   validates_associated :attachments
   accepts_nested_attributes_for :attachments, :allow_destroy => true

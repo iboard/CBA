@@ -124,6 +124,7 @@ class PagesController < ApplicationController
     authorize! :update, @page
     respond_to do |format|
       if @page.update_attributes(params[:page])
+        @page.attachments.each { |att| att.save }
         if @page.is_draft && draft_mode == false
           change_draft_mode(true) 
           notice = t(:page_successfully_updated_and_switched_to_draft_mode)

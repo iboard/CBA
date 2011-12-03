@@ -117,4 +117,17 @@ describe "User groups:" do
     page.should have_content "You are not authorized to access this page."
   end
   
+  it "should not save on cancel" do
+    log_in_as "admin@iboard.cc", "thisisnotsecret"
+    user = User.first
+    user.user_groups.delete_all
+    @group = user.user_groups.create(name: 'Friends', members: @friends)
+    @group2= user.user_groups.create(name: 'Friends', members: [User.all[4].id, User.all[5].id])
+    visit edit_user_user_group_path(user,@group)
+    fill_in "user_group_member_tokens", with: [User.all[4], User.all[5]].map{|i| i.id.to_s}.join(", ")
+    click_button "cancel"
+    user.reload
+    @group = user.user_groups.find(@group.id)
+    assert @group.members == @friends, "Members should not change on cancel!"
+  end
 end

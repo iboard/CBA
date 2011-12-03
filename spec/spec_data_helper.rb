@@ -119,7 +119,7 @@ module SpecDataHelper
         click_button("Sign in")
     end
   end
-  
+
   # Log out
   def log_out
     click_link("Sign out")
@@ -147,7 +147,7 @@ module SpecDataHelper
     page.save!
     page
   end
-  
+
   # Create the first "News-Blog and yield the given block with the new item"
   # if no block given return the new item
   def create_news_blog_with_postings(&block)
@@ -157,9 +157,9 @@ module SpecDataHelper
     end
     yield(news_blog)
   end
-  
-  # @params [String] path - the path of the file
-  # @params [String] content - the content for the file
+
+  # @param [String] path - the path of the file
+  # @param [String] content - the content for the file
   # @return [Boolean] true if file was created before otherwise false
   def create_file_if_not_exists(path, content="")
     file_exists = File.exists?(path)
@@ -170,5 +170,17 @@ module SpecDataHelper
       file_exists = true
     end
     file_exists
+  end
+
+  # @param [ActiveModel] item - The item to check if attributes changed
+  # @param [Hash] saved_attributes - The attributes saved before an action
+  # @return Boolean - true if any attribute is not equal.
+  def attributes_changed?(item,saved_attributes)
+    item.reload
+    saved_attributes.delete('updated_at')
+    saved_attributes.each do |key, value|
+      return true unless item.attributes[key].eql?(value)
+    end
+    false
   end
 end

@@ -52,16 +52,7 @@ describe "Blog" do
     log_in_as "admin@iboard.cc", "thisisnotsecret"
     visit edit_blog_path(blog)
     click_button "Update Blog"
-    visit blog_path(blog)
-    blog.reload
-    _changed_attributes = blog.attributes
-    _changed_attributes.delete('updated_at')
-    _changed_attributes.each do |key, value|
-      unless _saved_attributes[key].to_s.eql?( value.to_s )
-        puts "ATTRIBUTE CHANGED: #{key.to_s} was #{_saved_attributes[key]} and changed to #{value}"
-      end
-      assert _saved_attributes[key].to_s.eql?( value.to_s ), "Attribute should not change "
-    end
+    assert !attributes_changed?(blog,_saved_attributes), "Attributes should not change"
   end
   
 

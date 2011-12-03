@@ -18,5 +18,16 @@ describe "User-profile:" do
 
   describe "Normal users" do
   end
+  
+  describe "Bugfix - Edit user-role will not select current value" do
+    it "should not change the role when saving without selecting a new role" do
+      log_in_as "admin@iboard.cc", "thisisnotsecret"
+      test_user = User.where(email: 'user@iboard.cc').first
+      attributes_before = test_user.attributes
+      visit edit_role_user_path(test_user)
+      click_button "Update User"
+      assert !attributes_changed?(test_user,attributes_before), "Attributes should not change"
+    end
+  end
 
 end

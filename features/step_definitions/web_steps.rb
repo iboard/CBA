@@ -539,3 +539,9 @@ end
 Then /^page should have "([^"]*)"$/ do |arg1|
   assert page.has_selector?( arg1 ), "Did not find #{arg1}"
 end
+
+
+Then /^I should have_link "([^"]*)"$/ do |arg1|
+  assert page.all('a', text: arg1)
+end
+

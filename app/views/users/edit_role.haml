@@ -1,12 +1,15 @@
-- title t(:edit_role_for_user, :user => @user.name )
+- title t(:edit_role_for_user, :user => @user.name ), false
 
 - content_for :resource_actions do
-    = link_to t(:list_registrations), registrations_path, :class => 'button back'
-
-%div{:style => 'clear: right'}
+    = ui_button 'details', t(:users_profile), user_path(@user)
+    = ui_button 'expand', t(:list_registrations), registrations_path
 
 - if @user.avatar
     = image_tag @user.avatar_url(:thumb), :style=>'float: right;'
+
+%h1= link_to( @user.name, @user )
+
+%div{:style => 'clear: right'}
 
 
 = form_for(@user, :url => update_role_user_path(@user), :html => { :method => :put }) do |f|

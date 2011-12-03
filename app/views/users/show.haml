@@ -1,13 +1,20 @@
 - title t("userlist.user_profile", :name => @user.name )
 
-%div{:style => 'clear: right'}
+- content_for :resource_actions do
+    = ui_button 'expand', t(:list_registrations), registrations_path
+    - if current_user && @user == current_user # It's you
+        = ui_button( 'edit', (t(:edit_profile) + sc(:nbsp,:pr,:nbsp) + t(:you)).html_safe, edit_registration_path(@user)) 
+        = ui_button( 'groups', t(:your_groups), user_user_groups_path(@user))
+        
+- if @user.avatar
+    %div=  link_to_function(     |
+       image_tag( w3c_url(@user.avatar_url(:thumb)), :class => "img-with-shadow" ),        |
+       "image_popup('#{w3c_url(@user.avatar_url(:popup))}')") |
+
+
+%div{:style => 'clear: right; margin-top: 10px;'}
 
     %div{:id => 'users-location-map'}
-
-    - if @user.avatar
-        %div=  link_to_function(     |
-           image_tag( w3c_url(@user.avatar_url(:thumb)), :class => "img-with-shadow" ),        |
-           "image_popup('#{w3c_url(@user.avatar_url(:popup))}')") |
 
     %p 
         User: 
@@ -20,21 +27,11 @@
     - if current_user && current_user.location[:lat].present? && current_user.location[:lng].present?
         %p
             = t(:your_location)+": "
-            %span{:id => 'user-location-token'}= current_user.location_token
-    %h3{:style => 'margin-top: 60px;'}= t(:your_account)
-    %ul
-        %li
-            - if current_user == @user || current_user.role?(:admin  )
-                = link_to t(:edit_profile), edit_registration_path(@user)
-        %li
-            = link_to t(:your_groups), user_user_groups_path(@user)
-            
+            %span{:id => 'user-location-token'}= current_user.location_token        
                 
-    %strong= t(:invite_user)
-    %ul
-        %li
-            = link_to t(:send_invitaiton), new_user_invitation_path(current_user),
-                :id => 'invitation_link'
+    - content_for :resource_actions do
+        = ui_button 'mail', t(:send_invitaiton), new_user_invitation_path(current_user), :id => 'invitation_link'
+      
 - else
     - if @user.location[:lat].present? && @user.location[:lng].present?
         = t(:location)+": "
@@ -46,3 +43,5 @@
     %ul
         = render 'user_detail', :user => @user
 
+- content_for :resource_actions do
+    %p{style: 'margin-bottom: 20px;'}= "" # make sure some gap

@@ -131,7 +131,7 @@ private
       'circle-arrow-w'
     when 'mark-read'
       'mail-open'
-    when 'mark-unread'
+    when 'mark-unread', 'mail', 'email'
       'mail-closed'
     when 'details', 'zoom'
       'zoomin'
@@ -155,6 +155,8 @@ private
       'help'
     when 'assets'
       'suitcase'
+    when 'contact', 'people', 'vcard', 'groups'
+      'contact'
     else
       shortcut
     end

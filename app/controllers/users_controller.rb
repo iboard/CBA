@@ -7,10 +7,13 @@ class UsersController < ApplicationController
 
   def index
     @user_count = User.count
-    @users = User.all.reject {|u|
+    params[:order] ||= "created_at"
+    params[:direction] ||= "asc"
+    @users = User.order_by([params[:order].to_sym,params[:direction].to_sym]).reject {|u|
       !can? :read, u
     }.paginate( :page => params[:page],
-                :per_page => CONSTANTS['paginate_users_per_page'])
+                :per_page => CONSTANTS['paginate_users_per_page']
+              )
 
     respond_to do |format|
        format.js 

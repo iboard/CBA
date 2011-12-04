@@ -2,6 +2,6 @@
     - if resources.total_pages > resources.current_page
         = link_to_function( t(:load_more),                        |
              "insert_load_button( 'load_more','#{t(:loading)}',"+ |
-             "'#{path}?page=#{resources.current_page+1}'"+        |
+             "'#{path}?page=#{resources.current_page+1}&order=#{params[:order]}&direction=#{params[:direction]}'"+        |
              ");return false;",                                   |
              :id => 'load_more_link')                             |

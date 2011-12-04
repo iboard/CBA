@@ -9,6 +9,17 @@
     =yield(:title)
     .tiny
         = t(:registered_users_count, :count => @user_count) 
+%p
+    = t(:sort_by)+":"
+    = order_link_to :name
+    |
+    = order_link_to :email
+    |
+    = order_link_to :created_at
+    |
+    = order_link_to :last_sign_in_at
+    |
+    = order_link_to :sign_in_count
   
 %div#user-list
     - for user in @users

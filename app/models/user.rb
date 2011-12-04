@@ -143,7 +143,7 @@ class User
     super
   end
 
-  # Remove an URL of the local avatar or the gravatar
+  # @return String - the URL of the local avatar or the gravatar
   def avatar_url(mode)
     if self.use_gravatar
       "http://gravatar.com/avatar/#{gravatar_id}.png?cache=#{self.updated_at.strftime('%Y%m%d%H%M%S')}"

@@ -1,8 +1,19 @@
 # -*- encoding : utf-8 -*-
 
 #
-#  Define abilities for cancan
+#  == Define abilities for cancan
 #
+#  if  role admin
+#    allow everything
+#  else
+#    if logged in
+#      cancan methods for a logged in user
+#      cancan methods for special roles
+#    else
+#      cancan for anyone (public)
+#    end
+#  end
+#  
 class Ability
 
   include CanCan::Ability
@@ -18,10 +29,9 @@ class Ability
     if user.role? :admin
       can :manage, :all  # Admin is god
     else
-      # Not Admin
-      unless user.new_record?
-
-        # Any signed in user
+      
+      # Not Admin?, let's see ...
+      unless user.new_record? # Any signed in user
         can [:read, :manage, :update_avatar, :crop_avatar], User do |usr|
           user == usr
         end
@@ -45,21 +55,25 @@ class Ability
           end
           can :create, Comment
         end
+        
         if user.role?(:confirmed_user)
           can :create, Invitation
         end
+        
         if user.role?(:author)
           can :create, [Page, Blog, Posting]
         end
+        
         if user.role?(:moderator)
           can :manage, [Posting, Comment]
         end
+        
         if user.role?(:maintainer)
           can :manage, [Page, Blog, Posting, Comment, UserNotification]
           can :details, User
         end
 
-      end
+      end # Any signed in user
 
       # Anybody
       can :read, Posting do |posting|
@@ -92,7 +106,7 @@ class Ability
           end
         end
       end
-    end
-  end
+    end # # not admin
+  end # initialize
 
-end
+end # class

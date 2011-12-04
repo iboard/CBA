@@ -131,7 +131,7 @@ module SpecDataHelper
   end
 
   # Create a page with one component
-  # @param [Hash] options, The page attributes plus :page_component => {attributes}
+  # @param [Hash] options, The page attributes plus :page_component => attributes
   # @return [Page], the created page
   def create_page_with_component( options )
     component = options[:page_component]

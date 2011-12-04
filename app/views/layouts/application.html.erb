@@ -48,7 +48,7 @@
     <% end %>
     <div id='overlay' class="ui-widget-content"></div>
     <div id='scroll-to-top'>
-      <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
+        <%= link_to_function image_tag("arrow_up_small.png"), "smoothToTop()", :title => t(:scroll_to_top) %>
       <span id='scroll-position'></span>
     </div>
     <div id="banner">

@@ -329,3 +329,7 @@ $(document).ready(function() {
   );
 });
 
+function smoothToTop() {
+  $("html body").animate( { scrollTop: 0 }, 1000);
+}
+

@@ -40,6 +40,9 @@ class UsersController < ApplicationController
       redirect_to @user, :notice => flash[:notice]
     elsif is_in_crop_mode?
       if @user.update_attributes(params[:user])
+        if params[:user][:crop_x].present?
+          @user.avatar.reprocess!
+        end
         render :show
       else
         redirect_to edit_user_path(@user), :error => @user.errors.map(&:to_s).join("<br />")

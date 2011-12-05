@@ -26,7 +26,6 @@
     <%= javascript_tag do %>
       <%= "var google_api_key = '#{GOOGLE_PLACE_API_KEY}';" -%>
     <% end %>
-    <%= yield :prototype %>
     <%= yield :head %>
     <%= auto_discovery_link_tag(:atom, "/feed") %>
     <%= insert_google_analytics_script if  (Rails.env == 'production') %>

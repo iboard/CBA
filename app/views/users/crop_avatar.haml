@@ -1,13 +1,13 @@
 - title t(:crop_avatar)
 
 %div#cropbox_container
-    = image_tag @user.avatar.url(:original), :id => 'cropbox'
+    = image_tag @user.avatar.url(:medium), :id => 'cropbox'
 
 %p
     %em= t(:crop_help)
     
 %h4 Preview:
-%div{:style => "width:100px; height:100px; overflow: hidden;"}= image_tag @user.avatar.url(:original), :id => 'preview'
+%div{:style => "width:100px; height:100px; overflow: hidden;"}= image_tag @user.avatar.url(:medium), :id => 'preview'
 
 = form_for @user, :url => {:controller => 'users',:action => 'crop_avatar'} do |f| 
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] 

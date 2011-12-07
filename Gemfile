@@ -49,7 +49,7 @@ gem 'progress_upload_field', '~> 0.0.1'
 
 # Markdown
 # do "easy_install pygments" on your system
-gem 'redcarpet'
+gem 'redcarpet', '1.17.2'
 gem 'albino'
 gem "nokogiri", "1.4.6"
 

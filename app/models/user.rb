@@ -108,7 +108,7 @@ class User
 
   # return user's role as symbol.
   def role
-    ROLES[roles_mask].to_sym
+    roles_mask ? ROLES[roles_mask].to_sym : guest
   end
 
   # Ask if the user has at least a specific role.

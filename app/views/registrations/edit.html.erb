@@ -2,6 +2,14 @@
 <% title t("edit_resource_named", :resource => resource_name.to_s.humanize,:name => @user.name||'new') %>
 <div class='clear'></div>
 
+<%- content_for :resource_actions do %>
+  <%= ui_button 'expand', t(:list_registrations), registrations_path -%>
+  <% if current_user && @user == current_user # It's you -%>
+    <%= ui_button( 'zoom', t(:show_profile), user_path(@user)) -%>
+  <% end %>
+<% end %>
+
+
 <div class='field'>
   <%= label_tag :role, t(:role) %>
   <%= @user.role.to_s -%><br /><br/>

@@ -29,3 +29,14 @@ $(function() {
     tokenValue: 'id'
   });
 });
+
+$(function() {
+  $("#posting_recipient_tokens").tokenInput("/my_group_ids.json", {
+    crossDomain: false,
+    theme: "facebook",
+    prePopulate: $("#posting_recipient_tokens").data("pre"),
+    hintText: "Select a user group",
+    preventDuplicates: true,
+    tokenValue: 'id'
+  });
+});

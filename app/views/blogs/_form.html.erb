@@ -17,14 +17,14 @@
     <%= f.file_field :cover_picture %>
   </div>
   <div class='field'>
-    <%= f.label sc(:nbsp) %>
+    <%= f.label :delete_picture, sc(:nbsp) %>
     <%= ui_button( 'delete', t(:delete_picture),  delete_cover_picture_blog_path(blog), :remote => true,
         :confirm => t(:are_you_sure)) unless blog.new_record? %>
   </div>
 
   <div class="field">
     <%= f.label :user_role, t(:necessary_role) %>
-    <%= f.select :user_role, options_for_user_role %>
+    <%= f.select :user_role, options_for_user_role(f.object.user_role) %>
   </div>
 
   <div class="field">

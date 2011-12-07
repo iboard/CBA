@@ -34,7 +34,15 @@
     <%= f.label :new_tag %>
     <%= f.text_field :new_tag, :size => 80, :placeholder => t(:enter_new_tag) %>
   </div>
-  
+
+  <% if current_user %>
+    <div class="field">
+      <%= f.label :recipient_tokens, t(:recipients) %>
+      <%= f.text_field :recipient_tokens, :size => 80,  
+          "data-pre" => current_user.user_groups.any_in( _id: posting.recipient_group_ids).map{ |t| {id: t.id, name: t.name} }.to_json,
+          :placeholder => t(:leave_empty_to_make_the_posting_public) %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :interpreter %>

@@ -31,4 +31,7 @@
         = f.label :submit
         = f.submit t(:send_invitaiton)
 
-%p= link_to t(:do_not_send_invitation), :back
+- content_for :resource_actions do 
+    = ui_button 'back', t(:do_not_send_invitation), :back
+    = ui_button( 'edit', (t(:edit_profile) + sc(:nbsp,:pr,:nbsp) + t(:you)).html_safe, edit_registration_path(@user)) 
+    = ui_button( 'groups', t(:your_groups), user_user_groups_path(@user))

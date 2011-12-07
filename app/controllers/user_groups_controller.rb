@@ -1,6 +1,7 @@
 class UserGroupsController < ApplicationController
   
   load_and_authorize_resource :user, :user_group
+  before_filter :cancel_if_cancel_clicked, only: [:create,:update]
   
   def index
   end
@@ -41,4 +42,10 @@ class UserGroupsController < ApplicationController
     redirect_to  user_user_groups_path(@user), notice: t(:user_group_successfully_deleted)
   end
   
+private
+  def cancel_if_cancel_clicked
+    if params[:commit].present? && params[:commit].downcase == t(:cancel).downcase
+      redirect_to user_user_groups_path(@user), :notice => t(:canceled)
+    end 
+  end
 end

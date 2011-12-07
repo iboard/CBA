@@ -2,6 +2,6 @@
   <%= partial_title %>
   <div class='field'>
     <%= f.label :roles_mask %>
-    <%= f.select :roles_mask, options_for_user_role %>
+    <%= f.select :roles_mask, options_for_user_role(f.object.roles_mask) %>
   </div>
 <% end %>

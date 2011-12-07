@@ -12,4 +12,5 @@
 //= require jsort_sortable
 //= require progress_upload_field
 //= require autocomplete
+//= require jquery.Jcrop
 //= require_tree .

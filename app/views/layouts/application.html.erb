@@ -26,7 +26,6 @@
     <%= javascript_tag do %>
       <%= "var google_api_key = '#{GOOGLE_PLACE_API_KEY}';" -%>
     <% end %>
-    <%= yield :prototype %>
     <%= yield :head %>
     <%= auto_discovery_link_tag(:atom, "/feed") %>
     <%= insert_google_analytics_script if  (Rails.env == 'production') %>
@@ -48,7 +47,7 @@
     <% end %>
     <div id='overlay' class="ui-widget-content"></div>
     <div id='scroll-to-top'>
-      <%= link_to image_tag("arrow_up_small.png"), '#', :title => t(:scroll_to_top) %>
+        <%= link_to_function image_tag("arrow_up_small.png"), "smoothToTop()", :title => t(:scroll_to_top) %>
       <span id='scroll-position'></span>
     </div>
     <div id="banner">
@@ -66,8 +65,11 @@
         </ul>
     </div>
 
-
-    <% if current_root(self) %>
+    <% if sidebar_partial_exists? %>
+      <%= content_tag :div, class: 'submenu_box' do %>
+        <%= render current_view_sidebar_left_path %>
+      <% end %>
+    <% elsif current_root(self) %>
       <div class='submenu_box'>
         <div id='searchbox'>
           <%= render 'search/form' %>

@@ -480,3 +480,11 @@ de:
   mark_unread: 'Als ungelesen markieren'
   necessary_role: 'Notwendige Benutzergruppe'
   document_not_found_or_authorized: 'Dokument wurde nicht gefunden oder ist geschützt'
+  limited_posting: ' (Nicht öffentlich)'
+  recipients: 'Empfänger'
+  leave_empty_to_make_the_posting_public: 'Leer lassen um das Posting öffentlich zu machen'
+  canceled: 'Abgebrochen'
+  by_name: 'Nach Name'
+  by_email: 'Nach E-mail'
+  by_created_at: 'Nach Erstelldatum'
+  

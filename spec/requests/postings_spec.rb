@@ -21,16 +21,23 @@ describe "Postings:" do
           is_draft: false, user: User.first
       @blog.save!
     end
+    
+    it "should show it's limited in blog- and posting-view" do
+      log_in_as "user@iboard.cc", "thisisnotsecret"
+      visit blog_path(@blog)
+      page.should have_content "Limited"
+      visit blog_posting_path(@blog,@post_1)
+      page.should have_content "Limited"
+    end
 
     it "should show post 1,2, and 3 to user" do
-      pending "To be done when groups are fully implemented"
-      #log_in_as "user@iboard.cc", "thisisnotsecret"
-      #visit blog_posting_path(@blog,@post_1)
-      #page.should have_content "For user only"
-      #visit blog_posting_path(@blog,@post_2)
-      #page.should have_content "For user and moderator"
-      #visit blog_posting_path(@blog,@post_3)
-      #page.should have_content "Public Posting"
+      log_in_as "user@iboard.cc", "thisisnotsecret"
+      visit blog_posting_path(@blog,@post_1)
+      page.should have_content "For user only"
+      visit blog_posting_path(@blog,@post_2)
+      page.should have_content "For user and moderator"
+      visit blog_posting_path(@blog,@post_3)
+      page.should have_content "Public Posting"
     end
 
     it "should hide @post_1 and @post_2 from public" do
@@ -43,14 +50,32 @@ describe "Postings:" do
     end
 
     it "should hide @post_1 and 2 from author" do
-      pending "To be done when groups are fully implemented"
-      #log_in_as "author@iboard.cc", "thisisnotsecret"
-      #visit blog_posting_path(@blog,@post_1)
-      #page.should have_no_content "For user only"
-      #page.should have_content "You are not authorized to access this page"
-      #visit blog_posting_path(@blog,@post_2)
-      #page.should have_content "For user and moderator"
-      #page.should have_no_content "You are not authorized to access this page"
+      log_in_as "author@iboard.cc", "thisisnotsecret"
+      visit blog_posting_path(@blog,@post_1)
+      page.should have_no_content "For user only"
+      page.should have_content "You are not authorized to access this page"
+      visit blog_posting_path(@blog,@post_2)
+      page.should have_content "For user and moderator"
+      page.should have_no_content "You are not authorized to access this page"
+    end
+    
+    it "should hide limited postings in blog show" do
+      visit blog_path(@blog)
+      page.should have_no_content "Limited"
+    end
+    
+    
+    it "should interpret when rendering with a view-context", js: true do
+      @blog.postings.first.tap do |posting|
+        posting.body = "AN IMAGE  ATTACHMENT:1 AND A VIDEO ATTACHMENT:2"
+        posting.recipient_ids = []
+        posting.recipient_ids = []
+        posting.save
+      end
+      @blog.save
+      visit posting_path(@blog.postings.first)
+      page.should have_content "ATTACHMENT 0 NOT FOUND"
+      page.should have_content "ATTACHMENT 1 NOT FOUND"
     end
 
   end

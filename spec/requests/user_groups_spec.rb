@@ -79,4 +79,55 @@ describe "User groups:" do
     page.should have_no_content "testmax"
   end
   
+  it "should not be possible to view and edit foreign user's groups" do
+    user = User.where(email: 'user@iboard.cc').first
+    admin= User.first
+    log_in_as "user@iboard.cc", "thisisnotsecret"
+    visit user_user_groups_path(user)
+    page.should have_content 'User groups of "testmax"'
+    visit user_user_groups_path(admin)
+    page.should have_content 'You are not authorized to access this page.'
+  end
+  
+  it "should provide a restriction field" do
+    # prepare
+    log_in_as "admin@iboard.cc", "thisisnotsecret"
+    user = User.first
+    user.user_groups.delete_all
+    @group = user.user_groups.create(name: 'Friends', members: @friends)
+    user.save
+    Blog.delete_all
+    @blog = Blog.create( title: 'News', is_draft: false)
+    @posting = @blog.postings.create(is_draft: false, title: 'Limited Posting', body: 'Lorem', :user_id => User.first.id)
+    
+    # Enter a recipient group
+    visit edit_blog_posting_path(@blog,@posting)
+    fill_in "posting_recipient_tokens", with: @group.id.to_s
+    click_button "Update Posting"
+    log_out
+    
+    # a friend should see the posting
+    log_in_as "user@iboard.cc", "thisisnotsecret"
+    visit blog_posting_path(@blog,@posting)
+    page.should have_content "Limited Posting"
+    
+    # guests should not
+    log_out
+    visit blog_posting_path(@blog,@posting)
+    page.should have_content "You are not authorized to access this page."
+  end
+  
+  it "should not save on cancel" do
+    log_in_as "admin@iboard.cc", "thisisnotsecret"
+    user = User.first
+    user.user_groups.delete_all
+    @group = user.user_groups.create(name: 'Friends', members: @friends)
+    @group2= user.user_groups.create(name: 'Friends', members: [User.all[4].id, User.all[5].id])
+    visit edit_user_user_group_path(user,@group)
+    fill_in "user_group_member_tokens", with: [User.all[4], User.all[5]].map{|i| i.id.to_s}.join(", ")
+    click_button "cancel"
+    user.reload
+    @group = user.user_groups.find(@group.id)
+    assert @group.members == @friends, "Members should not change on cancel!"
+  end
 end

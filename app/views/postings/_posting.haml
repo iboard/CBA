@@ -5,7 +5,7 @@
       = presenter.edit_buttons
     .side-tab-content
       = presenter.title
-      = presenter.tags
+      = presenter.tags_and_limited_information
       = render :partial => '/postings/cover_picture', :locals => { :posting => posting }
       = presenter.user_and_time
       = sanitize(posting.render_intro)

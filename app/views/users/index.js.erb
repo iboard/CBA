@@ -9,7 +9,7 @@ $('.load_more').before( '<div id="page<%= @users.current_page -%>" style="clear:
 
 <% if is_on_last_page(@users) %>
    $('#load_more').html( '<%=  escape_javascript(link_to_function(t(:load_more),"insert_load_button( 'load_more','#{t(:loading)}',"+
-        "'#{registrations_path(:page => (params[:page] ? (params[:page].to_i+1) : 2))}')", :id => "load_more_link" )) -%>');
+        "'#{registrations_path(:page => (params[:page] ? (params[:page].to_i+1) : 2),:order => params[:order].to_sym, :direction => params[:direction].to_sym)}')", :id => "load_more_link" )) -%>');
    $('#page<%= @users.current_page -%>').slideDown();
    setTimeout("checkScroll()", 500);
 <% else %>

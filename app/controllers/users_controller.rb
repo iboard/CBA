@@ -7,10 +7,13 @@ class UsersController < ApplicationController
 
   def index
     @user_count = User.count
-    @users = User.all.reject {|u|
+    params[:order] ||= "created_at"
+    params[:direction] ||= "asc"
+    @users = User.order_by([params[:order].to_sym,params[:direction].to_sym]).reject {|u|
       !can? :read, u
     }.paginate( :page => params[:page],
-                :per_page => CONSTANTS['paginate_users_per_page'])
+                :per_page => CONSTANTS['paginate_users_per_page']
+              )
 
     respond_to do |format|
        format.js 
@@ -37,6 +40,9 @@ class UsersController < ApplicationController
       redirect_to @user, :notice => flash[:notice]
     elsif is_in_crop_mode?
       if @user.update_attributes(params[:user])
+        if params[:user][:crop_x].present?
+          @user.avatar.reprocess!
+        end
         render :show
       else
         redirect_to edit_user_path(@user), :error => @user.errors.map(&:to_s).join("<br />")
@@ -107,6 +113,22 @@ class UsersController < ApplicationController
                                [
                                  :id   => user.id.to_s, 
                                  :name => user.name + " (#{user.email})"
+                               ]
+                              }
+                             .flatten
+       }
+     end
+  end
+  
+  def my_group_ids
+    redirect_to root_path, alert: t(:access_denied) unless current_user
+    respond_to do |format|
+       format.json { 
+         render :json => current_user.user_groups
+                             .map{ |group| 
+                               [
+                                 :id   => group.id.to_s, 
+                                 :name => group.name
                                ]
                               }
                              .flatten

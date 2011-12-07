@@ -46,6 +46,15 @@ describe "Blog" do
     page.should have_content "404 - Content not found"
   end
   
+  it "opening for edit and save without making changes should not change anything (Bugfix: PT#21801945)" do
+    blog = Blog.create(title: 'Restricted users', is_draft: false, is_template: false, user_role: 1)
+    _saved_attributes = blog.attributes.dup
+    log_in_as "admin@iboard.cc", "thisisnotsecret"
+    visit edit_blog_path(blog)
+    click_button "Update Blog"
+    assert !attributes_changed?(blog,_saved_attributes), "Attributes should not change"
+  end
+  
 
 
 end

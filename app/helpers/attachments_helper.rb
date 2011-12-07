@@ -1,5 +1,8 @@
+# Helper-functions for {Attachment}s
 module AttachmentsHelper # :nodoc:
 
+  # @param [FormHelper] f
+  # @return String - html-code with a link to download the original file and some meta-data.
   def label_for_attachment(f)
     rc  = link_to( link_text(f.object), f.object.file.url(:original), :class => 'nostyle-link' )
     rc += " "
@@ -9,7 +12,9 @@ module AttachmentsHelper # :nodoc:
   end
 
 
-  private
+private
+  
+  # Truncate the filename if longer than 80 chars
   def link_text(object)
     if object.file_content_type =~ /image/i
       image_tag( object.file.url(:icon) ) +

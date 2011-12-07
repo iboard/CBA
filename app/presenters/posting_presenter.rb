@@ -57,6 +57,18 @@ class PostingPresenter < BasePresenter
     end
   end
   
+  def tags_and_limited_information
+    content_tag( :div, :class => 'tags') do
+      txt = posting.tags_array.map { |tag|
+        link_to( tag, tags_path(tag)) unless tag.blank?
+      }.compact.join(", ").html_safe
+      unless posting.public?
+        txt += I18n.translate(:limited_posting)
+      end
+      txt.html_safe
+    end
+  end
+  
   def read_more
     if posting.body.paragraphs.count > 1
       ui_button 'read', I18n.translate(:read_more), posting

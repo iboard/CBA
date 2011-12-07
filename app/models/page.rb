@@ -85,7 +85,7 @@ class Page
   validates_associated       :comments
 
   # TODO: Move this definitions to a library-module
-  # TODO: and replace this lines with just 'has_attchments'
+  # TODO: and replace this lines with just 'has_attchments
   embeds_many :attachments
   validates_associated :attachments
   accepts_nested_attributes_for :attachments, :allow_destroy => true
@@ -115,7 +115,7 @@ class Page
       self.page_components.each do |component|
         parts << [component.render_body(view_context)]
       end
-      rc=self.render_for_html( parts.join("\n"))
+      rc=self.render_for_html( parts.join("\n"), @view_context)
     else
       rc=render_with_template
     end
@@ -217,7 +217,7 @@ class Page
   private
   def fill_in_placeholders(template)
     template.gsub(/TITLE/, self.title_and_flags)\
-            .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body)))\
+            .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body),@view_context))\
             .gsub(/COMPONENTS/, render_components )\
             .gsub(/COVERPICTURE/, render_cover_picture)\
             .gsub(/COMMENTS/, render_comments)\
@@ -235,11 +235,13 @@ class Page
               end
             }
             .gsub(/ATTACHMENTS/, render_attachments)\
-            .gsub(/ATTACHMENT\[(\d)+\]/) { |attachment_number|
-              attachment_number.gsub! /\D/,''
+            .gsub(/ATTACHMENT:([0-9]+)/) { |attachment_number|
+              attachment_number.gsub! /[a-z|:]/i,''
               if c= self.attachments[attachment_number.to_i-1] && @view_context
                 if c.file_content_type =~ /image/ && @view_context
                   @view_context.image_tag c.file.url(:medium)
+                elsif c.file_content_type =~ /video/ && @view_context
+                  @view_context.video_tag c.file.url
                 elsif @view_context
                   @view_context.link_button( c.file_file_name, "button download small", c.file.url )
                 end

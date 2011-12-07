@@ -92,7 +92,8 @@ module ContentItem
           content_for_intro(interpret)
         end
 
-        def render_for_html(txt)
+        def render_for_html(txt,context_view=nil)
+          @context_view ||= context_view if context_view
           self.interpreter ||= :markdown
           case self.interpreter.to_sym
           when :markdown
@@ -105,10 +106,9 @@ module ContentItem
             end.compact.join("\n")
           else
             txt
-          end.gsub( /ATTACHMENT[\d+]/ ) { |attachment|
-            attachment_i = attachment.gsub( /\D/,'' ).to_i
-            render_attachment(attachment_i)
-          }.gsub( /COMPONENT[\d+]/ ) { |component|
+          end.gsub( /ATTACHMENT:[([0-9])+]/ ) { |attachment|
+            render_attachment(attachment.gsub( /ATTACHMENT:/,'' ).to_i)
+          }.gsub( /COMPONENT:[([0-9])+]/ ) { |component|
             component_i = component.gsub( /\D/,'' ).to_i
             render_page_component(component_i)
           }.gsub(/YOUTUBE(_PLAYLIST)?:([a-z|A-Z|0-9|\\-|_])+/) { |tag|
@@ -139,17 +139,19 @@ module ContentItem
           idx ||= 1
           idx -= 1
           if @context_view
-            attachment = self.attachments[idx]
+            attachment = self.attachments.all[idx]
             if attachment
               if attachment.file_content_type =~ /image/
-                @context_view.image_tag( attachment.file.url(:medium) )
+                @context_view.image_tag( @context_view.w3c_url(attachment.file.url(:medium)) )
+              elsif attachment.file_content_type =~ /video/
+                @context_view.video_tag(@context_view.w3c_url(attachment.file.url), :controls => true, :autoplay => false)
               else
-                @context_view.link_to attachment.file_file_name attachment.file.original
+                @context_view.link_to(attachment.file_file_name,@context_view.w3c_url(attachment.file.url))
               end
             else
               "ATTACHMENT "+idx.to_s+" NOT FOUND"
             end
-          end
+         end
         end
 
         def render_component(idx)

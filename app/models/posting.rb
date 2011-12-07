@@ -22,8 +22,8 @@ class Posting
   references_many       :comments, :inverse_of => :commentable, :as => 'commentable'
   validates_associated  :comments
   
+  field                 :recipient_group_ids, type: Array, default: []
   field                 :recipient_ids, type: Array, default: []
-
 
   # TODO: Move this definitions to a library-module
   # TODO: and replace this lines with just 'has_attchments'
@@ -37,7 +37,8 @@ class Posting
   
   scope :addressed_to, ->(user_id) { any_of( {:recipient_ids => nil}, 
                                              {:recipient_ids => [] },
-                                             {:recipient_ids => [user_id] }
+                                             {:recipient_ids => [user_id] },
+                                             {:user_id => user_id}
                                            ) }
                                    
 
@@ -58,7 +59,7 @@ class Posting
   def render_body(view_context=nil)
     @view_context ||= view_context
     if @view_context
-      @view_context.concat render_for_html(self.body).html_safe
+      @view_context.concat render_for_html(self.body,@view_context).html_safe
       return ""
     else
       render_for_html(self.body).html_safe
@@ -78,6 +79,22 @@ class Posting
   
   def has_recipient?(recipient)
     self.recipient_ids.include? recipient.id
+  end
+  
+  def public?
+    self.recipient_ids.empty?
+  end
+  
+  def recipient_tokens
+  end
+  
+  def recipient_tokens=(new_tokens)
+    self.recipient_group_ids = new_tokens.split(",").map { |token|
+      self.user.user_groups.find(token).id 
+    }
+    self.recipient_ids = self.recipient_group_ids.map { |group_id|
+      group = self.user.user_groups.find(group_id).members
+    }.flatten.uniq.compact
   end
 
 

@@ -117,7 +117,7 @@ class Page
       end
       rc=self.render_for_html( parts.join("\n"), @view_context)
     else
-      rc=render_with_template
+      rc=render_with_template(@view_context)
     end
     rc
   end
@@ -168,7 +168,7 @@ class Page
   # TODO: Remove duplication!
   # TODO:   This code occurs in Page and PageComponent. Move it to a single
   # TODO:   place.
-  def render_with_template
+  def render_with_template(view_context=nil)
     if self.page_template
       self.page_template.render do |template|
         fill_in_placeholders(template)

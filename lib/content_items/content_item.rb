@@ -95,7 +95,7 @@ module ContentItem
         def render_for_html(txt,context_view=nil)
           @context_view ||= context_view if context_view
           self.interpreter ||= :markdown
-          case self.interpreter.to_sym
+          _markdown = case self.interpreter.to_sym
           when :markdown
             markdown(txt).html_safe
           when :textile
@@ -106,76 +106,15 @@ module ContentItem
             end.compact.join("\n")
           else
             txt
-          end.gsub( /ATTACHMENT:[([0-9])+]/ ) { |attachment|
-            render_attachment(attachment.gsub( /ATTACHMENT:/,'' ).to_i)
-          }.gsub( /COMPONENT:[([0-9])+]/ ) { |component|
-            component_i = component.gsub( /\D/,'' ).to_i
-            render_page_component(component_i)
-          }.gsub(/YOUTUBE(_PLAYLIST)?:([a-z|A-Z|0-9|\\-|_])+/) { |tag|
-            args = tag.split(':')
-            case args[0]
-            when 'YOUTUBE'
-              embed_youtube_video(args[1])
-            when 'YOUTUBE_PLAYLIST'
-              embed_youtube_playlist(args[1])
-            else
-              "ARGUMENT ERROR: " + args.inspect
-            end
-          }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
-          .gsub( /\\[LOCATION:([\\d\\., \\-]+)\\]/) {|location|
-            render_location_link(location.gsub('LOCATION','').gsub('[','').gsub(']','').gsub(':',''))
-          }
-          .gsub(/\\[PLACE:([a-z|A-Z|0-9|\\-| |,]+)\\]/) {|place|
-            render_place_link(place.gsub('PLACE','').gsub('[','').gsub(']','').gsub(':',''))
-          }.html_safe
+          end
+          
+          _interpreter = Interpreter.new(self,@context_view)
+          _interpreter.render(_markdown)
         end
 
         private
         def content_for_intro
           raise "ABSTRACT_METHOD_CALLED - Overwrite content_for_intro"
-        end
-
-        def render_attachment(idx)
-          idx ||= 1
-          idx -= 1
-          if @context_view
-            attachment = self.attachments.all[idx]
-            if attachment
-              if attachment.file_content_type =~ /image/
-                @context_view.image_tag( @context_view.w3c_url(attachment.file.url(:medium)) )
-              elsif attachment.file_content_type =~ /video/
-                @context_view.video_tag(@context_view.w3c_url(attachment.file.url), :controls => true, :autoplay => false)
-              else
-                @context_view.link_to(attachment.file_file_name,@context_view.w3c_url(attachment.file.url))
-              end
-            else
-              "ATTACHMENT "+idx.to_s+" NOT FOUND"
-            end
-         end
-        end
-
-        def render_component(idx)
-          "RENDER COMPONENT NOT IMPLEMENTED FOR #{self.class.to_s}"
-        end
-
-        def embed_youtube_playlist(youtube_tag)
-          "<iframe width='560' height='345' src='http://www.youtube.com/p/" +
-            youtube_tag +
-          "?version=3&amp;hl=en_US' frameborder='0' allowfullscreen=''></iframe>"
-        end
-
-        def embed_youtube_video(youtube_tag)
-          "<iframe width='420' height='345' src='http://www.youtube.com/embed/"+
-            youtube_tag +
-            "' frameborder='0' allowfullscreen=''></iframe>"
-        end
-
-        def render_location_link(location)
-          "<a href='#' class='open-location'>"+location+"</a>"
-        end
-
-        def render_place_link(place)
-          "<a href='#' class='open-place'>"+place+"</a>"
         end
       EOV
     end

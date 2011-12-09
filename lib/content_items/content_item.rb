@@ -20,15 +20,15 @@ module ContentItem
     end
     doc.xpath('//body').to_s.gsub(/<\/?body>/,"").html_safe
   end
-  
-  # normalize tags 
+
+  # normalize tags
   def normalized_tags_with_weight(resource)
     max_weight = resource.tags_with_weight.map{|t,w| w}.max{ |a,b| a.round <=> b.round }
     resource.tags_with_weight.map do |tag,weight|
       [tag, (8/max_weight*weight).round]
     end
   end
-  
+
   # == ContentItem
   # Can be a 'Page', a 'Posting' or something else you want to be
   # * Commentable
@@ -169,7 +169,7 @@ module ContentItem
             youtube_tag +
             "' frameborder='0' allowfullscreen=''></iframe>"
         end
-        
+
         def render_location_link(location)
           "<a href='#' class='open-location'>"+location+"</a>"
         end

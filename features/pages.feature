@@ -126,8 +126,8 @@ Feature: Pages
     And I fill in "page_body" with "This is a filled page body" within "#container_main form"
     And I uncheck "page_is_draft" within "#container_main form"
     And I click on "Create Page"
-    Then I should see "This is a filled Page Template" within ".default"
-    And I should see "This is a filled page body" within ".default"
+    Then I should see "This is a filled Page Template"
+    And I should see "This is a filled page body"
 
   Scenario: A derived page should save it's template
     Given I am on the new_article page

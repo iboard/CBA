@@ -121,7 +121,7 @@ module ApplicationHelper
   def current_role
     current_user ? (current_user.roles_mask||0) : 0
   end
-  
+
   # Force rendering of a given block with `format` and then switch back to
   # the format defined before.
   #
@@ -134,16 +134,6 @@ module ApplicationHelper
     yield
     view.formats = old_formats
   end
-  
-  # A helper to load presenters
-  # @param [Object] object - The object to be presented
-  # @param [Class] klass - If not using OBJECTPresenter as class-name
-  def present(object, klass=nil)
-    klass ||= "#{object.class}Presenter".constantize
-    presenter = klass.new(object, self)
-    yield presenter if block_given?
-    presenter
-  end
 
   # @return Boolean - true if a partial named '_sidebar_left' exists for the current controller
   def sidebar_partial_exists?
@@ -154,10 +144,33 @@ module ApplicationHelper
     end
     false
   end
-  
+
   # @return String - Path of the sidebar-partial of the current controller
   def current_view_sidebar_left_path
     path = "/#{controller_name.underscore}/sidebar_left"
+  end
+
+  # A helper to load presenters
+  # @param [Object] object - The object to be presented
+  # @param [Class] klass - If not using OBJECTPresenter as class-name
+  def present(object, klass=nil)
+    klass ||= "#{object.class}Presenter".constantize
+    presenter = klass.new(object, self)
+    yield presenter if block_given?
+    presenter
+  end
+
+
+  # Load a presenter and assign an Interpreter for it
+  # @param [Object] object - The object to be presented
+  # @param [Interpreter] interpreter - The interpreter to be used. If nil a new one will be initialized
+  # @param [Class] klass - If not using OBJECTPresenter as class-name
+  def interpret(object,interpreter=nil,klass=nil)
+    presenter = present(object,klass)
+    interpreter ||= Interpreter.new(object,presenter,self)
+    presenter.interpreter = interpreter
+    yield presenter if block_given?
+    presenter
   end
   
 end

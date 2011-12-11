@@ -16,8 +16,6 @@ describe "Users and registrations" do
     click_link "by date created"
     page.should have_content "admin"
     page.should have_content "testmax"
-    
-    
   end
   
 end

@@ -55,16 +55,16 @@ class Posting
   scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
 
 
-  # Render the body
-  def render_body(view_context=nil)
-    @view_context ||= view_context
-    if @view_context
-      @view_context.concat render_for_html(self.body,@view_context).html_safe
-      return ""
-    else
-      render_for_html(self.body).html_safe
-    end
-  end
+  ## Render the body
+  #def render_body(view_context=nil)
+  #  @view_context ||= view_context
+  #  if @view_context
+  #    @view_context.concat render_for_html(self.body,@view_context).html_safe
+  #    return ""
+  #  else
+  #    render_for_html(self.body).html_safe
+  #  end
+  #end
   
   def new_tag
   end
@@ -96,17 +96,12 @@ class Posting
       group = self.user.user_groups.find(group_id).members
     }.flatten.uniq.compact
   end
-
-
+  
 private ################################################## private ####
 
   # Render the intro (which is the first paragraph of the body)
-  def content_for_intro(interpret=true)
-    if interpret
-      render_for_html(body.paragraphs[0])
-    else
-      body.paragraphs[0]
-    end
+  def content_for_intro
+    body.paragraphs[0]
   end
 
   # Send a notification to admins when a new posting was created

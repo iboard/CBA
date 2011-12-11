@@ -1,0 +1,14 @@
+= set_browser_address(page.id,page.title)
+- title page.title_and_flags
+
+- interpret page do |presenter|
+  - if page.page_template
+    = presenter.render_with_template
+  - else
+    = presenter.cover_picture
+    = presenter.buttons
+    .page_body{id: "page_#{page.id.to_s}"}
+      = presenter.body
+      = presenter.components
+    = presenter.attachments
+    = presenter.comments

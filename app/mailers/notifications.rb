@@ -35,7 +35,7 @@ class Notifications < ActionMailer::Base
     @blogtitle= blog.title
     @title    = posting.title
     @username = posting.user.name
-    @content  = posting.render_for_html(body).html_safe
+    @content  = ContentItem::markdown(posting.body).html_safe
     @url      = blog_posting_url(blog,posting)
     @notify_subject = "A NEW POSTING WAS CREATED AT #{APPLICATION_CONFIG['name']}"
 

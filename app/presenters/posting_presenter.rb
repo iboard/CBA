@@ -20,9 +20,35 @@ class PostingPresenter < BasePresenter
   end
   
   def title
-    content_tag :h2, :onmouseover=> "showSideTab($('#posting_#{posting.id.to_s}'));", 
+    content_tag :h1, :onmouseover=> "showSideTab($('#posting_#{posting.id.to_s}'));", 
                      :onmouseout=>"hideWithDelay('posting_#{posting.id.to_s}',2000);" do
       link_to(posting.title, blog_posting_path(posting.blog,posting))
+    end
+  end
+  
+  def title_and_blog
+    content_tag( :h1, :onmouseover=> "showSideTab($('#posting_#{posting.id.to_s}'));", 
+                     :onmouseout=>"hideWithDelay('posting_#{posting.id.to_s}',2000);") do
+      link_to(posting.title, blog_posting_path(posting.blog,posting))+
+      content_tag( :span, style: "font-size: smaller" ) do
+        link_to( I18n.translate(:in_blog, blog: posting.blog.title), posting.blog)
+      end
+    end
+  end
+  
+  def body
+    if interpreter
+      interpreter.render(posting.body)
+    else
+      posting.body
+    end
+  end
+  
+  def intro
+    if interpreter
+      interpreter.render(posting.intro)
+    else
+      posting.intro(false)
     end
   end
   
@@ -47,6 +73,10 @@ class PostingPresenter < BasePresenter
         end
       end
     end
+  end
+  
+  def comments
+    render( :partial => 'comments', :locals => {:posting => posting, :interpreter => interpreter} )
   end
   
   def tags

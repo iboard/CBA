@@ -75,7 +75,7 @@ class Blog
 private
   # ContentItems need to override the abstract method but a Blog didn't
   def content_for_intro
-    # TODO: Intro should link to a Page if one is referenced.
+    self.synopsis
   end
 
 end

@@ -18,7 +18,7 @@ describe "Blog" do
     posting.save!
     @blog.save!
     visit blog_path(@blog)
-    sleep(4)
+    sleep(1)
     page.should have_link('CBA Blog')
   end
 

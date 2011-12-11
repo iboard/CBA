@@ -165,14 +165,6 @@ private
     @search ||= Search.new(params[:search]||{:search => ""})
   end
   
-  # A helper to load presenters
-  # @param [Object] object - The object to be presented
-  # @param [Class] klass - If not using OBJECTPresenter as class-name
-  def present(object, klass=nil)
-    klass ||= "#{object.class}Presenter".constantize
-    klass.new(view_context, object)
-  end
-  
   # Render the 404-Template
   def render_404  
     respond_to do |format|  

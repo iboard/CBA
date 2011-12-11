@@ -1,11 +1,6 @@
 <% if @page_component.valid? %>
   $('#page-component-<%= @page_component.id.to_s -%>').html('<%= 
-      escape_javascript( 
-        raw(@page_component.render_body(self) { |component|
-          "<p class=\'page-component-edit\'>" + 
-            link_button(t(:edit), "button edit small", edit_page_page_component_path(@page_component.page,@page_component),:remote => true)+
-          "</p>"
-        } ) ) -%>');
+      escape_javascript( interpret_page_component_for_js(@page_component) ) -%>');
   $('#overlay').fadeTo(0.0,250).hide();
 <% else %>
   alert("<%= escape_javascript(@page_component.errors.full_messages) -%>");

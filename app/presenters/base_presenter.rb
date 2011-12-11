@@ -1,10 +1,13 @@
 class BasePresenter
-  attr_reader :object
+  
+  attr_reader   :object
+  attr_accessor :interpreter
+  
   def initialize(object, template)
     @object     = object
     @template   = template
-  end 
-  
+  end
+    
 private
   def self.presents(name)
     define_method(name) do

@@ -1,14 +1,22 @@
 -# - TODO: Duplication - Posting Header and Links
-- present posting do |presenter|
-  %div{:style=>'clear: right;'}
+- interpret posting do |presenter|
+  %div{:style=>'clear: right;',:id => 'posting'}
     - if can? :edit, posting
       = presenter.edit_buttons
     .side-tab-content
-      = presenter.title
+      = presenter.title_and_blog
       = presenter.tags_and_limited_information
       = render :partial => '/postings/cover_picture', :locals => { :posting => posting }
       = presenter.user_and_time
-      = sanitize(posting.render_intro)
-      = presenter.comment_links
-      = presenter.read_more
+      - unless params[:controller] == 'postings' && params[:action] == 'show'
+        = presenter.intro
+        = presenter.comment_links
+        = presenter.read_more
+      - else
+        - if can? :edit, posting
+          = ui_button 'edit', t(:edit), edit_blog_posting_path(posting.blog, posting)
+        - if can? :manage, posting
+          = ui_button 'delete', t(:delete), blog_posting_path(posting.blog, posting), method: :delete, confirm: t(:are_you_sure)
+        = presenter.body
+        = presenter.comments
 = javascript_tag "$('#posting_#{posting.id.to_s}').hide()"

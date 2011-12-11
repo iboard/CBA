@@ -487,4 +487,5 @@ de:
   by_name: 'Nach Name'
   by_email: 'Nach E-mail'
   by_created_at: 'Nach Erstelldatum'
+  no_images_in_simple_text_format: "Im :simple_text_format können Bilder leider nicht inline dargestellt werden"
   

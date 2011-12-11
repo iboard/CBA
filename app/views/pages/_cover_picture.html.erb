@@ -1,5 +1,5 @@
-<% style = '' unless defined? style %>
-<% if !page.new_record && page.cover_picture %>
+<% style = '' unless defined?(style) %>
+<% if !page.new_record? && page.cover_picture %>
   <div class='cover_picture' id='cover_picture_<%= page.id -%>' style='<%= style -%>'>
       <%= link_to_function( 
                  image_tag( w3c_url(page.cover_picture.url(format||:medium) ),:class => "img-with-shadow"),

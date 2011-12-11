@@ -11,8 +11,9 @@ module ContentItem
   # Render :txt as markdown with Redcarpet
   def markdown(txt)
     options = [
-               :hard_wrap, :filter_html, :filter_styles, :autolink,
-               :no_intraemphasis, :fenced_code, :gh_blockcode
+               :hard_wrap, :filter_styles, :autolink,
+               :no_intraemphasis, :fenced_code, :gh_blockcode,
+               :filter_html
               ]
     doc = Nokogiri::HTML(Redcarpet.new(txt, *options).to_html)
     doc.search("//pre[@lang]").each do |pre|
@@ -20,7 +21,11 @@ module ContentItem
     end
     doc.xpath('//body').to_s.gsub(/<\/?body>/,"").html_safe
   end
-
+  
+  def textilize(txt)
+    Textile::textilize(txt)
+  end
+  
   # normalize tags
   def normalized_tags_with_weight(resource)
     max_weight = resource.tags_with_weight.map{|t,w| w}.max{ |a,b| a.round <=> b.round }
@@ -88,30 +93,10 @@ module ContentItem
           short_title_for_url.txt_to_url
         end
 
-        def render_intro(interpret=true)
-          content_for_intro(interpret)
+        def intro
+          content_for_intro
         end
-
-        def render_for_html(txt,context_view=nil)
-          @context_view ||= context_view if context_view
-          self.interpreter ||= :markdown
-          _markdown = case self.interpreter.to_sym
-          when :markdown
-            markdown(txt).html_safe
-          when :textile
-            RedCloth.new(txt).to_html
-          when :simple_text
-            txt.each_line.map do |line|
-              '<p>' + line.strip + '</p>' unless line.strip.blank?
-            end.compact.join("\n")
-          else
-            txt
-          end
-          
-          _interpreter = Interpreter.new(self,@context_view)
-          _interpreter.render(_markdown)
-        end
-
+        
         private
         def content_for_intro
           raise "ABSTRACT_METHOD_CALLED - Overwrite content_for_intro"

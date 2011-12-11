@@ -1,17 +1,15 @@
 .page_intro
-  - if page.cover_picture_exists?
-    = render :partial => '/pages/cover_picture', :locals => {:page => page, :format => :thumb, :style => 'float:right;margin-left: 10px'}
-
-  %h1= link_to page.title_and_flags, page
-  %p
-    = ui_button('read', '', "/p/#{page.link_to_title}")
-    - if can? :manage, page
-      = ui_button('edit', '', edit_page_path(page), :title => t(:edit))
-      = ui_button('destroy','', page, :confirm => t(:are_you_sure), :method => :delete, :title =>  t(:destroy))
-
-  = sanitize(page.render_intro(true)).html_safe
-  %p.small
-    = t(:num_of_comments, :count => page.comments.count )
-    - if user_signed_in? && (count=page.comments.since(current_user_field(:last_sign_in_at,0)).count) > 0
-      %span.new_comments= t(:new_since_last_visit, :count => count)
+  - interpret page do |presenter|
+    = presenter.cover_picture('margin-right: -20px',:thumb)
+    %h1= link_to page.title_and_flags, page
+    %p
+      = ui_button('read', '', "/p/#{page.link_to_title}")
+      - if can? :manage, page
+        = ui_button('edit', '', edit_page_path(page), :title => t(:edit))
+        = ui_button('destroy','', page, :confirm => t(:are_you_sure), :method => :delete, :title =>  t(:destroy))
+    .page_intro= presenter.intro
+    %p.small
+      = t(:num_of_comments, :count => page.comments.count )
+      - if user_signed_in? && (count=page.comments.since(current_user_field(:last_sign_in_at,0)).count) > 0
+        %span.new_comments= t(:new_since_last_visit, :count => count)
 

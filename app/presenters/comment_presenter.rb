@@ -35,11 +35,7 @@ class CommentPresenter < BasePresenter
   end
   
   def render_comment
-    if comment.commentable
-      comment.commentable.render_for_html(comment.comment||'').html_safe
-    else
-      markdown(comment.comment||'')
-    end
+    markdown(comment.comment||'')
   end
   
   def comment_class

@@ -41,19 +41,6 @@ class PageTest < ActiveSupport::TestCase
     assert p1.short_title_for_url != @long_text, "Title should be truncated"
   end
 
-  test "Body should be rendered with textile and markdown" do
-    markdown = Page.new(:title => "Render Body Test with md",
-                        :body => "Parag *One*\n\nParag Two",
-                        :interpreter => :markdown,
-                        :is_draft => false)
-    textile = Page.new(:title => "Render Body Test with txtl",
-                       :body => "Parag *One*\n\nParag Two",
-                       :interpreter => :textile,
-                       :is_draft => false)
-    assert markdown.render_body =~ /\<em\>One\<\/em\>/, "* should translate to italic with markdown"
-    assert textile.render_body =~ /\<strong\>One\<\/strong\>/, "* should translate to strong with textile"
-  end
-
   test "Page select should not include templates" do
     Page.delete_all
     template_page = Page.create(:title => 'This is a template page',

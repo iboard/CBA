@@ -44,8 +44,6 @@ class Page
 
   scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
 
-
-
   # If this page is derived from a Page(Template) this method returns the
   # template-page
   def template
@@ -107,47 +105,6 @@ class Page
 
   has_and_belongs_to_many :blogs, dependent: :nullify
 
-  # Render the body with RedCloth or Discount
-  def render_body(view_context=nil,interpret=false)
-    @view_context = view_context unless view_context.nil?
-    unless self.page_template
-      parts = [self.title_and_flags, self.t(I18n.locale,:body),"\nPLUSONE"]
-      self.page_components.each do |component|
-        parts << [component.render_body(view_context)]
-      end
-      rc=self.render_for_html( parts.join("\n"), @view_context)
-    else
-      rc=render_with_template(@view_context)
-    end
-    rc
-  end
-
-
-  def page_with_edit_component_buttons(view_context, &block )
-    rc = self.render_body(view_context,false)
-    rc.gsub(/\[EDIT_COMPONENT_LINK:(\S+)\]/) { |component_id|
-      _component_id = component_id.gsub(/\[EDIT_COMPONENT_LINK:/,'').gsub(/\]$/,'')
-      if view_context && view_context.can?(:edit, self)
-        component = self.page_components.find(_component_id)
-        unless block_given?
-          if view_context
-            view_context.ui_button( 'edit',
-              I18n.translate(:edit),
-              view_context.edit_page_page_component_path(self,_component_id),
-              :remote => true, :title => I18n.translate(:edit_component)
-            )
-          else
-            "<a href='/pages/#{self.page.id.to_s}/page_component/#{self.id.to_s}/edit' data-remote='true' class='button edit tiny'>#{I18n.translate(:edit)}</a>"
-          end
-        else
-          yield(component)
-        end
-      else
-        ""
-      end
-    }
-  end
-
   # Same as short_title but will append a $-sign instead of '...'
   # ... smells in URLs and one can not see the difference if ... is just
   # part of the title or comes from truncation.
@@ -155,110 +112,10 @@ class Page
     title.truncate(CONSTANTS['title_max_length'].to_i, :omission => '$' )
   end
 
-  private
-  # Render the intro (which is the first paragraph of the body)
-  def content_for_intro(interpret=false)
-    if interpret
-      render_for_html((t(I18n.locale,:body)||self.body).paragraphs[0])
-    else
-      (t(I18n.locale,:body)||self.body).paragraphs[0]
-    end
-  end
-
-  # TODO: Remove duplication!
-  # TODO:   This code occurs in Page and PageComponent. Move it to a single
-  # TODO:   place.
-  def render_with_template(view_context=nil)
-    if self.page_template
-      self.page_template.render do |template|
-        fill_in_placeholders(template)
-      end
-    else
-      fill_in_placeholders("<h1>TITLE</h1><div>BODY</div><div>COMMENTS</div>")
-    end
-  end
-
-  def render_components(interpret=true)
-    self.page_components.asc(:position).map do |component|
-      component.render_body(@view_context)
-    end.join("\n")
-  end
-
-  def render_comments
-    if @view_context
-      @view_context.render( :partial => 'pages/comments', :locals => {:page => self} )
-    else
-      "ERROR: NO VIEW TO RENDER COMMENT IN #{__FILE__}:#{__LINE__}"
-    end
-  end
-
-  def render_attachments
-    if @view_context
-      @view_context.render( :partial => 'pages/attachments', :locals => {:page => self })
-    else
-      ""
-    end
-  end
-
-  def render_cover_picture
-    if self.cover_picture_exists? && self.cover_picture.url(:medium) && @view_context
-      @view_context.image_tag self.cover_picture.url(:medium), :class => "img-with-shadow"
-    else
-      ""
-    end
-  end
-
-  def render_buttons
-    if @view_context
-      @view_context.render :partial => "pages/buttons", :locals => { :page => self }
-    end
-  end
-
-  private
-  def fill_in_placeholders(template)
-    template.gsub(/TITLE/, self.title_and_flags)\
-            .gsub(/BODY/,  self.render_for_html(self.t(I18n.locale,:body),@view_context))\
-            .gsub(/COMPONENTS/, render_components )\
-            .gsub(/COVERPICTURE/, render_cover_picture)\
-            .gsub(/COMMENTS/, render_comments)\
-            .gsub(/BUTTONS/, render_buttons)\
-            .gsub(/PLUSONE/, ("<p><g:plusone size=\"small\"></g:plusone></p>".html_safe))\
-            .gsub(/YOUTUBE(_PLAYLIST)?:([\s|\d|\-|_])+/) { |tag|
-              args = tag.split(":")
-              case args[0]
-              when 'YOUTUBE'
-                args.inspect + embed_youtube_video(args[1])
-              when 'YOUTUBE_PLAYLIST'
-                args.inspect + embed_youtube_playlist(args[1])
-              else
-                "ARGUMENT ERROR: " + args.inspect
-              end
-            }
-            .gsub(/ATTACHMENTS/, render_attachments)\
-            .gsub(/ATTACHMENT:([0-9]+)/) { |attachment_number|
-              attachment_number.gsub! /[a-z|:]/i,''
-              if c= self.attachments[attachment_number.to_i-1] && @view_context
-                if c.file_content_type =~ /image/ && @view_context
-                  @view_context.image_tag c.file.url(:medium)
-                elsif c.file_content_type =~ /video/ && @view_context
-                  @view_context.video_tag c.file.url
-                elsif @view_context
-                  @view_context.link_button( c.file_file_name, "button download small", c.file.url )
-                end
-              else
-                "ATTACHMENT #{attachment_number} NOT FOUND"
-              end
-            }\
-            .gsub(/COMPONENT\[(\d)\]/) { |component_number|
-              component_number.gsub! /\D/,''
-               c = self.components.where(:position => component_number.to_i-1).first
-               if c
-                 rc = c.render_body(@view_context)
-               else
-                 "COMPONENT #{component_number} NOT FOUND"
-               end
-            }
-
+  
+  # the first paragraph of the body)
+  def content_for_intro
+    (self.t(I18n.locale,:body)||self.body).paragraphs[0]
   end
 
 

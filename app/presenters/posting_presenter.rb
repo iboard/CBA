@@ -19,6 +19,10 @@ class PostingPresenter < BasePresenter
     end
   end
   
+  def cover_picture(style='')
+    render :partial => 'postings/cover_picture.html.erb', :locals => { :posting => posting, :style => style }
+  end
+  
   def title
     content_tag :h1, :onmouseover=> "showSideTab($('#posting_#{posting.id.to_s}'));", 
                      :onmouseout=>"hideWithDelay('posting_#{posting.id.to_s}',2000);" do
@@ -54,8 +58,19 @@ class PostingPresenter < BasePresenter
   
   def user_and_time
     content_tag :address, :class => "#{posting.created_at > current_user_field( :last_sign_in_at,Time::now()-1.hour) ? 'new_posting' : 'old_posting'}" do
-      I18n.translate(:user_wrote_a_comment_at, :user => posting.user.name, 
-                     :at => distance_of_time_in_words_to_now(posting.created_at)).html_safe
+      _rc = I18n.translate(:user_wrote_a_comment_at, :user => posting.user.name, 
+                           :at => distance_of_time_in_words_to_now(posting.created_at)).html_safe
+      if block_given?
+        _rc += yield
+      end
+    end
+  end
+  
+  def user_time_and_blog
+    user_and_time do 
+      content_tag( :span, style: "font-size: smaller" ) do
+        link_to( I18n.translate(:in_blog, blog: posting.blog.title), posting.blog)
+      end
     end
   end
 

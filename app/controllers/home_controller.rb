@@ -32,12 +32,13 @@ class HomeController < ApplicationController
   # GET /feed
   def rss_feed
     @feed_items = []
-
     Blog.public.each do |blog|
       blog.postings.rss_items.desc(:updated_at).each do |posting|
-        @feed_items << FeedItem.new(posting.title, posting.body, posting.updated_at, posting_url(posting), posting)
-        posting.comments.each do |comment|
-          @feed_items << FeedItem.new( ("%s %% %s" % [posting.title,comment.name]), comment.comment, comment.updated_at, posting_url(posting),comment)
+        if posting.public?
+          @feed_items << FeedItem.new(posting.title, posting.body, posting.updated_at, posting_url(posting), posting)
+          posting.comments.each do |comment|
+            @feed_items << FeedItem.new( ("%s %% %s" % [posting.title,comment.name]), comment.comment, comment.updated_at, posting_url(posting),comment)
+          end
         end
       end
     end

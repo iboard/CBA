@@ -5,7 +5,7 @@
   - if page.page_template
     = presenter.render_with_template
   - else
-    = presenter.cover_picture
+    = presenter.cover_picture("float: right;")
     = presenter.buttons
     .page_body{id: "page_#{page.id.to_s}"}
       = presenter.body

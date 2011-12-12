@@ -2,14 +2,15 @@ class PagePresenter < BasePresenter
   
   presents :page
   
-  def cover_picture(style='',format=:medium)
+  def cover_picture(style='',format=:medium,_concat=true)
     if !page.new_record? && page.cover_picture_exists?
-      content_tag :div, class: 'cover_picture', id: 'cover_picture_'+page.id.to_s, style:  style do
+      _rc = content_tag :div, class: 'cover_picture', id: 'cover_picture_'+page.id.to_s, style:  style do
         link_to_function( 
           image_tag( w3c_url(page.cover_picture.url(format) ),class: "img-with-shadow"),
           "image_popup('#{w3c_url(page.cover_picture.url(:popup))}')"
         )
       end
+      concat_or_string(_concat,_rc)
     end
   end
   

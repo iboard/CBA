@@ -17,7 +17,7 @@ default_template.html_template = "<h1>TITLE</h1>"  +
   "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>"           +
   "<div class='page_body'>BODY</div>"                           +
-  "<div class='page_attachments'>ATTACHMENTS</div>"             +
+  "<div class='page_bodys'>ATTACHMENTS</div>"             +
   "<div class='page_components'>COMPONENTS</div>"               +
   "<div class='page_comments'>COMMENTS</div>"
 default_template.save!
@@ -111,7 +111,7 @@ for i in (0..4).to_a
   default_component.css_class = 'component_default'
   default_component.html_template = "<div class='component_body'>"                         +
        "<div class='component_picture' "                                                   +
-       "style='float: left; margin-right: 10px; margin-bottom: 10px;'>ATTACHMENT:#{(i+1).to_s}]</div>" +
+       "style='float: left; margin-right: 10px; margin-bottom: 10px;'>ATTACHMENT:#{(i+1).to_s}</div>" +
        "BODY"                                                                              +
      "</div>"
   default_component.save!

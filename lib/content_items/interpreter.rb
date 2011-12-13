@@ -22,7 +22,7 @@ class Interpreter
     when :markdown
       ContentItem::markdown(_text)
     when :textile
-      view_context.sanitize(view_context.textilize(_text) )
+      view_context.sanitize(textilize(_text) )
     when :simple_text
       view_context.sanitize(view_context.simple_format(_text) )
     else

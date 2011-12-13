@@ -77,6 +77,15 @@ describe "Postings:" do
       page.should have_content "ATTACHMENT 0 NOT FOUND"
       page.should have_content "ATTACHMENT 1 NOT FOUND"
     end
+    
+    it "should not produce a hickup with textile (Bugfix)" do
+      posting = @blog.postings.create(title: "This uses textile", 
+        body: "Should render without 500", user_id: User.first.id, interpreter: :textile,
+        is_draft: false)
+      visit posting_path(posting)
+      page.should have_content "This uses textile"
+      page.should have_content "Should render without 500"
+    end
 
   end
 

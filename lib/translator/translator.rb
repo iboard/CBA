@@ -23,15 +23,11 @@ module Translator #:nodoc:
         translate_field(name)
       end
     end
+            
   end
 
   module InstanceMethods
-    def translate!
-      for name in translated_fields
-        initialize_translations(name)
-      end
-    end
-
+    
     def t(locale,field,new_value=nil)
       unless new_value
         get_field_value(locale,field)
@@ -39,7 +35,13 @@ module Translator #:nodoc:
         set_field_value(locale,field,new_value)
       end
     end
-
+    
+    def translate!
+      for name in translated_fields
+        initialize_translations(name)
+      end
+    end
+    
     def translated_fields
       attributes.map.select { |a|
         a[0] =~ /_translations$/

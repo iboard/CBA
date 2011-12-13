@@ -35,12 +35,9 @@ describe "Interpreter should render keywords" do
     assert interpreter.render("My title is my BODY") =~ /TESTOBJECT's Body/, "Body should be replaced"
   end
   
-  it "should replace ATTACHMENT:n" do
-    interpreter = Interpreter.new(@testobject)
-    assert interpreter.render("Render an ATTACHMENT:1 here") =~ /OBJECT HAS NO ATTACHMENTS!/, "Should display NO ATTACHMENTS!"
-    
+  it "should replace ATTACHMENT:n" do    
     interpreter = Interpreter.new(@testobject_with_attachments)
-    assert interpreter.render("Render an ATTACHMENT:1 here") =~ /INTERPRETER CAN NOT RENDER ATTACHMENTS WITHOUT A VIEW CONTEXT/, "Should display ATTACHMENT!"
+    assert interpreter.render("Render an ATTACHMENT:1 here") =~ /CAN'T DISPLAY ATTACHMENTS WITHOUT PRESENTER/, "Should display ATTACHMENT!"
   end
   
   it "should replace YOUTUBE:x" do

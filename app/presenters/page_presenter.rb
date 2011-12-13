@@ -4,7 +4,7 @@ class PagePresenter < BasePresenter
   
   def cover_picture(style='',format=:medium,_concat=true)
     if !page.new_record? && page.cover_picture_exists?
-      _rc = content_tag :div, class: 'cover_picture', id: 'cover_picture_'+page.id.to_s, style:  style do
+      _rc = content_tag :div, class: 'cover_picture', id: 'cover_picture_'+page.id.to_s, style: style do
         link_to_function( 
           image_tag( w3c_url(page.cover_picture.url(format) ),class: "img-with-shadow"),
           "image_popup('#{w3c_url(page.cover_picture.url(:popup))}')"
@@ -20,7 +20,7 @@ class PagePresenter < BasePresenter
   end
   
   def title(_concat=true)
-    concat_or_string(_concat, page.title)
+    concat_or_string(_concat, page.t(I18n.locale,:title))
   end
   
   def intro(_concat=true)
@@ -40,7 +40,7 @@ class PagePresenter < BasePresenter
         _rc += concat_or_string(_concat,component_presenter.render_page_component)
       end
     end
-    _rc
+    concat_or_string(_concat,_rc).html_safe
   end
   
   def attachments(_concat=true)

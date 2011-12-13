@@ -12,8 +12,7 @@ module ContentItem
   def markdown(txt)
     options = [
                :hard_wrap, :filter_styles, :autolink,
-               :no_intraemphasis, :fenced_code, :gh_blockcode,
-               :filter_html
+               :no_intraemphasis, :fenced_code, :gh_blockcode
               ]
     doc = Nokogiri::HTML(Redcarpet.new(txt, *options).to_html)
     doc.search("//pre[@lang]").each do |pre|

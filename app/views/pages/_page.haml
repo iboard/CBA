@@ -1,14 +1,15 @@
 = set_browser_address(page.id,page.title)
-- title page.title_and_flags
+- title page.title_and_flags, false
 
 - interpret page do |presenter|
   - if page.page_template
     = presenter.render_with_template
   - else
-    = presenter.cover_picture("float: right;")
-    = presenter.buttons
+    .cover_picture= presenter.cover_picture()
+    %h1= presenter.title(false)
+    = presenter.buttons(false)
     .page_body{id: "page_#{page.id.to_s}"}
-      = presenter.body
-      = presenter.components
-    = presenter.attachments
-    = presenter.comments
+      = presenter.body(false)
+      = presenter.components(false)
+    = presenter.attachments(false)
+    = presenter.comments(false)

@@ -22,7 +22,14 @@ class PageComponentPresenter < BasePresenter
       end
     end
   end
+
+  def title(_concat=false)
+    concat_or_string _concat, interpreter.render( page_component.t(I18n.locale,:title))
+  end
   
+  def body(_concat=false)
+    concat_or_string _concat, interpreter.render( page_component.t(I18n.locale,:body))
+  end
   
   def buttons(_concat=false)
     return "" unless current_role?(:maintainer)
@@ -31,9 +38,7 @@ class PageComponentPresenter < BasePresenter
       ui_button 'edit', I18n.translate(:edit), edit_page_page_component_path(page_component.page,page_component), :remote => true
     end
     
-    return _rc unless _concat
-    concat _rc
-    ""
+    concat_or_string _concat, _rc
   end
   
   def components(_concat=false)

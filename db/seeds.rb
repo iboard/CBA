@@ -13,8 +13,7 @@
 default_template = PageTemplate.find_or_create_by(name: 'default')
 default_template.css_class = 'template_default'
 default_template.html_template = "<h1>TITLE</h1>"  +
-  "<div style='clear: right; float: right; "   +
-  "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
+  "<div class='cover_picture'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>"           +
   "<div class='page_body'>BODY</div>"                           +
   "<div class='page_bodys'>ATTACHMENTS</div>"             +
@@ -25,8 +24,7 @@ default_template.save!
 default_template = PageTemplate.find_or_create_by(name: 'Page: Hidden attachments')
 default_template.css_class = 'template_default'
 default_template.html_template = "<h1>TITLE</h1>"  +
-  "<div style='float: right; "   +
-  "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
+    "<div class='cover_picture'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>"           +
   "<div class='page_body'>BODY</div>"                           +
   "<div class='page_components'>COMPONENTS</div>"               +
@@ -46,8 +44,7 @@ default_template.save!
 
 default_template = PageTemplate.find_or_create_by(name: 'Page: without title')
 default_template.css_class = 'template_default'
-default_template.html_template = "<div style='float: right; "   +
-  "margin-left: 10px; margin-bottom: 10px;'>COVERPICTURE</div>" +
+default_template.html_template =   "<div class='cover_picture'>COVERPICTURE</div>" +
   "<address class='inline_buttons'>BUTTONS</address>" +
   "<div class='page_body'>BODY</div>"                 +
   "<div class='page_components'>COMPONENTS</div>"     +

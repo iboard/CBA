@@ -11,39 +11,35 @@ class Interpreter
   end
   
   def render(txt_template)
-    _text = txt_template.gsub(/TITLE/) { |title| 
-      @object.try(:title) || "OBJECT HAS NO title()-FUNCTION"
-    }.gsub(/BODY/) { |body|
-      @object.try(:body) || "OBJECT HAS NO body()-FUNCTION"
-    }
-
-    _interpreter = object.respond_to?(:interpreter) ? object.interpreter : "none"
-    _rc = case _interpreter.to_sym
-    when :markdown
-      ContentItem::markdown(_text)
-    when :textile
-      view_context.sanitize(textilize(_text) )
-    when :simple_text
-      view_context.sanitize(view_context.simple_format(_text) )
-    else
-      _text
-    end
     
-    if presenter
-      _rc = _rc.gsub(/BUTTONS/) {
+    txt_template = view_context.sanitize(txt_template) if view_context
+    
+    _interpreter = object.respond_to?(:interpreter) ? object.interpreter : "none"
+        
+    txt_template = if presenter
+      txt_template.gsub(/BODY/) {
+        presenter.body(false)
+      }.gsub(/TITLE/) {
+        presenter.title(false)
+      }.gsub(/BUTTONS/) {
         presenter.buttons(false)
-      }.gsub(/ATTACHMENTS/) {
-        presenter.attachments(false)
       }.gsub(/COMPONENTS/) {
         presenter.components(false)
-      }.gsub(/COMMENTS/) {
-        presenter.comments(false)
       }
     else
-      _rc
+      txt_template.gsub(/BODY/) {
+         object.try(:body)
+      }.gsub(/TITLE/) {
+        if object.try(:title)
+          object.title
+        else
+          "OBJECT HAS NO TITLE"
+        end
+      }
     end
     
-    _rc.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
+    
+    _rc = txt_template.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
     .gsub( /\[LOCATION:([\d\., \-]+)\]/) { |location|
       render_location_link(location.gsub('LOCATION','').gsub('[','').gsub(']','').gsub(':',''))
     }
@@ -51,7 +47,7 @@ class Interpreter
       render_place_link(place.gsub('PLACE','').gsub('[','').gsub(']','').gsub(':',''))
     }
     .gsub(/COVERPICTURE/) {
-      render_picture @object.cover_picture.url(:medium)
+      render_picture(object.cover_picture.url(:medium), 'img-with-shadow')
     }.gsub( /ATTACHMENT:([0-9]+)/ ) { |attachment|
       render_attachment(attachment.gsub( /ATTACHMENT:/,'' ).to_i)
     }.gsub( /COMPONENT:([0-9]+)/ ) { |component|
@@ -66,6 +62,30 @@ class Interpreter
         embed_youtube_playlist(args[1])
       else
         "ARGUMENT ERROR: " + args.inspect
+      end
+    }
+    
+    _rc = case _interpreter.to_sym
+    when :markdown
+      ContentItem::markdown(_rc)
+    when :textile
+      textilize(_rc).html_safe
+    when :simple_text
+      view_context ? view_context.sanitize(view_context.simple_format(_rc)) : _rc
+    else
+      _rc
+    end
+    
+    
+    _rc.gsub(/COMMENTS/) {
+      presenter ? presenter.comments(false) : "CAN'T DISPLAY COMMENTS WITHOUT PRESENTER"
+    }.gsub(/ATTACHMENTS/) {
+      if presenter.nil?
+        "CAN'T DISPLAY ATTACHMENTS WITHOUT PRESENTER"
+      elsif presenter.respond_to? :attachments
+        presenter.attachments(false)
+      else
+        "OBJECT HAS NO ATTACHMENTS!"
       end
     }.html_safe
     
@@ -95,16 +115,20 @@ private
     end
   end
   
-  def render_picture(picture)
+  def render_picture(picture,_class=nil)
     if view_context
-      view_context.image_tag(picture)
+      unless _class
+        view_context.image_tag(picture)
+      else
+        view_context.image_tag(picture, class: _class)
+      end
     else
       "couldn't display #{picture} without view-context"
     end
   end
   
   def render_object_component(idx)
-    return "OBJECT HAS NO COMPONENTS!" unless @object.respond_to?(:components)
+    return "OBJECT HAS NO COMPONENTS!" unless object.respond_to?(:components)
     idx ||= 1
     idx -= 1
     component = object.components.all[idx]
@@ -112,7 +136,7 @@ private
       "COMPONENT #{idx} NOT FOUND FOR OBJECT"
     else
       _component_interpreter = Interpreter.new(_component,context_view)
-      _component_interpreter.render(component.body)
+      _component_interpreter.render(component.t(I18n.locale,:body))
     end
   end
   

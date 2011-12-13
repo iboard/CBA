@@ -22,7 +22,7 @@ describe "RSS-Feed" do
   
   it "should feed postings which are not marked as draft" do
     visit feed_path
-    page.should have_content "lorem ipsum with some html"
+    page.html.should match Regexp.escape("lorem ipsum with &lt;/p&gt;\n&lt;p&gt;some&lt;br&gt;&lt;/p&gt; html")
     page.should_not have_content "A Posting Draft"
   end
   

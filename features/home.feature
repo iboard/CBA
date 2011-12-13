@@ -36,51 +36,5 @@ Feature: Home
      And I am on the home page
      And draft mode is on
      Then I should see "Hide drafts"     
-     
-  Scenario: Get empty RSS-Feed
-    Given I am on the rss feed
-    Then I should see "TESTFEED"
-    And I should see "A Twitter page"
-    And I should see "Lorem Twittum"
-    
-  Scenario: BUGFIX: do not concat to view for builder
-    Given the following blogs with pages
-      | title    | page_name | page_body                  | is_draft |
-      | PageBlog | PageOne   | A wonderful body           | false    |
-      | PageBlog | PageTwo   | This page should be there  | false    |
-    And the following posting records for blog "PageBlog" and user "admin"
-      | title         | body                                  | is_draft |
-      | Posting one   | lorem ipsum with <p>some<br></p> html | false    |
-      | Posting Draft | A Posting Draft | true     |
-    And I am on the rss feed
-    Then I should see a valid rss-feed containing "&lt;p&gt;lorem ipsum with some html&lt;p&gt;"
-    
-  Scenario: RSS-Feed should not show drafts
-    Given the following blogs with pages
-      | title    | page_name | page_body                      | is_draft |
-      | PageBlog | PageOne   | A wonderful body               | false    |
-      | PageBlog | PageTwo   | This page should not be there  | true    |
-    And the following posting records for blog "PageBlog" and user "admin"
-      | title         | body                                  | is_draft |
-      | Posting one   | Should be shown                       | false    |
-      | Posting Draft | A Posting Draft                       | true     |
-    And I am on the rss feed
-    Then I should not see "This page should not be there"
-    And I should not see "A Posting Draft"
-    And I should see "Should be shown"
-    And I should see "A wonderful body"
-    
-  Scenario: BUGFIX: unpriviledged users should not see draft postings on root path
-    Given the following blog records
-      | title | is_draft |
-      | News  | false    |
-    Given the following posting records for blog "News" and user "admin"
-      | title      | body                                           | is_draft |
-      | Direct Post| The posting should load the blog it belongs to | false    |
-      | Draft Post | This should not be visible to non-authors      | true     |
-    And I am logged out
-    And I am on the home page
-    Then I should see "Direct Post"
-    And I should not see "Draft Post"
-    And I should not see "This should not be visible to non-authors"
+         
 

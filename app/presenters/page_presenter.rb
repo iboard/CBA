@@ -19,6 +19,10 @@ class PagePresenter < BasePresenter
     concat_or_string(_concat,_txt)
   end
   
+  def title(_concat=true)
+    concat_or_string(_concat, page.title)
+  end
+  
   def intro(_concat=true)
     _txt = self.interpreter.render( page.intro )
     concat_or_string(_concat,_txt)
@@ -49,19 +53,8 @@ class PagePresenter < BasePresenter
     concat_or_string(_concat,_rc)
   end
   
-  def render_with_template
-    concat @interpreter.render(page.page_template.html_template)
-    ""
-  end
-  
-private
-  def concat_or_string(_concat,_txt)
-    if _concat
-      concat _txt
-      ""
-    else
-      _txt
-    end
+  def render_with_template(_concat=true)
+    concat_or_string _concat, @interpreter.render(page.page_template.html_template)
   end
     
 end

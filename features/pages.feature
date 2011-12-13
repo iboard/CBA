@@ -91,17 +91,6 @@ Feature: Pages
   Scenario: Pagination should work on pages::index
     pending
 
-  Scenario: Pages should be provided as atom-feed
-    Given I am on the page path of "Page 1"
-    And I fill in "Name" with "Frank Zappa"
-    And I fill in "Email" with "some@address.at"
-    And I fill in "Comment" with "Lorem Commentum gscheit daherred"
-    And I click on "Post comment"
-    And I am on the feed page
-    Then I should see "Lorem Commentum gscheit daherred"
-    And I should see "Page 1"
-    And I should see "Frank Zappa"
-
   Scenario: Page title and body should be translated
     Given the following translated pages
       | title_en  | body_en      | title_de     | body_de    |

@@ -13,14 +13,14 @@
           %p.content_seperator
 
   .left_column
-    = render :partial => '/blogs/blog', :locals => { :blog => @blog}
+    = render :partial => 'blogs/blog', :locals => { :blog => @blog}
     
     - render_pagination_box @postings
     
     #postings{ style: 'clear: right;'}
       - @postings.each do |posting|
-        = render :partial => '/postings/posting', :locals => { :posting => posting, :blog => @blog }
-      = render :partial => '/home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
+        = render :partial => 'postings/posting', :locals => { :posting => posting, :blog => @blog }
+      = render :partial => 'home/load_more', :locals => { :resources => @postings, :path => blog_path(@blog) }
     
     - render_pagination_box @postings
     

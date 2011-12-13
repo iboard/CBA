@@ -53,18 +53,6 @@ class Posting
   end
 
   scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
-
-
-  ## Render the body
-  #def render_body(view_context=nil)
-  #  @view_context ||= view_context
-  #  if @view_context
-  #    @view_context.concat render_for_html(self.body,@view_context).html_safe
-  #    return ""
-  #  else
-  #    render_for_html(self.body).html_safe
-  #  end
-  #end
   
   def new_tag
   end

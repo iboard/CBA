@@ -6,7 +6,7 @@
     .side-tab-content
       = presenter.title
       = presenter.tags_and_limited_information
-      = presenter.cover_picture('margin-right: 10px;')
+      = presenter.cover_picture('margin-right: 10px;',:thumb)
       - unless params[:controller] == 'postings' && params[:action] == 'show'
         = presenter.user_and_time
         = presenter.intro

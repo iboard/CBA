@@ -10,7 +10,7 @@ class Interpreter
     @presenter = presenter
   end
   
-  def render(txt_template)
+  def render(txt_template, do_markdown=true)
     
     txt_template = view_context.sanitize(txt_template) if view_context
     
@@ -65,17 +65,18 @@ class Interpreter
       end
     }
     
-    _rc = case _interpreter.to_sym
-    when :markdown
-      ContentItem::markdown(_rc)
-    when :textile
-      textilize(_rc).html_safe
-    when :simple_text
-      view_context ? view_context.sanitize(view_context.simple_format(_rc)) : _rc
-    else
-      _rc
+    if do_markdown
+      _rc = case _interpreter.to_sym
+      when :markdown
+        ContentItem::markdown(_rc)
+      when :textile
+        textilize(_rc).html_safe
+      when :simple_text
+        view_context ? view_context.sanitize(view_context.simple_format(_rc)) : _rc
+      else
+        _rc
+      end
     end
-    
     
     _rc.gsub(/COMMENTS/) {
       presenter ? presenter.comments(false) : "CAN'T DISPLAY COMMENTS WITHOUT PRESENTER"

@@ -13,11 +13,11 @@ class PageComponentPresenter < BasePresenter
     content_tag :div, class: 'page-component', id: "page-component-"+ page_component.id.to_s do
       rc = if page_component.page_template
         content_tag :div, class: page_component.page_template.css_class do
-          interpreter.render( page_component.page_template.html_template ) + _edit
+          interpreter.render( page_component.page_template.html_template,false ) + _edit
         end
       else
         content_tag( :h1, page_component.t(I18n.locale,:title) ) +
-        interpreter.render( page_component.t(I18n.locale,:body))+
+        interpreter.render( page_component.t(I18n.locale,:body, false))+
         _edit
       end
     end

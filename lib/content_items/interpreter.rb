@@ -137,7 +137,7 @@ private
       "COMPONENT #{idx} NOT FOUND FOR OBJECT"
     else
       _component_interpreter = Interpreter.new(_component,context_view)
-      _component_interpreter.render(component.t(I18n.locale,:body))
+      _component_interpreter.render(component.t(I18n.locale,:body),false)
     end
   end
   

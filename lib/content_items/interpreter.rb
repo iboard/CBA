@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Interpreter
 
   attr_reader :object
@@ -40,7 +41,7 @@ class Interpreter
     end
 
 
-    _rc = txt_template.gsub(/\[PLACE:([a-z|A-Z|0-9|\-| |,]+)\]/) { |place|
+    _rc = txt_template.gsub(/\[PLACE:(.*?|!\])\]/) { |place|
       render_place_link(place.gsub('PLACE','').gsub('[','').gsub(']','').gsub(':',''))
     }
     .gsub(/COVERPICTURE/) {

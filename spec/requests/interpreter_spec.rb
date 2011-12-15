@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 require File::expand_path('../../spec_helper', __FILE__)
 
 describe "Interpreter" do
@@ -77,6 +79,15 @@ describe "Interpreter" do
     @page.save!
     visit page_path(@page)
     click_link "Technisches Museum, Wien"
+    sleep 1
+    page.should have_link "Google maps..."
+  end
+  
+  it "should render PLACE with Umlaute", :js => true do
+    @page.body = "A [LOCATION:48.2165,14.2618] and a [PLACE:Gärtnerstraße 1, 4053 Haid, Austria]"
+    @page.save!
+    visit page_path(@page)
+    page.all('a', :text => /Austria/).last.click()
     sleep 1
     page.should have_link "Google maps..."
   end

@@ -102,9 +102,13 @@ private
     if options[:add_class]
       class_names += " " + options[:add_class]
       options.delete(:add_class)
-    end                
-    options.merge!( class:  class_names,
-                    style: 'padding: 5px; padding-top: 2px; padding-bottom: 3px; text-align: left;'   )
+    end
+    style = 'padding: 5px; padding-top: 2px; padding-bottom: 3px; text-align: left;'           
+    if options[:add_style]
+      style += " " + options[:add_style]
+      options.delete(:add_style)
+    end     
+    options.merge!( class:  class_names, style:  style)
     options.merge!( title: I18n.translate(icon.to_sym)) if label_text.blank?
   end
 

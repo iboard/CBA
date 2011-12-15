@@ -495,6 +495,7 @@ Given /^the following translated components for page "([^"]*)"$/ do |page_title,
     c.translate!
     c.t(:de, :title, hash[:title_de])
     c.t(:de, :body, hash[:body_de])
+    c.save!
   end
   page.save!
 end

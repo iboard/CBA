@@ -9,13 +9,14 @@ class Interpreter
     @view_context = view_context
     @presenter = presenter
   end
-  
+
   def render(txt_template, do_markdown=true)
-    
+
+    return "" unless txt_template.is_a?(String)
     txt_template = view_context.sanitize(txt_template) if view_context
-    
+
     _interpreter = object.respond_to?(:interpreter) ? object.interpreter : "none"
-        
+
     txt_template = if presenter
       txt_template.gsub(/BODY/) {
         presenter.body(false)
@@ -37,13 +38,9 @@ class Interpreter
         end
       }
     end
-    
-    
-    _rc = txt_template.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
-    .gsub( /\[LOCATION:([\d\., \-]+)\]/) { |location|
-      render_location_link(location.gsub('LOCATION','').gsub('[','').gsub(']','').gsub(':',''))
-    }
-    .gsub(/\[PLACE:([a-z|A-Z|0-9|\-| |,]+)\]/) { |place|
+
+
+    _rc = txt_template.gsub(/\[PLACE:([a-z|A-Z|0-9|\-| |,]+)\]/) { |place|
       render_place_link(place.gsub('PLACE','').gsub('[','').gsub(']','').gsub(':',''))
     }
     .gsub(/COVERPICTURE/) {
@@ -64,11 +61,12 @@ class Interpreter
         "ARGUMENT ERROR: " + args.inspect
       end
     }
-    
+
+
     if do_markdown
       _rc = case _interpreter.to_sym
       when :markdown
-        ContentItem::markdown(_rc)
+        ContentItem::markdown( _rc  )
       when :textile
         textilize(_rc).html_safe
       when :simple_text
@@ -77,7 +75,7 @@ class Interpreter
         _rc
       end
     end
-    
+
     _rc.gsub(/COMMENTS/) {
       presenter ? presenter.comments(false) : "CAN'T DISPLAY COMMENTS WITHOUT PRESENTER"
     }.gsub(/ATTACHMENTS/) {
@@ -88,11 +86,13 @@ class Interpreter
       else
         "OBJECT HAS NO ATTACHMENTS!"
       end
+    }.gsub(/PLUSONE/, '<g:plusone size="small"></g:plusone>')
+    .gsub( /\[LOCATION:([\d\., \-]+)\]/) { |location|
+      render_location_link(location.gsub('LOCATION','').gsub('[','').gsub(']','').gsub(':',''))
     }.html_safe
-    
   end
 
-  
+
 private
   def render_attachment(idx)
     return "OBJECT HAS NO ATTACHMENTS!" unless object.respond_to?(:attachments)
@@ -115,7 +115,7 @@ private
       "INTERPRETER CAN NOT RENDER ATTACHMENTS WITHOUT A VIEW CONTEXT"
     end
   end
-  
+
   def render_picture(picture,_class=nil)
     if view_context
       unless _class
@@ -127,7 +127,7 @@ private
       "couldn't display #{picture} without view-context"
     end
   end
-  
+
   def render_object_component(idx)
     return "OBJECT HAS NO COMPONENTS!" unless object.respond_to?(:components)
     idx ||= 1
@@ -140,23 +140,23 @@ private
       _component_interpreter.render(component.t(I18n.locale,:body),false)
     end
   end
-  
+
   def embed_youtube_playlist(youtube_tag)
     "<iframe width='560' height='345' src='http://www.youtube.com/p/" +
       youtube_tag +
     "?version=3&amp;hl=en_US' frameborder='0' allowfullscreen=''></iframe>"
   end
-  
+
   def embed_youtube_video(youtube_tag)
     "<iframe width='420' height='345' src='http://www.youtube.com/embed/"+
       youtube_tag +
       "' frameborder='0' allowfullscreen=''></iframe>"
   end
-  
+
   def render_location_link(location)
     "<a href='#' class='open-location'>"+location+"</a>"
   end
-  
+
   def render_place_link(place)
     "<a href='#' class='open-place'>"+place+"</a>"
   end

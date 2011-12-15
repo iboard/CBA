@@ -1,4 +1,7 @@
 <div class='clear'></div>
+<div style='float: right; width: 200px;'>
+  <%= t(:html_template_label) -%>
+</div>
 <%= form_for([blog,posting], :html => { :multipart => true } ) do |f| %>
 
   <%= errors_for(posting) %>

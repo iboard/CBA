@@ -12,10 +12,10 @@ Feature: PageComponents
     And the following page_template records
       | name    | html_template                              |
       | default | TITLE BODY COMMENTS ATTACHMENTS COMPONENTS |
-    And the following page records
+    And only the following page records
       | title  | body                 | show_in_menu | is_draft | is_template | interpreter |
-      | Page 1 | This is page one     | false        | false    | false       | :markdown   |
-      | Page 2 | This is page two     | false        | false    | false       | :markdown   |
+      | Page 1 | This is page one     | false        | false    | false       | markdown    |
+      | Page 2 | This is page two     | false        | false    | false       | markdown    |
     And I am logged in as user "admin@iboard.cc" with password "thisisnotsecret"
 
   Scenario: Edit page form should offer 'add component' button
@@ -40,8 +40,8 @@ Feature: PageComponents
        | title_en   | body_en      | title_de | body_de   |
        | GB         | Fish n chips | Austria  | Schnitzel |
     And I am on the page path of "Page 1"
-    And I click on link "Edit"
-    Then I should see "Body (de)" within "#components"
+    And I click on link "Edit" within ".page-component-edit"
+    Then I should see "Body (de)" within ".fields_for_component"
 
   Scenario: Page components should be translated
     Given the following translated components for page "Page 1"

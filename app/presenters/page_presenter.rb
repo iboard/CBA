@@ -54,7 +54,7 @@ class PagePresenter < BasePresenter
   end
   
   def render_with_template(_concat=true)
-    concat_or_string _concat, @interpreter.render(page.page_template.html_template)
+    concat_or_string _concat, @interpreter.render(page.page_template.html_template,false)
   end
     
 end

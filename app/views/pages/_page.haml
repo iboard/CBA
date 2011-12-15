@@ -1,3 +1,5 @@
+- content_for :resource_actions do   
+  = ui_button 'back', t(:pages_index), pages_path
 = set_browser_address(page.id,page.title)
 - title page.title_and_flags, false
 

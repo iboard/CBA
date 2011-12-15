@@ -1,6 +1,8 @@
 -#
 -# FORM FOR EDIT PAGE
 -#
+%div{style: 'clear: right; margin: 10px; margin-top: 150px; float: right; width: 200px;'}= t(:html_template_label).html_safe
+  
 = form_for(page, :html => { :multipart => true } ) do |f|
 
     = errors_for page

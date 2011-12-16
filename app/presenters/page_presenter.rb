@@ -54,7 +54,10 @@ class PagePresenter < BasePresenter
   end
   
   def render_with_template(_concat=true)
-    concat_or_string _concat, @interpreter.render(page.page_template.html_template,false)
+    _rc = content_tag( :div, :class => page.page_template.css_class ) do
+      @interpreter.render(page.page_template.html_template,false)
+    end
+    concat_or_string _concat, _rc
   end
     
 end

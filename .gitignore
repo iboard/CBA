@@ -1,4 +1,5 @@
 .bundle
+.pt
 .yardoc
 .rspec
 .rvmrc

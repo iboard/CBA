@@ -80,7 +80,7 @@ class PostingPresenter < BasePresenter
   end
 
   def comment_links(_concat=true)
-    _rc = if postings_visible?
+    _rc = if comments_visible?
       content_tag( :p, :class => 'posting_comment_links') do
         content_tag( :span, :class=> 'comments_counter') do
           rc = I18n.translate(:num_of_comments, :count => posting.comments.count)
@@ -132,7 +132,7 @@ class PostingPresenter < BasePresenter
   end
   
 private
-  def postings_visible?
+  def comments_visible?
     posting.blog.allow_public_comments || (posting.blog.allow_comments && user_signed_in?) || posting.comments.any?
   end
 

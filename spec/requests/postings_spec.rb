@@ -86,6 +86,16 @@ describe "Postings:" do
       page.should have_content "This uses textile"
       page.should have_content "Should render without 500"
     end
+    
+    it "should render and higlight comments" do
+      posting = @blog.postings.create(title: "This contains code", 
+        body: "this is ruby\n\n```ruby\nputs 'Hello World'\n```\n\n", user_id: User.first.id, interpreter: :markdown,
+        is_draft: false)
+      visit posting_path(posting)
+      assert page.all('.s1').length > 0, 'There should be some highlight' 
+      assert page.all('.s1').first.text =~ /Hello World/, 'Should highlight ruby-code'
+      puts page.html.inspect
+    end
 
   end
 

@@ -1,9 +1,9 @@
-- if @posting.comments.any? 
+- if posting.comments.any? 
   = content_tag :div, :id => 'comments' do
-    %h5= t(:number_of_comments, :count => @posting.comments.count)
-    = render :partial => @posting.comments, :locals => { :commentable => @posting, :path_components => [@posting.blog,@posting] }
-- if @posting.blog.allow_public_comments || (@posting.blog.allow_comments && user_signed_in?)
+    %h5= t(:number_of_comments, :count => posting.comments.count)
+    = render :partial => posting.comments, :locals => { :commentable => posting, :path_components => [posting.blog,posting], :interpreter => interpreter }
+- if posting.blog.allow_public_comments || (posting.blog.allow_comments && user_signed_in?)
   = content_tag :div, :id => 'new_comment_form' do
     %h5= t(:post_a_comment)
-    = form_for [@blog,@posting,comment = @posting.comments.build(:name => current_user_field(:name,''),:email => current_user_field(:email, ''))] do |f| 
-      = render :partial => '/comments/comment_fields', :locals => { :f => f, :commentable => @posting,:comment => comment }
+    = form_for [posting.blog,posting,comment = posting.comments.build(:name => current_user_field(:name,''),:email => current_user_field(:email, ''))] do |f| 
+      = render :partial => '/comments/comment_fields', :locals => { :f => f, :commentable => posting,:comment => comment, :interpreter => interpreter  }

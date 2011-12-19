@@ -35,7 +35,7 @@ class CommentPresenter < BasePresenter
   end
   
   def render_comment
-    markdown(comment.comment||'')
+    ContentItem::markdown(comment.comment||'').html_safe
   end
   
   def comment_class

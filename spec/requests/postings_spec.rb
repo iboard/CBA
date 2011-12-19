@@ -94,7 +94,6 @@ describe "Postings:" do
       visit posting_path(posting)
       assert page.all('.s1').length > 0, 'There should be some highlight' 
       assert page.all('.s1').first.text =~ /Hello World/, 'Should highlight ruby-code'
-      puts page.html.inspect
     end
 
   end

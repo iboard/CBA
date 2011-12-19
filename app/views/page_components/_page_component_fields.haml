@@ -8,7 +8,7 @@
                 %span{style: 'padding-left: 0;'}
                 = raw(field)
                 %br/
-            - if f.object.new_record? || (f.object.page && (f.object.page.allow_removing_component||f.object.page.is_template)) 
+            - if f.object.new_record? || (f.object.page && (request.format != "text/javascript") && (f.object.page.allow_removing_component||f.object.page.is_template)) 
                 %span{ :style => "float: right; width: 200px" }
                     = link_to_remove_fields( t(:destroy_component), f )
                     %br

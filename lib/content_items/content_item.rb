@@ -58,6 +58,12 @@ module ContentItem
         validates_presence_of :title
         validates_uniqueness_of :title
 
+        # ContentItem should not be visible before publish_at
+        field :publish_at, type: DateTime
+
+        # ContentItem should not be visible by expire_at
+        field :expire_at, type: DateTime
+  
         # ContentItems marked as 'draft' should not be in the default-scope
         field :is_draft, :type => Boolean, :default => true
         scope :drafts, lambda { unscoped.where(is_draft: true ) }
@@ -67,6 +73,15 @@ module ContentItem
         else
           scope :published, lambda { unscoped.where(is_draft: false ) }
         end
+
+        scope :online, any_of(
+          {:publish_at=>nil,:expire_at=>nil},
+          {:publish_at.lte=>Time.now(),:expire_at=>nil},
+          {:publish_at.lte=>Time.now(),:expire_at.gt=>Time.now()},
+          {:publish_at => nil, :expire_at.gt=>Time.now()}
+        )
+        scope :expired, unscoped.where(:expire_at.lte=>Time.now)
+        scope :pre_release, where(:publish_at.gt => Time.now())
 
         # Will return a truncated version of the title if it exceeds the maximum
         # length of titles used in the menu (or wherever you can't display long titles)

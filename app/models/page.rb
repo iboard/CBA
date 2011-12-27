@@ -75,9 +75,9 @@ class Page
     return self.template_id != nil && self.template != nil
   end
 
-  default_scope lambda { where( is_template: false) }
-  scope :templates, lambda { where(is_template: true ) }
-  scope :top_pages, lambda { where(show_in_menu: true).asc(:menu_order) }
+  default_scope lambda { online.where( is_template: false) }
+  scope :templates, lambda { online.where(is_template: true ) }
+  scope :top_pages, lambda { online.where(show_in_menu: true).asc(:menu_order) }
 
   references_many            :comments, :inverse_of => :commentable, :as => 'commentable'
   validates_associated       :comments

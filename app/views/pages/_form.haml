@@ -1,8 +1,9 @@
 -#
 -# FORM FOR EDIT PAGE
 -#
-%div{style: 'clear: right; margin: 10px; margin-top: 150px; float: right; width: 200px;'}= t(:html_template_label).html_safe
-  
+%div{style: 'clear: right; margin: 10px; margin-top: 170px; float: right; width: 200px;'}
+    %p= t(:html_template_label).html_safe
+%p= sc(:nbsp)  
 = form_for(page, :html => { :multipart => true } ) do |f|
 
     = errors_for page
@@ -109,6 +110,16 @@
         = f.label :is_draft, t(:save_as_draft)
         = f.check_box :is_draft
         = t(:will_be_shown_to_authors_only)
+
+    .field
+        = f.label :publish_at
+        = f.text_field :publish_at_date, :size => 10, style: 'width: 100px', :placeholder => 'yy-mm-dd'
+        = f.text_field :publish_at_time, :size => 5,  style: 'width: 100px', :placeholder => 'hh.mm'
+    
+    .field
+        = f.label :expire_at
+        = f.text_field :expire_at_date, :size => 10, style: 'width: 100px', :placeholder => 'yy-mm-dd'
+        = f.text_field :expire_at_time, :size => 5,  style: 'width: 100px', :placeholder => 'hh.mm'
     
     .field
         %h3= t(:saving)

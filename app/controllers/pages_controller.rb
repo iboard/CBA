@@ -28,7 +28,11 @@ class PagesController < ApplicationController
   # GET /pages/1.xml
   def show
     begin
-      @page = scoped_pages.find(params[:id])
+      if current_role?(:maintainer)
+        @page = Page.unscoped.find(params[:id])
+      else
+        @page = scoped_pages.find(params[:id])
+      end
     rescue
       redirect_to pages_path, :alert => t(:document_not_found)
       return
@@ -82,7 +86,11 @@ class PagesController < ApplicationController
   # GET /pages/1/edit
   def edit
     # Workarround for :fields_for which will ignore default_scope of components
-    @page = scoped_pages.find(params[:id])
+    if current_role?(:maintainer)
+      @page = Page.unscoped.find(params[:id])
+    else
+      @page = scoped_pages.find(params[:id])
+    end
     authorize! :edit, @page
     @page.page_components.sort! {|a,b| a.position <=> b.position }
   end
@@ -120,7 +128,11 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.xml
   def update
-    @page = Page.find(params[:id])
+    if current_role?(:maintainer)
+      @page = Page.unscoped.find(params[:id])
+    else
+      @page = Page.find(params[:id])
+    end
     authorize! :update, @page
     respond_to do |format|
       if @page.update_attributes(params[:page])

@@ -64,7 +64,20 @@ describe "Postings:" do
       page.should have_no_content "Limited"
     end
     
+    it "Should hide unpublished postings" do
+      log_in_as "admin@iboard.cc", "thisisnotsecret"
+      _unpublished = @blog.postings.create(title:'unpublished posting',user_id: User.first.id,is_draft: false,publish_at: Time.now+2.minutes)
+      visit blog_path(@blog)
+      page.should_not have_content "unpublished posting"
+    end
     
+    it "Should hide expired postings" do
+      log_in_as "admin@iboard.cc", "thisisnotsecret"
+      _expired = @blog.postings.create(title:'expired posting',user_id: User.first.id,is_draft: false,expire_at: Time.now-2.minutes)
+      visit blog_path(@blog)
+      page.should_not have_content "expired posting"
+    end
+
     it "should interpret when rendering with a view-context", js: true do
       @blog.postings.first.tap do |posting|
         posting.body = "AN IMAGE  ATTACHMENT:1 AND A VIDEO ATTACHMENT:2"

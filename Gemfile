@@ -17,9 +17,9 @@ group :assets do
 end
 
 # Bundle gems needed for Mongoid
-gem "mongo", "1.4.0"
-gem "mongoid", "~> 2.3.0" #"2.1.6" #  :path => "/Users/aa/Development/R31/mongoid-1" #"2.1.6"
-gem "bson_ext"  #, "1.1.5"
+gem "mongo"    
+gem "mongoid"  #, :path => "/Users/aa/Development/R31/mongoid-1"
+gem "bson_ext" #, "1.3.1" #, "1.1.5"
 
 # Bundle gem needed for Devise and cancan
 gem "devise" #, :git => 'git://github.com/iboard/devise.git' #:path => "/Users/aa/Development/R31/devise" #'1.2.rc2' #, "~>1.4.0" # ,"1.1.7"

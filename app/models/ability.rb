@@ -45,7 +45,7 @@ class Ability
         if user.role?(:guest)
           can :read, [Page, Blog] do |resource|
             rc = if resource.respond_to? :is_draft
-              resource.is_draft != true
+              resource.is_draft != true && resource.is_online?
             else
               true
             end
@@ -77,7 +77,7 @@ class Ability
 
       # Anybody
       can :read, Posting do |posting|
-        access = (posting.is_draft != true) && posting.blog.public? && posting.recipient_ids.empty?
+        access = (posting.is_draft != true) && posting.blog.public? && posting.recipient_ids.empty? && posting.is_online?
         unless (access == true || user.new_record?)
           access = posting.recipient_ids.include?(user.id)
         end

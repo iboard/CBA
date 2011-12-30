@@ -32,14 +32,15 @@ class Posting
   accepts_nested_attributes_for :attachments,
                                 :allow_destroy => true
                                 
-
-  scope :public, any_of({:recipient_ids => []}, {:recipient_ids => nil})
-  
-  scope :addressed_to, ->(user_id) { any_of( {:recipient_ids => nil}, 
-                                             {:recipient_ids => [] },
-                                             {:recipient_ids => [user_id] },
-                                             {:user_id => user_id}
-                                           ) }
+  scope :publics,      -> { where(recipient_ids: []) }
+  scope :addressed_to, ->(user_id) { where.any_of( 
+                                              {:recipient_ids => nil}, 
+                                              {:recipient_ids => [] },
+                                              {:recipient_ids => [user_id] },
+                                              {:user_id => user_id} 
+                                            
+                                          ) 
+                                    }
                                    
 
   # Send notifications
@@ -52,7 +53,7 @@ class Posting
     title + " " + body + " " + comments.map(&:comment).join(" ")
   end
 
-  scope :rss_items, lambda { not_in( is_draft: [true,nil]) }
+  scope :rss_items, -> { not_in( is_draft: [true,nil]) }
   
   def new_tag
   end
@@ -84,6 +85,7 @@ class Posting
       group = self.user.user_groups.find(group_id).members
     }.flatten.uniq.compact
   end
+
   
 private ################################################## private ####
 

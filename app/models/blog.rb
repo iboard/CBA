@@ -26,7 +26,7 @@ class Blog
                                 {:user_role => nil } 
                               )}
                               
-  scope :public, any_of( 
+  scope :public_blogs, any_of( 
                    {:user_role => 0},
                    {:user_role => nil} 
                  )
@@ -70,7 +70,35 @@ class Blog
   # @return [Boolean] true if user_role is not defined or eql 0
   def public?
     self.user_role == nil || self.user_role == 0
-  end  
+  end
+
+  # @param [User] _user - the current user or nil
+  # @param [Symbol] _role - the current user's role
+  # @param [Boolean] _draft_mode - select for draft-mode if true
+  # @return [Criteria] for all visible postings for this user
+  def postings_for_user_and_mode(_user,_draft_mode=false)
+
+    _postings = self.postings.unscoped
+    Rails.logger.info "\n\n\n\nANY_OF_DEBUG START WITH " + _postings.inspect
+
+    if _user && !_user.role?(:moderator)
+      _postings = _postings.addressed_to(_user.id) 
+      Rails.logger.info "ANY_OF_DEBUG ADDED ADDRESSED TO " + _postings.inspect
+    end
+    
+    unless _draft_mode && _user && _user.role?(:moderator)
+      _postings = self.postings.published.online
+      Rails.logger.info "ANY_OF_DEBUG ADDED PUBLISHED ONLINE " + _postings.inspect
+    end
+
+    unless _user 
+      _postings = _postings.publics.online
+      Rails.logger.info "ANY_OF_DEBUG ADDED PuBLICS ONLINE " + _postings.inspect
+    end
+
+    _postings
+  end
+  
 
 private
   # ContentItems need to override the abstract method but a Blog didn't

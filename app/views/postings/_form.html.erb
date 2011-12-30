@@ -4,7 +4,7 @@
   <%= errors_for(posting) %>
 
   <!-- FIELDS ===================================== -->
-
+  <%= f.hidden_field(:user_id, value: current_user.id) if current_user -%>
   <div class='top_right_box'>
     <div class="field">
       <strong><%= f.label :cover_picture %></strong><br /><br />

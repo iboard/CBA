@@ -66,22 +66,28 @@ module ContentItem
   
         # ContentItems marked as 'draft' should not be in the default-scope
         field :is_draft, :type => Boolean, :default => true
-        scope :drafts, lambda { unscoped.where(is_draft: true ) }
+        scope :drafts, -> { where(is_draft: true ) }
 
         if self.respond_to?(:is_template)
-          scope :published, lambda { unscoped.where(is_draft: false, is_template: false ) }
+          scope :published, -> { where(is_draft: false, is_template: false) }
         else
-          scope :published, lambda { unscoped.where(is_draft: false ) }
+          scope :published, -> { where(is_draft: false) }
         end
 
-        scope :online, any_of(
-          {:publish_at=>nil,:expire_at=>nil},
-          {:publish_at.lte=>Time.now(),:expire_at=>nil},
-          {:publish_at.lte=>Time.now(),:expire_at.gt=>Time.now()},
-          {:publish_at => nil, :expire_at.gt=>Time.now()}
-        )
-        scope :expired, unscoped.where(:expire_at.lte=>Time.now)
-        scope :pre_release, where(:publish_at.gt => Time.now())
+        scope :online, -> { any_of(
+                 {:publish_at=>nil,:expire_at=>nil},
+                 {:publish_at.lte=>Time.now(),:expire_at=>nil},
+                 {:publish_at.lte=>Time.now(),:expire_at.gt=>Time.now()},
+                 {:publish_at => nil, :expire_at.gt=>Time.now()}
+                )}
+
+        scope :expired,     -> { where(:expire_at.lte=>Time.now) }
+        scope :pre_release, -> { where(:publish_at.gt => Time.now()) }
+
+        def is_online?
+          (self.publish_at.nil? || self.publish_at <= Time.now()) &&
+          (self.expire_at.nil? || self.expire_at > Time.now())
+        end
 
         # Will return a truncated version of the title if it exceeds the maximum
         # length of titles used in the menu (or wherever you can't display long titles)

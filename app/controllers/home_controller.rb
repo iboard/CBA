@@ -6,15 +6,11 @@ class HomeController < ApplicationController
 
   # Display the top pages on the home-page
   def index
-    @blog = Blog.public.where(:title => t(:news) ).first
+    @blog = Blog.public_blogs.where(:title => t(:news) ).first
     if @blog
-      @postings = @blog.postings.desc(:created_at).excludes(is_draft: true)
-      unless current_user
-        @postings = @postings.public
-      else
-        @postings = @postings.addressed_to(current_user.id)
-      end
-      @postings = @postings.paginate(
+      @postings = @blog.postings_for_user_and_mode(current_user,draft_mode)
+      .desc(:created_at)
+      .paginate(
         :page => params[:page],
         :per_page => CONSTANTS['paginate_postings_per_page'].to_i
       )
@@ -32,7 +28,7 @@ class HomeController < ApplicationController
   # GET /feed
   def rss_feed
     @feed_items = []
-    Blog.public.each do |blog|
+    Blog.public_blogs.each do |blog|
       blog.postings.rss_items.desc(:updated_at).each do |posting|
         if posting.public?
           @feed_items << FeedItem.new(posting.title, posting.body, posting.updated_at, posting_url(posting), posting)

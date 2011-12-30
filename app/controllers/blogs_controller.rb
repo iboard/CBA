@@ -19,16 +19,10 @@ class BlogsController < ApplicationController
   # Show all postings for this blog
   def show
     @blog = scoped_find(params[:id])
-    unless current_user
-      _postings = @blog.scoped_postings.online.public.any_in(:is_draft=>[false, nil]).desc(:created_at)
-    else
-      unless draft_mode
-        _postings = @blog.scoped_postings.online.any_in(:is_draft=>[false, nil]).addressed_to(current_user.id).desc(:created_at)
-      else
-        _postings = @blog.scoped_postings.online.where(:is_draft=>true).addressed_to(current_user.id).desc(:created_at)
-      end
-    end
-    @postings = _postings.paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
+
+    _postings = @blog.postings_for_user_and_mode(current_user,draft_mode)
+
+    @postings = _postings.desc(:created_at).paginate(:page => params[:page],:per_page => CONSTANTS['paginate_postings_per_page'].to_i)
     respond_to do |format|
       format.js {
          @path = blog_path(@blog, :page => (params[:page] ? (params[:page].to_i+1) : 2) )

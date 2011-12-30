@@ -2,7 +2,6 @@
 
 class PostingsController < ApplicationController
 
-  before_filter :unscope_drafts_for_authors, except: [:tags]
   before_filter :set_blog_id_if_missing,     except: [:tags]
   load_and_authorize_resource :blog,         except: [:tags]
   load_and_authorize_resource :posting,      except: [:tags]
@@ -61,13 +60,6 @@ class PostingsController < ApplicationController
       @posting = Posting.find(params[:id])
       @blog    = @posting.blog
       params[:blog_id] = @blog.to_param
-    end
-  end
-
-  # For update and destroy we want to include drafts, so change the default_scope
-  def unscope_drafts_for_authors
-    if current_role?(:author) && session[:draft_mode] && session[:draft_mode] == true
-      Posting.default_scope()
     end
   end
 

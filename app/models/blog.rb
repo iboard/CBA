@@ -77,26 +77,47 @@ class Blog
   # @param [Boolean] _draft_mode - select for draft-mode if true
   # @return [Criteria] for all visible postings for this user
   def postings_for_user_and_mode(_user,_draft_mode=false)
-
-    _postings = self.postings.unscoped
-    Rails.logger.info "\n\n\n\nANY_OF_DEBUG START WITH " + _postings.inspect
-
-    if _user && !_user.role?(:moderator)
-      _postings = _postings.addressed_to(_user.id) 
-      Rails.logger.info "ANY_OF_DEBUG ADDED ADDRESSED TO " + _postings.inspect
+    # if no user is given then return only public and online postings
+    unless _user
+      _online =  self.postings.online.only(:id).map(&:id)
+      _public =  self.postings.publics.only(:id).map(&:id) 
+      _published=self.postings.published.only(:id).map(&:id) 
+      return self.postings.for_ids(_online & _public & _published)
     end
+
+    # if user is moderator and in draft_mode then return all postings
+    if _draft_mode && _user.role?(:moderator)
+      return self.postings.all
+    end
+
+    # The mongo-driver is not able to combine two any_of ($or) as "and"
+    #
+    # model.any_of( :f1 => '1', :f2 => '2').any_of( :d1 => 'x', :d2 => 'y')
+    # is not equal to
+    #    select * from model where ( f1 = 1 OR f2 = 2) AND ( d1 = x OR d2 = y ) 
+    # but it will act as
+    #    select * from model where ( f1 = 1 OR f2 = 2 OR d1 = x OR d2 = y )
+    #
+    # Posting scopes using any_of are:
+    #   * addressed_to(user_id)
+    #   * online
     
-    unless _draft_mode && _user && _user.role?(:moderator)
-      _postings = self.postings.published.online
-      Rails.logger.info "ANY_OF_DEBUG ADDED PUBLISHED ONLINE " + _postings.inspect
+    # public or addressed to _user
+    _addressed_ids = self.postings.addressed_to(_user.id).only(:id).map(&:id)
+    # in range of publish_at and enxpire_at
+    _online_ids = self.postings.online.only(:id).map(&:id)
+
+    unless _user.role?(:moderator)
+      unless _draft_mode
+        _visible_ids = _online_ids & self.postings.published.only(:id).map(&:id) & _addressed_ids
+      else
+        _visible_ids = _addressed_ids
+      end
+    else
+      _visible_ids = _online_ids & self.postings.published.only(:id).map(&:id)
     end
 
-    unless _user 
-      _postings = _postings.publics.online
-      Rails.logger.info "ANY_OF_DEBUG ADDED PuBLICS ONLINE " + _postings.inspect
-    end
-
-    _postings
+    self.postings.for_ids( _visible_ids )
   end
   
 

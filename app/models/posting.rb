@@ -36,9 +36,8 @@ class Posting
   scope :addressed_to, ->(user_id) { where.any_of( 
                                               {:recipient_ids => nil}, 
                                               {:recipient_ids => [] },
-                                              {:recipient_ids => [user_id] },
+                                              {:recipient_ids.in => [user_id] },
                                               {:user_id => user_id} 
-                                            
                                           ) 
                                     }
                                    

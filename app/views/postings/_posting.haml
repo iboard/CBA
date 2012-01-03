@@ -1,6 +1,6 @@
 -# - TODO: Duplication - Posting Header and Links
 - interpret posting do |presenter|
-  %div{:style=>'clear: right;',:id => 'posting'}
+  %div{:style=>'clear: right;',:id => 'posting', :class => posting.css_class}
     - if can? :edit, posting
       = presenter.edit_buttons
     .side-tab-content

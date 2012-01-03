@@ -85,6 +85,12 @@ class Posting
     }.flatten.uniq.compact
   end
 
+  def css_class
+    return 'expired'    if self.expire_at  && self.expire_at  <= Time.now
+    return 'prerelease' if self.publish_at && self.publish_at >  Time.now 
+    return 'online'
+  end
+
   
 private ################################################## private ####
 

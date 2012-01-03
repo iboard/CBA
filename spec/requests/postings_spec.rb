@@ -111,5 +111,38 @@ describe "Postings:" do
 
   end
 
+  describe "should be marked by css if not online" do
+    before(:all) do
+      @ts_prerelease = Time.now+1.day
+      @ts_expired = Time.now-1.day
+    end
+
+    before(:each) do
+      log_in_as 'admin@iboard.cc', 'thisisnotsecret'
+      click_link 'Show drafts'
+    end
+
+    it "should mark expired posts" do
+      @blog.postings.delete_all
+      @blog.postings.create(title: 'Expired Post',body: 'This should not be visible after yesterday', user_id: User.first.id, expire_at: @ts_expired )
+      visit blog_path(@blog)
+      assert page.all('.expired').first.text =~ /Expired Post/, 'Expired Post not found in css .expired'
+    end
+
+    it "should mark prereleased posts" do
+      @blog.postings.delete_all
+      @blog.postings.create(title: 'PreRelease Post',body: 'This should not be visible before the next day', user_id: User.first.id, publish_at: @ts_prerelease )
+      visit blog_path(@blog)
+      assert page.all('.prerelease').first.text =~ /PreRelease Post/, 'Expired Post not found in css .expired'
+    end
+
+    it "should mark online posts" do
+      @blog.postings.delete_all
+      @blog.postings.create(title: 'Online Post',body: 'This should be visible between yesterday and tomorrow', user_id: User.first.id, publish_at: @ts_expired, expire_at: @ts_prerelease )
+      visit blog_path(@blog)
+      assert page.all('.online').first.text =~ /Online Post/, 'Online Post not found in css .online'
+    end
+  end
+
 
 end

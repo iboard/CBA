@@ -48,6 +48,14 @@ $side-tab-height: 38px;
   }
 }
 
+.online {}
+.prerelease { 
+  background: url('/images/prerelease_badge.png') top left no-repeat;
+}
+.expired { 
+  background: url('/images/expired_badge.png') top left no-repeat;
+}
+
 .tags {
   color: #aaa;
   font-size: 0.75em;

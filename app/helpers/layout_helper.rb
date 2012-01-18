@@ -95,6 +95,14 @@ module LayoutHelper
     link_to_function(icon_and_text(label_text,icon),function_call,options).html_safe
   end
 
+  def accessible_postings(tag,role)
+    _ids = Blog.for_role(role).only(:id).map{ |blog|
+      blog.postings_for_user_and_mode(current_user,draft_mode).only(:id).map(&:_id)
+    }.flatten
+    Posting.any_in(_id: _ids).tagged_with(tag)
+  end
+
+
 private
 
   def setup_button(icon,label_text,options)
@@ -164,11 +172,6 @@ private
     else
       shortcut
     end
-  end
-
-  def accessible_postings(tag,role)
-    blog_ids = Blog.for_role(role).only(:id).map(&:id)
-    Posting.any_in(blog_id: blog_ids).tagged_with(tag)
   end
 
 end

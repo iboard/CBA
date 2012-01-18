@@ -88,10 +88,12 @@
       <div class='clear'></div>
       
       <div id='copyright'>
+        <% unless Rails.env == 'test' %>
         <a href='http://www.pledgie.com/campaigns/15849'><img 
                alt='Click here to lend your support to: CBA and make a donation at www.pledgie.com !' 
                src='http://www.pledgie.com/campaigns/15849.png?skin_name=chrome' border='0' /></a>
         <br />
+        <% end %>
            © <%= Time.now.year %> by <%= link_to APPLICATION_CONFIG['copyright'], APPLICATION_CONFIG['copyright_url'] %>
       </div>
       

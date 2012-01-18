@@ -292,3 +292,4 @@ en:
   by_created_at: 'by date created'
   no_images_in_simple_text_format: "Sorry, in :simple_text_format no images can be displayed inline"
   destroy_component: 'Destroy Component'
+  nothing_found: 'Nothing found'

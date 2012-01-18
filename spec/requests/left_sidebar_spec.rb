@@ -14,15 +14,8 @@ describe "Left sidebar" do
     visit blog_path(Blog.first.id)
   end
 
-
-  # Oh, some test should be there yet but are missing.
-  # So let's do this
   it "should display the submenu-menu" do
     page.should have_css ".submenu_box"
-  end
-
-  it "should display the site-search-box" do
-    assert page.all(:css, "#searchbox"), "There should be a searchbox!"
   end
 
   it "should display the tag-cloud" do

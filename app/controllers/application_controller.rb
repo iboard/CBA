@@ -162,7 +162,7 @@ private
   # Make sure a search-param and @search is present
   def setup_search
     params[:search] ||= {:search => ""}
-    @search ||= Search.new(params[:search]||{:search => ""})
+    @search_model ||= Search.new(params[:search]||{:search => ""})
   end
   
   # Render the 404-Template

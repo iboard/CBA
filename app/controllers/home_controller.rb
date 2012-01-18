@@ -3,7 +3,7 @@
 class HomeController < ApplicationController
   respond_to :html, :js
 
-  include LayoutHelper if Rails.env == 'test'
+  include LayoutHelper #TODO: Why we need this here? (otherwise accessible_postings will not be loaded)
 
   # Display the top pages on the home-page
   def index

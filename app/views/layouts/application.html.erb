@@ -82,7 +82,9 @@
         %>
         </ul>
         <div id='tagcloud'>
-          <%= tag_cloud -%>
+          <% cache(current_tag_cache_key,:expires_in => 20.minutes) do %>
+            <%= tag_cloud -%>
+          <% end %>
         </div>
       </div>
       <div class='clear'></div>

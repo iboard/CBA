@@ -69,6 +69,10 @@ module LayoutHelper
       end
     end
   end
+
+  def current_tag_cache_key
+    key = "tag_cloud_" + (current_user ? current_user.id.to_s : 'public')
+  end
   
   # render a tag-cloud
   def tag_cloud

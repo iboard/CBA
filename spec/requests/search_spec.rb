@@ -34,14 +34,12 @@ describe "Searchbox" do
 
   describe "Not logged in" do 
     it "Should find postings", :js => true do
-      pending "No idea why this test doesn't work?!" do
         fill_in 'search[search]', with: 'info'
         sleep 2
         page.should have_content "Search"
         page.should have_content "Public Posting"
         page.should_not have_content "Restricted Posting"    
         page.should have_no_content "Nothing found"
-      end
     end
   
     it "Should not find restricted items if not logged in", :js => true do

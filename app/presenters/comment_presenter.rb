@@ -34,7 +34,7 @@ class CommentPresenter < BasePresenter
     I18n.translate(:posted_from_ip, :ip => (comment.from_ip || "n/a") )
   end
   
-  def render_comment
+  def render_comment(_concat=false)
     ContentItem::markdown(comment.comment||'').html_safe
   end
   alias_method :body, :render_comment

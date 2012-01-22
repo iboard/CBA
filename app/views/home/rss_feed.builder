@@ -18,7 +18,7 @@ atom_feed(:url => feed_path) do |feed|
            end
          end
        rescue => e
-         _content += ("\n<br/>ERROR: " + e.inspect + "<br/>").html_safe
+         _content += ("\n<br/>ERROR!<br/>").html_safe
        end
        entry.content( _content, :type => :html )
        entry.updated item.updated_at

@@ -115,7 +115,7 @@ for i in (0..4).to_a
 end
 
 
-for width in [100,200,300,400,500]
+for width in [100,200,300,400,500,640]
   default_component = PageTemplate.find_or_create_by(name: "Component: float-left-box (#{width}px)")
   default_component.css_class = "component_float_left_#{width.to_s}"
   default_component.html_template = "BODY"
@@ -123,6 +123,11 @@ for width in [100,200,300,400,500]
   
   default_component = PageTemplate.find_or_create_by(name: "Component: float-right-box (#{width}px)")
   default_component.css_class = "component_float_right_#{width.to_s}"
+  default_component.html_template = "BODY"
+  default_component.save!
+
+  default_component = PageTemplate.find_or_create_by(name: "Component: centered_box_(#{width}px)")
+  default_component.css_class = "centered_box_#{width.to_s}"
   default_component.html_template = "BODY"
   default_component.save!
 end

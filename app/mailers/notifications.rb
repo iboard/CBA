@@ -4,26 +4,27 @@
 # and so on.
 
 class Notifications < ActionMailer::Base
+  include ActionView::Helpers::SanitizeHelper
 
   default :from => APPLICATION_CONFIG['registration_from']
 
   # When a new user signed up, inform the adminstrator
   def sign_up(new_user)
     @user = new_user
-    @notify_subject = "NEW SIGN UP AT #{APPLICATION_CONFIG['name']}"
+    @notify_subject = strip_tags "NEW SIGN UP AT #{APPLICATION_CONFIG['name']}"
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
 
   # Inform the admin when a user cancel an account.
   def cancel_account(user_info)
     @user_info = user_info
-    @notify_subject = "USER CANCELED ACCOUNT AT #{APPLICATION_CONFIG['name']}"
+    @notify_subject = strip_tags "USER CANCELED ACCOUNT AT #{APPLICATION_CONFIG['name']}"
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
 
   # Inform the admin if a user confirms an account
   def account_confirmed(user)
-    @notify_subject = "USER CONFIRMED ACCOUNT AT #{APPLICATION_CONFIG['name']}"
+    @notify_subject = strip_tags( "USER CONFIRMED ACCOUNT AT #{APPLICATION_CONFIG['name']}")
     @user = user
     mail( :to => APPLICATION_CONFIG['admin_notification_address'], :subject => @notify_subject)
   end
@@ -37,7 +38,7 @@ class Notifications < ActionMailer::Base
     @username = posting.user.name
     @content  = ContentItem::markdown(posting.body).html_safe
     @url      = blog_posting_url(blog,posting)
-    @notify_subject = "A NEW POSTING WAS CREATED AT #{APPLICATION_CONFIG['name']}"
+    @notify_subject = strip_tags "A NEW POSTING WAS CREATED AT #{APPLICATION_CONFIG['name']}"
 
     begin
       # Attach cover picture
@@ -50,6 +51,7 @@ class Notifications < ActionMailer::Base
       # TODO: The following code doesn't work. Either there is a bug somewhere
       # TODO: in CBA or in Rails::Mail. Only the cover-pic arrives.
       # TODO: Check if it's possible to attach more files with Rails Mail - it should!
+      # TODO: Fix testing attachments at all!
       # Attach attachments
       posting.attachments.each do |att|
         path = att.file.path.gsub(/\?.*$/,"")

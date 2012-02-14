@@ -1,6 +1,10 @@
 <%= @notify_subject %>
 <%= "="*@notify_subject.length %>
 
-<%= debug @user %>
+<% [ :confirmation_sent_at,:confirmed_at,:created_at,:current_sign_in_at,:current_sign_in_ip,:email,:last_sign_in_at,:last_sign_in_ip,:name,:roles_mask,:sign_in_count,:updated_at,:use_gravatar
+   ].each do |attribute| -%>
+     <%= attribute.to_s.humanize -%>: <%= @user.send(attribute) -%>
+   <% end %>
+ %>
 
 

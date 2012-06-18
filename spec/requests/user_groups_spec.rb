@@ -33,18 +33,21 @@ describe "User groups:" do
   end
   
   it "should autocomplete members", :js => true do
-    pending "How to test autocomplete?! fill_in submits names instead of ids"
-   #  user = User.first
-   #  user.user_groups.delete_all
-   #  user.save!
-   #  log_in_as "admin@iboard.cc", "thisisnotsecret"
-   #  visit new_user_user_group_path(User.first)
-   #  fill_in "user_group_name", with: 'Friends'
-   #  fill_in "user_group_member_tokens", "testmax"
-   #  click_button "Create User group"
-   #  page.should have_content "User group successfully created"
-   #  page.should have_content "Friends"
-   #  page.should have_content "testmax"
+    user = User.first
+    user.user_groups.delete_all
+    user.save!
+    log_in_as "admin@iboard.cc", "thisisnotsecret"
+    visit new_user_user_group_path(User.first)
+    fill_in "user_group_name", with: 'Friends'
+    node = page.find_by_id( 'token-input-user_group_member_tokens' )
+    puts node.set("testmax") #set value
+    sleep 1
+    keypress_script = "var e = $.Event('keydown', { keyCode: #{9} }); $('#token-input-user_group_member_tokens').trigger(e);"
+    page.driver.browser.execute_script(keypress_script)
+    click_button "Create User group"
+    page.should have_content "User group successfully created"
+    page.should have_content "Friends"
+    page.should have_content "testmax"
   end
   
   it "should allow editing group" do

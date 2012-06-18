@@ -13,7 +13,9 @@ Cba::Application.configure do
   config.consider_all_requests_local       = true
   # next line remarked for 3.1     
   # config.action_view.debug_rjs             = true
-  config.action_controller.perform_caching = true
+  config.assets.compress = false
+
+  config.action_controller.perform_caching = false
 
   ### ActionMailer Config
   config.action_mailer.default_url_options ||= { :host => DEFAULT_URL} 

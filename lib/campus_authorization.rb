@@ -1,4 +1,5 @@
-require 'omniauth/core'
+# -*- encoding : utf-8 -*-
+require 'omniauth'
 
 #
 #  OmniAuth extension for WWEDU campus authentication.
@@ -8,48 +9,60 @@ module OmniAuth
     class Campus
       include OmniAuth::Strategy
 
-      # receive parameters from the strategy declaration and save them
-      def initialize(app, auth_id, secret, auth_redirect, options = {})
-        @secret = secret
-        @auth_redirect = auth_redirect
-        @auth_id=auth_id
-        super(app, :campus, options)
+      args [:consumer_key, :consumer_secret]
+      option :name, 'campus'
+      option :consumer_options, {}
+      option :open_timeout, 30
+      option :read_timeout, 30
+      option :authorize_params, {}
+
+      option :fields, ["uid", "username", "email"]
+
+      uid { raw_info[:uid] }
+
+      option :client_options, {
+        :authorize_url => 'http://campus.wwedu.com/omniauth'
+      }
+
+      info do
+        {
+          :name => raw_info[:username],
+          :email => raw_info[:email],
+          :uid => raw_info[:uid]
+        }
+      end
+    
+      extra do
+        {'raw_info' => raw_info}
+      end
+    
+      def raw_info
+        {
+          uid: request.params["uid"], 
+          username: request.params["username"], 
+          email: request.params["email"], 
+          token: request.params["token"]
+        }
       end
 
-      # redirect to the Campus website
       def request_phase
         r = Rack::Response.new
-        r.redirect @auth_redirect
+        r.redirect "http://campus.wwedu.com/omniauth"
         r.finish
       end
 
       def callback_phase
-        uid, username, email, token = request.params["uid"], request.params["username"], request.params["email"], request.params["token"]
-        sha1 = Digest::SHA1.hexdigest("a mix of #{uid} #{@secret}, #{@auth_id}, #{username}, #{email}")
+        sha1 = Digest::SHA1.hexdigest("a mix of #{raw_info[:uid]} #{options[:consumer_secret]}, #{options[:consumer_key]}, #{raw_info[:username]}, #{raw_info[:email]}")
 
         # check if the request comes from Campus or not
-        if sha1 == token
-          @uid, @username, @email = uid, username, email
-          # OmniAuth takes care of the rest
-	        super
+        if sha1 == raw_info[:token]
+          super
         else
         # OmniAuth takes care of the rest
           fail!(:invalid_credentials)
         end
       end
 
-      # normalize user's data according to http://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-      # TODO: Extend this method to apply user-roles depending on campus-user-keywords
-      def auth_hash
-        OmniAuth::Utils.deep_merge(super(), {
-          'uid' => @uid,
-          'user_info' => {
-            'name'     => @username,
-            'nickname' => @username,
-            'email'    => @email
-          }
-        })
-      end
     end
   end
 end

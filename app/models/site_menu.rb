@@ -7,7 +7,7 @@
 # == Fields:
 #   name:
 #     [String] The Label of the menu-item
-#   target:
+#   site_menu_target:
 #     [String] The URL to call on click
 #   position:
 #     [Integer] The position in menus. (default order)
@@ -19,7 +19,7 @@ class SiteMenu
   include Mongoid::Tree::Traversal
   field :name, :type => String
   validates_presence_of :name
-  field :target, :type => String
+  field :site_menu_target, :type => String
   field :position, :type => Integer, :default => 999999
   field :role_needed, :type => Integer
   field :info, :type => String
@@ -27,7 +27,7 @@ class SiteMenu
   default_scope order_by(:position => :asc)
 
   def current_child?(view_context)
-    return true if view_context.current_page?(self.target)
+    return true if view_context.current_page?(self.site_menu_target)
     self.children.each do |child|
       return true if child.current_child?(view_context)
     end
@@ -37,7 +37,7 @@ class SiteMenu
   def has_child_path?(path)
     child = nil
     self.traverse do |t|
-      if t.target == path
+      if t.site_menu_target == path
         child = t
         break
       end

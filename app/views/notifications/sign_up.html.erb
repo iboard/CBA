@@ -4,5 +4,3 @@
    ].each do |attribute| -%>
      <p><strong><%= attribute.to_s.humanize -%></strong> <%= @user.send(attribute) -%></p>
    <% end %>
- %>
-

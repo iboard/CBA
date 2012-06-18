@@ -1,6 +1,6 @@
 %span.name
   %b= site_menu.name+" => "
-  = link_to site_menu.target, site_menu.target
+  = link_to site_menu.site_menu_target, site_menu.site_menu_target
 %br
 %span{:class => 'site_menu_manage_buttons'}
   = site_menu_manage_buttons(site_menu)

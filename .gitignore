@@ -22,6 +22,16 @@ coverage/*
 coverage/**/*
 test/unit/coverage/*
 test/unit/coverage/**/*
+config/settings.local.yml
+config/settings.yml
+config/settings.local.yml
+config/settings/production.yml
+config/settings/development.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+config/secrets.yml
+config/config.yml
+config/database.yml
 config/mongoid.yml
 config/application.yml
 config/mailserver_setting.rb

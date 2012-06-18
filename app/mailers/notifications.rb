@@ -90,7 +90,9 @@ class Notifications < ActionMailer::Base
   # Invite User
   # arg[0] = Invitation-id
   def invite_user(invitation,subject,message)
-    @subject = subject
+    subject += strip_tags " AT #{APPLICATION_CONFIG['name']}"
+    # @subject = subject
+    @notify_subject = subject
     @sign_up_url = new_user_registration_url(:token => invitation.token)
     @invitation = invitation
     @message = message

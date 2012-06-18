@@ -2,8 +2,7 @@
 
 # DelayedJob Worker to send a message when an account was confirmed
 # Structure:
-#   arg0 = invitation
-#   arg1 = subject
+#   arg0 = user_id
 class AccountConfirmedNotifier < Struct.new( :args )
   
   # Deliver a Notificaton using module {Notifications}

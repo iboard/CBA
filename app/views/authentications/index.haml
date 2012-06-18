@@ -1,0 +1,29 @@
+- title t(:authentications_for_user, :user => current_user.name )
+
+- if @authentications
+  - unless @authentications.empty?
+    %p
+      %strong You have signed in with these services:
+    %div.authentications
+      - for authentication in @authentications
+        %div.authentication
+          = image_tag "#{authentication.provider}_thirtytwo.png", :size => "32x32"
+          %div.provider= authentication.provider_name
+          %div.uid= authentication.uid
+          = link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"
+
+  - content_for :service_title do
+    %p{ style: 'clear: left;'}
+      %strong Add another service to sign in with:
+- else 
+  - content_for :service_title do
+    %p{ style: 'clear: left;'}
+      %strong Sign in through one of these services:
+
+%p.clear
+  %br
+
+= render :partial => '/authentications/authentications'
+
+%h4{ style: 'clear: both;'}
+  = link_button t(:registration_settings), 'button back', edit_user_registration_path

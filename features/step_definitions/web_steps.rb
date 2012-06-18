@@ -201,7 +201,7 @@ Given /^the following site_menu$/ do |table|
   table.hashes.each do |hash|
 
     level = hash[:name]
-    target= hash[:target]
+    target= hash[:site_menu_target]
     levels = level.split(/\./)
 
     search_in = SiteMenu
@@ -210,7 +210,7 @@ Given /^the following site_menu$/ do |table|
       if item
         search_in = item.children
       else
-        search_in.create(name: name, target:target)
+        search_in.create(name: name, site_menu_target:target)
       end
     end
   end
@@ -253,14 +253,14 @@ Given /^the following default pages?$/ do |table|
   t = PageTemplate.find_or_create_by(name: 'default')
   t.save!
   table.hashes.each do |hash|
-    Factory('page', hash.merge( :page_template_id => t.id ))
+    FactoryGirl.create('page', hash.merge( :page_template_id => t.id ))
   end
 end
 
 Given /^the following (.+) records?$/ do |factory, table|
   eval "#{factory.camelize}.unscoped.delete_all"
   table.hashes.each do |hash|
-    Factory(factory, hash)
+    FactoryGirl.create(factory, hash)
   end
 end
 
@@ -337,7 +337,7 @@ Given /the default user set/ do
       :confirmed_at => "2010-01-01 00:00:00"
     }
   ].each do |hash|
-    Factory('user', hash)
+    FactoryGirl.create('user', hash)
   end
 end
 # Make sure not to overwrite your production files!
@@ -452,7 +452,7 @@ Given /^the following comment records for page "([^"]*)"$/ do |commentable, tabl
   page = Page.where(:title => commentable).first
   page.comments.unscoped.delete_all
   table.hashes.each do |hash|
-    page.comments << Factory('comment', hash)
+    page.comments << FactoryGirl.create('comment', hash)
   end
   page.save
 end

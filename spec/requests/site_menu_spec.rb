@@ -11,7 +11,7 @@ describe "SiteMenu" do
     log_in_as "admin@iboard.cc", "thisisnotsecret"
     visit new_site_menu_path
     fill_in "site_menu_name", :with => "To Home"
-    fill_in "site_menu_target", :with => "/"
+    fill_in "site_menu_site_menu_target", :with => "/"
     select "-- public --", :from => "site_menu_role_needed"
     click_button "Create Site menu"
     page.should have_content "Menu entry successfully created"

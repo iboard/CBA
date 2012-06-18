@@ -1,0 +1,11 @@
+- Secrets::defined_providers.each do |provider|
+  %a.auth_provider{ href: "/auth/#{provider.to_s.downcase}" }
+    = image_tag "#{provider.to_s.downcase}_sixtyfour.png", :size => "64x64", :alt => "#{provider.to_s.humanize}"
+    = provider.to_s.humanize
+- if Secrets::secret['openid']
+  %a.auth_provider{ href: "/auth/open_id" }
+    = image_tag "openid_sixtyfour.png", :size => "64x64", :alt => "OpenID"
+    = "OpenID"
+
+%p
+%div.clear

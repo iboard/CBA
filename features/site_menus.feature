@@ -13,15 +13,15 @@ Feature: SiteMenus
       | Page 1 | Lorem ipsum          | false        |
       | Page 2 | Lirum Opsim          | false        |
     And the following site_menu
-      | name              | target       |
-      | rootA             | /            |
-      | rootA.item1       | /help_fake   |
-      | rootA.item2       | /help_fake/1 |
-      | rootB             | /pages       |
-      | rootB.Blorem      | /p/page_1    |
-      | rootB.Blirum      | /p/page_2    |
-      | rootB.Blirum.Sub1 | /dummy1      |
-      | rootB.Blirum.Sub2 | /dummy2      |
+      | name              | site_menu_target |
+      | rootA             | /                |
+      | rootA.item1       | /help_fake       |
+      | rootA.item2       | /help_fake/1     |
+      | rootB             | /pages           |
+      | rootB.Blorem      | /p/page_1        |
+      | rootB.Blirum      | /p/page_2        |
+      | rootB.Blirum.Sub1 | /dummy1          |
+      | rootB.Blirum.Sub2 | /dummy2          |
 
   Scenario: I wanna see a sumbenue on the homepage
     Given I am on the home page
@@ -84,7 +84,7 @@ Feature: SiteMenus
     Then I should be on the new site_menu page
     And I should see "New submenu for rootA"
     And I fill in "Name" with "Submenu"
-    And I fill in "Target" with "/submenu_path"
+    And I fill in "site_menu[site_menu_target]" with "/submenu_path"
     And I click on "Create Site menu"
     Then I should be on the site_menus page
     And I should see "/submenu_path"

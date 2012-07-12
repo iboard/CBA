@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
   def index
-    @pages = scoped_pages.order([:menu_order,:asc],[:created_at, :desc]).all.paginate(
+    @pages = scoped_pages.order_by([:menu_order,:asc],[:created_at, :desc]).all.paginate(
       :page => params[:page],
       :per_page => APPLICATION_CONFIG[:pages_per_page] || 5
     )

@@ -143,9 +143,10 @@ private
   end
 
   def embed_youtube_playlist(youtube_tag)
-    "<iframe width='560' height='345' src='http://www.youtube.com/p/" +
+    youtube_tag = "PL" + youtube_tag if youtube_tag.length == 16
+    "<iframe width='560' height='345' src='http://www.youtube.com/embed/videoseries?list=" +
       youtube_tag +
-    "?version=3&amp;hl=en_US' frameborder='0' allowfullscreen=''></iframe>"
+    "&amp;hl=en_US' frameborder='0' allowfullscreen=''></iframe>"
   end
 
   def embed_youtube_video(youtube_tag)

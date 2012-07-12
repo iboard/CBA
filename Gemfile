@@ -81,6 +81,7 @@ gem 'rspec', '>= 2.10.0', :group => [:development, :test]
 gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
 gem 'json_pure', :group => [:development, :test]
 gem 'capybara', :group => :test
+gem 'capybara-webkit', :group => :test
 gem 'database_cleaner', :group => [:development, :test]
 gem 'cucumber-rails', '>= 1.3.0', :require => false, :group => :test
 gem 'cucumber', '>= 1.2.0', :group => [:development, :test]

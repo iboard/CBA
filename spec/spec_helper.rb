@@ -33,6 +33,13 @@ Spork.prefork do
     # instead of true.
     #config.use_transactional_fixtures = true
     config.include SpecDataHelper
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.orm = "mongoid"
+      Capybara.javascript_driver = :webkit
+    end
+
   end
 end
 

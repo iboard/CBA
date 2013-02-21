@@ -9,7 +9,7 @@ Known issues maintained in [Github-Issues](https://github.com/iboard/CBA/issues)
 
 **Quickstart**
 
-I highly recommend to use [RVM](https://rvm.beginrescueend.com/)!
+I highly recommend you use [RVM](https://rvm.beginrescueend.com/)!
 
 Requirements for CBA:
 

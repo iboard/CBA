@@ -69,8 +69,8 @@ gem 'progress_upload_field', '~> 0.0.1'
 # do "easy_install pygments" on your system
 gem 'redcarpet', '1.17.2'
 gem 'albino'
-# gem "nokogiri", "1.4.6"
-gem "nokogiri", "1.5.0"
+#gem "nokogiri", "1.4.6"
+gem "nokogiri", "1.5.0", :group => [:development, :production]
 
 
 gem "mongoid-rspec", ">= 1.4.4", :group => :test
@@ -80,7 +80,7 @@ gem 'headless', '0.1.0', :group => [:development, :test]
 gem 'rspec', '>= 2.10.0', :group => [:development, :test]
 gem 'rspec-rails', '>= 2.10.1', :group => [:development, :test]
 gem 'json_pure', :group => [:development, :test]
-gem 'capybara', :group => :test
+gem 'capybara', '1.1.4', :group => :test
 gem 'capybara-webkit', :group => :test
 gem 'database_cleaner', :group => [:development, :test]
 gem 'cucumber-rails', '>= 1.3.0', :require => false, :group => :test

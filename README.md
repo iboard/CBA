@@ -1,6 +1,15 @@
 CBA - Community Base Application Template
 =============================
 
+Juni 28, 2013 - Extracted secret-token from
+`config/initializers/application.rb` to the file
+`config/inititalizers/_secret.token` which is not included in the
+repository.
+
+If you use this project after June 28th, 2013 please create the
+token-file with your own secret.
+
+
 * [At Github](http://github.com/iboard/CBA)
 
 **Issues**

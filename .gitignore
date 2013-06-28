@@ -53,3 +53,5 @@ public/stylesheets/disabled_styles/**/*
 app/views/layouts/disabled_layouts/*
 app/views/layouts/disabled_layouts/**/*
 spec/javascripts/generated/*
+
+config/initializers/_secret.token
